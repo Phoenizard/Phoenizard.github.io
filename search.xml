@@ -21,7 +21,7 @@
         <category>测试文件</category>
       </categories>
       <tags>
-        <tag>Testing</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -44,15 +44,28 @@
 <h3 id="v2-1-lt-20220825-gt"><a href="#v2-1-lt-20220825-gt" class="headerlink" title="[v2.1]-&lt;20220825&gt;"></a>[v2.1]-&lt;20220825&gt;</h3><ul>
 <li>完善个人介绍界面</li>
 <li>增加了Project Sekai数据库链接</li>
-<li>测试一下文章中插入图片</li>
+<li>测试文章中插入图片</li>
+<li>修改模版</li>
 </ul>
-<p><img src="https://github.com/Phoenizard/Phoenizard.github.io/blob/main/images/test.JPG?raw=true" alt="&quot;test&quot;"></p>
 ]]></content>
       <categories>
         <category>测试文件</category>
       </categories>
       <tags>
-        <tag>Testing</tag>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pictureTest</title>
+    <url>/2022/08/25/pictureTest/</url>
+    <content><![CDATA[<p><img src="/pictureTest/sakana.jpg" alt="sakana"></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>调试心德</tag>
       </tags>
   </entry>
 </search>
