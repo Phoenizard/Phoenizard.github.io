@@ -25,6 +25,19 @@
       </tags>
   </entry>
   <entry>
+    <title>pictureTest</title>
+    <url>/2022/08/25/pictureTest/</url>
+    <content><![CDATA[<p><img src="/pictureTest/sakana.jpg" alt="sakana"></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>调试心德</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>更新日志</title>
     <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<h3 id="v1-0-lt-20220823-gt"><a href="#v1-0-lt-20220823-gt" class="headerlink" title="[v1.0]-&lt;20220823&gt;"></a>[v1.0]-&lt;20220823&gt;</h3><ul>
@@ -53,19 +66,6 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pictureTest</title>
-    <url>/2022/08/25/pictureTest/</url>
-    <content><![CDATA[<p><img src="/pictureTest/sakana.jpg" alt="sakana"></p>
-]]></content>
-      <categories>
-        <category>测试文件</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>调试心德</tag>
       </tags>
   </entry>
 </search>
