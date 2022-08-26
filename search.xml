@@ -27,8 +27,28 @@
   <entry>
     <title>pictureTest</title>
     <url>/2022/08/25/pictureTest/</url>
-    <content><![CDATA[<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg"></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg"></p>
+    <content><![CDATA[<h4 id="先扔张成果图"><a href="#先扔张成果图" class="headerlink" title="先扔张成果图"></a>先扔张成果图</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg" alt="ena"></p>
+<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>在想插入图片的时候，我一开始是非常不愿意使用图床等一系列第三方仓库的，首先想到的就是用相对路径。</p>
+<p>网上最常用的解决方案就是将_config.yml 文件中的post_asset_folder 选项设为 true 来打开，然后利用随文章创建一同创建的同名文件夹插入图片。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>但是本方案在使用了<code>hexo d</code>后<code>public</code>中HTML文件上显示的相对路径却变成了乱码，无法读取图片(而且网上也基本没有这个问题可能是本人电脑的问题)</p>
+<h4 id="PicGO图床"><a href="#PicGO图床" class="headerlink" title="PicGO图床"></a>PicGO图床</h4><blockquote>
+<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具</p>
+</blockquote>
+<p>PicGo 本体支持如下图床：</p>
+<ul>
+<li>七牛图床</li>
+<li>腾讯云COS</li>
+<li>又拍云</li>
+<li>GitHub v1.5.0</li>
+<li>SM.MS V2 v2.3.0-beta.0</li>
+<li>阿里云 OSS v1.6.0</li>
+<li>Imgur v1.6.0</li>
+</ul>
+<p>如果有条件的话非常推荐使用GitHub的仓库制作图床，但是国内网络的不支持使得图片的加载会出现很大的问题，这里也附上知乎上的<a href="https://www.zhihu.com/question/64502309">配置GitHub图床教程链接</a></p>
+<p>其次就是利用国内平台如腾讯云阿里云等，这里我使用的是阿里云，<br><a href="https://blog.csdn.net/weixin_42030522/article/details/123075824%22CSDN%E8%A7%A3%E5%86%B3Hexo%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%A1%88%22">配置阿里云图床</a>这篇文章具体的阐述了整个过程，可以参考。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>把自己的图片上传到第三方图床还是有点不放心的，但是也只能依赖大厂网站了；当时本来以为配置相对路径很容易，结果查来查去改了方案也配置了3个多小时。至此博客的基本要素都差不多配置完毕。最后啥也别说，先来一句：“<strong>SaKana——</strong>”</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg" alt="sakana"></p>
 ]]></content>
       <categories>
         <category>测试文件</category>

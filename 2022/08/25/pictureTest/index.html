@@ -20,22 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":320,"display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="记录一下图片导入的过程，技巧，心得">
+  <meta name="description" content="记录一下图片导入的过程，技巧，心得  附上了GitHub与阿里云配置的教程 PicGo推荐">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pictureTest">
 <meta property="og:url" content="http://example.com/2022/08/25/pictureTest/index.html">
 <meta property="og:site_name" content="凤凰院魔法使のBlog">
-<meta property="og:description" content="记录一下图片导入的过程，技巧，心得">
+<meta property="og:description" content="记录一下图片导入的过程，技巧，心得  附上了GitHub与阿里云配置的教程 PicGo推荐">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg">
 <meta property="og:image" content="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg">
+<meta property="og:image" content="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg">
 <meta property="article:published_time" content="2022-08-25T13:39:35.000Z">
-<meta property="article:modified_time" content="2022-08-25T16:00:58.859Z">
+<meta property="article:modified_time" content="2022-08-26T01:45:58.205Z">
 <meta property="article:author" content="Phoenizard">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="调试心德">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg">
+<meta name="twitter:image" content="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg">
 
 <link rel="canonical" href="http://example.com/2022/08/25/pictureTest/">
 
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-26 00:00:58" itemprop="dateModified" datetime="2022-08-26T00:00:58+08:00">2022-08-26</time>
+                <time title="修改时间：2022-08-26 09:45:58" itemprop="dateModified" datetime="2022-08-26T09:45:58+08:00">2022-08-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -244,7 +244,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>0</span>
+              <span>605</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -253,7 +253,7 @@
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
             </span>
-            <div class="post-description">记录一下图片导入的过程，技巧，心得</div>
+            <div class="post-description"> 记录一下图片导入的过程，技巧，心得 <br> 附上了GitHub与阿里云配置的教程<br> PicGo推荐 </div>
 
         </div>
       </header>
@@ -264,8 +264,28 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg"></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg"></p>
+        <h4 id="先扔张成果图"><a href="#先扔张成果图" class="headerlink" title="先扔张成果图"></a>先扔张成果图</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg" alt="ena"></p>
+<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>在想插入图片的时候，我一开始是非常不愿意使用图床等一系列第三方仓库的，首先想到的就是用相对路径。</p>
+<p>网上最常用的解决方案就是将_config.yml 文件中的post_asset_folder 选项设为 true 来打开，然后利用随文章创建一同创建的同名文件夹插入图片。</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>但是本方案在使用了<code>hexo d</code>后<code>public</code>中HTML文件上显示的相对路径却变成了乱码，无法读取图片(而且网上也基本没有这个问题可能是本人电脑的问题)</p>
+<h4 id="PicGO图床"><a href="#PicGO图床" class="headerlink" title="PicGO图床"></a>PicGO图床</h4><blockquote>
+<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具</p>
+</blockquote>
+<p>PicGo 本体支持如下图床：</p>
+<ul>
+<li>七牛图床</li>
+<li>腾讯云COS</li>
+<li>又拍云</li>
+<li>GitHub v1.5.0</li>
+<li>SM.MS V2 v2.3.0-beta.0</li>
+<li>阿里云 OSS v1.6.0</li>
+<li>Imgur v1.6.0</li>
+</ul>
+<p>如果有条件的话非常推荐使用GitHub的仓库制作图床，但是国内网络的不支持使得图片的加载会出现很大的问题，这里也附上知乎上的<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/64502309">配置GitHub图床教程链接</a></p>
+<p>其次就是利用国内平台如腾讯云阿里云等，这里我使用的是阿里云，<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42030522/article/details/123075824%22CSDN%E8%A7%A3%E5%86%B3Hexo%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA%E5%9B%BE%E7%89%87%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%A1%88%22">配置阿里云图床</a>这篇文章具体的阐述了整个过程，可以参考。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>把自己的图片上传到第三方图床还是有点不放心的，但是也只能依赖大厂网站了；当时本来以为配置相对路径很容易，结果查来查去改了方案也配置了3个多小时。至此博客的基本要素都差不多配置完毕。最后啥也别说，先来一句：“<strong>SaKana——</strong>”</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg" alt="sakana"></p>
 
     </div>
 
@@ -347,6 +367,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%88%E6%89%94%E5%BC%A0%E6%88%90%E6%9E%9C%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">先扔张成果图</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1"><span class="nav-number"></span> <span class="nav-text">方案设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="nav-number">1.</span> <span class="nav-text">相对路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PicGO%E5%9B%BE%E5%BA%8A"><span class="nav-number">2.</span> <span class="nav-text">PicGO图床</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number"></span> <span class="nav-text">小结</span></a></div>
       </div>
       <!--/noindex-->
 
