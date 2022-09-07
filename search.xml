@@ -44,6 +44,10 @@
 <p>再见</p>
 </blockquote>
 <hr>
+<p>香音传主题曲：梦在燃烧</p>
+<iframe src="//player.bilibili.com/player.html?aid=345360338&bvid=BV1Td4y137mk&cid=824680249&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
+<p>草，草，整活还得看星无</p>
 ]]></content>
       <categories>
         <category>每月推荐</category>
@@ -323,6 +327,43 @@
       <tags>
         <tag>术力口</tag>
         <tag>VOCALOID</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>更新日志</title>
+    <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="v1-0-lt-20220823-gt"><a href="#v1-0-lt-20220823-gt" class="headerlink" title="[v1.0]-&lt;20220823&gt;"></a>[v1.0]-&lt;20220823&gt;</h3><ul>
+<li>今天完成了一个最简陋的个人博客！</li>
+<li>虽然这行字也是调试的一部分（）</li>
+</ul>
+<h3 id="v1-1-lt-20220824-gt"><a href="#v1-1-lt-20220824-gt" class="headerlink" title="[v1.1]-&lt;20220824&gt;"></a>[v1.1]-&lt;20220824&gt;</h3><ul>
+<li>尝试了hexo-theme-matery，但并不太适应，做了一些基本设置</li>
+</ul>
+<h3 id="v2-0-lt-20220825-gt"><a href="#v2-0-lt-20220825-gt" class="headerlink" title="[v2.0]-&lt;20220825&gt;"></a>[v2.0]-&lt;20220825&gt;</h3><ul>
+<li>将主题改为NexT</li>
+<li>加入了字数统计，阅读时间</li>
+<li>对Sideboard进行美化，设置了标签，头像</li>
+<li>增加了最新最潮的背景图片与文本阴影</li>
+<li>博客基本设置完成</li>
+</ul>
+<h3 id="v2-1-lt-20220825-gt"><a href="#v2-1-lt-20220825-gt" class="headerlink" title="[v2.1]-&lt;20220825&gt;"></a>[v2.1]-&lt;20220825&gt;</h3><ul>
+<li>完善个人介绍界面</li>
+<li>增加了Project Sekai数据库链接</li>
+<li>测试文章中插入图片</li>
+<li>修改模版</li>
+<li>添加了文档压缩</li>
+</ul>
+<h3 id="v2-2-lt-20220905-gt"><a href="#v2-2-lt-20220905-gt" class="headerlink" title="[v2.2]-&lt;20220905&gt;"></a>[v2.2]-&lt;20220905&gt;</h3><ul>
+<li>增加了月推界面</li>
+<li>增加部分密码机制</li>
+</ul>
+<h3 id="致谢链接"><a href="#致谢链接" class="headerlink" title="致谢链接"></a>致谢链接</h3><p><a href="https://siriusq.top/Next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96#%E5%8D%9A%E6%96%87%E5%8E%8B%E7%BC%A9">Next主题美化</a></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
