@@ -403,4 +403,44 @@
         <tag>VOCALOID</tag>
       </tags>
   </entry>
+  <entry>
+    <title>浅谈在惠普暗影精灵8下装Win11与Linux双系统</title>
+    <url>/2022/09/19/%E8%A3%85%E6%9C%BA%E5%BF%83%E5%BE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><!-- <span class="heimu" title="你知道的太多了">的丑态</span> -->
+
+<h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><ul>
+<li>启动硬盘（windows11与Ubuntu20.3）</li>
+<li>固态硬盘（主播使用的是致态TiPlus5000 1TB)</li>
+<li>暗影精灵8pro</li>
+</ul>
+<h3 id="拆机"><a href="#拆机" class="headerlink" title="拆机"></a>拆机</h3><p>千万不要看什么网上用乱七八糟的教程，其实这款电脑非常好拆，前面的卡扣非常的紧，但是后方其实用手指甲就可以撬开来。</p>
+<img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2827.png" style="zoom: 25%;" />
+
+<p>然后在左侧固态槽上安装硬盘即可。</p>
+<blockquote>
+<p>建议断开电源后点击一下开机键放一下静电后再操作</p>
+<p>但是不要忘记最后把电源线连上</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2818.png"></p>
+<p>在安装好后把外壳扣上，不要急着拧螺丝，先按电源键看看可不可以正常开机后再拧紧螺丝</p>
+<h3 id="装Win11"><a href="#装Win11" class="headerlink" title="装Win11"></a>装Win11</h3><blockquote>
+<p>注：此步骤不是必要过程，主要是我这个买了1TB的盘不太忍心用来装Ubuntu，打算调换一下两个盘，因此要重装win11</p>
+</blockquote>
+<p>首先你需要一个启动硬盘，推荐一下<code>rufus</code>，虽然我不会用但是看学长用很方便。 </p>
+<p>开机时按住F9就是启动选项栏，在插入硬盘之后选择从硬盘启动即可。</p>
+<p>Win11有一个自动bitlocker的功能要记得关闭，否则会影响后续的Linux安装。如果无法直接关就先开启bitlocker然后再关闭。</p>
+<p>在装机好后可能会出现没有网卡驱动的问题，这里需要借助另一台电脑在HP官网上下载网卡驱动然后进行安装，在有网络的情况下在设置中检查更新即可自动安装其他驱动。</p>
+<h3 id="装Ubuntu"><a href="#装Ubuntu" class="headerlink" title="装Ubuntu"></a>装Ubuntu</h3><p>装机程序一致，按照流程来，在最后装机前要注意选择。在安装类型中选择第一个与windows boot manager共存（其可以先看看其他选项确认一下你要装的盘的位置然后再返回）</p>
+<p>最后加一行这个</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+<p>理论上就安装完毕了</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在安装完毕后，重启电脑，会自动在开机中弹出菜单，选择需要的系统即可</p>
+]]></content>
+      <categories>
+        <category>机械硬件</category>
+      </categories>
+      <tags>
+        <tag>调试心得</tag>
+      </tags>
+  </entry>
 </search>
