@@ -27,8 +27,8 @@
 <li>Completing the square 配方</li>
 <li>Exponential and Logarithmic</li>
 </ul>
-<h4 id="Function-The-relation-between-two-sets"><a href="#Function-The-relation-between-two-sets" class="headerlink" title="Function: The relation between two sets"></a>Function: The relation between two sets</h4><p>$f(x)=-\sqrt{x} \ \ \ \ D_f={1,4,6,16,25}$ function equals to minus square root of x </p>
-<p>$f:A-&gt;B$   A is domain and B is co-domian </p>
+<h4 id="Function-The-relation-between-two-sets"><a href="#Function-The-relation-between-two-sets" class="headerlink" title="Function: The relation between two sets"></a>Function: The relation between two sets</h4><p>$ f(x)=-\sqrt{x} \ \ \ \ D_f={1,4,6,16,25} $ function equals to minus square root of x </p>
+<p>$ f:A-&gt;B $   A is domain and B is co-domian </p>
 <ul>
 <li>对应关系<ul>
 <li>one-&gt;one 有且仅有一个x对应一个y</li>
@@ -41,38 +41,76 @@
 </ul>
 </li>
 </ul>
-<h5 id="Composition-of-function"><a href="#Composition-of-function" class="headerlink" title="Composition of function"></a>Composition of function</h5><p>$(fog)(x)=f(g(x))$ </p>
+<h5 id="Composition-of-function"><a href="#Composition-of-function" class="headerlink" title="Composition of function"></a>Composition of function</h5><p>$ (fog)(x)=f(g(x)) $ </p>
 <p>Read: f over g x equals to f of g(x)</p>
-<p>$R_f ⊆ D_g$</p>
+<p>$ R_f ⊆ D_g $</p>
 <h5 id="Inverse-function"><a href="#Inverse-function" class="headerlink" title="Inverse function"></a>Inverse function</h5><p>y is a subject to formula -&gt;  x is a subject to formula</p>
-<h5 id="Modulus-function"><a href="#Modulus-function" class="headerlink" title="Modulus function"></a>Modulus function</h5><p>$f(x)= |x|$  function of x equals to modulus </p>
-<h5 id="Exponential-function"><a href="#Exponential-function" class="headerlink" title="Exponential function"></a>Exponential function</h5><p>$y=f(x)=a^x$  a to the power of x</p>
-<h5 id="Logarithmic-function"><a href="#Logarithmic-function" class="headerlink" title="Logarithmic function"></a>Logarithmic function</h5><p>$y=f(x)=log_ax$  x is logarithym of y to base a </p>
+<h5 id="Modulus-function"><a href="#Modulus-function" class="headerlink" title="Modulus function"></a>Modulus function</h5><p>$ f(x)= |x| $  function of x equals to modulus </p>
+<h5 id="Exponential-function"><a href="#Exponential-function" class="headerlink" title="Exponential function"></a>Exponential function</h5><p>$ y=f(x)=a^x $  a to the power of x</p>
+<h5 id="Logarithmic-function"><a href="#Logarithmic-function" class="headerlink" title="Logarithmic function"></a>Logarithmic function</h5><p>$ y=f(x)=log_ax $  x is logarithym of y to base a </p>
 <h5 id="Translation"><a href="#Translation" class="headerlink" title="Translation"></a>Translation</h5><ul>
 <li>Move:<ul>
-<li>$f(x)\rightarrow f(x)+a$  f(x)  shifted upward/downward by a distance of a units</li>
-<li>$f(x)\rightarrow f(x+a)$  f(x)  shifted to the right/left by a distance of a units </li>
+<li>$ f(x)\rightarrow f(x)+a $  f(x)  shifted upward/downward by a distance of a units</li>
+<li>$ f(x)\rightarrow f(x+a) $  f(x)  shifted to the right/left by a distance of a units </li>
 </ul>
 </li>
-<li>Stretch: $f(x) \rightarrow  kf(x) \ \ k&gt;1$ k·f(x) is stretching of the graph of f(x) vertically <code>/vɜːtɪkli/</code> by a factor of k</li>
-<li>Compressions: $f(x) \rightarrow  kf(x) \ \ 0&lt;k&lt;1$ k·f(x) is compressioning of the graph of f(x) vertically by a factor of $1\over k$</li>
+<li>Stretch: $ f(x) \rightarrow  kf(x) \ \ k&gt;1 $ k·f(x) is stretching of the graph of f(x) vertically <code>/vɜːtɪkli/</code> by a factor of k</li>
+<li>Compressions: $ f(x) \rightarrow  kf(x) \ \ 0&lt;k&lt;1 $ k·f(x) is compressioning of the graph of f(x) vertically by a factor of $ 1\over k $</li>
 </ul>
 <h5 id="Polynomial-function-多项式"><a href="#Polynomial-function-多项式" class="headerlink" title="Polynomial function 多项式"></a>Polynomial function 多项式</h5><ul>
-<li><p>It can be expresseded as a sum of finitely many terms of the form $ax^n$</p>
+<li><p>It can be expresseded as a sum of finitely many terms of the form $ ax^n $</p>
 </li>
-<li><p>read: x raised to n or x to the pwer of n -&gt; $x^n$  </p>
+<li><p>read: x raised to n or x to the pwer of n -&gt; $ x^n $  </p>
 </li>
 <li><p>Degree = n</p>
 <script type="math/tex; mode=display">
-P(x)=a_0+a_1x+a_2x^2+...+a_nx^n \ \ n\in N^*</script><p>| Degree | Name      |<br>| ——— | ————- |<br>| 0      | Constant  |<br>| 1      | Linear    |<br>| 2      | Quadratic |<br>| 3      | Cubic     |<br>| 4      | Quartic   |<br>| 5      | Quintic   |</p>
-</li>
+P(x)=a_0+a_1x+a_2x^2+...+a_nx^n \ \ n\in N^*</script></li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Degree</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Constant</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Linear</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Quadratic</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Cubic</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Quartic</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Quintic</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><ol>
-<li>Prove that $(\frac{x^p}{x^q})^{p^2+pq+q^2}·(\frac{x^q}{x^r})^{q^2+qr+r^2}·(\frac{x^r}{x^p})^{r^2+rp+p^2} = 1$<script type="math/tex; mode=display">
+<li><p>Prove that $ (\frac{x^p}{x^q})^{p^2+pq+q^2}·(\frac{x^q}{x^r})^{q^2+qr+r^2}·(\frac{x^r}{x^p})^{r^2+rp+p^2} = 1 $</p>
+<script type="math/tex; mode=display">
+
 LHS=(x^{p-q})^{p^2+pq+q^2}·(x^{q-r})^{q^2+qr+r^2}·(x^{r-p})^{r^2+rp+p^2} \\ =x^{p^3-q^3}·x^{q^3-r^3}·x^{r^3-p^3} \\ =x^0 =1=RHS</script></li>
 </ol>
 <ol>
 <li><script type="math/tex; mode=display">
+
 {1\over{1+x^{a-b}+x^{a-c}}}+{1\over{1+x^{b-c}+x^{b-a}}}+{1\over{1+x^{c-a}+x^{c-b}}}\\
 =\frac{x^{b+c}}{x^{b+c}+x^{a+c}+x^{a+b}}+\frac{x^{a+b}}{x^{a+b}+x^{b+c}+x^{a+c}}+\frac{x^{a+c}}{x^{a+c}+x^{b+a}+x^{b+c}}\\
 =1</script></li>
