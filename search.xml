@@ -68,9 +68,10 @@ P(x)=a_0+a_1x+a_2x^2+...+a_nx^n \ \ n\in N^*</script><p>| Degree | Name      |<b
 </li>
 </ul>
 <h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><ol>
-<li><p>Prove that $(\frac{x^p}{x^q})^{p^2+pq+q^2}·(\frac{x^q}{x^r})^{q^2+qr+r^2}·(\frac{x^r}{x^p})^{r^2+rp+p^2} = 1$</p>
-<script type="math/tex; mode=display">
+<li>Prove that $(\frac{x^p}{x^q})^{p^2+pq+q^2}·(\frac{x^q}{x^r})^{q^2+qr+r^2}·(\frac{x^r}{x^p})^{r^2+rp+p^2} = 1$<script type="math/tex; mode=display">
 LHS=(x^{p-q})^{p^2+pq+q^2}·(x^{q-r})^{q^2+qr+r^2}·(x^{r-p})^{r^2+rp+p^2} \\ =x^{p^3-q^3}·x^{q^3-r^3}·x^{r^3-p^3} \\ =x^0 =1=RHS</script></li>
+</ol>
+<ol>
 <li><script type="math/tex; mode=display">
 {1\over{1+x^{a-b}+x^{a-c}}}+{1\over{1+x^{b-c}+x^{b-a}}}+{1\over{1+x^{c-a}+x^{c-b}}}\\
 =\frac{x^{b+c}}{x^{b+c}+x^{a+c}+x^{a+b}}+\frac{x^{a+b}}{x^{a+b}+x^{b+c}+x^{a+c}}+\frac{x^{a+c}}{x^{a+c}+x^{b+a}+x^{b+c}}\\
