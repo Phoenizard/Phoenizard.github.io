@@ -105,17 +105,36 @@ P(x)=a_0+a_1x+a_2x^2+...+a_nx^n \ \ n\in N^*</script></li>
 <h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><ol>
 <li><p>Prove that $ (\frac{x^p}{x^q})^{p^2+pq+q^2}·(\frac{x^q}{x^r})^{q^2+qr+r^2}·(\frac{x^r}{x^p})^{r^2+rp+p^2} = 1 $</p>
 <script type="math/tex; mode=display">
-
 LHS=(x^{p-q})^{p^2+pq+q^2}·(x^{q-r})^{q^2+qr+r^2}·(x^{r-p})^{r^2+rp+p^2} \\ =x^{p^3-q^3}·x^{q^3-r^3}·x^{r^3-p^3} \\ =x^0 =1=RHS</script></li>
 </ol>
 <ol>
 <li><script type="math/tex; mode=display">
-
 {1\over{1+x^{a-b}+x^{a-c}}}+{1\over{1+x^{b-c}+x^{b-a}}}+{1\over{1+x^{c-a}+x^{c-b}}}\\
 =\frac{x^{b+c}}{x^{b+c}+x^{a+c}+x^{a+b}}+\frac{x^{a+b}}{x^{a+b}+x^{b+c}+x^{a+c}}+\frac{x^{a+c}}{x^{a+c}+x^{b+a}+x^{b+c}}\\
 =1</script></li>
 </ol>
-]]></content>
+<h3 id="Seminar2"><a href="#Seminar2" class="headerlink" title="Seminar2"></a>Seminar2</h3><h4 id="Target-1"><a href="#Target-1" class="headerlink" title="Target"></a>Target</h4><ol>
+<li>Remainder and Factor Theorems</li>
+<li>Polynomial Division</li>
+<li>Polynomial Factorisation</li>
+<li>The Binomial Theorem</li>
+<li>Generalised Binomial Theorem.</li>
+</ol>
+<h4 id="Division-of-polynomials"><a href="#Division-of-polynomials" class="headerlink" title="Division of polynomials"></a>Division of polynomials</h4><ul>
+<li>Divisor 除数 Remainder 余数 Quotient 商 Coefficient 系数</li>
+</ul>
+<h4 id="Division-of-polynomials-1"><a href="#Division-of-polynomials-1" class="headerlink" title="Division of polynomials"></a>Division of polynomials</h4><script type="math/tex; mode=display">
+p(x) = s(x)q(x)+r(x) \\
+二次式=除式·一次式+余数 \\
+
+\frac{p(x)}{s(x)}=q(x)+\frac{r(x)}{s(x)} \\
+\frac{二次式}{除数}=一次式+\frac{余数}{除数}</script><h5 id="Remainder-Theorem-余式定理"><a href="#Remainder-Theorem-余式定理" class="headerlink" title="Remainder Theorem 余式定理"></a>Remainder Theorem 余式定理</h5><p>不妨把除式写为$(x-c)$</p>
+<script type="math/tex; mode=display">
+\frac{p(x)}{(x-c)}=q(x)+\frac{r}{x-c}</script><h5 id="Factor-Theorem-因式定理"><a href="#Factor-Theorem-因式定理" class="headerlink" title="Factor Theorem 因式定理"></a>Factor Theorem 因式定理</h5><p>如果一个二次式$p(x)$含有一个因式为$(x-c)$，则有$p(c)=0$</p>
+<h5 id="Long-Divison"><a href="#Long-Divison" class="headerlink" title="Long Divison"></a>Long Divison</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/longdivide.png" style="zoom: 33%;" /></p>
+<h5 id="Synthetic-Divison"><a href="#Synthetic-Divison" class="headerlink" title="Synthetic Divison"></a>Synthetic Divison</h5><p>Take $p(x)=x^3+5x^2+4x+9$ for example</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/synd.png" alt=""></p>
+<h4 id=""><a href="#" class="headerlink" title=" "></a> </h4>]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
