@@ -531,9 +531,9 @@ P^C=\omega P'
 <h4 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h4><ol>
 <li><p>对等式进行化简：</p>
 <script type="math/tex; mode=display">
-\omega P^{u,v}=K\begin{bmatrix}R|t\end{bmatrix}P^W\\
-\omega K^{-1}P^{u,v}=TP^W\\
-\because wP^{u,v}=KP^C \\\therefore \omega K^{-1}P^{u,v} = P_C \\
+\omega P^{u,v}=K\begin{bmatrix}R|t\end{bmatrix}P^W</script><script type="math/tex; mode=display">
+\omega K^{-1}P^{u,v}=TP^W</script><script type="math/tex; mode=display">
+\because wP^{u,v}=KP^C \therefore \omega K^{-1}P^{u,v} = P_C</script><script type="math/tex; mode=display">
 P^C = TP^W</script></li>
 <li><p>归一化处理：</p>
 <script type="math/tex; mode=display">
