@@ -1,6 +1,270 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>LearnAI</title>
+    <url>/2023/01/19/LearnAI/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="Chapter-1-引言"><a href="#Chapter-1-引言" class="headerlink" title="Chapter 1 引言"></a>Chapter 1 引言</h2><p>是时候系统学习一下人工智能了,希望什么时候可以补充一下引言吧</p>
+<ul>
+<li>设备环境：Linux-Ubuntu20.04</li>
+<li>编译环境：miniconda</li>
+</ul>
+<h2 id="Chapter-2-预备知识"><a href="#Chapter-2-预备知识" class="headerlink" title="Chapter 2 预备知识"></a>Chapter 2 预备知识</h2><h3 id="2-1-数据处理"><a href="#2-1-数据处理" class="headerlink" title="2.1 数据处理"></a>2.1 数据处理</h3><h4 id="2-1-1-创建张量"><a href="#2-1-1-创建张量" class="headerlink" title="2.1.1 创建张量"></a>2.1.1 创建张量</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br></pre></td></tr></table></figure>
+<p><strong>此处为torch,<del>虽然包叫pytorch</del></strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
+</code></pre><p>张量：数组，但里面的内容都是数值，维度不限</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.shape</span><br></pre></td></tr></table></figure>
+<pre><code>torch.Size([12])
+</code></pre><p>通过<code>shape</code>可以查询张量的形状;[]代表维度为1，12代表这一维度的长度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.numel()</span><br></pre></td></tr></table></figure>
+<pre><code>12
+</code></pre><p><code>numel()</code>可以访问张量中元素的总数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = x.reshape(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11]])
+</code></pre><p>通过<code>reshape(c,r)</code>,可以将张量重新排列成多维形式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = x.reshape(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">y</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+Cell In[6], line 1
+----&gt; 1 y = x.reshape(4, 4)
+      2 y
+
+
+RuntimeError: shape &#39;[4, 4]&#39; is invalid for input of size 12
+</code></pre><p>但重组时，col与row的乘机必须等于元素总数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">z = torch.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">o = torch.ones((<span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(z, <span class="string">&#x27;\n&#x27;</span> ,o)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[[0., 0., 0., 0.],
+         [0., 0., 0., 0.],
+         [0., 0., 0., 0.]],
+
+        [[0., 0., 0., 0.],
+         [0., 0., 0., 0.],
+         [0., 0., 0., 0.]]]) 
+ tensor([[[1., 1., 1., 1.],
+         [1., 1., 1., 1.]],
+
+        [[1., 1., 1., 1.],
+         [1., 1., 1., 1.]],
+
+        [[1., 1., 1., 1.],
+         [1., 1., 1., 1.]]])
+</code></pre><p>使用<code>zeros()</code>构造全0矩阵，同理<code>ones()</code>, <del>没有除了1和0之外的数</del></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.tensor([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>], [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]])</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 1,  2,  3,  4],
+        [ 5,  6,  7,  8],
+        [ 9, 10, 11, 12]])
+</code></pre><p>使用<code>tensor()</code>手动构造变量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.randn(<span class="number">3</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[-0.2559,  0.4066,  0.4201, -1.1634],
+        [-2.0670,  0.6678,  0.9912,  0.2923],
+        [ 0.2710,  1.9265, -1.6423, -0.9642]])
+</code></pre><p>生成随机数张量，元素平均数为0，标准差为1的正态分布中随机采样</p>
+<h4 id="2-1-2-张量运算"><a href="#2-1-2-张量运算" class="headerlink" title="2.1.2 张量运算"></a>2.1.2 张量运算</h4><h5 id="基本运算"><a href="#基本运算" class="headerlink" title="基本运算"></a>基本运算</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.tensor([<span class="number">1.0</span>,<span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>])</span><br><span class="line">y = torch.tensor([<span class="number">2</span>,  <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>])</span><br><span class="line">x+y,x-y,x*y,x/y,x**y,x%y</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([ 3.,  5.,  8., 13.]),
+ tensor([-1., -1.,  0.,  3.]),
+ tensor([ 2.,  6., 16., 40.]),
+ tensor([0.5000, 0.6667, 1.0000, 1.6000]),
+ tensor([1.0000e+00, 8.0000e+00, 2.5600e+02, 3.2768e+04]),
+ tensor([1., 2., 0., 3.]))
+</code></pre><p>对于相同形状的张量，可以通过(+,-,*,/,%)作运算，具体来说：$I+J \rightarrow I_i+J_i$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">x = torch.tensor([numpy.e,numpy.log(<span class="number">2</span>),<span class="number">1</span>,torch.e])</span><br><span class="line">torch.exp(x)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([15.1543,  2.0000,  2.7183, 15.1543], dtype=torch.float64)
+</code></pre><p><code>exp()</code>求解e的x次方：$y_i=e^{x_i}$</p>
+<h5 id="张量拼接"><a href="#张量拼接" class="headerlink" title="张量拼接"></a>张量拼接</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">y = torch.tensor([[<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]])</span><br><span class="line">torch.cat((x,y),dim=<span class="number">0</span>), torch.cat((x,y),dim=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[ 0,  1,  2,  3],
+         [ 4,  5,  6,  7],
+         [ 8,  9, 10, 11],
+         [ 2,  1,  4,  3],
+         [ 1,  2,  3,  4],
+         [ 4,  3,  2,  1]]),
+ tensor([[ 0,  1,  2,  3,  2,  1,  4,  3],
+         [ 4,  5,  6,  7,  1,  2,  3,  4],
+         [ 8,  9, 10, 11,  4,  3,  2,  1]]))
+</code></pre><p>通过<code>cat()</code>可以实现拼接，<code>dim=0</code>按照行，<code>dim=1</code>按列</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">y = torch.tensor([[<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>]])</span><br><span class="line">torch.cat((x,y),dim=<span class="number">0</span>), torch.cat((x,y),dim=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+Cell In[13], line 3
+      1 x = torch.arange(12).reshape((3,4))
+      2 y = torch.tensor([[2,1,4],[1,2,3],[4,3,2]])
+----&gt; 3 torch.cat((x,y),dim=0), torch.cat((x,y),dim=1)
+
+
+RuntimeError: Sizes of tensors must match except in dimension 0. Expected size 4 but got size 3 for tensor number 1 in the list.
+</code></pre><p>若尺寸不对应则会报错</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">y = torch.tensor([[<span class="number">2</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],[<span class="number">4</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">1</span>]])</span><br><span class="line">x == y</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[False,  True, False,  True],
+        [False, False, False, False],
+        [False, False, False, False]])
+</code></pre><p>近似于求位与运算</p>
+<h5 id="元素求和"><a href="#元素求和" class="headerlink" title="元素求和"></a>元素求和</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">torch.<span class="built_in">sum</span>(x), x.<span class="built_in">sum</span>()</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor(66), tensor(66))
+</code></pre><h5 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = torch.arange(<span class="number">3</span>).reshape((<span class="number">3</span>, <span class="number">1</span>))</span><br><span class="line">b = torch.arange(<span class="number">2</span>).reshape((<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">a + b</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[0, 1],
+        [1, 2],
+        [2, 3]])
+</code></pre><p>试试多维，有点废脑子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.tensor([ [ [<span class="number">1</span>],[<span class="number">1</span>],[<span class="number">1</span>] ] ,[[<span class="number">2</span>],[<span class="number">3</span>],[<span class="number">4</span>] ] ])</span><br><span class="line">y = torch.tensor([ [ [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]] ])</span><br><span class="line">x,y,x+y</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[[1],
+          [1],
+          [1]],
+
+         [[2],
+          [3],
+          [4]]]),
+ tensor([[[1, 2, 3]]]),
+ tensor([[[2, 3, 4],
+          [2, 3, 4],
+          [2, 3, 4]],
+
+         [[3, 4, 5],
+          [4, 5, 6],
+          [5, 6, 7]]]))
+</code></pre><h5 id="张量切片"><a href="#张量切片" class="headerlink" title="张量切片"></a>张量切片</h5><p>按行切片</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">x,x[-<span class="number">1</span>],x[<span class="number">2</span>],x[<span class="number">0</span>:<span class="number">2</span>],x[<span class="number">0</span>:<span class="number">3</span>],x[<span class="number">0</span>:-<span class="number">1</span>],x[:-<span class="number">1</span>],x[:],x[:<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[ 0,  1,  2,  3],
+         [ 4,  5,  6,  7],
+         [ 8,  9, 10, 11]]),
+ tensor([ 8,  9, 10, 11]),
+ tensor([ 8,  9, 10, 11]),
+ tensor([[0, 1, 2, 3],
+         [4, 5, 6, 7]]),
+ tensor([[ 0,  1,  2,  3],
+         [ 4,  5,  6,  7],
+         [ 8,  9, 10, 11]]),
+ tensor([[0, 1, 2, 3],
+         [4, 5, 6, 7]]),
+ tensor([[0, 1, 2, 3],
+         [4, 5, 6, 7]]),
+ tensor([[ 0,  1,  2,  3],
+         [ 4,  5,  6,  7],
+         [ 8,  9, 10, 11]]),
+ tensor([], size=(0, 4), dtype=torch.int64))
+</code></pre><p>自定义切片</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">12</span>).reshape((<span class="number">3</span>,<span class="number">4</span>))</span><br><span class="line">x[:,<span class="number">1</span>] , x[<span class="number">1</span>:<span class="number">3</span>,<span class="number">1</span>:] , x[<span class="number">0</span>::<span class="number">2</span>,<span class="number">1</span>::<span class="number">2</span>], x[<span class="number">0</span>::<span class="number">2</span>,<span class="number">0</span>::<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([1, 5, 9]),
+ tensor([[ 5,  6,  7],
+         [ 9, 10, 11]]),
+ tensor([[ 1,  3],
+         [ 9, 11]]),
+ tensor([[ 0,  2],
+         [ 8, 10]]))
+</code></pre><p><code>a:b:c</code>,在区间[a,b)中取数，step=c,a,c默认为0，b默认最后一位</p>
+<h5 id="暴力写入"><a href="#暴力写入" class="headerlink" title="暴力写入"></a>暴力写入</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x[<span class="number">1</span>, <span class="number">2</span>] = <span class="number">9</span></span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 0,  1,  2,  3],
+        [ 4,  5,  9,  7],
+        [ 8,  9, 10, 11]])
+</code></pre><h5 id="内存节省"><a href="#内存节省" class="headerlink" title="内存节省"></a>内存节省</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = torch.arange(<span class="number">4</span>)</span><br><span class="line">before = <span class="built_in">id</span>(y)</span><br><span class="line">y = y + x</span><br><span class="line"><span class="built_in">id</span>(y) == before</span><br></pre></td></tr></table></figure>
+<pre><code>False
+</code></pre><p>在处理变量中，一般操作会导致新建内存，如果矩阵数据特别大，容易消耗内存,可以使用原地存储</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = torch.arange(<span class="number">4</span>)</span><br><span class="line">before = <span class="built_in">id</span>(y)</span><br><span class="line">y += x</span><br><span class="line"><span class="built_in">id</span>(y) == before</span><br></pre></td></tr></table></figure>
+<pre><code>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+Cell In[22], line 3
+      1 y = torch.arange(4)
+      2 before = id(y)
+----&gt; 3 y += x
+      4 id(y) == before
+
+
+RuntimeError: output with shape [4] doesn&#39;t match the broadcast shape [3, 4]
+</code></pre><h5 id="类型互换"><a href="#类型互换" class="headerlink" title="类型互换"></a>类型互换</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = torch.arange(<span class="number">4</span>)</span><br><span class="line">x = torch.arange(<span class="number">4</span>,<span class="number">8</span>,<span class="number">1</span>)</span><br><span class="line">z = torch.zeros_like(y)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;id(z):&#x27;</span>,<span class="built_in">id</span>(z))</span><br><span class="line">z[:] = x + y</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;id(z):&#x27;</span>,<span class="built_in">id</span>(z))</span><br></pre></td></tr></table></figure>
+<pre><code>id(z): 140157950377472
+id(z): 140157950377472
+</code></pre><p>Pytorch与Numpy的互换</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = x.numpy()</span><br><span class="line">B = torch.tensor(A)</span><br><span class="line"><span class="built_in">type</span>(A),<span class="built_in">type</span>(B)</span><br></pre></td></tr></table></figure>
+<pre><code>(numpy.ndarray, torch.Tensor)
+</code></pre><p>将大小为1的张量转化为python标量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = torch.tensor([<span class="number">3.5</span>])</span><br><span class="line">a,a.item(),<span class="built_in">float</span>(a),<span class="built_in">int</span>(a)</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([3.5000]), 3.5, 3.5, 3)
+</code></pre><h3 id="2-2数据预处理"><a href="#2-2数据预处理" class="headerlink" title="2.2数据预处理"></a>2.2数据预处理</h3><h4 id="2-2-1-生成数据集文件"><a href="#2-2-1-生成数据集文件" class="headerlink" title="2.2.1 生成数据集文件"></a>2.2.1 生成数据集文件</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.makedirs(os.path.join(<span class="string">&#x27;..&#x27;</span>,<span class="string">&#x27;data&#x27;</span>), exist_ok=<span class="literal">True</span>)</span><br><span class="line">data_file = os.path.join(<span class="string">&#x27;..&#x27;</span>, <span class="string">&#x27;data&#x27;</span>, <span class="string">&#x27;house_tiny.csv&#x27;</span>)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(data_file, <span class="string">&#x27;w&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(<span class="string">&#x27;NumRooms,Alley,Price\n&#x27;</span>)</span><br><span class="line">    f.write(<span class="string">&#x27;NA,Pave,127500\n&#x27;</span>)</span><br><span class="line">    f.write(<span class="string">&#x27;2,NA,106000\n&#x27;</span>)</span><br><span class="line">    f.write(<span class="string">&#x27;4,NA,178100\n&#x27;</span>)</span><br><span class="line">    f.write(<span class="string">&#x27;NA,NA,140000\n&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>创建CSV文件：房价数据-房间数量/巷子类型/价格</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data = pd.read_csv(data_file)</span><br><span class="line"><span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+<pre><code>   NumRooms Alley   Price
+0       NaN  Pave  127500
+1       2.0   NaN  106000
+2       4.0   NaN  178100
+3       NaN   NaN  140000
+</code></pre><p>运用pandas库读取csv</p>
+<h4 id="2-2-2-补充丢失数据"><a href="#2-2-2-补充丢失数据" class="headerlink" title="2.2.2 补充丢失数据"></a>2.2.2 补充丢失数据</h4><p>补充丢失数据的典型方法是插值法和删除法</p>
+<ul>
+<li>插值法：用一个数字替代缺失位</li>
+<li>删除法：直接忽略缺少的数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">inputs, outputs = data.iloc[:,<span class="number">0</span>:<span class="number">2</span>], data.iloc[:, <span class="number">2</span>]</span><br><span class="line">inputs = inputs.fillna(inputs.mean())</span><br><span class="line"><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<pre><code>   NumRooms Alley
+0       3.0  Pave
+1       2.0   NaN
+2       4.0   NaN
+3       3.0   NaN
+</code></pre><p>在补充房间数，使用插值法，通过插入已知数的平均值补充未知数，<code>input.mean()</code>读取数据平均数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">inputs = pd.get_dummies(inputs,dummy_na=<span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(inputs)</span><br></pre></td></tr></table></figure>
+<pre><code>   NumRooms  Alley_Pave  Alley_nan
+0       3.0           1          0
+1       2.0           0          1
+2       4.0           0          1
+3       3.0           0          1
+</code></pre><p>在补充巷子时，看成是有Pave为1，无为0的矩阵形式</p>
+<h4 id="2-2-3-转化为张量形式"><a href="#2-2-3-转化为张量形式" class="headerlink" title="2.2.3 转化为张量形式"></a>2.2.3 转化为张量形式</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">x = torch.tensor(inputs.values)</span><br><span class="line">y = torch.tensor(outputs.values)</span><br><span class="line"></span><br><span class="line">x,y</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[3., 1., 0.],
+         [2., 0., 1.],
+         [4., 0., 1.],
+         [3., 0., 1.]], dtype=torch.float64),
+ tensor([127500, 106000, 178100, 140000]))
+</code></pre><p>利用<code>tensor()</code>构造张量</p>
+<h4 id="实例：删除空数据最多的一列"><a href="#实例：删除空数据最多的一列" class="headerlink" title="实例：删除空数据最多的一列"></a>实例：删除空数据最多的一列</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">count = <span class="number">0</span></span><br><span class="line">count_max = <span class="number">0</span></span><br><span class="line">labels = [<span class="string">&#x27;NumRooms&#x27;</span>,<span class="string">&#x27;Alley&#x27;</span>,<span class="string">&#x27;Price&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> labels:</span><br><span class="line">    count = data[label].isna().<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">if</span> count &gt; count_max:</span><br><span class="line">        count_max = count</span><br><span class="line">        flag = label</span><br><span class="line">data_new = data.drop(flag,axis=<span class="number">1</span>)</span><br><span class="line">data_new</span><br></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>NumRooms</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>NaN</td>
+<td>127500</td>
+</tr>
+<tr>
+<td>1</td>
+<td>2.0</td>
+<td>106000</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4.0</td>
+<td>178100</td>
+</tr>
+<tr>
+<td>3</td>
+<td>NaN</td>
+<td>140000</td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>数学</tag>
+        <tag>RoboMaster</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>世界计划 COLORFUL LIVE 2nd - Will -</title>
     <url>/2023/01/10/PJSK2023Live/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -476,7 +740,7 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-        <tag>调试心德</tag>
+        <tag>调试心得</tag>
       </tags>
   </entry>
   <entry>
@@ -615,6 +879,7 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       </categories>
       <tags>
         <tag>数学</tag>
+        <tag>RoboMaster</tag>
         <tag>SLAM</tag>
       </tags>
   </entry>
@@ -730,6 +995,7 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <category>机械硬件</category>
       </categories>
       <tags>
+        <tag>RoboMaster</tag>
         <tag>调试心得</tag>
       </tags>
   </entry>
