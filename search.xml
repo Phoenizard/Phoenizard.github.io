@@ -522,9 +522,6 @@ id(z): 140157950377472
       <categories>
         <category>测试文件</category>
       </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
   </entry>
   <entry>
     <title>日式麻将个人技巧[持续更新中...]</title>
@@ -739,7 +736,6 @@ id(z): 140157950377472
         <category>测试文件</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
         <tag>调试心得</tag>
       </tags>
   </entry>
@@ -910,15 +906,13 @@ t_{r1} \\ t_{r2} \\ t_{r3}
 <h3 id="v2-2"><a href="#v2-2" class="headerlink" title="[v2.2]-"></a>[v2.2]-<20220905></h3><ul>
 <li>增加了月推界面</li>
 <li>增加部分密码机制</li>
+<li>数学公式支持</li>
 </ul>
 <h3 id="致谢链接"><a href="#致谢链接" class="headerlink" title="致谢链接"></a>致谢链接</h3><p><a href="https://siriusq.top/Next主题美化#博文压缩">Next主题美化</a></p>
 ]]></content>
       <categories>
         <category>测试文件</category>
       </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
   </entry>
   <entry>
     <title>浅谈术力口与流量主义</title>
