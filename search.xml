@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OpenCV实现物体追踪</title>
+    <url>/2023/01/20/KCF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="OpenCV实现物体追踪"><a href="#OpenCV实现物体追踪" class="headerlink" title="OpenCV实现物体追踪"></a>OpenCV实现物体追踪</h3><h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>通过Opencv内置函数实现物体追踪，并且部署在ROS中，实现摄像头读取。本文不涉及追踪算法的具体原理，而是针对RM中装甲板识别做出具体的实践部署。</p>
+<p>具体项目已经部署在GitHUb：<a href="https://github.com/Phoenizard/Track-Image-InROS">https://github.com/Phoenizard/Track-Image-InROS</a></p>
+<h4 id="追踪对象"><a href="#追踪对象" class="headerlink" title="追踪对象"></a>追踪对象</h4><p>使用opencv自带的追踪对象，需要调用一下头文件：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/tracking.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/ocl.hpp&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>在OpenCV中一共有7中追踪算法，分别是<code>BOOSTING</code>, <code>MIL</code>, <code>KCF</code>, <code>TLD</code> , <code>MEDIANFLOW</code>, <code>MOSSE</code>, <code>CSRT</code> ,在使用中选择最常见的<code>KCF</code>算法</p>
+<h5 id="声明追踪对象"><a href="#声明追踪对象" class="headerlink" title="声明追踪对象"></a>声明追踪对象</h5><p>使用<code>creat()</code>构造</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">yourtracker = TrackerKCF::<span class="built_in">create</span>();</span><br></pre></td></tr></table></figure>
+<h5 id="初始化目标"><a href="#初始化目标" class="headerlink" title="初始化目标"></a>初始化目标</h5><p>使用<code>init(cv::Mat_flame,cv::Rect2d_object)</code>初始化</p>
+<ul>
+<li>Mat_flame：放入初始帧图片</li>
+<li>Rect2d_object：放入目标在初始帧照片中的像素矩阵</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">cv::Rect2d bbox;</span><br><span class="line">yourtracker-&gt;<span class="built_in">init</span>(flame, bbox);</span><br></pre></td></tr></table></figure>
+<h5 id="更新目标"><a href="#更新目标" class="headerlink" title="更新目标"></a>更新目标</h5><p>使用<code>update(cv::Mat_flame,cv::Rect2d_object)</code> 更新当前帧</p>
+<ul>
+<li>Mat_flame：放入当前帧</li>
+<li>Rect2d_object：放入上一帧目标矩形</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">yourtracker-&gt;<span class="built_in">update</span>(flame, bbox);</span><br></pre></td></tr></table></figure>
+<h5 id="判断目标丢失"><a href="#判断目标丢失" class="headerlink" title="判断目标丢失"></a>判断目标丢失</h5><p>算法将自动通过滤波匹配目标，<code>update()</code>函数在定义中为<code>bool</code>类型，如果目标丢失，返回值为<code>false</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">bool</span> ok = yourtracker-&gt;<span class="built_in">update</span>(flame, bbox);</span><br><span class="line"><span class="keyword">if</span>(!ok) cout &lt;&lt; <span class="string">&quot;Track Lost&quot;</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<h4 id="程序逻辑"><a href="#程序逻辑" class="headerlink" title="程序逻辑"></a>程序逻辑</h4><p>在RM中，追踪算法运用于装甲板的识别和追踪中，代码逻辑如下：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/KCF流程图.png" alt="KCL流程图" style="zoom:30%;" /></p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>在ROS中，由于接受和发布照片在同一对象中完成，我们依然使用订阅和发布的模版对象SubPuber（自定义的对象）：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SubPuber</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ros::NodeHandle nodeHandle;</span><br><span class="line">    ros::Subscriber imgSub;</span><br><span class="line">    ros::Publisher trackobj;</span><br><span class="line">    <span class="comment">// Define Part</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SubPuber</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        imgSub = nodeHandle.<span class="built_in">subscribe</span>(<span class="string">&quot;/camera/color/image_raw&quot;</span>, <span class="number">1</span>, &amp;SubPuber::ObjectTracker, <span class="keyword">this</span>);</span><br><span class="line">        trackobj = nodeHandle.<span class="built_in">advertise</span>&lt;sensor_msgs::Image&gt;(<span class="string">&quot;/tracker&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// Initate Part</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">ObjectTracker</span><span class="params">(<span class="type">const</span> sensor_msgs::ImageConstPtr &amp;frontRGBImg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Mat image;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            image = cv_bridge::<span class="built_in">toCvShare</span>(frontRGBImg, <span class="string">&quot;bgr8&quot;</span>)-&gt;image;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">catch</span> (cv_bridge::Exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">ROS_ERROR</span>(<span class="string">&quot;Could not convert to image!&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Program Part</span></span><br><span class="line">        sensor_msgs::ImagePtr msg = cv_bridge::<span class="built_in">CvImage</span>(std_msgs::<span class="built_in">Header</span>(), <span class="string">&quot;bgr8&quot;</span>, image).<span class="built_in">toImageMsg</span>();</span><br><span class="line">        trackobj.<span class="built_in">publish</span>(*msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以结合<code>ROS::spin();</code>即可实现循环。具体来说，当程序运行到ros::spin()的时候，会找到订阅和发布的API，并且<strong>循环订阅</strong>和<strong>发布</strong>两个动作 [注意：不会循环代码的其他部分，仅仅是订阅和发布]。</p>
+<p>在主程序中，创建对象和<code>spin()</code> 即可</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 省略初始化节点</span></span><br><span class="line">    SubPuber tracker;</span><br><span class="line">    ROS::<span class="built_in">spin</span>();</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+<p>观察代码，<code>Initate Part</code> 仅仅运行一遍，很适合创建追踪器，而在<code>Program Part</code> 可以把追踪的代码部署与此循环执行。补充代码如下：</p>
+<p>由于作者手边没有装甲板信息，则使用<code>ROI</code>交互界面，通过手动框出矩形框初始化目标</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Define Part</span></span><br><span class="line">Ptr&lt;Tracker&gt; tracker; </span><br><span class="line">cv::Rect2d bbox; </span><br><span class="line"><span class="type">int</span> state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initate Part</span></span><br><span class="line">tracker = TrackerKCF::<span class="built_in">create</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Program Part</span></span><br><span class="line"><span class="keyword">if</span>(state == <span class="number">0</span>)&#123;</span><br><span class="line">    bbox = bbox = <span class="built_in">selectROI</span>(image, <span class="literal">false</span>);</span><br><span class="line">    tracker-&gt;<span class="built_in">init</span>(image,bbox);</span><br><span class="line">    state = <span class="number">1</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">bool</span> ok = tracker-&gt;<span class="built_in">update</span>(image,bbox);</span><br><span class="line">    <span class="keyword">if</span>(ok) &#123;</span><br><span class="line">        <span class="built_in">rectangle</span>(image, bbox, <span class="built_in">Scalar</span>(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="number">4</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;TrackLost&quot;</span> &lt;&lt; endl;</span><br><span class="line">        state = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>RoboMaster</tag>
+        <tag>计算机视觉</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LearnAI</title>
     <url>/2023/01/19/LearnAI/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="Chapter-1-引言"><a href="#Chapter-1-引言" class="headerlink" title="Chapter 1 引言"></a>Chapter 1 引言</h2><p>是时候系统学习一下人工智能了,希望什么时候可以补充一下引言吧</p>
@@ -259,9 +302,10 @@ id(z): 140157950377472
         <category>学习笔记</category>
       </categories>
       <tags>
+        <tag>RoboMaster</tag>
+        <tag>计算机视觉</tag>
         <tag>人工智能</tag>
         <tag>数学</tag>
-        <tag>RoboMaster</tag>
       </tags>
   </entry>
   <entry>
@@ -874,8 +918,8 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>RoboMaster</tag>
+        <tag>数学</tag>
         <tag>SLAM</tag>
       </tags>
   </entry>
@@ -992,10 +1036,5 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <tag>RoboMaster</tag>
         <tag>调试心得</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>KCF</title>
-    <url>/2023/01/20/KCF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
   </entry>
 </search>
