@@ -35,7 +35,7 @@ Cell In[6], line 1
 
 
 RuntimeError: shape &#39;[4, 4]&#39; is invalid for input of size 12
-</code></pre><p>但重组时，col与row的乘机必须等于元素总数</p>
+</code></pre><p>但重组时，col与row的乘积必须等于元素总数</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">z = torch.zeros((<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">o = torch.ones((<span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(z, <span class="string">&#x27;\n&#x27;</span> ,o)</span><br></pre></td></tr></table></figure>
 <pre><code>tensor([[[0., 0., 0., 0.],
          [0., 0., 0., 0.],
@@ -992,5 +992,10 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <tag>RoboMaster</tag>
         <tag>调试心得</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>KCF</title>
+    <url>/2023/01/20/KCF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
   </entry>
 </search>
