@@ -297,7 +297,108 @@ id(z): 140157950377472
 </tbody>
 </table>
 </div>
-]]></content>
+<h3 id="2-3-线性代数"><a href="#2-3-线性代数" class="headerlink" title="2.3 线性代数"></a>2.3 线性代数</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-1-标量"><a href="#2-3-1-标量" class="headerlink" title="2.3.1 标量"></a>2.3.1 标量</h4><p>虽然直接声明常量更为常见，但是<code>torch</code>也支持创建标量，即长度为1的一维张量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.tensor(<span class="number">3.0</span>)</span><br><span class="line">y = torch.tensor(<span class="number">2.0</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="2-3-2-向量"><a href="#2-3-2-向量" class="headerlink" title="2.3.2 向量"></a>2.3.2 向量</h4><h5 id="向量的声明"><a href="#向量的声明" class="headerlink" title="向量的声明"></a>向量的声明</h5><p>向量的声明通常就是一维张量，即<code>tensor([x,y,z,...])</code></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = torch.arange(<span class="number">4</span>,dtype=torch.float32)</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([0., 1., 2., 3.])
+</code></pre><h5 id="向量的形状"><a href="#向量的形状" class="headerlink" title="向量的形状"></a>向量的形状</h5><p>shape可以查看向量的维度，是一个元素组</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = torch.arange(<span class="number">12</span>).reshape(<span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">y, y.shape</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[[ 0,  1],
+          [ 2,  3],
+          [ 4,  5]],
+
+         [[ 6,  7],
+          [ 8,  9],
+          [10, 11]]]),
+ torch.Size([2, 3, 2]))
+</code></pre><h4 id="2-3-3-矩阵"><a href="#2-3-3-矩阵" class="headerlink" title="2.3.3 矩阵"></a>2.3.3 矩阵</h4><h5 id="声明矩阵"><a href="#声明矩阵" class="headerlink" title="声明矩阵"></a>声明矩阵</h5><p>一个二维张量,$R^{(M·N)}$ 对应A(m,n)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A = torch.arange(<span class="number">20</span>, dtype=torch.float32).reshape(<span class="number">5</span>, <span class="number">4</span>)</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 0.,  1.,  2.,  3.],
+        [ 4.,  5.,  6.,  7.],
+        [ 8.,  9., 10., 11.],
+        [12., 13., 14., 15.],
+        [16., 17., 18., 19.]])
+</code></pre><h5 id="矩阵转制"><a href="#矩阵转制" class="headerlink" title="矩阵转制"></a>矩阵转制</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A.T</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 0.,  4.,  8., 12., 16.],
+        [ 1.,  5.,  9., 13., 17.],
+        [ 2.,  6., 10., 14., 18.],
+        [ 3.,  7., 11., 15., 19.]])
+</code></pre><h5 id="按元素相乘-Hadamard-Product"><a href="#按元素相乘-Hadamard-Product" class="headerlink" title="按元素相乘 Hadamard Product"></a>按元素相乘 Hadamard Product</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">B = A.clone()</span><br><span class="line">A * B</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[  0.,   1.,   4.,   9.],
+        [ 16.,  25.,  36.,  49.],
+        [ 64.,  81., 100., 121.],
+        [144., 169., 196., 225.],
+        [256., 289., 324., 361.]])
+</code></pre><h5 id="矩阵降维"><a href="#矩阵降维" class="headerlink" title="矩阵降维"></a>矩阵降维</h5><ol>
+<li>矩阵的按列降维和按行降维</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A_sum_axis0 = A.<span class="built_in">sum</span>(axis=<span class="number">0</span>)</span><br><span class="line">A_sum_axis1 = A.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(A_sum_axis0, A_sum_axis0.shape)</span><br><span class="line"><span class="built_in">print</span>(A_sum_axis1, A_sum_axis1.shape)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([40., 45., 50., 55.]) torch.Size([4])
+tensor([ 6., 22., 38., 54., 70.]) torch.Size([5])
+</code></pre><ol>
+<li>求平均值，按平均值降维，矩阵数据必须是<code>dtype=torch.float32</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A.mean(), A.mean(axis=<span class="number">0</span>), A.mean(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor(9.5000),
+ tensor([ 8.,  9., 10., 11.]),
+ tensor([ 1.5000,  5.5000,  9.5000, 13.5000, 17.5000]))
+</code></pre><ol>
+<li>非均值降维</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">sum_A = A.<span class="built_in">sum</span>(axis=<span class="number">1</span>,keepdim=<span class="literal">True</span>)</span><br><span class="line">A, sum_A, A/sum_A</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[ 0.,  1.,  2.,  3.],
+         [ 4.,  5.,  6.,  7.],
+         [ 8.,  9., 10., 11.],
+         [12., 13., 14., 15.],
+         [16., 17., 18., 19.]]),
+ tensor([[ 6.],
+         [22.],
+         [38.],
+         [54.],
+         [70.]]),
+ tensor([[0.0000, 0.1667, 0.3333, 0.5000],
+         [0.1818, 0.2273, 0.2727, 0.3182],
+         [0.2105, 0.2368, 0.2632, 0.2895],
+         [0.2222, 0.2407, 0.2593, 0.2778],
+         [0.2286, 0.2429, 0.2571, 0.2714]]))
+</code></pre><h5 id="矩阵处理"><a href="#矩阵处理" class="headerlink" title="矩阵处理"></a>矩阵处理</h5><p>按列、行累加</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">A, A.cumsum(axis=<span class="number">0</span>), A.cumsum(axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>(tensor([[ 0.,  1.,  2.,  3.],
+         [ 4.,  5.,  6.,  7.],
+         [ 8.,  9., 10., 11.],
+         [12., 13., 14., 15.],
+         [16., 17., 18., 19.]]),
+ tensor([[ 0.,  1.,  2.,  3.],
+         [ 4.,  6.,  8., 10.],
+         [12., 15., 18., 21.],
+         [24., 28., 32., 36.],
+         [40., 45., 50., 55.]]),
+ tensor([[ 0.,  1.,  3.,  6.],
+         [ 4.,  9., 15., 22.],
+         [ 8., 17., 27., 38.],
+         [12., 25., 39., 54.],
+         [16., 33., 51., 70.]]))
+</code></pre><h4 id="2-3-4-点乘与乘法"><a href="#2-3-4-点乘与乘法" class="headerlink" title="2.3.4 点乘与乘法"></a>2.3.4 点乘与乘法</h4><h5 id="向量点乘"><a href="#向量点乘" class="headerlink" title="向量点乘"></a>向量点乘</h5><p>点乘等价于每个元素相乘并求和</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">y = torch.ones(<span class="number">4</span>, dtype=torch.float32)</span><br><span class="line"><span class="built_in">print</span>(torch.dot(x, y))</span><br><span class="line"><span class="built_in">print</span>(torch.<span class="built_in">sum</span>(x * y))</span><br></pre></td></tr></table></figure>
+<pre><code>tensor(6.)
+tensor(6.)
+</code></pre><h5 id="矩阵-向量乘法"><a href="#矩阵-向量乘法" class="headerlink" title="矩阵-向量乘法"></a>矩阵-向量乘法</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.mv(A, x)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([ 14.,  38.,  62.,  86., 110.])
+</code></pre><h5 id="矩阵-矩阵乘法"><a href="#矩阵-矩阵乘法" class="headerlink" title="矩阵-矩阵乘法"></a>矩阵-矩阵乘法</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">B = torch.ones(<span class="number">4</span>, <span class="number">3</span>)</span><br><span class="line">torch.mm(A, B)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor([[ 6.,  6.,  6.],
+        [22., 22., 22.],
+        [38., 38., 38.],
+        [54., 54., 54.],
+        [70., 70., 70.]])
+</code></pre><h4 id="2-3-5-范数"><a href="#2-3-5-范数" class="headerlink" title="2.3.5 范数"></a>2.3.5 范数</h4><h5 id="L1范数"><a href="#L1范数" class="headerlink" title="L1范数"></a>L1范数</h5><script type="math/tex; mode=display">
+||x||_1 = \sum_{i=1}^{n}{|x_i|}</script><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">u = torch.tensor([<span class="number">3.</span>, <span class="number">4.</span>, <span class="number">12.</span>])</span><br><span class="line">torch.<span class="built_in">abs</span>(u).<span class="built_in">sum</span>()</span><br></pre></td></tr></table></figure>
+<pre><code>tensor(19.)
+</code></pre><h5 id="L2范数"><a href="#L2范数" class="headerlink" title="L2范数"></a>L2范数</h5><script type="math/tex; mode=display">
+norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.norm(u)</span><br></pre></td></tr></table></figure>
+<pre><code>tensor(13.)
+</code></pre>]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
