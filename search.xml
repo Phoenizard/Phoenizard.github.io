@@ -44,6 +44,113 @@
       </tags>
   </entry>
   <entry>
+    <title>算法题解[模拟]P1065作业调度方案题解[NOIP2006提高组]</title>
+    <url>/2023/05/20/P1065/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>我们现在要利用 $m$ 台机器加工 $n$ 个工件，每个工件都有 $m$ 道工序，每道工序都在不同的指定的机器上完成。每个工件的每道工序都有指定的加工时间。</p>
+<p>每个工件的每个工序称为一个操作，我们用记号 <code>j-k</code> 表示一个操作，其中 $j$ 为 $1$ 到 $n$ 中的某个数字，为工件号；$k$ 为 $1$ 到 $m$ 中的某个数字，为工序号，例如 <code>2-4</code> 表示第 $2$ 个工件第 $4$ 道工序的这个操作。在本题中，我们还给定对于各操作的一个安排顺序。</p>
+<p>例如，当 $n=3,m=2$ 时，<code>1-1,1-2,2-1,3-1,3-2,2-2</code> 就是一个给定的安排顺序，即先安排第 $1$ 个工件的第 $1$ 个工序，再安排第 $1$ 个工件的第 $2$ 个工序，然后再安排第 $2$ 个工件的第 $1$ 个工序，等等。</p>
+<p>一方面，每个操作的安排都要满足以下的两个约束条件。</p>
+<ol>
+<li><p>对同一个工件，每道工序必须在它前面的工序完成后才能开始；</p>
+</li>
+<li><p>同一时刻每一台机器至多只能加工一个工件。</p>
+</li>
+</ol>
+<p>另一方面，在安排后面的操作时，不能改动前面已安排的操作的工作状态。</p>
+<p>由于同一工件都是按工序的顺序安排的，因此，只按原顺序给出工件号，仍可得到同样的安排顺序，于是，在输入数据中，我们将这个安排顺序简写为 <code>1 1 2 3 3 2</code>。</p>
+<p>还要注意，“安排顺序”只要求按照给定的顺序安排每个操作。不一定是各机器上的实际操作顺序。在具体实施时，有可能排在后面的某个操作比前面的某个操作先完成。</p>
+<p>例如，取 $n=3,m=2$，已知数据如下（机器号/加工时间）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>工件号　</th>
+<th>工序$1$　　</th>
+<th>工序$2$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$1$</td>
+<td>$1/3$</td>
+<td>$2/2$</td>
+</tr>
+<tr>
+<td>$2$</td>
+<td>$1/2$</td>
+<td>$2/5$</td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$2/2$</td>
+<td>$1/4$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>则对于安排顺序 <code>1 1 2 3 3 2</code>，下图中的两个实施方案都是正确的。但所需要的总时间分别是 $10$ 与 $12$。</p>
+<p><img src="https://cdn.luogu.com.cn/upload/image_hosting/0pmzuibb.png" alt="">
+　</p>
+<p>当一个操作插入到某台机器的某个空档时（机器上最后的尚未安排操作的部分也可以看作一个空档），可以靠前插入，也可以靠后或居中插入。为了使问题简单一些，我们约定：在保证约束条件（$1$）（$2$）的条件下，尽量靠前插入。并且，我们还约定，如果有多个空档可以插入，就在保证约束条件（$1$）（$2$）的条件下，插入到最前面的一个空档。于是，在这些约定下，上例中的方案一是正确的，而方案二是不正确的。</p>
+<p>显然，在这些约定下，对于给定的安排顺序，符合该安排顺序的实施方案是唯一的，请你计算出该方案完成全部任务所需的总时间。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>第 $1$ 行为两个正整数 $m$, $n$，用一个空格隔开，<br>（其中 $m(&lt;20)$ 表示机器数，$n(&lt;20)$ 表示工件数）</p>
+<p>第 $2$ 行：$m \times n$ 个用空格隔开的数，为给定的安排顺序。</p>
+<p>接下来的 $2n$ 行，每行都是用空格隔开的 $m$ 个正整数，每个数不超过 $20$。</p>
+<p>其中前 $n$ 行依次表示每个工件的每个工序所使用的机器号，第 $1$ 个数为第 $1$ 个工序的机器号，第 $2$ 个数为第 $2$ 个工序机器号，等等。</p>
+<p>后 $n$ 行依次表示每个工件的每个工序的加工时间。</p>
+<p>可以保证，以上各数据都是正确的，不必检验。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>$1$ 个正整数，为最少的加工时间。</p>
+<h2 id="样例-1"><a href="#样例-1" class="headerlink" title="样例 #1"></a>样例 #1</h2><h3 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入 #1"></a>样例输入 #1</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2 3</span><br><span class="line">1 1 2 3 3 2</span><br><span class="line">1 2 </span><br><span class="line">1 2 </span><br><span class="line">2 1</span><br><span class="line">3 2 </span><br><span class="line">2 5 </span><br><span class="line">2 4</span><br></pre></td></tr></table></figure>
+<h3 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出 #1"></a>样例输出 #1</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10</span><br></pre></td></tr></table></figure>
+<h2 id="题目思路"><a href="#题目思路" class="headerlink" title="题目思路"></a>题目思路</h2><p>一道非常经典的模拟题，相当有阅读量与理解量。但是只要根据题目约束安排任务即可：</p>
+<p>题目中有三个重要的约束：</p>
+<ul>
+<li>按照输入顺序依次安排任务</li>
+<li>第i+1道工序的开始时间必须在第i道工序之后</li>
+<li>如果某一间隔可以塞下这一工序，则直接放入，越早越好</li>
+</ul>
+<p>在数据上，我们需要得到在何时插入这个工序，定义为 <code>insert_time</code></p>
+<p>那么大体上来说，代码结构为：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    q = []; <span class="comment">// 工序数组</span></span><br><span class="line">    <span class="keyword">for</span> ...&#123; </span><br><span class="line">        cin ...</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="comment">// 若干预处理</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=q.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        insert_time = 第(i<span class="number">-1</span>)道工序结束的时间;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">            ...</span><br><span class="line">            <span class="comment">// 遍历每一个区间并寻找到合适区间</span></span><br><span class="line">        &#125;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// 数据的更新</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变量设计"><a href="#变量设计" class="headerlink" title="变量设计"></a>变量设计</h3><p>根据题目的三个约束，这里定义两个数组：</p>
+<ol>
+<li><p>每个零件的最新进度：<code>work_time[]</code><br> 此数组的检索为零件序号，内容为这一零件的最新工序的结束时间。对于零件i，即有：</p>
+<script type="math/tex; mode=display">insert\_time >= work\_time[i]</script></li>
+<li><p>对于每个机器，定义其时间轴数组为: <code>time_line[a][b]</code><br> 此数组的检索a为机器型号，检索b为时间点，如果在机器a在第b秒需要为零件c工作，则记为：</p>
+ <figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">time_line[a][b] = c;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>对于输入的工序流程，需要知道的数据包括：这一步是为了哪个零件、这一步需要哪个机器以及这一步的用时是多少，所以对于每一个步骤这里都将整合在一个结构体中：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">step</span>&#123;</span><br><span class="line">	<span class="type">int</span> t, id_m, id_i;	</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;<span class="type">int</span>, step&gt; q;</span><br></pre></td></tr></table></figure>
+<h3 id="关键步骤：找区间"><a href="#关键步骤：找区间" class="headerlink" title="关键步骤：找区间"></a>关键步骤：找区间</h3><p>附上本人代码边看边解释：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> s = insert_time;</span><br><span class="line"><span class="comment">// 定义区间初始位置</span></span><br><span class="line"><span class="type">int</span> have_work_point = <span class="number">0</span>;</span><br><span class="line"><span class="comment">// 定义工作位置标识 </span></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">	<span class="type">bool</span> isOk = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j=s;j&lt;(s+q[i].t);j++)&#123;</span><br><span class="line">        <span class="comment">// 从空闲开头遍历这一工序需要的每一个时间</span></span><br><span class="line">   	    <span class="keyword">if</span>(time_line[q[i].id_m][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">// 时间轴上出现被占用的情况，不符合</span></span><br><span class="line">   		    have_work_point = j;</span><br><span class="line">            <span class="comment">// 标记在工作的时间，方便找到下一个空闲区间</span></span><br><span class="line">   		    isOk = <span class="literal">false</span>;</span><br><span class="line">   		    <span class="keyword">break</span>;</span><br><span class="line">   	    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(isOk)&#123;</span><br><span class="line">   	    insert_time = s;</span><br><span class="line">        <span class="comment">// 找到目标，就在空闲区间开始的位置插入新工序</span></span><br><span class="line">   	    <span class="keyword">break</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">   	    <span class="keyword">while</span>(time_line[q[i].id_m][have_work_point]!=<span class="number">0</span>)</span><br><span class="line">   		    have_work_point ++;</span><br><span class="line">   	    s = have_work_point;</span><br><span class="line">        <span class="comment">// 寻找下一个区间</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="最终代码"><a href="#最终代码" class="headerlink" title="最终代码"></a>最终代码</h3><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> m,n,res=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">step</span>&#123;</span><br><span class="line">	<span class="type">int</span> t, id_m, id_i;	</span><br><span class="line">&#125;;</span><br><span class="line">map&lt;<span class="type">int</span>, step&gt; q;</span><br><span class="line"><span class="type">int</span> time_line[<span class="number">25</span>][<span class="number">10010</span>];</span><br><span class="line"><span class="type">int</span> work_time[<span class="number">25</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; m &gt;&gt; n;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=(m*n);i++)&#123;</span><br><span class="line">		cin &gt;&gt; q[i].id_i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> machine_id[<span class="number">25</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">			cin &gt;&gt; machine_id[j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">int</span> flag = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=(m*n);j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(q[j].id_i == i)&#123;</span><br><span class="line">				q[j].id_m = machine_id[flag];</span><br><span class="line">				flag ++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="type">int</span> time_set[<span class="number">25</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=m;j++)&#123;</span><br><span class="line">			cin &gt;&gt; time_set[j];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="type">int</span> flag = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=<span class="number">1</span>;j&lt;=(m*n);j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(q[j].id_i == i)&#123;</span><br><span class="line">				q[j].t = time_set[flag];</span><br><span class="line">				flag ++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//初始化，制作每一个步骤的结构体</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=q.<span class="built_in">size</span>();i++)&#123; </span><br><span class="line">		<span class="type">int</span> insert_time = work_time[q[i].id_i];</span><br><span class="line">		<span class="type">int</span> s = insert_time;</span><br><span class="line">		<span class="type">int</span> have_work_point = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="type">bool</span> isOk = <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> j=s;j&lt;(s+q[i].t);j++)&#123;</span><br><span class="line">				<span class="keyword">if</span>(time_line[q[i].id_m][j]!=<span class="number">0</span>)&#123;</span><br><span class="line">					have_work_point = j;</span><br><span class="line">					isOk = <span class="literal">false</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span>(isOk)&#123;</span><br><span class="line">				insert_time = s;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				<span class="keyword">while</span>(time_line[q[i].id_m][have_work_point]!=<span class="number">0</span>)&#123;</span><br><span class="line">					have_work_point ++;</span><br><span class="line">				&#125;</span><br><span class="line">				s = have_work_point;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j=insert_time;j&lt;insert_time + q[i].t;j++)&#123;</span><br><span class="line">			time_line[q[i].id_m][j] = q[i].id_i;</span><br><span class="line">		&#125;</span><br><span class="line">		work_time[q[i].id_i] = insert_time + q[i].t; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(work_time[i] &gt; res) res = work_time[i];</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/08/23/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+  </entry>
+  <entry>
     <title>LearnAI</title>
     <url>/2023/01/19/LearnAI/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="Chapter-1-引言"><a href="#Chapter-1-引言" class="headerlink" title="Chapter 1 引言"></a>Chapter 1 引言</h2><p>是时候系统学习一下人工智能了,希望什么时候可以补充一下引言吧</p>
@@ -410,87 +517,6 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       </tags>
   </entry>
   <entry>
-    <title>世界计划 COLORFUL LIVE 2nd - Will -</title>
-    <url>/2023/01/10/PJSK2023Live/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<blockquote>
-<font color=#39C5BB size=6 > 你的下一个MM，何必是MM </font>
-
-</blockquote>
-</blockquote>
-<hr>
-<h3 id="开场-成员介绍"><a href="#开场-成员介绍" class="headerlink" title="开场+成员介绍"></a>开场+成员介绍</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN:IN.png" alt="LN"></p>
-<p>你游葱葱单推人来咯——</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ:IN.png" alt="MMJ"></p>
-<p>&gt;</p>
-<blockquote>
-<p>もっともっとたくさんの歌を！</p>
-<p>もっともっとたくさんの元気を！</p>
-<p>もっともっとたくさんの希望を！</p>
-<p>もっともっとも～っとたくさんの人達に届けられるように！</p>
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS:IN.png" alt="VBS"></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS:IN.png" alt="WS"></p>
-<blockquote>
-<font color=#ff9900> 这是，为了「笑颜」而登上舞台的少年少女的故事—— </font>
-
-
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时:IN.png" alt="25时"></p>
-<p>真的是自闭4人组</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Miku:IN.png" alt=""></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VL:IN.png" alt=""></p>
-<hr>
-<h3 id="上半场"><a href="#上半场" class="headerlink" title="上半场"></a>上半场</h3><h4 id="Leo-Need"><a href="#Leo-Need" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-1.png" alt=""></p>
-<p>原创曲: Stage of sekai</p>
-<p>翻唱曲: Calc</p>
-<h4 id="More-More-Jump"><a href="#More-More-Jump" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-1.png" alt=""></p>
-<p>原创曲: モア！ジャンプ！モア！</p>
-<p>翻唱曲: 吸血鬼</p>
-<h4 id="Vivid-BAD-SQUAD"><a href="#Vivid-BAD-SQUAD" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-1.png" alt=""></p>
-<p>原创曲: シネマ/电影</p>
-<p>翻唱曲: echo</p>
-<h4 id="Wonderlands×Showtime"><a href="#Wonderlands×Showtime" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-1.png" alt=""></p>
-<p>原创曲: 不可思议的wonder</p>
-<p>翻唱曲: 踊れオーケストラ</p>
-<h4 id="25时，在Nightcord"><a href="#25时，在Nightcord" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-1.png" alt=""></p>
-<p>原创曲: 写作悔恨的未来</p>
-<p>翻唱曲: フォニイ/phony</p>
-<hr>
-<h3 id="中场：千本樱"><a href="#中场：千本樱" class="headerlink" title="中场：千本樱"></a>中场：千本樱</h3><p><del>千本樱虽好，但SEGA能不能来点新的</del></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-1.png" alt=""></p>
-<hr>
-<h3 id="下半场"><a href="#下半场" class="headerlink" title="下半场"></a>下半场</h3><h4 id="Wonderlands×Showtime-1"><a href="#Wonderlands×Showtime-1" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p>翻唱曲：Telecaster B-Boy</p>
-<p>原创曲：微笑调查队</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-2.png" alt=""></p>
-<h4 id="More-More-Jump-1"><a href="#More-More-Jump-1" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p>原创曲：天使のクローバー</p>
-<p>翻唱曲：心予報</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-2.png" alt=""></p>
-<h4 id="Vivid-BAD-SQUAD-1"><a href="#Vivid-BAD-SQUAD-1" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p>原创曲：街</p>
-<p>翻唱曲：黎明前线</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-2.png" alt=""></p>
-<h4 id="25时，在Nightcord-1"><a href="#25时，在Nightcord-1" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p>原创曲：Lower</p>
-<p>翻唱曲：苦巧克力装饰</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-2.png" alt=""></p>
-<h4 id="Leo-Need-1"><a href="#Leo-Need-1" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p>翻唱曲：火花</p>
-<p>原创曲：Stella</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-2.png" alt=""></p>
-<hr>
-<h3 id="返场"><a href="#返场" class="headerlink" title="返场"></a>返场</h3><h4 id="V家合唱：群青赞歌"><a href="#V家合唱：群青赞歌" class="headerlink" title="V家合唱：群青赞歌"></a>V家合唱：群青赞歌</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-2.png" alt=""></p>
-<h4 id="队长曲：Journey"><a href="#队长曲：Journey" class="headerlink" title="队长曲：Journey"></a>队长曲：Journey</h4><p>撅撅撅撅你——</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-2.png" alt=""></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-1.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>二次元</category>
-      </categories>
-      <tags>
-        <tag>世界计划</tag>
-        <tag>初音未来</tag>
-        <tag>25时在夜电台</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>对2022的年度总结（二次元篇）</title>
     <url>/2022/12/31/final2022/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="我与二次元"><a href="#我与二次元" class="headerlink" title="我与二次元"></a>我与二次元</h2><p>因为疫情，很多二次元的展子都没了，很多平时暑假的例行活动都没了，希望明年还是可以去吧。</p>
@@ -646,27 +672,91 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
         <category>二次元</category>
       </categories>
       <tags>
-        <tag>初音未来</tag>
         <tag>二次元</tag>
         <tag>动漫</tag>
+        <tag>初音未来</tag>
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/08/23/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>世界计划 COLORFUL LIVE 2nd - Will -</title>
+    <url>/2023/01/10/PJSK2023Live/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<blockquote>
+<font color=#39C5BB size=6 > 你的下一个MM，何必是MM </font>
+
+</blockquote>
+</blockquote>
+<hr>
+<h3 id="开场-成员介绍"><a href="#开场-成员介绍" class="headerlink" title="开场+成员介绍"></a>开场+成员介绍</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN:IN.png" alt="LN"></p>
+<p>你游葱葱单推人来咯——</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ:IN.png" alt="MMJ"></p>
+<p>&gt;</p>
+<blockquote>
+<p>もっともっとたくさんの歌を！</p>
+<p>もっともっとたくさんの元気を！</p>
+<p>もっともっとたくさんの希望を！</p>
+<p>もっともっとも～っとたくさんの人達に届けられるように！</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS:IN.png" alt="VBS"></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS:IN.png" alt="WS"></p>
+<blockquote>
+<font color=#ff9900> 这是，为了「笑颜」而登上舞台的少年少女的故事—— </font>
+
+
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时:IN.png" alt="25时"></p>
+<p>真的是自闭4人组</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Miku:IN.png" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VL:IN.png" alt=""></p>
+<hr>
+<h3 id="上半场"><a href="#上半场" class="headerlink" title="上半场"></a>上半场</h3><h4 id="Leo-Need"><a href="#Leo-Need" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-1.png" alt=""></p>
+<p>原创曲: Stage of sekai</p>
+<p>翻唱曲: Calc</p>
+<h4 id="More-More-Jump"><a href="#More-More-Jump" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-1.png" alt=""></p>
+<p>原创曲: モア！ジャンプ！モア！</p>
+<p>翻唱曲: 吸血鬼</p>
+<h4 id="Vivid-BAD-SQUAD"><a href="#Vivid-BAD-SQUAD" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-1.png" alt=""></p>
+<p>原创曲: シネマ/电影</p>
+<p>翻唱曲: echo</p>
+<h4 id="Wonderlands×Showtime"><a href="#Wonderlands×Showtime" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-1.png" alt=""></p>
+<p>原创曲: 不可思议的wonder</p>
+<p>翻唱曲: 踊れオーケストラ</p>
+<h4 id="25时，在Nightcord"><a href="#25时，在Nightcord" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-1.png" alt=""></p>
+<p>原创曲: 写作悔恨的未来</p>
+<p>翻唱曲: フォニイ/phony</p>
+<hr>
+<h3 id="中场：千本樱"><a href="#中场：千本樱" class="headerlink" title="中场：千本樱"></a>中场：千本樱</h3><p><del>千本樱虽好，但SEGA能不能来点新的</del></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-1.png" alt=""></p>
+<hr>
+<h3 id="下半场"><a href="#下半场" class="headerlink" title="下半场"></a>下半场</h3><h4 id="Wonderlands×Showtime-1"><a href="#Wonderlands×Showtime-1" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p>翻唱曲：Telecaster B-Boy</p>
+<p>原创曲：微笑调查队</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-2.png" alt=""></p>
+<h4 id="More-More-Jump-1"><a href="#More-More-Jump-1" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p>原创曲：天使のクローバー</p>
+<p>翻唱曲：心予報</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-2.png" alt=""></p>
+<h4 id="Vivid-BAD-SQUAD-1"><a href="#Vivid-BAD-SQUAD-1" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p>原创曲：街</p>
+<p>翻唱曲：黎明前线</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-2.png" alt=""></p>
+<h4 id="25时，在Nightcord-1"><a href="#25时，在Nightcord-1" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p>原创曲：Lower</p>
+<p>翻唱曲：苦巧克力装饰</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-2.png" alt=""></p>
+<h4 id="Leo-Need-1"><a href="#Leo-Need-1" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p>翻唱曲：火花</p>
+<p>原创曲：Stella</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-2.png" alt=""></p>
+<hr>
+<h3 id="返场"><a href="#返场" class="headerlink" title="返场"></a>返场</h3><h4 id="V家合唱：群青赞歌"><a href="#V家合唱：群青赞歌" class="headerlink" title="V家合唱：群青赞歌"></a>V家合唱：群青赞歌</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-2.png" alt=""></p>
+<h4 id="队长曲：Journey"><a href="#队长曲：Journey" class="headerlink" title="队长曲：Journey"></a>队长曲：Journey</h4><p>撅撅撅撅你——</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-2.png" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-1.png" alt=""></p>
 ]]></content>
       <categories>
-        <category>测试文件</category>
+        <category>二次元</category>
       </categories>
+      <tags>
+        <tag>初音未来</tag>
+        <tag>世界计划</tag>
+        <tag>25时在夜电台</tag>
+      </tags>
   </entry>
   <entry>
     <title>日式麻将个人技巧[持续更新中...]</title>
@@ -767,121 +857,6 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       <tags>
         <tag>世界计划</tag>
         <tag>晓山瑞希</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从零开始的大学生活：初来UNNC</title>
-    <url>/2022/09/13/nbndh/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="初来宁波"><a href="#初来宁波" class="headerlink" title="初来宁波"></a>初来宁波</h3><blockquote>
-<p>宁波，取自“海定则波宁”，简称“甬”，早在周朝已有此称。“甬”字是古代大钟的一个象形字，在鄞、奉两县的县境上，山的峰峦很像古代的覆钟，故叫甬山，这条江就叫甬江，这一带地方就称为“甬”地。</p>
-</blockquote>
-<p>从上海前往宁波，若不是绕行杭州一带，直接走杭州湾跨海大桥，也就2小时左右。这一绕路，正逢中秋盛时天文大潮，虽没有到奔腾汹涌之势，一行白浪宛如千里雪骑，逆流而上，亦有浪遏飞舟之意。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2485.png" style="zoom:10%;" /></p>
-<p>宁波分成老的市中心和东部新城，UNNC算是在南部的机场附近了。抵达宁波最大的感受是整个城市繁华却又不失人文的情怀。放眼城市，并不像上海一般高楼丛生，错中复杂，中间的老城区只能唉声叹气，等待着时代的淘汰，流离失所。宁波有展现其雄姿的高楼大厦，也有如欧洲小镇般的别墅街道，每走几个街道，就会有一个像样的公园点缀着生活。不得不说，宁波的城市干净，整洁，老建筑与新建筑融为一体，显得融洽。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2501.png" style="zoom:10%;" /></p>
-<blockquote>
-<p>宁波老外滩，坐落于浙江省宁波市江北区三江口（甬江、奉化江和余姚江的三江汇流之地）的北岸江北区，是进入宁波古城的门户。 在唐朝为中国四大港口之一，并成为鉴真东渡的起点；在南宋为中国三大港口之一，并设立市舶司专门负责管理对外贸易；当《南京条约》签订后，宁波便成为“五口通商”口岸之一，并于1844年正式开埠。</p>
-</blockquote>
-<p>正逢中秋，晚间来到了宁波的老外滩，据当地的同学说，这里难得有这么多人，岸边坐满了赏月拍照的人，无论哪里，无论城市与乡村，观赏天空永远能给予人们慰藉。宁波的外滩中，小巷里的酒吧永远是最热闹的，在江边吹着风，与友人喝上一杯，岂不美哉。再附上两张月亮的照片吧！</p>
-<center class="half">
-    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2687.JPG" width="40%" />
-    &emsp;
-    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2685.JPG" width="40%" />
-</center>
-
-<hr>
-<h3 id="进入UNNC"><a href="#进入UNNC" class="headerlink" title="进入UNNC"></a>进入UNNC</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2569.png" style="zoom:15%;" /></p>
-<p>好吧，人很多，但是寝室楼真的很好看，进来了之后简单整理了一下</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_D288D71429C4-1.jpeg" style="zoom:30%;" /></p>
-<p>太美丽了！感觉达到UNNC最高层。之后品鉴一下食堂，有空出一份食堂品鉴文章。</p>
-]]></content>
-      <categories>
-        <category>生活记录</category>
-      </categories>
-      <tags>
-        <tag>诺丁汉</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主播降临原神必胜客餐厅</title>
-    <url>/2022/09/01/opcomment/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>主播不是原p,主播不是原p,主播不是原p</p>
-<h3 id="先来看看原P们的丑态"><a href="#先来看看原P们的丑态" class="headerlink" title="先来看看原P们的丑态"></a>先来看看原P们<span class="heimu" title="你知道的太多了">的丑态</span></h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2245.JPG" alt=""></p>
-<blockquote>
-<p>环球港必胜客餐厅</p>
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原1.png" alt=""></p>
-<blockquote>
-<p>瑞红坊必胜客餐厅</p>
-</blockquote>
-<h4 id="事情经过"><a href="#事情经过" class="headerlink" title="事情经过"></a>事情经过</h4><p>主播原来不是原P，在经友人推荐后<span class="heimu" title="你知道的太多了">强迫</span>前往了最新最潮的原神餐厅，当时是12点左右到的，餐厅门前已经挤满了人。在排队的过程中主播了解到很多人都是在10点前早早前往拿号。</p>
-<p>在12点30左右，店家开始叫号（就是那种从01开始的那种）。主播看着自己手上的77号感觉有点崩溃</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原2.png" alt=""></p>
-<p>大概在1点半左右，主播做出重大决定，前往KFC先垫点吃的</p>
-<blockquote>
-<p>到达原P聚集处——必胜客</p>
-<p>太美丽了吧必胜客</p>
-<p>诶哟这不是KFC吗</p>
-<p>还是看看手上的原味鸡吧</p>
-</blockquote>
-<p><span class="heimu" title="你知道的太多了"><del>必胜客你就是歌姬吧</del></span></p>
-<p><span class="heimu" title="你知道的太多了">群友的攻击性好强</span></p>
-<p>到了下午三点半，人越来越少，主播上前询问服务员：</p>
-<blockquote>
-<p>主播：您好，您看我这号还有机会吗</p>
-<p>工作人员：您这个就像是一个癌症晚期患者说的话一样。他都已经这样了，你为什么不顺从他呢?你总要给人最后一段时间一个好的回忆吧，最后的时光里。因为60这个号很尴尬，50再往下一点，三十四十，可能说，欸，有点实力，能操作一下。80往上，九十一百，啊，人家是纯属混个号的，因为太遥远了，自己也知道自己没什么竞争力。但77，上不去下不来的这个号</p>
-</blockquote>
-<p><span class="heimu" title="你知道的太多了">原文：今天已经结束了，您肯定拍不到了，把号退了吧</span></p>
-<p>然后主播就只能退号了</p>
-<h3 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h3><p>主播写文章时，看到了很多网友们也是花了4个多小时等到了座位，体验了一番，其中有一句话令主播很是认可</p>
-<blockquote>
-<p>如果不是原，我真的不知道自己身边有必胜客</p>
-</blockquote>
-<p>在带动消费上，二次元市场在近年的表现可以说让人又爱又恨，“二次元真好骗”，利用ip似乎已经成为了许多抬高物价的脱罪例证。</p>
-<p>这样的现象并不罕见，因为这就是漫展等一系列ip化活动的核心，但是这样的活动对于二次元来说，它的价值却也十分丰富。对于二次元来说，当一群同好相聚在一起的氛围，才是最难得可贵的。</p>
-<p>实际上漫展本来的作用就是这个。就漫展里的那些东西，跟核心二次元几乎是八竿子打不着，几乎是毫无创意可言，平均质量还不如去淘宝周边店定制。为啥呢？因为会在漫展买东西的人，每年最关心二次元的那天可能就是来漫展的这一天，约上几个志同道好的朋友们，去漫展上品鉴着各式各样的IP，分享着当初看番的记忆，再象征性的砸一点钱，享受拿着痛包手办和一群二次元挤地铁的快乐。</p>
-<hr>
-<p><br></p>
-<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>如何看待必胜客中国将与游戏《原神》进行联动？ 作者：bow-car 链接：<a href="https://www.zhihu.com/question/539734598/answer/2650929206">https://www.zhihu.com/question/539734598/answer/2650929206</a> 来源：知乎</p>
-]]></content>
-      <categories>
-        <category>生活杂谈</category>
-      </categories>
-      <tags>
-        <tag>原神</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>pictureTest</title>
-    <url>/2022/08/25/pictureTest/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="先扔张成果图"><a href="#先扔张成果图" class="headerlink" title="先扔张成果图"></a>先扔张成果图</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg" alt="ena"></p>
-<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>在想插入图片的时候，我一开始是非常不愿意使用图床等一系列第三方仓库的，首先想到的就是用相对路径。</p>
-<p>网上最常用的解决方案就是将_config.yml 文件中的post_asset_folder 选项设为 true 来打开，然后利用随文章创建一同创建的同名文件夹插入图片。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>但是本方案在使用了<code>hexo d</code>后<code>public</code>中HTML文件上显示的相对路径却变成了乱码，无法读取图片(而且网上也基本没有这个问题可能是本人电脑的问题)</p>
-<h4 id="PicGO图床"><a href="#PicGO图床" class="headerlink" title="PicGO图床"></a>PicGO图床</h4><blockquote>
-<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具</p>
-</blockquote>
-<p>PicGo 本体支持如下图床：</p>
-<ul>
-<li>七牛图床</li>
-<li>腾讯云COS</li>
-<li>又拍云</li>
-<li>GitHub v1.5.0</li>
-<li>SM.MS V2 v2.3.0-beta.0</li>
-<li>阿里云 OSS v1.6.0</li>
-<li>Imgur v1.6.0</li>
-</ul>
-<p>如果有条件的话非常推荐使用GitHub的仓库制作图床，但是国内网络的不支持使得图片的加载会出现很大的问题，这里也附上知乎上的<a href="https://www.zhihu.com/question/64502309">配置GitHub图床教程链接</a></p>
-<p>其次就是利用国内平台如腾讯云阿里云等，这里我使用的是阿里云，<br><a href="https://blog.csdn.net/weixin_42030522/article/details/123075824&quot;CSDN解决Hexo无法显示图片的几种方案&quot;">配置阿里云图床</a>这篇文章具体的阐述了整个过程，可以参考。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>把自己的图片上传到第三方图床还是有点不放心的，但是也只能依赖大厂网站了；当时本来以为配置相对路径很容易，结果查来查去改了方案也配置了3个多小时。至此博客的基本要素都差不多配置完毕。最后啥也别说，先来一句：“<strong>SaKana——</strong>”</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg" alt="sakana"></p>
-]]></content>
-      <categories>
-        <category>测试文件</category>
-      </categories>
-      <tags>
-        <tag>调试心得</tag>
       </tags>
   </entry>
   <entry>
@@ -1025,6 +1000,202 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       </tags>
   </entry>
   <entry>
+    <title>从零开始的大学生活：初来UNNC</title>
+    <url>/2022/09/13/nbndh/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="初来宁波"><a href="#初来宁波" class="headerlink" title="初来宁波"></a>初来宁波</h3><blockquote>
+<p>宁波，取自“海定则波宁”，简称“甬”，早在周朝已有此称。“甬”字是古代大钟的一个象形字，在鄞、奉两县的县境上，山的峰峦很像古代的覆钟，故叫甬山，这条江就叫甬江，这一带地方就称为“甬”地。</p>
+</blockquote>
+<p>从上海前往宁波，若不是绕行杭州一带，直接走杭州湾跨海大桥，也就2小时左右。这一绕路，正逢中秋盛时天文大潮，虽没有到奔腾汹涌之势，一行白浪宛如千里雪骑，逆流而上，亦有浪遏飞舟之意。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2485.png" style="zoom:10%;" /></p>
+<p>宁波分成老的市中心和东部新城，UNNC算是在南部的机场附近了。抵达宁波最大的感受是整个城市繁华却又不失人文的情怀。放眼城市，并不像上海一般高楼丛生，错中复杂，中间的老城区只能唉声叹气，等待着时代的淘汰，流离失所。宁波有展现其雄姿的高楼大厦，也有如欧洲小镇般的别墅街道，每走几个街道，就会有一个像样的公园点缀着生活。不得不说，宁波的城市干净，整洁，老建筑与新建筑融为一体，显得融洽。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2501.png" style="zoom:10%;" /></p>
+<blockquote>
+<p>宁波老外滩，坐落于浙江省宁波市江北区三江口（甬江、奉化江和余姚江的三江汇流之地）的北岸江北区，是进入宁波古城的门户。 在唐朝为中国四大港口之一，并成为鉴真东渡的起点；在南宋为中国三大港口之一，并设立市舶司专门负责管理对外贸易；当《南京条约》签订后，宁波便成为“五口通商”口岸之一，并于1844年正式开埠。</p>
+</blockquote>
+<p>正逢中秋，晚间来到了宁波的老外滩，据当地的同学说，这里难得有这么多人，岸边坐满了赏月拍照的人，无论哪里，无论城市与乡村，观赏天空永远能给予人们慰藉。宁波的外滩中，小巷里的酒吧永远是最热闹的，在江边吹着风，与友人喝上一杯，岂不美哉。再附上两张月亮的照片吧！</p>
+<center class="half">
+    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2687.JPG" width="40%" />
+    &emsp;
+    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2685.JPG" width="40%" />
+</center>
+
+<hr>
+<h3 id="进入UNNC"><a href="#进入UNNC" class="headerlink" title="进入UNNC"></a>进入UNNC</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2569.png" style="zoom:15%;" /></p>
+<p>好吧，人很多，但是寝室楼真的很好看，进来了之后简单整理了一下</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_D288D71429C4-1.jpeg" style="zoom:30%;" /></p>
+<p>太美丽了！感觉达到UNNC最高层。之后品鉴一下食堂，有空出一份食堂品鉴文章。</p>
+]]></content>
+      <categories>
+        <category>生活记录</category>
+      </categories>
+      <tags>
+        <tag>诺丁汉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主播降临原神必胜客餐厅</title>
+    <url>/2022/09/01/opcomment/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>主播不是原p,主播不是原p,主播不是原p</p>
+<h3 id="先来看看原P们的丑态"><a href="#先来看看原P们的丑态" class="headerlink" title="先来看看原P们的丑态"></a>先来看看原P们<span class="heimu" title="你知道的太多了">的丑态</span></h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2245.JPG" alt=""></p>
+<blockquote>
+<p>环球港必胜客餐厅</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原1.png" alt=""></p>
+<blockquote>
+<p>瑞红坊必胜客餐厅</p>
+</blockquote>
+<h4 id="事情经过"><a href="#事情经过" class="headerlink" title="事情经过"></a>事情经过</h4><p>主播原来不是原P，在经友人推荐后<span class="heimu" title="你知道的太多了">强迫</span>前往了最新最潮的原神餐厅，当时是12点左右到的，餐厅门前已经挤满了人。在排队的过程中主播了解到很多人都是在10点前早早前往拿号。</p>
+<p>在12点30左右，店家开始叫号（就是那种从01开始的那种）。主播看着自己手上的77号感觉有点崩溃</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原2.png" alt=""></p>
+<p>大概在1点半左右，主播做出重大决定，前往KFC先垫点吃的</p>
+<blockquote>
+<p>到达原P聚集处——必胜客</p>
+<p>太美丽了吧必胜客</p>
+<p>诶哟这不是KFC吗</p>
+<p>还是看看手上的原味鸡吧</p>
+</blockquote>
+<p><span class="heimu" title="你知道的太多了"><del>必胜客你就是歌姬吧</del></span></p>
+<p><span class="heimu" title="你知道的太多了">群友的攻击性好强</span></p>
+<p>到了下午三点半，人越来越少，主播上前询问服务员：</p>
+<blockquote>
+<p>主播：您好，您看我这号还有机会吗</p>
+<p>工作人员：您这个就像是一个癌症晚期患者说的话一样。他都已经这样了，你为什么不顺从他呢?你总要给人最后一段时间一个好的回忆吧，最后的时光里。因为60这个号很尴尬，50再往下一点，三十四十，可能说，欸，有点实力，能操作一下。80往上，九十一百，啊，人家是纯属混个号的，因为太遥远了，自己也知道自己没什么竞争力。但77，上不去下不来的这个号</p>
+</blockquote>
+<p><span class="heimu" title="你知道的太多了">原文：今天已经结束了，您肯定拍不到了，把号退了吧</span></p>
+<p>然后主播就只能退号了</p>
+<h3 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h3><p>主播写文章时，看到了很多网友们也是花了4个多小时等到了座位，体验了一番，其中有一句话令主播很是认可</p>
+<blockquote>
+<p>如果不是原，我真的不知道自己身边有必胜客</p>
+</blockquote>
+<p>在带动消费上，二次元市场在近年的表现可以说让人又爱又恨，“二次元真好骗”，利用ip似乎已经成为了许多抬高物价的脱罪例证。</p>
+<p>这样的现象并不罕见，因为这就是漫展等一系列ip化活动的核心，但是这样的活动对于二次元来说，它的价值却也十分丰富。对于二次元来说，当一群同好相聚在一起的氛围，才是最难得可贵的。</p>
+<p>实际上漫展本来的作用就是这个。就漫展里的那些东西，跟核心二次元几乎是八竿子打不着，几乎是毫无创意可言，平均质量还不如去淘宝周边店定制。为啥呢？因为会在漫展买东西的人，每年最关心二次元的那天可能就是来漫展的这一天，约上几个志同道好的朋友们，去漫展上品鉴着各式各样的IP，分享着当初看番的记忆，再象征性的砸一点钱，享受拿着痛包手办和一群二次元挤地铁的快乐。</p>
+<hr>
+<p><br></p>
+<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>如何看待必胜客中国将与游戏《原神》进行联动？ 作者：bow-car 链接：<a href="https://www.zhihu.com/question/539734598/answer/2650929206">https://www.zhihu.com/question/539734598/answer/2650929206</a> 来源：知乎</p>
+]]></content>
+      <categories>
+        <category>生活杂谈</category>
+      </categories>
+      <tags>
+        <tag>原神</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pictureTest</title>
+    <url>/2022/08/25/pictureTest/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="先扔张成果图"><a href="#先扔张成果图" class="headerlink" title="先扔张成果图"></a>先扔张成果图</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg" alt="ena"></p>
+<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>在想插入图片的时候，我一开始是非常不愿意使用图床等一系列第三方仓库的，首先想到的就是用相对路径。</p>
+<p>网上最常用的解决方案就是将_config.yml 文件中的post_asset_folder 选项设为 true 来打开，然后利用随文章创建一同创建的同名文件夹插入图片。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>但是本方案在使用了<code>hexo d</code>后<code>public</code>中HTML文件上显示的相对路径却变成了乱码，无法读取图片(而且网上也基本没有这个问题可能是本人电脑的问题)</p>
+<h4 id="PicGO图床"><a href="#PicGO图床" class="headerlink" title="PicGO图床"></a>PicGO图床</h4><blockquote>
+<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具</p>
+</blockquote>
+<p>PicGo 本体支持如下图床：</p>
+<ul>
+<li>七牛图床</li>
+<li>腾讯云COS</li>
+<li>又拍云</li>
+<li>GitHub v1.5.0</li>
+<li>SM.MS V2 v2.3.0-beta.0</li>
+<li>阿里云 OSS v1.6.0</li>
+<li>Imgur v1.6.0</li>
+</ul>
+<p>如果有条件的话非常推荐使用GitHub的仓库制作图床，但是国内网络的不支持使得图片的加载会出现很大的问题，这里也附上知乎上的<a href="https://www.zhihu.com/question/64502309">配置GitHub图床教程链接</a></p>
+<p>其次就是利用国内平台如腾讯云阿里云等，这里我使用的是阿里云，<br><a href="https://blog.csdn.net/weixin_42030522/article/details/123075824&quot;CSDN解决Hexo无法显示图片的几种方案&quot;">配置阿里云图床</a>这篇文章具体的阐述了整个过程，可以参考。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>把自己的图片上传到第三方图床还是有点不放心的，但是也只能依赖大厂网站了；当时本来以为配置相对路径很容易，结果查来查去改了方案也配置了3个多小时。至此博客的基本要素都差不多配置完毕。最后啥也别说，先来一句：“<strong>SaKana——</strong>”</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg" alt="sakana"></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+      <tags>
+        <tag>调试心得</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/2023/03/25/%E4%B8%AD%E5%9B%BD%E6%96%87%E5%8C%96%E8%AF%BE%E8%AE%A8%E8%AE%BA/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>查尔斯·金德尔伯认为，”如果国际社会中缺少霸权国家，那么就会削弱国际体系的稳定性“，请从经济角度谈谈观点的局限性。</p>
+<ul>
+<li><p>如何定义经济角度的霸权主义。</p>
+<ul>
+<li>经济角度的霸权主义可以理解为一个国家或一群国家在世界经济中拥有最大的份额和话语权，并通过制定和执行国际经济规则、提供或控制国际公共产品、利用或剥削其他国家的资源和市场等方式来保证和增强自己的经济利益和竞争优势。经济霸权可以通过各种指标来衡量，如国内生产总值、贸易额、外汇储备、金融市场、科技创新等。历史上，我们可以观察到不同的经济霸权的兴衰和更替，如意大利城邦、葡萄牙和西班牙、荷兰、法国、英国、德国、美国、日本等。 这些经济霸权都有其特定的历史条件和发展路径，也都面临着各种内部和外部的挑战和危机。一般来说，经济霸权的形成需要一个国家具备以下几个条件：一个强大而稳定的政治体制，能够有效地管理国内事务，维护社会秩序，保障公民权利，促进经济发展；一个开放而灵活的经济体制，能够适应市场变化，鼓励创新和竞争，吸引投资和人才，扩大对外贸易；一个先进而多元的文化体制，能够培养教育和科技水平，传播价值观和理念，影响舆论和心理；一个合作而有力的外交体制，能够建立良好的国际关系，参与多边机制和组织，提供或获取援助和支持。<br>当然，并不是所有具备这些条件的国家都能成为经济霸权，也不是所有经济霸权都能长期保持其地位。经济霸权往往会遭遇到以下几种困境：经济增长放缓或停滞，导致收入分配不均，社会不满，政治动荡；经济结构转型或升级困难，导致产业落后，竞争力下降，市场份额丧失；经经济霸权的维持和扩张需要付出巨大的成本，导致财政赤字，债务危机，资源枯竭；经济霸权的行为和政策引起其他国家的反抗和挑战，导致贸易战，制裁，冲突。因此，经济霸权不是一种永恒的状态，而是一种动态的过程，需要不断地适应和调整。在当今世界，经济霸权的形势更加复杂和多变，因为全球化和区域化的趋势使得各国之间的经济联系更加紧密和复杂，需要更多的协调和合作，而不是单方面的领导和干预。同时，新兴的经济力量如中国、印度、巴西等也在不断地提升自己的经济实力和影响力，对现有的经济霸权构成了潜在的挑战和竞争。</li>
+</ul>
+</li>
+<li><p>外汇市场与霸权主义相关 </p>
+<ul>
+<li><p>美国前财政部长约翰·康纳利曾不乏傲慢的宣称，“我们的货币，你们的麻烦”。长期以来，美国经常利用美元在国际体系中的霸权地位转嫁国内危机。2022年3月以来，美联储六次加息，美元急剧升值，令不少国家本币贬值，资本外流，偿债成本上升，一些国家甚至陷入了货币或债务危机。美元霸权已成为威胁世界经济的重要不稳定因素。「美元霸权的维持—<a href="https://baike.baidu.com/item/国际货币合作/6836912?fromModule=lemma_inlink">国际货币合作</a></p>
+<p>第一，美元霸权形成于第二次世界大战后的<a href="https://baike.baidu.com/item/布雷顿森林体系/1952162?fromModule=lemma_inlink">布雷顿森林体系</a></p>
+<p>第二，在布雷顿森林体系下，国际货币合作基本上是围绕维持<a href="https://baike.baidu.com/item/美元汇率/9472776?fromModule=lemma_inlink">美元汇率</a>稳定展开的</p>
+<p>第三，形成了<a href="https://baike.baidu.com/item/浮动汇率制/248131?fromModule=lemma_inlink">浮动汇率制</a>下以美国为主导的新的合作方式—-从10国、<a href="https://baike.baidu.com/item/20国集团/1201753?fromModule=lemma_inlink">20国集团</a>变为7国集团」</p>
+<p>20世纪70年代，美国与世界上最大的石油出产国沙特阿拉伯达成协议，并获得OPEC其他成员的同意，确定把美元作为石油计价货币，这意味着国际市场上要进行石油交易的经济体必须使用美元，而美元也自然成为全球外汇储备货币。石油美元体系的确立令美元对国际大宗商品的定价权不断增强，为确立美元霸权再次奠定基础。布雷顿森林体系令美元成为了国际货币体系中的母货币角色，这迫使世界各经济体不断储备美元。为了避免美元债务危机的发生，发展中国家经济不得不向外贸倾斜，以赚取更多的美元来清偿外债，外贸从国家经济的补充角色逐渐变为了国家经济的主要目的。</p>
+<p>美国一面利用债务危机推动全球贸易自由化的脚步，一面利用美国的跨国公司打压发展中国家的劳动力价格，通过产品外包获取廉价商品，以此保障美国社会的高福利，并与欧日的社会福利体系竞争，这又迫使欧日不得不加大廉价商品的进口，尤其是加大美国商品的进口，以弥补社会福利的差异，这就确立了以美国为中心的全球外贸体系，美元的国际占比与支付结算被进一步巩固。</p>
+</li>
+</ul>
+</li>
+<li><p>霸权主义退场的推动因素（生产全球化：-&gt; 退场的原因）</p>
+<ul>
+<li>霸权主义的根源在于一些国家对自己的利益过于关注，而忽视了全球经济的整体利益。这种自私自利的行为，导致了国际间经济竞争的激化和贸易争端的频繁发生，最终导致了全球经济体系的破裂。</li>
+<li>一些国家采取霸权主义的原因还在于它们的国内政治和经济形势。这些国家可能会利用霸权主义政策来转移本国内部矛盾和压力，通过打压其他国家来减少国内的压力，维护政治稳定和国内经济的发展。</li>
+<li>国际形势的变化也是导致霸权主义退出全球经济的因素之一。随着全球形势的变化，一些国家可能会调整自己的外交政策，采取更加保守的立场，不再积极参与全球经济合作和竞争，最终导致退出全球经济</li>
+<li>随着全球经济的发展和国际合作的不断加强，我们相信，霸权主义会逐渐退出历史舞台。我们需要加强国际合作，共同推动全球经济的稳定和发展，为人类的共同利益而努力。</li>
+<li>布雷顿森林体系的瓦解：布雷顿森林体系瓦解的原因是多方面的，但可以概括为美国经济困境、国际经济竞争加剧、国际环境变化和系统内在缺陷等方面的问题。该体系的瓦解也反映了全球经济体系的变化和复杂性，要想实现全球经济的可持续发展，需要不断推进国际合作和改革<ul>
+<li>美元贬值和通货膨胀：由于美国的战争开支和社会福利支出增加，美国的贸易和财政赤字不断扩大，导致了美元的贬值和通货膨胀，这对布雷顿森林体系的稳定构成了严重威胁。</li>
+<li>石油危机：1973年，阿拉伯国家对西方国家发动了石油禁运，导致全球石油价格飙升，进一步加剧了通货膨胀和美元贬值的问题。</li>
+<li>国际竞争加剧：随着日本和德国等国家的经济崛起，美国的国际竞争地位逐渐受到挑战，这也加剧了美国经济的困境。</li>
+<li>系统内在缺陷：布雷顿森林体系的核心是美元的固定汇率制度，但该制度并没有考虑到国际经济环境的变化和市场力量的作用，导致体系内在存在一些缺陷。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>现在多元化、扁平式社会体系对于经济的影响</p>
+<ul>
+<li>经济多元化是指一个地区或国家的经济不再依赖某一种产业或经济领域，而是发展多个产业和经济领域。扁平式社会体系是一种没有明确的等级和垂直结构，强调平等、开放和合作的社会形态。这两种趋势对经济产生了深远的影响。经济多元化能够减少一个地区或国家的经济风险。当一个地区或国家的经济只依赖于某一种产业或经济领域时，一旦这个产业或领域出现问题，就会对整个经济造成重大影响。经济多元化能够分散经济风险，使得经济更加稳定和可持续。扁平式社会体系能够促进创新和经济发展。在一个没有明确等级和垂直结构的社会中，人们更加开放和自由地交流和合作，这能够促进知识和技术的交流，进而推动创新和经济发展。扁平式社会体系还能够促进社会公平和平等。在这种社会体系中，人们没有明确的等级和垂直结构，每个人都有平等的机会参与社会和经济活动，这能够促进社会公平和平等。总之，经济多元化和扁平式社会体系都对经济产生了深远的影响，能够促进经济稳定和可持续发展、创新和公平。对于一个国家或地区的经济发展而言，这两种趋势都是值得推进的。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>浅谈在惠普暗影精灵8下装Win11与Linux双系统</title>
+    <url>/2022/09/19/%E8%A3%85%E6%9C%BA%E5%BF%83%E5%BE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><!-- <span class="heimu" title="你知道的太多了">的丑态</span> -->
+<h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><ul>
+<li>启动硬盘（windows11与Ubuntu20.3）</li>
+<li>固态硬盘（主播使用的是致态TiPlus5000 1TB)</li>
+<li>暗影精灵8pro</li>
+</ul>
+<h3 id="拆机"><a href="#拆机" class="headerlink" title="拆机"></a>拆机</h3><p>千万不要看什么网上用乱七八糟的教程，其实这款电脑非常好拆，前面的卡扣非常的紧，但是后方其实用手指甲就可以撬开来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2827.png" style="zoom: 25%;" /></p>
+<p>然后在左侧固态槽上安装硬盘即可。</p>
+<blockquote>
+<p>建议断开电源后点击一下开机键放一下静电后再操作</p>
+<p>但是不要忘记最后把电源线连上</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2818.png" alt=""></p>
+<p>在安装好后把外壳扣上，不要急着拧螺丝，先按电源键看看可不可以正常开机后再拧紧螺丝</p>
+<h3 id="装Win11"><a href="#装Win11" class="headerlink" title="装Win11"></a>装Win11</h3><blockquote>
+<p>注：此步骤不是必要过程，主要是我这个买了1TB的盘不太忍心用来装Ubuntu，打算调换一下两个盘，因此要重装win11</p>
+</blockquote>
+<p>首先你需要一个启动硬盘，推荐一下<code>rufus</code>，虽然我不会用但是看学长用很方便。 </p>
+<p>开机时按住F9就是启动选项栏，在插入硬盘之后选择从硬盘启动即可。</p>
+<p>Win11有一个自动bitlocker的功能要记得关闭，否则会影响后续的Linux安装。如果无法直接关就先开启bitlocker然后再关闭。</p>
+<p>在装机好后可能会出现没有网卡驱动的问题，这里需要借助另一台电脑在HP官网上下载网卡驱动然后进行安装，在有网络的情况下在设置中检查更新即可自动安装其他驱动。</p>
+<h3 id="装Ubuntu"><a href="#装Ubuntu" class="headerlink" title="装Ubuntu"></a>装Ubuntu</h3><p>装机程序一致，按照流程来，在最后装机前要注意选择。在安装类型中选择第一个与windows boot manager共存（其可以先看看其他选项确认一下你要装的盘的位置然后再返回）</p>
+<p>最后加一行这个<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><br>理论上就安装完毕了</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在安装完毕后，重启电脑，会自动在开机中弹出菜单，选择需要的系统即可</p>
+]]></content>
+      <categories>
+        <category>机械硬件</category>
+      </categories>
+      <tags>
+        <tag>RoboMaster</tag>
+        <tag>调试心得</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>更新日志</title>
     <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="v1-0"><a href="#v1-0" class="headerlink" title="[v1.0]-"></a>[v1.0]-<20220823></h3><ul>
@@ -1099,43 +1270,6 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       <tags>
         <tag>术力口</tag>
         <tag>VOCALOID</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>浅谈在惠普暗影精灵8下装Win11与Linux双系统</title>
-    <url>/2022/09/19/%E8%A3%85%E6%9C%BA%E5%BF%83%E5%BE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><!-- <span class="heimu" title="你知道的太多了">的丑态</span> -->
-<h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><ul>
-<li>启动硬盘（windows11与Ubuntu20.3）</li>
-<li>固态硬盘（主播使用的是致态TiPlus5000 1TB)</li>
-<li>暗影精灵8pro</li>
-</ul>
-<h3 id="拆机"><a href="#拆机" class="headerlink" title="拆机"></a>拆机</h3><p>千万不要看什么网上用乱七八糟的教程，其实这款电脑非常好拆，前面的卡扣非常的紧，但是后方其实用手指甲就可以撬开来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2827.png" style="zoom: 25%;" /></p>
-<p>然后在左侧固态槽上安装硬盘即可。</p>
-<blockquote>
-<p>建议断开电源后点击一下开机键放一下静电后再操作</p>
-<p>但是不要忘记最后把电源线连上</p>
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2818.png" alt=""></p>
-<p>在安装好后把外壳扣上，不要急着拧螺丝，先按电源键看看可不可以正常开机后再拧紧螺丝</p>
-<h3 id="装Win11"><a href="#装Win11" class="headerlink" title="装Win11"></a>装Win11</h3><blockquote>
-<p>注：此步骤不是必要过程，主要是我这个买了1TB的盘不太忍心用来装Ubuntu，打算调换一下两个盘，因此要重装win11</p>
-</blockquote>
-<p>首先你需要一个启动硬盘，推荐一下<code>rufus</code>，虽然我不会用但是看学长用很方便。 </p>
-<p>开机时按住F9就是启动选项栏，在插入硬盘之后选择从硬盘启动即可。</p>
-<p>Win11有一个自动bitlocker的功能要记得关闭，否则会影响后续的Linux安装。如果无法直接关就先开启bitlocker然后再关闭。</p>
-<p>在装机好后可能会出现没有网卡驱动的问题，这里需要借助另一台电脑在HP官网上下载网卡驱动然后进行安装，在有网络的情况下在设置中检查更新即可自动安装其他驱动。</p>
-<h3 id="装Ubuntu"><a href="#装Ubuntu" class="headerlink" title="装Ubuntu"></a>装Ubuntu</h3><p>装机程序一致，按照流程来，在最后装机前要注意选择。在安装类型中选择第一个与windows boot manager共存（其可以先看看其他选项确认一下你要装的盘的位置然后再返回）</p>
-<p>最后加一行这个<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><br>理论上就安装完毕了</p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在安装完毕后，重启电脑，会自动在开机中弹出菜单，选择需要的系统即可</p>
-]]></content>
-      <categories>
-        <category>机械硬件</category>
-      </categories>
-      <tags>
-        <tag>RoboMaster</tag>
-        <tag>调试心得</tag>
       </tags>
   </entry>
 </search>
