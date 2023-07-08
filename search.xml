@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>OpenCV实现物体追踪</title>
+    <url>/2023/01/20/KCF/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="OpenCV实现物体追踪"><a href="#OpenCV实现物体追踪" class="headerlink" title="OpenCV实现物体追踪"></a>OpenCV实现物体追踪</h3><h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>通过Opencv内置函数实现物体追踪，并且部署在ROS中，实现摄像头读取。本文不涉及追踪算法的具体原理，而是针对RM中装甲板识别做出具体的实践部署。</p>
+<p>具体项目已经部署在GitHUb：<a href="https://github.com/Phoenizard/Track-Image-InROS">https://github.com/Phoenizard/Track-Image-InROS</a></p>
+<h4 id="追踪对象"><a href="#追踪对象" class="headerlink" title="追踪对象"></a>追踪对象</h4><p>使用opencv自带的追踪对象，需要调用一下头文件：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/tracking.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/ocl.hpp&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>在OpenCV中一共有7中追踪算法，分别是<code>BOOSTING</code>, <code>MIL</code>, <code>KCF</code>, <code>TLD</code> , <code>MEDIANFLOW</code>, <code>MOSSE</code>, <code>CSRT</code> ,在使用中选择最常见的<code>KCF</code>算法</p>
+<h5 id="声明追踪对象"><a href="#声明追踪对象" class="headerlink" title="声明追踪对象"></a>声明追踪对象</h5><p>使用<code>creat()</code>构造</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">yourtracker = TrackerKCF::<span class="built_in">create</span>();</span><br></pre></td></tr></table></figure>
+<h5 id="初始化目标"><a href="#初始化目标" class="headerlink" title="初始化目标"></a>初始化目标</h5><p>使用<code>init(cv::Mat_flame,cv::Rect2d_object)</code>初始化</p>
+<ul>
+<li>Mat_flame：放入初始帧图片</li>
+<li>Rect2d_object：放入目标在初始帧照片中的像素矩阵</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">cv::Rect2d bbox;</span><br><span class="line">yourtracker-&gt;<span class="built_in">init</span>(flame, bbox);</span><br></pre></td></tr></table></figure>
+<h5 id="更新目标"><a href="#更新目标" class="headerlink" title="更新目标"></a>更新目标</h5><p>使用<code>update(cv::Mat_flame,cv::Rect2d_object)</code> 更新当前帧</p>
+<ul>
+<li>Mat_flame：放入当前帧</li>
+<li>Rect2d_object：放入上一帧目标矩形</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">yourtracker-&gt;<span class="built_in">update</span>(flame, bbox);</span><br></pre></td></tr></table></figure>
+<h5 id="判断目标丢失"><a href="#判断目标丢失" class="headerlink" title="判断目标丢失"></a>判断目标丢失</h5><p>算法将自动通过滤波匹配目标，<code>update()</code>函数在定义中为<code>bool</code>类型，如果目标丢失，返回值为<code>false</code></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">bool</span> ok = yourtracker-&gt;<span class="built_in">update</span>(flame, bbox);</span><br><span class="line"><span class="keyword">if</span>(!ok) cout &lt;&lt; <span class="string">&quot;Track Lost&quot;</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<h4 id="程序逻辑"><a href="#程序逻辑" class="headerlink" title="程序逻辑"></a>程序逻辑</h4><p>在RM中，追踪算法运用于装甲板的识别和追踪中，代码逻辑如下：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/KCF流程图.png" alt="KCL流程图" style="zoom:30%;" /></p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>在ROS中，由于接受和发布照片在同一对象中完成，我们依然使用订阅和发布的模版对象SubPuber（自定义的对象）：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SubPuber</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ros::NodeHandle nodeHandle;</span><br><span class="line">    ros::Subscriber imgSub;</span><br><span class="line">    ros::Publisher trackobj;</span><br><span class="line">    <span class="comment">// Define Part</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SubPuber</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        imgSub = nodeHandle.<span class="built_in">subscribe</span>(<span class="string">&quot;/camera/color/image_raw&quot;</span>, <span class="number">1</span>, &amp;SubPuber::ObjectTracker, <span class="keyword">this</span>);</span><br><span class="line">        trackobj = nodeHandle.<span class="built_in">advertise</span>&lt;sensor_msgs::Image&gt;(<span class="string">&quot;/tracker&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// Initate Part</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">ObjectTracker</span><span class="params">(<span class="type">const</span> sensor_msgs::ImageConstPtr &amp;frontRGBImg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Mat image;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            image = cv_bridge::<span class="built_in">toCvShare</span>(frontRGBImg, <span class="string">&quot;bgr8&quot;</span>)-&gt;image;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">catch</span> (cv_bridge::Exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">ROS_ERROR</span>(<span class="string">&quot;Could not convert to image!&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Program Part</span></span><br><span class="line">        sensor_msgs::ImagePtr msg = cv_bridge::<span class="built_in">CvImage</span>(std_msgs::<span class="built_in">Header</span>(), <span class="string">&quot;bgr8&quot;</span>, image).<span class="built_in">toImageMsg</span>();</span><br><span class="line">        trackobj.<span class="built_in">publish</span>(*msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以结合<code>ROS::spin();</code>即可实现循环。具体来说，当程序运行到ros::spin()的时候，会找到订阅和发布的API，并且<strong>循环订阅</strong>和<strong>发布</strong>两个动作 [注意：不会循环代码的其他部分，仅仅是订阅和发布]。</p>
+<p>在主程序中，创建对象和<code>spin()</code> 即可</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 省略初始化节点</span></span><br><span class="line">    SubPuber tracker;</span><br><span class="line">    ROS::<span class="built_in">spin</span>();</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+<p>观察代码，<code>Initate Part</code> 仅仅运行一遍，很适合创建追踪器，而在<code>Program Part</code> 可以把追踪的代码部署与此循环执行。补充代码如下：</p>
+<p>由于作者手边没有装甲板信息，则使用<code>ROI</code>交互界面，通过手动框出矩形框初始化目标</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Define Part</span></span><br><span class="line">Ptr&lt;Tracker&gt; tracker; </span><br><span class="line">cv::Rect2d bbox; </span><br><span class="line"><span class="type">int</span> state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initate Part</span></span><br><span class="line">tracker = TrackerKCF::<span class="built_in">create</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Program Part</span></span><br><span class="line"><span class="keyword">if</span>(state == <span class="number">0</span>)&#123;</span><br><span class="line">    bbox = bbox = <span class="built_in">selectROI</span>(image, <span class="literal">false</span>);</span><br><span class="line">    tracker-&gt;<span class="built_in">init</span>(image,bbox);</span><br><span class="line">    state = <span class="number">1</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">bool</span> ok = tracker-&gt;<span class="built_in">update</span>(image,bbox);</span><br><span class="line">    <span class="keyword">if</span>(ok) &#123;</span><br><span class="line">        <span class="built_in">rectangle</span>(image, bbox, <span class="built_in">Scalar</span>(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="number">4</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;TrackLost&quot;</span> &lt;&lt; endl;</span><br><span class="line">        state = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>RoboMaster</tag>
+        <tag>计算机视觉</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LearnAI</title>
     <url>/2023/01/19/LearnAI/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="Chapter-1-引言"><a href="#Chapter-1-引言" class="headerlink" title="Chapter 1 引言"></a>Chapter 1 引言</h2><p>是时候系统学习一下人工智能了,希望什么时候可以补充一下引言吧</p>
@@ -360,10 +403,10 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>人工智能</tag>
-        <tag>数学</tag>
         <tag>RoboMaster</tag>
         <tag>计算机视觉</tag>
+        <tag>人工智能</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -457,21 +500,186 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/08/23/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>世界计划 COLORFUL LIVE 2nd - Will -</title>
+    <url>/2023/01/10/PJSK2023Live/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<blockquote>
+<font color=#39C5BB size=6 > 你的下一个MM，何必是MM </font>
+
+</blockquote>
+</blockquote>
+<hr>
+<h3 id="开场-成员介绍"><a href="#开场-成员介绍" class="headerlink" title="开场+成员介绍"></a>开场+成员介绍</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN:IN.png" alt="LN"></p>
+<p>你游葱葱单推人来咯——</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ:IN.png" alt="MMJ"></p>
+<p>&gt;</p>
+<blockquote>
+<p>もっともっとたくさんの歌を！</p>
+<p>もっともっとたくさんの元気を！</p>
+<p>もっともっとたくさんの希望を！</p>
+<p>もっともっとも～っとたくさんの人達に届けられるように！</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS:IN.png" alt="VBS"></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS:IN.png" alt="WS"></p>
+<blockquote>
+<font color=#ff9900> 这是，为了「笑颜」而登上舞台的少年少女的故事—— </font>
+
+
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时:IN.png" alt="25时"></p>
+<p>真的是自闭4人组</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Miku:IN.png" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VL:IN.png" alt=""></p>
+<hr>
+<h3 id="上半场"><a href="#上半场" class="headerlink" title="上半场"></a>上半场</h3><h4 id="Leo-Need"><a href="#Leo-Need" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-1.png" alt=""></p>
+<p>原创曲: Stage of sekai</p>
+<p>翻唱曲: Calc</p>
+<h4 id="More-More-Jump"><a href="#More-More-Jump" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-1.png" alt=""></p>
+<p>原创曲: モア！ジャンプ！モア！</p>
+<p>翻唱曲: 吸血鬼</p>
+<h4 id="Vivid-BAD-SQUAD"><a href="#Vivid-BAD-SQUAD" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-1.png" alt=""></p>
+<p>原创曲: シネマ/电影</p>
+<p>翻唱曲: echo</p>
+<h4 id="Wonderlands×Showtime"><a href="#Wonderlands×Showtime" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-1.png" alt=""></p>
+<p>原创曲: 不可思议的wonder</p>
+<p>翻唱曲: 踊れオーケストラ</p>
+<h4 id="25时，在Nightcord"><a href="#25时，在Nightcord" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-1.png" alt=""></p>
+<p>原创曲: 写作悔恨的未来</p>
+<p>翻唱曲: フォニイ/phony</p>
+<hr>
+<h3 id="中场：千本樱"><a href="#中场：千本樱" class="headerlink" title="中场：千本樱"></a>中场：千本樱</h3><p><del>千本樱虽好，但SEGA能不能来点新的</del></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-1.png" alt=""></p>
+<hr>
+<h3 id="下半场"><a href="#下半场" class="headerlink" title="下半场"></a>下半场</h3><h4 id="Wonderlands×Showtime-1"><a href="#Wonderlands×Showtime-1" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p>翻唱曲：Telecaster B-Boy</p>
+<p>原创曲：微笑调查队</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-2.png" alt=""></p>
+<h4 id="More-More-Jump-1"><a href="#More-More-Jump-1" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p>原创曲：天使のクローバー</p>
+<p>翻唱曲：心予報</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-2.png" alt=""></p>
+<h4 id="Vivid-BAD-SQUAD-1"><a href="#Vivid-BAD-SQUAD-1" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p>原创曲：街</p>
+<p>翻唱曲：黎明前线</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-2.png" alt=""></p>
+<h4 id="25时，在Nightcord-1"><a href="#25时，在Nightcord-1" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p>原创曲：Lower</p>
+<p>翻唱曲：苦巧克力装饰</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-2.png" alt=""></p>
+<h4 id="Leo-Need-1"><a href="#Leo-Need-1" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p>翻唱曲：火花</p>
+<p>原创曲：Stella</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-2.png" alt=""></p>
+<hr>
+<h3 id="返场"><a href="#返场" class="headerlink" title="返场"></a>返场</h3><h4 id="V家合唱：群青赞歌"><a href="#V家合唱：群青赞歌" class="headerlink" title="V家合唱：群青赞歌"></a>V家合唱：群青赞歌</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-2.png" alt=""></p>
+<h4 id="队长曲：Journey"><a href="#队长曲：Journey" class="headerlink" title="队长曲：Journey"></a>队长曲：Journey</h4><p>撅撅撅撅你——</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-2.png" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-1.png" alt=""></p>
 ]]></content>
       <categories>
-        <category>测试文件</category>
+        <category>二次元</category>
       </categories>
+      <tags>
+        <tag>世界计划</tag>
+        <tag>初音未来</tag>
+        <tag>25时在夜电台</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>伦勃朗与维米尔系列：Rembrandt In Leiden</title>
+    <url>/2023/07/08/RembrandtInLeiden/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><blockquote>
+<p>The interaction of Perception and Expression</p>
+</blockquote>
+<h4 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h4><ul>
+<li><h5 id="视觉艺术大致分为五类："><a href="#视觉艺术大致分为五类：" class="headerlink" title="视觉艺术大致分为五类："></a>视觉艺术大致分为五类：</h5><ul>
+<li><h5 id="Narrative-叙事"><a href="#Narrative-叙事" class="headerlink" title="Narrative 叙事"></a>Narrative 叙事</h5></li>
+<li><h5 id="Portraitare-肖像"><a href="#Portraitare-肖像" class="headerlink" title="Portraitare 肖像"></a>Portraitare 肖像</h5></li>
+<li><h5 id="Genre-风俗"><a href="#Genre-风俗" class="headerlink" title="Genre 风俗"></a>Genre 风俗</h5></li>
+<li><h5 id="Still-Life-静物"><a href="#Still-Life-静物" class="headerlink" title="Still-Life 静物"></a>Still-Life 静物</h5></li>
+<li><h5 id="Landscape-风景"><a href="#Landscape-风景" class="headerlink" title="Landscape 风景"></a>Landscape 风景</h5></li>
+</ul>
+<p>其中维米尔多以风俗画为主，而伦勃朗则多有叙事、肖像、风俗等画作</p>
+</li>
+</ul>
+<h4 id="Nederland-Holland-Golden-Age"><a href="#Nederland-Holland-Golden-Age" class="headerlink" title="Nederland (Holland) Golden Age"></a>Nederland (Holland) Golden Age</h4><blockquote>
+<p>低地、风车、郁金香、以及庄园</p>
+</blockquote>
+<ul>
+<li><p>宗教改革 The Reformation</p>
+<blockquote>
+<p>义人必因信得生</p>
+</blockquote>
+<p>公元1517年，文艺复兴时期，16世纪至17世纪，以马丁·路德为首的教徒发动了一场针对天主教堂的政治革命，其反对天主教需要从外在条件得到救赎的理论，大肆宣传赎罪券等行为，提倡人的救赎应该来源于内心的信念，与上帝直接对话。同时，以加尔文为首的加尔文教派也在进行改革，他们遵循救赎预定论「Predestination」，认为上帝已经将每个人的命运制定完毕，每个人只需要完成上帝的旨意就能得到救赎，值得注意的是，在后期”上帝的旨意”演变为了为上帝制造财富，这便是资本主义一部分的信仰基础。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Luther_Calvin.png" alt="Luther and Calvin" style="zoom:30%;"/></p>
+</li>
+</ul>
+<p>  这场运动贯穿整个神圣罗马帝国，在阿尔卑斯山以北的尼德兰新教徒也在发动革命，他们形成了乌得勒支同盟「Unie van Utrecht」。16世纪中期，加尔文教在尼德兰的教徒迅速增多，因十诫中反对制造偶像，用偶像代替神，加尔文教徒大肆破环圣像，不时发生武装的加尔文教徒同当局和教会的冲突，也正为了80年战争的导火索。</p>
+<pre><code>&lt;img src=&quot;https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Iconoclasts_in_a_Church.png&quot; alt=&quot;Iconoclasts in a Church&quot; style=&quot;zoom:30%;&quot; /&gt;
+</code></pre><p>  在80年独立战争结束后，尼德兰七省联合共和国被西班牙承认独立，世界上第一个去中心化经济结构体系的议会制国家成立，是世界上最早成立的资本主义社会。  </p>
+<ul>
+<li><p>大航海与科学发展 Discovery</p>
+<p>荷兰的黄金时代伴随着大航海的出现，当世界历史的中心从地中海转移到了大西洋，海岸线漫长的荷兰转身成为了欧洲的一大经济中心，它被誉为海上马车夫「Sea Coach」, 共和国将所以海上贸易的城市汇聚成具有武装力量的大型股份制贸易公司，荷兰东印度公司「Dutch East India Company」，在亚洲进行海上贸易。其中，主要为6个城市组成了荷兰东印度公司：Amsterdam、Delft、Rotterdam、Enkhuizen、Middelburg、Hoorm。荷兰在大航海时期经济迅速发展，荷兰迎来黄金时代。在新教理论与文艺复兴对人文主义的宣扬下，经验哲学与实验科学也得到发展，其中最著名的三位便是惠更斯「Huggens」，列文虎克「Leeuwenhock」以及笛卡尔「Descartes」。</p>
+</li>
+</ul>
+<h3 id="Lecture-1-Rembrandt-in-Leiden"><a href="#Lecture-1-Rembrandt-in-Leiden" class="headerlink" title="Lecture 1: Rembrandt in Leiden"></a>Lecture 1: Rembrandt in Leiden</h3><h4 id="Rembrandt-and-his-Self-Portrait"><a href="#Rembrandt-and-his-Self-Portrait" class="headerlink" title="Rembrandt and his Self-Portrait"></a>Rembrandt and his Self-Portrait</h4><p>估计没有人会比伦勃朗更加喜欢画自画像，据统计他一生完成了100多幅自画像，其中他对表情的研究更是出神入化，在他早期曾给自己画过一些列不同表情的自画像：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/SelfPortraitRembrandt.png" alt=""></p>
+<p>除了伦勃朗，同时期北方还有三大画家也曾绘制过自画像，分别是凡艾克、鲁本斯和丢勒：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/North_Portrait2.png" style="zoom:45%;" /></p>
+<p>在荷兰黄金时代，自画像从名门画家的标志变成了每个画家都可以记录自己的方式，随着人文主义自我意识的兴起，自画像成为了一种自传题材，用绘画记录自己的一生。</p>
+<h4 id="Becoming-an-Artist"><a href="#Becoming-an-Artist" class="headerlink" title="Becoming an Artist"></a>Becoming an Artist</h4><p>1606年7月15日伦勃朗出生于荷兰共和国莱顿的一个小磨坊。少年时他被送往拉丁学院学习文科三艺：语法、词汇、逻辑，并在三年后的14岁进入莱顿大学，但显然伦勃朗不太愿意在大学学习，他辍学求师，先后拜访了两位莱顿的画师。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/TheMill.png" alt="The Mill"></p>
+<p>Jacob van Swanenburgh是他的第一位师傅，虽然这位师傅的绘画名气不高，但他的师傅25年的意大利留学经历激发了伦勃朗对绘画的热情，在他的培养下，伦勃朗不仅学习了美术的基础手法，还了解了美术相关工具的使用。1624年，他获得了在荷兰当时最著名的画家彼得•拉斯特曼于阿姆斯特丹的画室中当学徒的机会并在拉斯曼手下工作了六个月。彼时，他已经基本掌握油画、素描和蚀刻画的技巧并发展了自己的风格。</p>
+<h5 id="Orestes-and-Pylades-Disputing-at-the-Altar"><a href="#Orestes-and-Pylades-Disputing-at-the-Altar" class="headerlink" title="Orestes and Pylades Disputing at the Altar"></a>Orestes and Pylades Disputing at the Altar</h5><p>俄瑞斯忒斯与皮拉德斯这幅作品是由伦勃朗的第二位师傅Pieter Lastman在1614年创作。俄瑞斯忒斯为父亲报仇弑母后，为了逃离复仇女神的追杀，他们向太阳神阿波罗寻求庇护，于是阿波罗要求他们去将月神黛安娜的雕像取回雅典城。他和皮拉德斯随机前往神殿偷走神像，不过两人立刻被人们囚禁起来，按照当地的习俗，所有陌生人都应直接献给阿尔忒弥斯。当时，负责献祭的阿耳忒弥斯女神是俄瑞斯忒斯的妹妹伊菲革涅亚，她提出可以放一个人帮他把从希腊寄来的信带回家。画面正描述的是朋友两人为争论留下来牺牲喋喋不休的场景，两人都想让对方去送信，让自己留下。最后俄瑞斯忒斯拒绝离开，让皮拉德斯拿走那封信，而他自己留下来等着被杀。皮拉德斯最终同意了，但这封信让俄瑞斯忒斯认出了伊菲革涅亚，并暴露了自己。三人携着阿尔忒弥斯的神像一起成功逃走。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Orestes_and_Pylades_Disputing_at_the_Altar.png" alt="Pieter Lastman"></p>
+<blockquote>
+<p>Lastman’s densely composed compositions, his bright colours and the expressive gestures of his figures – all had an impact on the young Rembrandt.</p>
+</blockquote>
+<p>祭坛的浓烟升起，将画面分为左右两个部分：画中左侧的两人正是俄瑞斯忒斯和皮拉德斯，两人穿着一黑一白，在为谁流下争论不休。在画面右侧的女祭司手拿书信，入迷般的看着两者的争论，她从未见过会有人为了送死而争辩如此激烈。在右侧画面的背景中，有一座月牙形角的雕像便是月神的神像。</p>
+<h4 id="Rembrandt‘s-Early-Printing"><a href="#Rembrandt‘s-Early-Printing" class="headerlink" title="Rembrandt‘s Early Printing"></a>Rembrandt‘s Early Printing</h4><h5 id="Palamedes-before-Agamemnon"><a href="#Palamedes-before-Agamemnon" class="headerlink" title="Palamedes before Agamemnon"></a>Palamedes before Agamemnon</h5><p>在与第二个师傅学习了半年，伦勃朗回家成为独立画家，开展了自己的画室。据史料记载，第一幅伦勃朗的历史画是Palamedes before Agamemnon，伦勃朗在第一次历史画中就展现了极强的艺术水准，他完成这幅画时仅仅20岁，在完成画作后，他也为自己的画作属上了名字。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Palamedes_before_Agamemnon.png" alt="Palamedes before Agamemnon"></p>
+<p>在特洛伊战争开始之前，阿伽门农派遣说客帕拉蒙德斯去说服奥德修斯参战，奥德修斯不愿参战装疯卖傻，用一匹驴和一匹牛去耕地，只见耕车横冲直撞毁坏田地。帕拉蒙德斯当然知道奥德修斯是故意如此，就拉来他儿子站在车前，奥德修斯只好赶紧牵住车辆，被迫参战。奥德修斯一直记恨这件事，在随后他在阿伽门农面前陷害帕拉蒙德斯，最后帕拉蒙德斯被处以叛国罪被乱石扔死。</p>
+<p>在画中，身着红衣跪在地上眼神惊慌的便是帕拉蒙德斯，他有口莫辨，惊慌失措；右边站着的便是奥德修斯，他举起右手，似乎在一一列举帕拉蒙德斯的罪行；很有意思的是他将自己的形象也画在了阿伽门农的右侧，好似自己也在现场，经历着伟大的历史。在色彩的运用上，显然也是深得第二位师傅的技巧，在群像中将主要人物刻画得惟妙惟肖。</p>
+<p>很有趣的是，本来伦勃朗在画完后并没有说明是什么主题与人物，最符合时代背景与人物的便是奥德修斯陷害帕拉蒙德斯的情节。在当时，荷兰共和国还处于80年战争的末期，当权的奥兰治家族处死了一位深受人民爱戴共和国元勋，选择继续与西班牙战争，而这位共和国元勋就被乱石处死，定为叛国罪。</p>
+<h5 id="Tobit-and-Anna-with-the-Kid-Goat"><a href="#Tobit-and-Anna-with-the-Kid-Goat" class="headerlink" title="Tobit and Anna with the Kid Goat"></a>Tobit and Anna with the Kid Goat</h5><p>托比特的忏悔是同年伦勃朗又一幅历史画，故事选自天主教圣经次经的多俾亚传[Book of Tobias]。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Tobit_and_Anna_with_the_Kid_Goat.png" alt="Tobit and Anna with the Kid Goat"></p>
+<p>托比拖是虔诚的老教徒，可在他老年时，他双目失明。有一天他的妻子Anna抱来一头羊，说是买来的。可是托比拖怀疑是他的妻子偷来的并且斥责他的妻子。事后他发现妻子并没有偷这只羊，他坐在椅子上忏悔，“我失明了，也使我的心失明了”。画面中，伦勃朗对服饰的刻画赏心悦目，他对油画的透明度与黏稠度进行了改良并运用到了火焰与布料上，在当时伦勃朗就已经很擅长表达这种细节了。伦勃朗在这幅画作中还突出了生活气息，如果不说是托比拖，说是农民的日常景色也无妨。</p>
+<h4 id="Rembrandt’s-Classment-Lievens"><a href="#Rembrandt’s-Classment-Lievens" class="headerlink" title="Rembrandt’s Classment: Lievens"></a>Rembrandt’s Classment: Lievens</h4><p>伦勃朗还有一个师兄列文，列文用色大胆，主要受到巴洛克大师卡拉瓦乔的影响，运用对比色与明暗光来表达人物，其中最典型作品之一是其作的《以斯帖与亚哈随鲁的盛宴》</p>
+<h5 id="The-Banquet-of-Esther-and-Ahasuerus"><a href="#The-Banquet-of-Esther-and-Ahasuerus" class="headerlink" title="The Banquet of Esther and Ahasuerus"></a>The Banquet of Esther and Ahasuerus</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/TheBanquetofEstherandAhasuerus.png" alt="The Banquet of Esther and Ahasuerus"></p>
+<p>从这幅画中，以斯帖位于画面中央，也是光线最亮的位置，而其一手指向军官，指责其的过失，而亚哈随鲁侧身对军官怒目而视，一手攥拳。而军官则成为众矢之地，只留下了背影来刻画其惊恐的神色。华丽的衣饰、强烈的光线对比与鲜艳的配色非常具有巴洛克艺术风格。</p>
+<p>伦勃朗与这位师兄关系甚好，两人相互学习合作作画，甚至共处一个画室，两人还给对方分别作了肖像。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/RembrandtAndLievens.png" style="zoom:30%;" /></p>
+<p>而相比之下，伦勃朗虽然也学习了卡拉瓦乔的艺术风格，但是此时的伦勃朗用光更加柔和，细腻</p>
+<h5 id="The-Penitent-Judas-Returning-the-Thirty-Pieces-of-Silver"><a href="#The-Penitent-Judas-Returning-the-Thirty-Pieces-of-Silver" class="headerlink" title="The Penitent Judas Returning the Thirty Pieces of Silver"></a>The Penitent Judas Returning the Thirty Pieces of Silver</h5><p>《犹大忏悔》这幅画中，伦勃朗统一配色，运用点光源技法，将光线铺满这个空间。犹大在右下角合十忏悔，视线注视着出卖基督的银币，而光也合情合理的打在了钱币上，暗示了主题。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Penitent_Judas_Returning_the_Thirty_Pieces_of_Silver.png" alt="The Penitent Judas Returning the Thirty Pieces of Silver" style="zoom:80%;" /></p>
+<p>艺术评论家老惠更斯评价这两位才华横溢，是荷兰可以与意大利艺术家相比较的两位。伦勃朗的笔法更加细腻，列文则更有表现力和创造性。两个年轻人唯一的问题是太自信了。在当时，艺术家在一生中都至少应该去一次意大利来一场精神上的朝圣与艺术的游学，可是这两位却说：我们不用去意大利！</p>
+<h5 id="The-Rich-Man-from-Christ’s-Parable"><a href="#The-Rich-Man-from-Christ’s-Parable" class="headerlink" title="The Rich Man from Christ’s Parable"></a>The Rich Man from Christ’s Parable</h5><p>伦勃朗还有一幅《财主的寓言》也印证了老惠更斯的评论。整个场景被花烛所照亮，贪婪的财主看着手中的金币。书页的质感细腻的体现出来，伦勃朗用刀刮在画面中挂出了书的褶皱。同时，在服装与面容上，伦勃朗有意的去除了他的笔触，把奢侈的袍子精细的刻画出来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_rich_Man_from_Christ’s_Parable.png" alt="The Rich Man from Christ’s Parable"></p>
+<blockquote>
+<p>Vanitas vanitatum omnia vanitas. 虚空的虚空，一切都是虚空。</p>
+<p>——传道书</p>
+</blockquote>
+<p>这幅画也可以体现出伦勃朗对虚空派「Vanitas」静物的认识。在当时的静物画中，有一类画作专门去绘制静谧的青烟、褶皱的书籍、燃尽的蜡烛以及骷髅等物体，这一类在当时称之为虚空派。伦勃朗也在这一幅画中运用了虚空派的静物描写。</p>
+<h4 id="Studies-of-Old-Ages-and-Naturalism"><a href="#Studies-of-Old-Ages-and-Naturalism" class="headerlink" title="Studies of Old Ages and Naturalism"></a>Studies of Old Ages and Naturalism</h4><p>年轻的伦勃朗对老年的姿态也颇有研究，1629年，他画了一系列的头像画「Tronie」，这类画不像肖像画正式，与被画者的身份无关，也是在这时，伦勃朗学会了对皮肤细致的刻画，也为他以后的群像画打下基础。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/StudyOfOld.png" style="zoom:45%;" /></p>
+<p>不仅如此，在生活中伦勃朗也会捕捉平常生活中的景象，在他的手稿上寥寥数笔，记录下生活中的瞬间：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Beggar.png" alt=""></p>
+<p>而正是如此，伦勃朗开始对传统题材进行了大胆的创作。他将过去中刻板的完美的形象都生活化，表达的人物都更加贴近于现实（甚至是不完美的），他的安德梅达更是在当时引起了众多的讨论。</p>
+<h5 id="Andromeda-chained-to-the-Rocks"><a href="#Andromeda-chained-to-the-Rocks" class="headerlink" title="Andromeda chained to the Rocks"></a>Andromeda chained to the Rocks</h5><p>安德梅达是埃塞俄比亚国王刻甫斯「Cepheus」和王后卡西奥佩娅Cassiopeia 的女儿。王后常常夸耀自家女儿，说她比所有的海中女神都要美丽。海神波塞冬听到后，派遣海怪去摧毁埃塞俄比亚。刻甫斯没有办法只好将安德梅达献给海怪。恰巧珀耳修斯路过，国王夫妇恳求他救出他们的女儿，作为条件他可以娶安德罗墨达为妻，并成为埃塞俄比亚的国王。珀尔修斯看见公主时，她的手臂正被拴在坚硬的岩石上，全身赤裸。如果没有微风吹动她的头发，温暖的眼泪从她眼中夺眶而出，他会以为这就是一尊美丽的大理石雕像。最后珀耳修斯杀死了海怪并带走了安德梅达。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Andromeda_chained_to_the_Rocks.png" alt="Andromeda chained to the Rocks" style="zoom: 33%;" /></p>
+<p>在过往的画家中，通常这个主题都会包含安德梅达、海怪与珀耳修斯。</p>
+<p>「左下角：鲁本斯作；右侧：提香作」</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/AndromedaInHistory.png" alt=""></p>
+<p>可是伦勃朗把一个称不上好看的裸体放在画面中，眼神绝望的看着右侧。她看到的究竟是海怪还是珀耳修斯我们不得而知，但是这样去刻画这个主题整个历史上都是空前绝后的。</p>
+<h5 id="The-Painter-in-his-Studio"><a href="#The-Painter-in-his-Studio" class="headerlink" title="The Painter in his Studio"></a>The Painter in his Studio</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Painter_in_his_Studio.png" alt="The Painter in his Studio"></p>
+<p>画室里的艺术家是伦勃朗在1629年完成的，这幅画把艺术家抽象成了客体，而面前的画架成为了主体。画家凝视着画布，好似揣测着画面整体的布局。这是伦勃朗，也是艺术家认可的一种工作状态，荷兰语中形容为”uyt den gheest”，对应着汉语中的胸有成竹。伦勃朗将自己的脸也画在了画中，可能是对自己做画的反思与描绘。</p>
+<h4 id="Rembrandt’s-Student"><a href="#Rembrandt’s-Student" class="headerlink" title="Rembrandt’s Student"></a>Rembrandt’s Student</h4><p>伦勃朗还收了一位徒弟，Gerrit Dou。徒弟窦将伦勃朗的光影技巧与虚空派结合，开创了莱顿画派。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/GerritDou.png" alt="Gerrit·Dou" style="zoom:20%;" /></p>
+<p>他对物体的质感有着独特的把握，也擅长使用障眼法来构造画面。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/DouPrint.png" alt="Dou's Paintings" style="zoom:15%;" /></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>西方美术史</tag>
+        <tag>伦勃朗</tag>
+      </tags>
   </entry>
   <entry>
     <title>对2022的年度总结（二次元篇）</title>
@@ -629,10 +837,27 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
         <category>二次元</category>
       </categories>
       <tags>
+        <tag>初音未来</tag>
         <tag>二次元</tag>
         <tag>动漫</tag>
-        <tag>初音未来</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/08/23/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
   </entry>
   <entry>
     <title>日式麻将个人技巧[持续更新中...]</title>
@@ -716,84 +941,23 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       </tags>
   </entry>
   <entry>
-    <title>世界计划 COLORFUL LIVE 2nd - Will -</title>
-    <url>/2023/01/10/PJSK2023Live/</url>
+    <title>晓山瑞希HappyBirthday</title>
+    <url>/2022/08/27/mzkHappyBirthday/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<blockquote>
-<font color=#39C5BB size=6 > 你的下一个MM，何必是MM </font>
+<font color=#DDAACC size=6 >祝最可爱的MIZUKI生日快乐！</font>
 
 </blockquote>
-</blockquote>
-<hr>
-<h3 id="开场-成员介绍"><a href="#开场-成员介绍" class="headerlink" title="开场+成员介绍"></a>开场+成员介绍</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN:IN.png" alt="LN"></p>
-<p>你游葱葱单推人来咯——</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ:IN.png" alt="MMJ"></p>
-<p>&gt;</p>
-<blockquote>
-<p>もっともっとたくさんの歌を！</p>
-<p>もっともっとたくさんの元気を！</p>
-<p>もっともっとたくさんの希望を！</p>
-<p>もっともっとも～っとたくさんの人達に届けられるように！</p>
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS:IN.png" alt="VBS"></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS:IN.png" alt="WS"></p>
-<blockquote>
-<font color=#ff9900> 这是，为了「笑颜」而登上舞台的少年少女的故事—— </font>
-
-
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时:IN.png" alt="25时"></p>
-<p>真的是自闭4人组</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Miku:IN.png" alt=""></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VL:IN.png" alt=""></p>
-<hr>
-<h3 id="上半场"><a href="#上半场" class="headerlink" title="上半场"></a>上半场</h3><h4 id="Leo-Need"><a href="#Leo-Need" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-1.png" alt=""></p>
-<p>原创曲: Stage of sekai</p>
-<p>翻唱曲: Calc</p>
-<h4 id="More-More-Jump"><a href="#More-More-Jump" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-1.png" alt=""></p>
-<p>原创曲: モア！ジャンプ！モア！</p>
-<p>翻唱曲: 吸血鬼</p>
-<h4 id="Vivid-BAD-SQUAD"><a href="#Vivid-BAD-SQUAD" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-1.png" alt=""></p>
-<p>原创曲: シネマ/电影</p>
-<p>翻唱曲: echo</p>
-<h4 id="Wonderlands×Showtime"><a href="#Wonderlands×Showtime" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-1.png" alt=""></p>
-<p>原创曲: 不可思议的wonder</p>
-<p>翻唱曲: 踊れオーケストラ</p>
-<h4 id="25时，在Nightcord"><a href="#25时，在Nightcord" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-1.png" alt=""></p>
-<p>原创曲: 写作悔恨的未来</p>
-<p>翻唱曲: フォニイ/phony</p>
-<hr>
-<h3 id="中场：千本樱"><a href="#中场：千本樱" class="headerlink" title="中场：千本樱"></a>中场：千本樱</h3><p><del>千本樱虽好，但SEGA能不能来点新的</del></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-1.png" alt=""></p>
-<hr>
-<h3 id="下半场"><a href="#下半场" class="headerlink" title="下半场"></a>下半场</h3><h4 id="Wonderlands×Showtime-1"><a href="#Wonderlands×Showtime-1" class="headerlink" title="Wonderlands×Showtime"></a>Wonderlands×Showtime</h4><p>翻唱曲：Telecaster B-Boy</p>
-<p>原创曲：微笑调查队</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/WS-2.png" alt=""></p>
-<h4 id="More-More-Jump-1"><a href="#More-More-Jump-1" class="headerlink" title="More!More!Jump!"></a>More!More!Jump!</h4><p>原创曲：天使のクローバー</p>
-<p>翻唱曲：心予報</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MMJ-2.png" alt=""></p>
-<h4 id="Vivid-BAD-SQUAD-1"><a href="#Vivid-BAD-SQUAD-1" class="headerlink" title="Vivid BAD SQUAD"></a>Vivid BAD SQUAD</h4><p>原创曲：街</p>
-<p>翻唱曲：黎明前线</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/VBS-2.png" alt=""></p>
-<h4 id="25时，在Nightcord-1"><a href="#25时，在Nightcord-1" class="headerlink" title="25时，在Nightcord"></a>25时，在Nightcord</h4><p>原创曲：Lower</p>
-<p>翻唱曲：苦巧克力装饰</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/25时-2.png" alt=""></p>
-<h4 id="Leo-Need-1"><a href="#Leo-Need-1" class="headerlink" title="Leo/Need"></a>Leo/Need</h4><p>翻唱曲：火花</p>
-<p>原创曲：Stella</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LN-2.png" alt=""></p>
-<hr>
-<h3 id="返场"><a href="#返场" class="headerlink" title="返场"></a>返场</h3><h4 id="V家合唱：群青赞歌"><a href="#V家合唱：群青赞歌" class="headerlink" title="V家合唱：群青赞歌"></a>V家合唱：群青赞歌</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/V-2.png" alt=""></p>
-<h4 id="队长曲：Journey"><a href="#队长曲：Journey" class="headerlink" title="队长曲：Journey"></a>队长曲：Journey</h4><p>撅撅撅撅你——</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-2.png" alt=""></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/队长团-1.png" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2146.JPG" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2148.JPG" alt=""></p>
+<p><span class="heimu" title="你知道的太多了">警惕网恋mzk被骗3000石(就是作者自己)</span></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2138.JPG" alt=""></p>
 ]]></content>
       <categories>
         <category>二次元</category>
       </categories>
       <tags>
-        <tag>初音未来</tag>
         <tag>世界计划</tag>
-        <tag>25时在夜电台</tag>
+        <tag>晓山瑞希</tag>
       </tags>
   </entry>
   <entry>
@@ -1013,10 +1177,78 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>数学</tag>
         <tag>RoboMaster</tag>
+        <tag>数学</tag>
         <tag>SLAM</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>pictureTest</title>
+    <url>/2022/08/25/pictureTest/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="先扔张成果图"><a href="#先扔张成果图" class="headerlink" title="先扔张成果图"></a>先扔张成果图</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg" alt="ena"></p>
+<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>在想插入图片的时候，我一开始是非常不愿意使用图床等一系列第三方仓库的，首先想到的就是用相对路径。</p>
+<p>网上最常用的解决方案就是将_config.yml 文件中的post_asset_folder 选项设为 true 来打开，然后利用随文章创建一同创建的同名文件夹插入图片。</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>但是本方案在使用了<code>hexo d</code>后<code>public</code>中HTML文件上显示的相对路径却变成了乱码，无法读取图片(而且网上也基本没有这个问题可能是本人电脑的问题)</p>
+<h4 id="PicGO图床"><a href="#PicGO图床" class="headerlink" title="PicGO图床"></a>PicGO图床</h4><blockquote>
+<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具</p>
+</blockquote>
+<p>PicGo 本体支持如下图床：</p>
+<ul>
+<li>七牛图床</li>
+<li>腾讯云COS</li>
+<li>又拍云</li>
+<li>GitHub v1.5.0</li>
+<li>SM.MS V2 v2.3.0-beta.0</li>
+<li>阿里云 OSS v1.6.0</li>
+<li>Imgur v1.6.0</li>
+</ul>
+<p>如果有条件的话非常推荐使用GitHub的仓库制作图床，但是国内网络的不支持使得图片的加载会出现很大的问题，这里也附上知乎上的<a href="https://www.zhihu.com/question/64502309">配置GitHub图床教程链接</a></p>
+<p>其次就是利用国内平台如腾讯云阿里云等，这里我使用的是阿里云，<br><a href="https://blog.csdn.net/weixin_42030522/article/details/123075824&quot;CSDN解决Hexo无法显示图片的几种方案&quot;">配置阿里云图床</a>这篇文章具体的阐述了整个过程，可以参考。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>把自己的图片上传到第三方图床还是有点不放心的，但是也只能依赖大厂网站了；当时本来以为配置相对路径很容易，结果查来查去改了方案也配置了3个多小时。至此博客的基本要素都差不多配置完毕。最后啥也别说，先来一句：“<strong>SaKana——</strong>”</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg" alt="sakana"></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+      <tags>
+        <tag>调试心得</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>更新日志</title>
+    <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="v1-0"><a href="#v1-0" class="headerlink" title="[v1.0]-"></a>[v1.0]-<20220823></h3><ul>
+<li>今天完成了一个最简陋的个人博客！</li>
+<li>虽然这行字也是调试的一部分（）</li>
+</ul>
+<h3 id="v1-1"><a href="#v1-1" class="headerlink" title="[v1.1]-"></a>[v1.1]-<20220824></h3><ul>
+<li>尝试了hexo-theme-matery，但并不太适应，做了一些基本设置</li>
+</ul>
+<h3 id="v2-0"><a href="#v2-0" class="headerlink" title="[v2.0]-"></a>[v2.0]-<20220825></h3><ul>
+<li>将主题改为NexT</li>
+<li>加入了字数统计，阅读时间</li>
+<li>对Sideboard进行美化，设置了标签，头像</li>
+<li>增加了最新最潮的背景图片与文本阴影</li>
+<li>博客基本设置完成</li>
+</ul>
+<h3 id="v2-1"><a href="#v2-1" class="headerlink" title="[v2.1]-"></a>[v2.1]-<20220825></h3><ul>
+<li>完善个人介绍界面</li>
+<li>增加了Project Sekai数据库链接</li>
+<li>测试文章中插入图片</li>
+<li>修改模版</li>
+<li>添加了文档压缩</li>
+</ul>
+<h3 id="v2-2"><a href="#v2-2" class="headerlink" title="[v2.2]-"></a>[v2.2]-<20220905></h3><ul>
+<li>增加了月推界面</li>
+<li>增加部分密码机制</li>
+<li>数学公式支持</li>
+</ul>
+<h3 id="致谢链接"><a href="#致谢链接" class="headerlink" title="致谢链接"></a>致谢链接</h3><p><a href="https://siriusq.top/Next主题美化#博文压缩">Next主题美化</a></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
   </entry>
   <entry>
     <title>浅谈术力口与流量主义</title>
@@ -1061,94 +1293,6 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       </tags>
   </entry>
   <entry>
-    <title>更新日志</title>
-    <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="v1-0"><a href="#v1-0" class="headerlink" title="[v1.0]-"></a>[v1.0]-<20220823></h3><ul>
-<li>今天完成了一个最简陋的个人博客！</li>
-<li>虽然这行字也是调试的一部分（）</li>
-</ul>
-<h3 id="v1-1"><a href="#v1-1" class="headerlink" title="[v1.1]-"></a>[v1.1]-<20220824></h3><ul>
-<li>尝试了hexo-theme-matery，但并不太适应，做了一些基本设置</li>
-</ul>
-<h3 id="v2-0"><a href="#v2-0" class="headerlink" title="[v2.0]-"></a>[v2.0]-<20220825></h3><ul>
-<li>将主题改为NexT</li>
-<li>加入了字数统计，阅读时间</li>
-<li>对Sideboard进行美化，设置了标签，头像</li>
-<li>增加了最新最潮的背景图片与文本阴影</li>
-<li>博客基本设置完成</li>
-</ul>
-<h3 id="v2-1"><a href="#v2-1" class="headerlink" title="[v2.1]-"></a>[v2.1]-<20220825></h3><ul>
-<li>完善个人介绍界面</li>
-<li>增加了Project Sekai数据库链接</li>
-<li>测试文章中插入图片</li>
-<li>修改模版</li>
-<li>添加了文档压缩</li>
-</ul>
-<h3 id="v2-2"><a href="#v2-2" class="headerlink" title="[v2.2]-"></a>[v2.2]-<20220905></h3><ul>
-<li>增加了月推界面</li>
-<li>增加部分密码机制</li>
-<li>数学公式支持</li>
-</ul>
-<h3 id="致谢链接"><a href="#致谢链接" class="headerlink" title="致谢链接"></a>致谢链接</h3><p><a href="https://siriusq.top/Next主题美化#博文压缩">Next主题美化</a></p>
-]]></content>
-      <categories>
-        <category>测试文件</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pictureTest</title>
-    <url>/2022/08/25/pictureTest/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="先扔张成果图"><a href="#先扔张成果图" class="headerlink" title="先扔张成果图"></a>先扔张成果图</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/ena01.jpg" alt="ena"></p>
-<h3 id="方案设计"><a href="#方案设计" class="headerlink" title="方案设计"></a>方案设计</h3><h4 id="相对路径"><a href="#相对路径" class="headerlink" title="相对路径"></a>相对路径</h4><p>在想插入图片的时候，我一开始是非常不愿意使用图床等一系列第三方仓库的，首先想到的就是用相对路径。</p>
-<p>网上最常用的解决方案就是将_config.yml 文件中的post_asset_folder 选项设为 true 来打开，然后利用随文章创建一同创建的同名文件夹插入图片。</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p>但是本方案在使用了<code>hexo d</code>后<code>public</code>中HTML文件上显示的相对路径却变成了乱码，无法读取图片(而且网上也基本没有这个问题可能是本人电脑的问题)</p>
-<h4 id="PicGO图床"><a href="#PicGO图床" class="headerlink" title="PicGO图床"></a>PicGO图床</h4><blockquote>
-<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具</p>
-</blockquote>
-<p>PicGo 本体支持如下图床：</p>
-<ul>
-<li>七牛图床</li>
-<li>腾讯云COS</li>
-<li>又拍云</li>
-<li>GitHub v1.5.0</li>
-<li>SM.MS V2 v2.3.0-beta.0</li>
-<li>阿里云 OSS v1.6.0</li>
-<li>Imgur v1.6.0</li>
-</ul>
-<p>如果有条件的话非常推荐使用GitHub的仓库制作图床，但是国内网络的不支持使得图片的加载会出现很大的问题，这里也附上知乎上的<a href="https://www.zhihu.com/question/64502309">配置GitHub图床教程链接</a></p>
-<p>其次就是利用国内平台如腾讯云阿里云等，这里我使用的是阿里云，<br><a href="https://blog.csdn.net/weixin_42030522/article/details/123075824&quot;CSDN解决Hexo无法显示图片的几种方案&quot;">配置阿里云图床</a>这篇文章具体的阐述了整个过程，可以参考。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>把自己的图片上传到第三方图床还是有点不放心的，但是也只能依赖大厂网站了；当时本来以为配置相对路径很容易，结果查来查去改了方案也配置了3个多小时。至此博客的基本要素都差不多配置完毕。最后啥也别说，先来一句：“<strong>SaKana——</strong>”</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sakana.jpg" alt="sakana"></p>
-]]></content>
-      <categories>
-        <category>测试文件</category>
-      </categories>
-      <tags>
-        <tag>调试心得</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>晓山瑞希HappyBirthday</title>
-    <url>/2022/08/27/mzkHappyBirthday/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<font color=#DDAACC size=6 >祝最可爱的MIZUKI生日快乐！</font>
-
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2146.JPG" alt=""></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2148.JPG" alt=""></p>
-<p><span class="heimu" title="你知道的太多了">警惕网恋mzk被骗3000石(就是作者自己)</span></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2138.JPG" alt=""></p>
-]]></content>
-      <categories>
-        <category>二次元</category>
-      </categories>
-      <tags>
-        <tag>世界计划</tag>
-        <tag>晓山瑞希</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>浅谈在惠普暗影精灵8下装Win11与Linux双系统</title>
     <url>/2022/09/19/%E8%A3%85%E6%9C%BA%E5%BF%83%E5%BE%97/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><!-- <span class="heimu" title="你知道的太多了">的丑态</span> -->
@@ -1183,49 +1327,6 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       <tags>
         <tag>RoboMaster</tag>
         <tag>调试心得</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV实现物体追踪</title>
-    <url>/2023/01/20/KCF/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="OpenCV实现物体追踪"><a href="#OpenCV实现物体追踪" class="headerlink" title="OpenCV实现物体追踪"></a>OpenCV实现物体追踪</h3><h4 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h4><p>通过Opencv内置函数实现物体追踪，并且部署在ROS中，实现摄像头读取。本文不涉及追踪算法的具体原理，而是针对RM中装甲板识别做出具体的实践部署。</p>
-<p>具体项目已经部署在GitHUb：<a href="https://github.com/Phoenizard/Track-Image-InROS">https://github.com/Phoenizard/Track-Image-InROS</a></p>
-<h4 id="追踪对象"><a href="#追踪对象" class="headerlink" title="追踪对象"></a>追踪对象</h4><p>使用opencv自带的追踪对象，需要调用一下头文件：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/tracking.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;opencv2/core/ocl.hpp&gt;</span></span></span><br></pre></td></tr></table></figure>
-<p>在OpenCV中一共有7中追踪算法，分别是<code>BOOSTING</code>, <code>MIL</code>, <code>KCF</code>, <code>TLD</code> , <code>MEDIANFLOW</code>, <code>MOSSE</code>, <code>CSRT</code> ,在使用中选择最常见的<code>KCF</code>算法</p>
-<h5 id="声明追踪对象"><a href="#声明追踪对象" class="headerlink" title="声明追踪对象"></a>声明追踪对象</h5><p>使用<code>creat()</code>构造</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">yourtracker = TrackerKCF::<span class="built_in">create</span>();</span><br></pre></td></tr></table></figure>
-<h5 id="初始化目标"><a href="#初始化目标" class="headerlink" title="初始化目标"></a>初始化目标</h5><p>使用<code>init(cv::Mat_flame,cv::Rect2d_object)</code>初始化</p>
-<ul>
-<li>Mat_flame：放入初始帧图片</li>
-<li>Rect2d_object：放入目标在初始帧照片中的像素矩阵</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">cv::Rect2d bbox;</span><br><span class="line">yourtracker-&gt;<span class="built_in">init</span>(flame, bbox);</span><br></pre></td></tr></table></figure>
-<h5 id="更新目标"><a href="#更新目标" class="headerlink" title="更新目标"></a>更新目标</h5><p>使用<code>update(cv::Mat_flame,cv::Rect2d_object)</code> 更新当前帧</p>
-<ul>
-<li>Mat_flame：放入当前帧</li>
-<li>Rect2d_object：放入上一帧目标矩形</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line">yourtracker-&gt;<span class="built_in">update</span>(flame, bbox);</span><br></pre></td></tr></table></figure>
-<h5 id="判断目标丢失"><a href="#判断目标丢失" class="headerlink" title="判断目标丢失"></a>判断目标丢失</h5><p>算法将自动通过滤波匹配目标，<code>update()</code>函数在定义中为<code>bool</code>类型，如果目标丢失，返回值为<code>false</code></p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="type">bool</span> ok = yourtracker-&gt;<span class="built_in">update</span>(flame, bbox);</span><br><span class="line"><span class="keyword">if</span>(!ok) cout &lt;&lt; <span class="string">&quot;Track Lost&quot;</span> &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
-<h4 id="程序逻辑"><a href="#程序逻辑" class="headerlink" title="程序逻辑"></a>程序逻辑</h4><p>在RM中，追踪算法运用于装甲板的识别和追踪中，代码逻辑如下：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/KCF流程图.png" alt="KCL流程图" style="zoom:30%;" /></p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><p>在ROS中，由于接受和发布照片在同一对象中完成，我们依然使用订阅和发布的模版对象SubPuber（自定义的对象）：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">SubPuber</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    ros::NodeHandle nodeHandle;</span><br><span class="line">    ros::Subscriber imgSub;</span><br><span class="line">    ros::Publisher trackobj;</span><br><span class="line">    <span class="comment">// Define Part</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">SubPuber</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        imgSub = nodeHandle.<span class="built_in">subscribe</span>(<span class="string">&quot;/camera/color/image_raw&quot;</span>, <span class="number">1</span>, &amp;SubPuber::ObjectTracker, <span class="keyword">this</span>);</span><br><span class="line">        trackobj = nodeHandle.<span class="built_in">advertise</span>&lt;sensor_msgs::Image&gt;(<span class="string">&quot;/tracker&quot;</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// Initate Part</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">ObjectTracker</span><span class="params">(<span class="type">const</span> sensor_msgs::ImageConstPtr &amp;frontRGBImg)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Mat image;</span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            image = cv_bridge::<span class="built_in">toCvShare</span>(frontRGBImg, <span class="string">&quot;bgr8&quot;</span>)-&gt;image;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">catch</span> (cv_bridge::Exception&amp; e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">ROS_ERROR</span>(<span class="string">&quot;Could not convert to image!&quot;</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Program Part</span></span><br><span class="line">        sensor_msgs::ImagePtr msg = cv_bridge::<span class="built_in">CvImage</span>(std_msgs::<span class="built_in">Header</span>(), <span class="string">&quot;bgr8&quot;</span>, image).<span class="built_in">toImageMsg</span>();</span><br><span class="line">        trackobj.<span class="built_in">publish</span>(*msg);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>所以结合<code>ROS::spin();</code>即可实现循环。具体来说，当程序运行到ros::spin()的时候，会找到订阅和发布的API，并且<strong>循环订阅</strong>和<strong>发布</strong>两个动作 [注意：不会循环代码的其他部分，仅仅是订阅和发布]。</p>
-<p>在主程序中，创建对象和<code>spin()</code> 即可</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// ... 省略初始化节点</span></span><br><span class="line">    SubPuber tracker;</span><br><span class="line">    ROS::<span class="built_in">spin</span>();</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
-<p>观察代码，<code>Initate Part</code> 仅仅运行一遍，很适合创建追踪器，而在<code>Program Part</code> 可以把追踪的代码部署与此循环执行。补充代码如下：</p>
-<p>由于作者手边没有装甲板信息，则使用<code>ROI</code>交互界面，通过手动框出矩形框初始化目标</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Define Part</span></span><br><span class="line">Ptr&lt;Tracker&gt; tracker; </span><br><span class="line">cv::Rect2d bbox; </span><br><span class="line"><span class="type">int</span> state = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Initate Part</span></span><br><span class="line">tracker = TrackerKCF::<span class="built_in">create</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Program Part</span></span><br><span class="line"><span class="keyword">if</span>(state == <span class="number">0</span>)&#123;</span><br><span class="line">    bbox = bbox = <span class="built_in">selectROI</span>(image, <span class="literal">false</span>);</span><br><span class="line">    tracker-&gt;<span class="built_in">init</span>(image,bbox);</span><br><span class="line">    state = <span class="number">1</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="type">bool</span> ok = tracker-&gt;<span class="built_in">update</span>(image,bbox);</span><br><span class="line">    <span class="keyword">if</span>(ok) &#123;</span><br><span class="line">        <span class="built_in">rectangle</span>(image, bbox, <span class="built_in">Scalar</span>(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>), <span class="number">4</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        cout &lt;&lt; endl &lt;&lt; <span class="string">&quot;TrackLost&quot;</span> &lt;&lt; endl;</span><br><span class="line">        state = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>RoboMaster</tag>
-        <tag>计算机视觉</tag>
       </tags>
   </entry>
 </search>
