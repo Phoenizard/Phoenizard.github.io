@@ -1670,4 +1670,109 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <tag>凸透镜</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数学建模算法：层次分析法</title>
+    <url>/2023/08/22/mm-ahp/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="模型定位"><a href="#模型定位" class="headerlink" title="模型定位"></a>模型定位</h4><p>层次分析法「The analytic hierarchy process」是在对复杂的决策问题的本质、影响因素及其内在关系等进行深入分析的基础上，利用较少的定量信息使决策的思维过程数学化，从而为多目标、多准则或无结构特性的复杂决策问题提供简便的<strong>决策方法</strong>。</p>
+<p>模型共分为三个层级：</p>
+<ul>
+<li>目标层：结果输出层，确定目标是什么？</li>
+<li>准则层：影响因素集，决定这一结果的因素有什么？</li>
+<li>方案层：备选集，从哪些样本中选择？</li>
+</ul>
+<p>模型适用于评价类、排名类、决策类问题</p>
+<h4 id="模型流程"><a href="#模型流程" class="headerlink" title="模型流程"></a>模型流程</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/AHP_1.png" style="zoom:50%;" /></p>
+<h5 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h5><p>在计算中，需要将不同准则的数量级统一，这个过程称为归一化，将一组统一标准的数据视为列向量，把数据化为在总数中的占比即可，范围为(0,1)：</p>
+<script type="math/tex; mode=display">
+x_i = \frac{x_i}{\sum_{k=1}^nx_k}\ ,\  i\in{1,2,\dots,n}</script><h5 id="生成判断矩阵"><a href="#生成判断矩阵" class="headerlink" title="生成判断矩阵"></a>生成判断矩阵</h5><p>两两比较每个准则(指标)的重要性，记为$a_{ij}$, 来表示相对于指标j，指标i的重要性，且满足：</p>
+<script type="math/tex; mode=display">
+a_{ij} = \frac{1}{a_{ji}}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$a_{ij}$</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>指标$i$与指标$j$相同重要</td>
+</tr>
+<tr>
+<td>3</td>
+<td>指标$i$比指标$j$稍微重要</td>
+</tr>
+<tr>
+<td>5</td>
+<td>指标$i$比指标$j$明显重要</td>
+</tr>
+<tr>
+<td>7</td>
+<td>指标$i$比指标$j$强烈重要</td>
+</tr>
+<tr>
+<td>9</td>
+<td>指标$i$比指标$j$极端重要</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注：2，4，6，8表示在两者之间</p>
+<h5 id="一致性检验"><a href="#一致性检验" class="headerlink" title="一致性检验"></a>一致性检验</h5><p>由于重要性的比较是单看两者的主观评价，结果不可避免会产生矛盾，我们虽然不能追求完美一致，但是这一判断矩阵必须通过一致性检验，确保重要性差异较为一致：</p>
+<script type="math/tex; mode=display">
+CR = \frac{CI}{RI} ， CI = \frac{\lambda_{max}-n}{n-1}</script><p>其中$\lambda_{max}$为判断矩阵的最大特征值，$RI$为常数，在不同因素数下有不同取值：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>n</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RI</td>
+<td>0</td>
+<td>0</td>
+<td>0.52</td>
+<td>0.89</td>
+<td>1.12</td>
+<td>1.26</td>
+<td>1.36</td>
+<td>1.41</td>
+<td>1.46</td>
+<td>1.49</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>若$CR \leq 0.1 $ : 通过一致性检验</li>
+<li>若$CR &gt; 0.1 $ : 重新生成判断矩阵</li>
+</ul>
+<h5 id="权重矩阵"><a href="#权重矩阵" class="headerlink" title="权重矩阵"></a>权重矩阵</h5><ol>
+<li>矩阵按列归一化：即每个数值除以所在列的和</li>
+<li>每行求平均降维即可</li>
+</ol>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><h5 id="Python-Version"><a href="#Python-Version" class="headerlink" title="Python Version"></a>Python Version</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># 准则重要性矩阵</span></span><br><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>],</span><br><span class="line">             [<span class="number">1</span> / <span class="number">2</span>, <span class="number">1</span>, <span class="number">1</span> / <span class="number">2</span>, <span class="number">2</span>],</span><br><span class="line">             [<span class="number">1</span> / <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">             [<span class="number">1</span> / <span class="number">5</span>, <span class="number">1</span> / <span class="number">2</span>, <span class="number">1</span> / <span class="number">2</span>, <span class="number">1</span>]])</span><br><span class="line">[n, m] = A.shape</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一致性检验</span></span><br><span class="line">V, D = np.linalg.eig(A)</span><br><span class="line"></span><br><span class="line">maxlam = np.<span class="built_in">max</span>(V)</span><br><span class="line">CI = (maxlam - n) / (n - <span class="number">1</span>)</span><br><span class="line">RI = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.58</span>, <span class="number">0.9</span>, <span class="number">1.12</span>, <span class="number">1.24</span>, <span class="number">1.32</span>, <span class="number">1.41</span>, <span class="number">1.45</span>, <span class="number">1.49</span>, <span class="number">1.52</span>, <span class="number">1.54</span>, <span class="number">1.56</span>, <span class="number">1.58</span>, <span class="number">1.59</span>]</span><br><span class="line"><span class="comment"># 判断是否通过一致性检验</span></span><br><span class="line">CR = CI / RI[n - <span class="number">1</span>]</span><br><span class="line"><span class="keyword">if</span> CR &gt;= <span class="number">0.1</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;没有通过一致性检验\n&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;通过一致性检验\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算权重</span></span><br><span class="line">Asum = np.<span class="built_in">sum</span>(A, axis=<span class="number">0</span>)</span><br><span class="line">Aprogress = A/(np.ones((n, <span class="number">1</span>), dtype=np.int64) * Asum)</span><br><span class="line"></span><br><span class="line">W = np.average(Aprogress, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="Matlab-Version"><a href="#Matlab-Version" class="headerlink" title="Matlab Version"></a>Matlab Version</h5><figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%输入判断矩阵</span></span><br><span class="line">A = [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span></span><br><span class="line">    <span class="number">1</span>/<span class="number">2</span> <span class="number">1</span> <span class="number">1</span>/<span class="number">2</span> <span class="number">2</span></span><br><span class="line">    <span class="number">1</span>/<span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">2</span></span><br><span class="line">    <span class="number">1</span>/<span class="number">5</span> <span class="number">1</span>/<span class="number">2</span> <span class="number">1</span>/<span class="number">2</span> <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">%一致性检验</span></span><br><span class="line">maxlam = <span class="built_in">max</span>(eig(A));</span><br><span class="line">[~, n] = <span class="built_in">size</span>(A);</span><br><span class="line">RI = [<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.58</span>,<span class="number">0.9</span>,<span class="number">1.12</span>,<span class="number">1.24</span>,<span class="number">1.32</span>,<span class="number">1.41</span>,<span class="number">1.45</span>, <span class="number">1.49</span>, <span class="number">1.52</span>, <span class="number">1.54</span>, <span class="number">1.56</span>, <span class="number">1.58</span>, <span class="number">1.59</span>];</span><br><span class="line">CI = (maxlam - n) / (n<span class="number">-1</span>);</span><br><span class="line">CR = CI / RI(n);</span><br><span class="line"><span class="keyword">if</span> CR &lt; <span class="number">0.10</span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&#x27;通过一致性检验&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">disp</span>(<span class="string">&#x27;不通过一致性检验&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span>  <span class="comment">% 终止运行 </span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%计算权重向量</span></span><br><span class="line">[n,~] = <span class="built_in">size</span>(A);</span><br><span class="line">Asum = sum(A,<span class="number">1</span>);    <span class="comment">% 按列求和</span></span><br><span class="line">Aprogress = A./(<span class="built_in">ones</span>(n,<span class="number">1</span>)*Asum);</span><br><span class="line"></span><br><span class="line">W = sum(Aprogress, <span class="number">2</span>)./n;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>数学建模</tag>
+      </tags>
+  </entry>
 </search>
