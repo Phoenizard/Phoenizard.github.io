@@ -44,6 +44,53 @@
       </tags>
   </entry>
   <entry>
+    <title>针对凸透镜应用于绘画语言的探究</title>
+    <url>/2023/08/16/ConvexMirror/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在历史上，凸透镜一直作为光学仪器被人们所研究，早在亚里士多德时期，他就对凸透镜的成像原理做出过简单的定义；13世纪的阿拉伯世界，阿拉伯人使用凸透镜来制作放大镜。随后，在16世纪的欧洲，伽利略·伽利莱和约翰内斯·凯普勒等科学家对凸透镜的性质和成像原理进行了深入研究。在凸透镜的研制上，随着中世纪文艺复兴时期玻璃吹制的发展，当时的人已经可以用较低的成本制作出精确、平滑的凸透镜，随之而来的是凸透镜在装饰上以及科学领域的双向发展。在一边，欧洲的贵族家庭开始将凸透镜作为装饰品挂在墙上，另一侧，显微镜、望远镜等精密仪器的出现推动着人们踏入微观与宇宙的世界。</p>
+<p>伴随着凸透镜制造技术的发展，凸透镜作为绘画语言开始兴起于艺术作品中：凡·艾克（<em>Jan van Eyck</em>）在1434年的《阿尔诺芬尼夫妇像》（<em>Arnolfini Portrait</em>）利用凸透镜将房间的背面展示出来；帕尔米贾尼诺（Parmigianino）在1524年对着凸透镜所作《透镜下的自画像》（<em>Self-portrait in a Convex Mirror</em>）；罗伯特·坎平（<em>Robert Campin</em>）在1438年的祭坛画《施洗者约翰》（<em>Saint John and donor</em>）等等。到了20世纪，澳大利亚肖像画师兰伯特（<em>George Washington Lambert</em>）也描绘一幅在透镜中的房间《凸透镜》（<em>The convex mirror</em>）。凸透镜在绘画中也成为一个重要的绘画语言。</p>
+<p>虽然对于很多绘画，比如凡·艾克的《阿尔诺尼夫妇像》，已经有相当多的学者对凸透镜在画中的含义做出各自的解读，但是先前的分析还很少有对凸透镜这一个体对绘画艺术的宏观影响作出分析，此文章将凸透镜同时视为一个绘画工具与艺术元素进行探索：</p>
+<ul>
+<li>凸透镜作为光学工具对当时绘画方式的影响</li>
+<li>凸透镜技巧在绘画中的含义，即艺术家使用凸透镜，相比于直接对平面作画，有何差异及用意</li>
+<li>凸透镜对艺术家观察真实事物的改变</li>
+</ul>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Parmigianino_Selfportrait.jpg" style="zoom:10%;" /></p>
+<h3 id="凸透镜对绘画方式的影响"><a href="#凸透镜对绘画方式的影响" class="headerlink" title="凸透镜对绘画方式的影响"></a>凸透镜对绘画方式的影响</h3><blockquote>
+<p>Vasari says, “Francesco one day set himself to take his own portrait, looking at himself for that purpose In a convex mirror, such as is used by barbers … He accordingly caused a ball of wood to be made By a turner, and having divided it in half and Brought it to the size of the mirror, he set himself With great art to copy all that he saw in the glass,” Chiefly his reflection, of which the portrait Is the reflection once removed</p>
+</blockquote>
+<p>文艺复兴时期艺术评论家瓦萨里曾经提到过帕尔米贾尼诺作《透镜中的自画像》这一情景，帕尔米贾尼诺在理发师的工坊里看到了一面凸透镜，于是他把手放在镜前观察着由透镜带来的视觉上的扭曲与放大感。过去有一位学者David G.Stork根据《透镜中的自画像》进行了计算机建模，他的模型根据瓦萨里对帕尔米贾尼诺的描述设计，建立了一个包括凸面镜在内的帕尔米贾尼诺工作室的完整计算机图形模型。凸面镜的曲率半径与木板支撑的曲率半径相匹配（符合瓦萨里后续对帕尔米贾尼诺看到的透镜的描述）。他发现画中的图像与从稍微重新定向和重新定位的镜子中绘制的简单的水平直线房间是一致的。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/computer_recover.png" alt=""></p>
+<p>从他们的研究中我们可以发现：</p>
+<ul>
+<li>画家极有可能是对着凸面镜进行作画的，面向透镜的作画方式已经可以实现</li>
+<li>窗户、天花板横梁的变形和位置，尤其是连接后墙和天花板的倾斜孤线，确实与艺术家的房间布局一致，符合光学扭曲</li>
+</ul>
+<p>除了帕尔米贾尼诺直接把凸透镜成的像作为绘画作品外，艺术家们还常常把成像作为另一个绘画空间，添加在画面中（如凡·艾克的《阿尔诺芬尼夫妇》）。事实上对于任何艺术家来说，在不用凸透镜的情况下把现实中的事物通过恰当的扭曲并且与透镜中呈现的光学现象完全一致几乎是不可能的。正因如此，凸透镜给予了画家机会去在原本的绘画平面中构造一层新的绘画空间，在过去艺术家也尝试过创造过多重视觉空间。荷兰画家格利特·窦（Gerard Dou）就常用障眼法来创造出特别的视觉效果，在他的一张自画像中，一个男人靠在窗台上，抽着烟斗看着我们。窦使用障眼法，创造了窗内和窗外两个空间，窗台上那本打开的书似乎从窗户伸到我们的空间里，挂在铜杆上的窗帘仿佛就在画外，一拉上就能把画面遮住。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Gerard_Dou_-_Self-Portrait_-_WGA06660.jpg" style="zoom:5%;" /></p>
+<p>因而，利用凸透镜作画给予了画家一个全新的方式去创造一个新的空间，来进一步帮助他们展示其想表达的事物与意义。同时，凸透镜带来的真实的光学扭曲使得整个艺术作品跟有表现力。</p>
+<h3 id="凸透镜技巧的应用鉴赏"><a href="#凸透镜技巧的应用鉴赏" class="headerlink" title="凸透镜技巧的应用鉴赏"></a>凸透镜技巧的应用鉴赏</h3><h4 id="扭曲手法的表现力"><a href="#扭曲手法的表现力" class="headerlink" title="扭曲手法的表现力"></a>扭曲手法的表现力</h4><p>如果说平面镜是对现实真实的还原，那么凸透镜就是对现实真实的“扭曲”与“放大”。关于扭曲，通过对画面的夸张或者扭曲来突出主题在艺术史上还是较为常见的，比如说爱德华·蒙克的《呐喊》或者卡拉瓦乔的《美杜莎》。在蒙克的《呐喊》中，大胆的扭曲将手法将所有线条似乎都趋向版画上惟一的中心——那个高声呼喊的如同骷髅般的头部，把人物的恐惧、焦虑与绝望通过这种类漫画式的模样表达出来，直击人心。而卡拉瓦乔的美杜莎虽然没有蒙克那样夸张，但也将美杜莎将死时的愤恨通过脸部表情的扭曲凸显出来，塑造了一幅骇人的面庞。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Caravaggio_-_Medusa_-_Google_Art_Project.jpg" style="zoom:8%;" /></p>
+<p>凸透镜同样给予画家另一种观察扭曲、表达扭曲的方法。不同于《呐喊》或者《美杜莎》对一个细节的夸张（甚至是虚假、表现主义的夸张）与扭曲。凸透镜的成像是和谐的，现实主义的，却在这种写实中添加了魔幻色彩，夸张了原有的真实。宛如一个连接着真实与理想的桥梁，在和谐中给予了作者表达自我，超越真实的机会。让我们再说回帕米贾尼诺的《凸面镜的自画像》，艺术家刻意将自己的手放在镜前，并发生扭曲，是整个画面最引人注意的。有人推测，20岁的艺术家渴望得到人们的注意，表达自己的才华，便把自己的手作为重点，暗示自己的才华。在整个过程中，艺术家事实上是对镜中的像进行了复刻，在写实的同时利用透镜突出了“自我”这一主题。</p>
+<h4 id="边缘虚化的失焦画法"><a href="#边缘虚化的失焦画法" class="headerlink" title="边缘虚化的失焦画法"></a>边缘虚化的失焦画法</h4><p>北方文艺复兴时期，暗箱可能成为辅助画家观察景物、绘制画面的工具。通过暗箱，艺术家可以更加直观的感受到光线对于现实物体的影响并相对准确的呈现在画面上中，更重要的是，暗箱成像如同照片一般会显示出画面中的焦点以及远处的失焦物体，因而在通过暗箱绘画物体时，艺术家往往会开始呈现出一部分的精确的聚焦与模糊的失焦。类比于暗箱，艺术家通过直接观察凸透镜的画面也可以观察到这一现象。在《凸面镜的自画像》中，可能是画面在岁月中产生的损害，也可能是艺术家有意为之，在画面的左上角，即窗户的位置，我们能明显的观察到玻璃是被模糊化的，而艺术家对自己形象的刻画，无论是画面的中心——人像以及那“巨大”的手，我们都能看到其细致的纹理，整个画面如同相片般聚焦在人物中央，光线从镜子到人像再到远处的窗户连成一线，真实的形成了人物的聚焦以及远处玻璃的失焦。在1916年兰伯特的《凸透镜》中，这一现象被描绘的更加显著，我们可以发现整个画面从左至右依次站着四个人物，从近到远，而这四个人的面容也相应的从清晰到模糊，将失焦这一现象准确的描绘了出来。</p>
+<p>值得注意的是另一幅艺术作品，荷兰画家卡雷尔（Carel Fabritius）对代尔夫特一个街景的描绘《A View of Delft》，这幅画面尽管有人猜测这是艺术家面对这凸透镜对街道广角的绘制，但本文并不认可这样的观点，尽管画面呈现出类似于广角镜一样的视觉效果，但是我们可以看到从教堂往右方向，并没有像凸透镜般发生光学上的弯曲，如果把作品认定为透镜下的观察，笔直的树木以及房屋反而带来了一种突兀以及不和谐感。同时，不像上文所说，远处的房屋在放大后也清晰可辨，连窗户分造型都是精准清晰的，不符合对透镜失焦的表述。这幅画更有可能是利用了一种独特的透视手法，如同另一位荷兰艺术家Pieter Janssens Elinga在其作品《透视盒》（Perspective box）一样，是一种透视的表达。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Convex_Mirror_(c_1916)_George_Washington_Lambert_002.jpg" style="zoom:25%;" /></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/FabritiusViewOfDelft.jpg" style="zoom:8%;" /></p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>除了其在自然科学上的重要意义，凸透镜在艺术史上也发挥着自己的作用。通过研究，凸透镜已经逐渐成为文艺复兴时期艺术家使用的绘画语言以及工具，它给予了艺术家一种新的形式去创造艺术作品，提升了艺术作品的维度，开创了一个新式的在写实中表达抽象的艺术手段，在奇幻感中、扭曲的线条中提供了表现力。与此同时，凸透镜作为暗箱的前身，给予了艺术家对失焦这一概念的观察，绘画不一定将所有的物体都清晰准确的表达出来，还可以通过失焦来描述现实。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1]  Criminisi A, Kemp M, Kang S B. Reflections of reality in Jan van Eyck and Robert Campin[J]. Historical Methods: A Journal of Quantitative and Interdisciplinary History, 2004, 37(3): 109-122.</p>
+<p>[2]  D. Ekserdjian, Parmigianino, Yale University Press, New Haven, CT, 2006.</p>
+<p>[3]  Gombrich E H, Gombrich E H. The story of art[M]. London: Phaidon, 1995.</p>
+<p>[4]  Stork D G, Furuichi Y. Reflections on Parmigianino’s self portrait in a convex mirror: a computer graphics reconstruction of the artist’s studio[C]//Computer Vision and Image Analysis of Art. SPIE, 2010, 7531: 149-157.</p>
+<p>[5]  Usami Y, Stork D G, Fujiki J, et al. Improved methods for dewarping images in convex mirrors in fine art: applications to van Eyck and Parmigianino[C]//Computer vision and Image analysis of art II. SPIE, 2011, 7869: 119-129.</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>西方艺术史</tag>
+        <tag>凸透镜</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>算法题解[模拟]P1065作业调度方案题解[NOIP2006提高组]</title>
     <url>/2023/05/20/P1065/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>我们现在要利用 $m$ 台机器加工 $n$ 个工件，每个工件都有 $m$ 道工序，每道工序都在不同的指定的机器上完成。每个工件的每道工序都有指定的加工时间。</p>
@@ -131,6 +178,61 @@
       <tags>
         <tag>算法</tag>
         <tag>模拟</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>伦勃朗与维米尔系列：Rembrandt In His Prime</title>
+    <url>/2023/07/22/RembrandtInHisPrime/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Rembrandt-House.png" alt="Rembrandt House"></p>
+<h4 id="Family-and-Daily-Life"><a href="#Family-and-Daily-Life" class="headerlink" title="Family and Daily Life"></a>Family and Daily Life</h4><p>到1640年，伦勃朗34岁，家庭的悲剧让他的绘画风格变得朴素与低沉。让他对家庭的表达从浮华的风格变为了深沉的情感表达。油画的尺寸也缩小了，充满了阴影与自然的力量伦勃朗和他的妻子萨斯其亚生有4个孩子，只有最小的一个存活，而他妻子在生孩子后不久去世(1942年)。在描绘家庭上，伦勃朗总能细腻的柔和的表达出家庭的温情。</p>
+<h5 id="Woman-Asleep-Saskia"><a href="#Woman-Asleep-Saskia" class="headerlink" title="Woman Asleep(Saskia)"></a>Woman Asleep(Saskia)</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Woman-Asleep.png" alt="Woman Asleep" style="zoom:25%;" /></p>
+<h5 id="Saskia-in-her-Room"><a href="#Saskia-in-her-Room" class="headerlink" title="Saskia in her Room"></a>Saskia in her Room</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Saskia-in-her-Room.png" alt="Saskia in her Room"></p>
+<p>伦勃朗的小儿子，Titus van Rijn (22 September 1641 – 4 September 1668) 是唯一存活下来的，也是伦勃朗最疼爱的，伦勃朗从儿子出生开始就为其作画，记录儿子的成长：</p>
+<h5 id="Titus-at-his-Desk"><a href="#Titus-at-his-Desk" class="headerlink" title="Titus at his Desk"></a>Titus at his Desk</h5><p>儿子13岁时的肖像</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-at-his-Desk.png" alt="Titus at his Desk" style="zoom:25%;" /></p>
+<h5 id="Titus-the-Artist’s-Son-Reading"><a href="#Titus-the-Artist’s-Son-Reading" class="headerlink" title="Titus, the Artist’s Son, Reading"></a>Titus, the Artist’s Son, Reading</h5><p>儿子15岁的肖像</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-the-Artists-Son-Reading.png" alt="Titus, the Artist’s Son, Reading" style="zoom:25%;" /></p>
+<h5 id="Titus-the-Artist’s-Son"><a href="#Titus-the-Artist’s-Son" class="headerlink" title="Titus, the Artist’s Son"></a>Titus, the Artist’s Son</h5><p>儿子16岁的肖像</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-the-Artists-Son.png" alt="Titus, the Artist’s Son" style="zoom:25%;" /></p>
+<h5 id="Titus-in-a-Monk’s-Habit"><a href="#Titus-in-a-Monk’s-Habit" class="headerlink" title="Titus in a Monk’s Habit"></a>Titus in a Monk’s Habit</h5><p>儿子19岁的肖像</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-in-a-Monks-Habit.png" style="zoom:25%;" /></p>
+<h4 id="Emulating-the-Masters"><a href="#Emulating-the-Masters" class="headerlink" title="Emulating the Masters"></a>Emulating the Masters</h4><p>伦勃朗一直在思考如何超越前人，在当时，超越前人的前提是效法大师的手法与技艺，效法分为三个阶段：</p>
+<ul>
+<li>Translatio 翻译：学习前人的作品，临摹，理解里面的技艺</li>
+<li>Imitatio 模仿：在自己的作品中添加大师的元素</li>
+<li>Contaminatio 杂糅：将各种技法整合在一起，发挥特色</li>
+</ul>
+<p>最后，发展出自己的风格，做到特立独行，引领时代。伦勃朗也效法了不少前人，比如丢勒、提香等文艺复兴大师。</p>
+<h5 id="The-Pancake-Woman"><a href="#The-Pancake-Woman" class="headerlink" title="The Pancake Woman"></a>The Pancake Woman</h5><p>比如这幅《做煎饼的女人》，就是伦勃朗模仿荷兰画家阿德里安•布鲁维尔Adriaen Brouwer的手法</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Pancake-Woman.png" alt=""></p>
+<h5 id="Self-Portrait-Leaning-on-a-Stone-Sill"><a href="#Self-Portrait-Leaning-on-a-Stone-Sill" class="headerlink" title="Self-Portrait: Leaning on a Stone Sill"></a>Self-Portrait: Leaning on a Stone Sill</h5><p>这幅自画像是伦勃朗模仿提香经典的“大袖子”</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Leaning-on-a-Stone-Sill.png" alt=""></p>
+<h5 id="Self-Portrait-at-the-Age-of-34"><a href="#Self-Portrait-at-the-Age-of-34" class="headerlink" title="Self-Portrait at the Age of 34"></a>Self-Portrait at the Age of 34</h5><p>随后，伦勃朗还结合提香的大袖子和拉斐尔对织物的手法刻画，糅合出另一幅自画像：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Self-Portrait-at-34.png" alt=""></p>
+<p>在伦勃朗36岁时，伦勃朗已经形成了自己别具一格的风格以及老练的手法，也就是在此时，他迎来了自己人生的转折点，迎来了最伟大的一幅作品，The Night Watch</p>
+<h4 id="The-Night-Watch-夜巡"><a href="#The-Night-Watch-夜巡" class="headerlink" title="The Night Watch 夜巡"></a>The Night Watch 夜巡</h4><p>伦勃朗这次是受到火枪民兵队的委托，给18为火枪手民兵队画群像。夜巡这一名字来源于这幅画整体以灰暗色为主，但是据记载，民兵队从来没有在夜晚行动过。伦勃朗没有采用传统的横向布局，将人一一布置好位置。而是采用肖像与叙事结合的手法，来体现出火枪队这一传奇组织。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-night-watch.png" alt=""></p>
+<p>在画面中，人的目光各不相同，先看看两位主角，罗姆波特中士(Sergeant Rombout Kemp)伸出右臂指向画面中央，将我们的视线引向最重要的人物。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail1-NW.png" style="zoom: 33%;" /></p>
+<p>科克上尉的衣着精致，披一条红色的丝绸缎带，缎带的尾端在膝盖处飘摇。他的右手戴着手套，捏着一根手杖——象征着他的权威，左手向前伸出，好像已经要戳破画布，碰到你的脸，他摆出这个手势的意思好像是向身旁的中尉下达命令：整肃队伍，马上出发。</p>
+<p>而他身旁的威廉中尉 (Lieutenant Willem van Ruytenburch） 白色的衣服在强光下泛着光泽，腰间系着一条白色缎带，带跟皮靴质感上佳。而伦勃朗在面中尉的时候遇到了一点小问题，他手中的长枪的尖端直直地指向画面外，角度太大以至于X光射线扫描局部发现伦勃朗在这里涂改过多次。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail2-NW.png" alt=""></p>
+<p>在两人的左侧，有一位小姑娘在亮处。小女孩是光线集中的位置，金色裙子蓝色辉肩，与行会的标志配色一致，暗示着火枪行会，鸡爪也是民兵队的标志。</p>
+<p>在小女孩的左侧，一位士兵好似刚刚放过枪，在为火枪填充弹药。而画面右侧的众人有一位正在瞄准目标，有一位拿着长戟指向前方，都好像预示着前方有一个危机需要民兵队去解除。</p>
+<p>伦勃朗对持枪、装弹的刻画上也是有讲究的，他充分的了解两个东西的模样并精准的画了出来：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail4-NW.png" style="zoom:25%;" /></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail5-NW.png" style="zoom:25%;" /></p>
+<p>画面里，每个人都不是静止的，伦勃朗为每个人都精心安排了一出戏剧，让他们展现自己的模样。你仿佛置身于此，感受一场民兵队传奇的出行。</p>
+<p>由于光线较暗，且并不是按照传统的形式来做的群像，火枪手行会在收藏了这幅作品后，又聘请其他画家在画面的上方加了一个备注，来表示这是火枪行会的群像。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail3-NW.png" alt=""></p>
+<p>伦勃朗从《夜巡》 身上获得的酬金是1800荷兰盾，这是一笔相当大的报酬，每100荷兰盾就相当于现在的1000美金。在这张人物与真人大小相近的巨幅油画中，伦勃朗将动态构圈、明暗对比、和身临其境的声效完美融合，定格了荷兰黄金时代的一个永恒瞬间。在如此多的人物和动作之间，伦勃朗得到了他所追求的和谐。这幅画，也成为了伦勃朗最举世闻名的代名词。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>西方美术史</tag>
+        <tag>伦勃朗</tag>
       </tags>
   </entry>
   <entry>
@@ -500,6 +602,125 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       </tags>
   </entry>
   <entry>
+    <title>伦勃朗与维米尔系列：Rembrandt In Amsterdam</title>
+    <url>/2023/07/18/RembrandtInAmsterdam/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="Coming-to-Amsterdam"><a href="#Coming-to-Amsterdam" class="headerlink" title="Coming to Amsterdam"></a>Coming to Amsterdam</h4><p>伦勃朗在22岁时前往了阿姆斯特丹，17世纪的阿姆斯特丹是欧洲最大的经济中心与贸易中心，东印度公司垄断了亚洲一带的海上贸易，为城市带来了巨大财富。1630年，阿姆斯特丹证券交易所成立，象征着城市不凡的实力。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Amsterdam_Stock_Exchange.png" alt="Amsterdam Stock Exchange" style="zoom:20%;" /></p>
+<p>同时，阿姆斯特丹还是理性主义思想的发源地，著名的理性主义先驱斯宾诺莎就出生于此</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Baruch_de_Spinoza.png" alt="Baruch de Spinoza" style="zoom:30%;" /></p>
+<blockquote>
+<p>巴鲁赫·德·斯宾诺莎「Baruch de Spinoza」，1632年11月24日—1677年2月21日，犹太人，近代西方哲学公认的三大理性主义者之一，与笛卡尔和莱布尼茨齐名。斯宾诺莎出生阿姆斯特丹的一个从西班牙逃往荷兰的犹太家庭。年轻时进入培养拉比的宗教学校，在艰难的生活条件下，他仍然坚持哲学和科学的研究，他的思想通过通信方式传播到欧洲各地，赢得人们的尊重。1677年不幸死于肺痨，享年45岁。他的主要著作有《笛卡尔哲学原理》、《神学政治论》、《伦理学》、《知性改进论》等。</p>
+</blockquote>
+<p>当时的阿姆斯特丹在发展经济思想的同时，全民教育也相当的普及，随着印刷业与版画业的发展，全民基本都具备了读写能力，这也从一方面解释了为何在这是兴起了“自传”的浪潮。伦勃朗也参与了当时的版画与印刷的发展，学习了版画制作的技巧。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/View_of_Amsterdam_from_the_Northwest.png" alt="View of Amsterdam from the Northwest" style="zoom:33%;" /></p>
+<p>伦勃朗住在阿姆斯特丹的西北边，这是他对着窗户描绘的阿姆斯特丹的手稿。</p>
+<h4 id="Painting-People"><a href="#Painting-People" class="headerlink" title="Painting People"></a>Painting People</h4><h5 id="Frans-Hals-and-Portrait"><a href="#Frans-Hals-and-Portrait" class="headerlink" title="Frans Hals and Portrait"></a>Frans Hals and Portrait</h5><p>伦勃朗擅长肖像画、自画像，他初到阿姆斯特丹就已经小有名气，不少人来委托他，让他为其做画。但是在当时，阿姆斯特丹还有一位在当时比伦勃朗更有名气的画家，就是哈尔斯。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Self-Portrait-Hals.png" alt="Hals" style="zoom:25%;" /></p>
+<p>弗朗斯·哈尔斯「Frans·Hals」，l7世纪荷兰画派的奠基人和最杰出的肖像画大师之一。很少有人能像他那样运用洒脱而准确的笔触来塑造形体，使画中人形神兼备，成为有性格的典型人物。在这幅自画像中，可以看到其胡子层次分明，这是当时画家常用的工具：刮刀，所做成的，画中领子的褶皱被刻画的极为细腻，一抹蓝色与黑色的衣服反差，他的眼神看向画外，更有一种与观众的互动感，显得更加传神。</p>
+<p>哈尔斯也深受卡拉瓦乔画派的影响，不仅仅是用色以及光线上的强烈对比反差，还将人物的神情戏剧化，夸张的表达人物一瞬间的舒展的面容。相比于伦勃朗刻画人脸的色彩渐变，哈尔斯在这两幅画中将红色与面容的颜色反差，更有戏剧性。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Frans_Hals_Boy Drinking.png" alt=""></p>
+<h5 id="Portrait-of-Nicolaes-Ruts"><a href="#Portrait-of-Nicolaes-Ruts" class="headerlink" title="Portrait of Nicolaes Ruts"></a>Portrait of Nicolaes Ruts</h5><p>让我们再看回伦勃朗，伦勃朗更显分寸感与自然感。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Portrait-of-Nicolaes-Ruts.png" alt="Portrait of Nicolaes Ruts"></p>
+<p>这幅画是伦勃朗在阿姆斯特丹接到的第一单，是荷兰著名的贸易商人尼古拉斯·鲁斯。我们可以看到模特站在侧光前，在墙上他的背景被清晰的勾勒出来，白色花边的领口与毛织衣装显示出鲁斯的财富实力。伦勃朗还特意将面容上的褶皱给画出，刻画出一个肃穆庄严的形象。这幅画的成功也让伦勃朗逐渐成为荷兰肖像画的名人，1631到1635年，他还为鲁斯的其他同胞们作画，也成为伦勃朗重要的合作伙伴。</p>
+<h5 id="Portrait-of-Marten-Soolmans-and-Oopjen-Copit"><a href="#Portrait-of-Marten-Soolmans-and-Oopjen-Copit" class="headerlink" title="Portrait of Marten Soolmans and Oopjen Copit"></a>Portrait of Marten Soolmans and Oopjen Copit</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Marten_Oopjen.png" style="zoom:50%;" /></p>
+<p>1634年，伦勃朗为一对夫妻分别作了肖像画，挂在壁炉两侧。其中男性手持手套，这是荷兰当时结婚的习俗，暗示着两人成婚，妻子手持扇子。两人都身着黑色袍子，白色花边，显示出两人的富贵。其中，男子的鞋上襄着水晶花边，是伦勃朗用刻刀阳刻出来的。值得注意的是，男性在左女性在右的传统来源于乔托《最后的审判》，其中在基督的右手边（画面左侧）是他的爱徒，而耶稣左手边（画面右侧）都是次一等的门徒，所以在挂画中，把男性挂在左侧暗示着基督喜爱的位置，是当时男性主导婚姻的暗示。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LastJugdetment.png" alt="最后的审判" style="zoom:30%;" /></p>
+<h5 id="The-Shipbuilder-and-his-Wife"><a href="#The-Shipbuilder-and-his-Wife" class="headerlink" title="The Shipbuilder and his Wife"></a>The Shipbuilder and his Wife</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Shipbuilder_and_his_Wife.png" alt="The Shipbuilder and his Wife" style="zoom: 25%;" /></p>
+<p>伦勃朗在1633年还为东印度公司的企业家兼设计师作了一幅夫妇像，这幅画脱离了传统肖像画，伦勃朗捕捉了一个生活的瞬间，妻子为丈夫递来一封信，丈夫停下手中的工作。他手持圆规，纸上是他正在绘制的设计图稿，显示了男人的身份与职业，这个船正是当时荷兰大帆船的设计图。在这幅画中，伦勃朗将自己的签名藏在了书信中，暗示着他与名望之人的往来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Arrival-of-Elector-Frederick-V-of-the-Palatinate-and-Elizabeth-Stuart.png" style="zoom:25%;" /></p>
+<h5 id="The-Anatomy-Lesson-of-Doctor-Nicolaes-Tulp"><a href="#The-Anatomy-Lesson-of-Doctor-Nicolaes-Tulp" class="headerlink" title="The Anatomy Lesson of Doctor Nicolaes Tulp"></a>The Anatomy Lesson of Doctor Nicolaes Tulp</h5><p>在阿姆斯特丹，外科医生行会每年都会有一场解剖学的公开演示课堂解剖真人，1632年著名外科医生蒂普教授来主刀这次解刨活动，真人是由死刑犯提供。外科医生行会选择伦勃朗为这次年度活动作一幅群像。过去也有人为外科医生行会作过群像。托马斯这幅群像已经相当不错，每个人都炯炯有神，后面四个人眼神集中于骨骼，专心的听人讲解，前面的两人面向观众，活灵活现。                                                                                                </p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Anatomy-Lesson-of-Doctor Sebastiaen.png" alt="The Anatomy Lesson of Doctor Sebastiaen Egbertsz de Vrij" style="zoom: 50%;" /></p>
+<p>但伦勃朗对群像的理解可谓是颠覆性的，他摆脱了传统将每个人排练好，做好动作的群像手法，将群像生活化，戏剧化。我们说伦勃朗是一位伟大的剧作家，他会在他的每一幅画中加入一个故事，来表达他想描绘的。而这幅《蒂普医生的解剖课》让他名声大噪。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Anatomy-Lesson-of-Doctor-Nicolaes-Tulp.png" alt="The Anatomy Lesson of Doctor Nicolaes Tulp"></p>
+<p>画中一条黑影把画面分割为两块，上面一侧的光线打在解剖医生上，而下面一侧光打亮了尸体，这是伦勃朗对光的使用，每个人都注视着蒂普医生，把课堂的紧张感与认真的神情刻画出来。图中可以看到，最后方的人物头上有帽子的痕迹，经过X光证实，伦勃朗在画这幅画的时候反复的修改过，也就是说伦勃朗观察了每个人的神情，并通过自己的想象，构造了这样一个教学的场景，使整个画面充实生动。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Andreas-vesalius.png" alt="Andreas Vesalius"></p>
+<p>值得注意的细节是，正常的解剖顺序应该是从胸腔开始，打开人体的腹部。但是画中描绘的是蒂普医生结构手臂的情景，同时医生的左手弯曲，好像在展示什么。这一幕其实是致敬文艺复兴时期医学家安德鲁瓦萨里，他在《人体结构》中展示了手臂前臂的肌肉与拇指的弯曲相关，他也表明人与其他动物最大的不同就是只有人类的拇指是朝向侧面的。蒂普医生展示这样的动作正是在论述人作为高等动物的优越性。</p>
+<h4 id="Rembrandt’s-Signature"><a href="#Rembrandt’s-Signature" class="headerlink" title="Rembrandt’s Signature"></a>Rembrandt’s Signature</h4><h5 id="Self-Portrait-in-Soft-Hat"><a href="#Self-Portrait-in-Soft-Hat" class="headerlink" title="Self-Portrait in Soft Hat"></a>Self-Portrait in Soft Hat</h5><p>最早在伦勃朗给自己戴帽子的自画像中，他第一次给自己的画签上了”Rembrandt”。在随后的几年他开始使用自己的名字，而非是自己的姓与故乡名。在历史上，只有文艺复兴三杰这样做。这也意味着他在当时已经是荷兰甚至北方的最顶尖的画家，以及伦勃朗对自己的认可与自信。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/SIgnature.png" alt="Rembrandt's Signature" style="zoom: 35%;" /></p>
+<h4 id="Rembrandt’s-Family"><a href="#Rembrandt’s-Family" class="headerlink" title="Rembrandt’s Family"></a>Rembrandt’s Family</h4><p>伦勃朗在1631年于阿姆斯特丹的艺术品经销商亨德里克·乌伦博格相识，他看到了伦勃朗的才能并作为伦勃朗的经纪人帮助他售卖他的画作、为他提供工作室。在1634年，伦勃朗与乌伦博格的侄女萨斯基亚·乌伦博格订婚。</p>
+<p>伦勃朗对他的妻子相当的疼爱，在结婚后，还经常把他的妻子画成花神的模样，为其留下众多肖像作品。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Saskia.png" alt="Saskia"></p>
+<h5 id="View-over-the-Amstel-from-the-Rampart"><a href="#View-over-the-Amstel-from-the-Rampart" class="headerlink" title="View over the Amstel from the Rampart"></a>View over the Amstel from the Rampart</h5><p>伦勃朗很快在阿姆斯特尔河边买了一件房，并从窗边描绘了河边美景。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/View-over-the-Amstel-from-the-Rampart.png" alt="View over the Amstel from the Rampart"></p>
+<h5 id="Self-Portrait-with-Saskia-in-the-Guise-of-the-Prodigal-Son"><a href="#Self-Portrait-with-Saskia-in-the-Guise-of-the-Prodigal-Son" class="headerlink" title="Self-Portrait with Saskia in the Guise of the Prodigal Son"></a>Self-Portrait with Saskia in the Guise of the Prodigal Son</h5><p>29岁的伦勃朗正处名利双收的时候，他绘制了一幅更加大胆主题的自画像。他把自己画成是一个浪子，他的妻子坐在他的腿上，放荡不羁。两人都穿着16世纪的服装，男人是笑嘻嘻、醉醺醺的年轻人的形象，显然是打扮的有些过头了。作品的背景是浪子的圣经寓言。在这个寓言中，一个富人的次子得到了他的遗产份额，并将其带到了一个遥远的国家。在那里，他把钱浪费在食物和女人上，过了一会儿不得不忍受饥饿，流浪街头。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Self-Portrait with Saskia-in-the-Guise-of-the-Prodigal-Son.png" alt="Self-Portrait with Saskia in the Guise of the Prodigal Son"></p>
+<p>这幅画结合了许多绘画对象，强调了艺术家的欢乐狂热：伦勃朗穿着高贵的衣服，戴着华丽的羽毛帽子，高兴地用举起的啤酒杯向接受者敬酒。他用左手风骚地撩起萨斯基亚的裙子，萨斯基亚从后面描绘，并将她的目光引向观众。背景是孔雀公鸡，高贵的面料和场景的金色支持着傲慢、性感的描绘。</p>
+<p>伦勃朗做这幅画，有些学者猜测是否是伦勃朗对自己的警示，把自己画作是浪子，来劝勉自己不要挥霍无度。的确，在30岁前，伦勃朗的生活都顺风顺水，这幅画的背后也可能包含了他对如此顺利生活的真实感的质疑，抑或是他对未来的担忧。</p>
+<h4 id="Painting-History-New-Testament-Mythology-Old-Testament"><a href="#Painting-History-New-Testament-Mythology-Old-Testament" class="headerlink" title="Painting History: New Testament / Mythology / Old Testament"></a>Painting History: New Testament / Mythology / Old Testament</h4><blockquote>
+<p>伦勃朗的历史画别具一格，运用微妙的细节，将画面戏剧化，敢于打破常规，抓住命运突然反转的时刻。</p>
+</blockquote>
+<p>伦勃朗一直想成为历史画家，或许成为历史画家也是每一位画家的梦想之一，在当时历史画在西方艺术分类中品类最高，选材上包括希腊神话、圣经故事、古罗马古希腊历史传说等。在他30岁时，伦勃朗已经很擅长把握群体，刻画人物了，在这期间，伦勃朗创作了不少宏大的历史画，而且每一幅都有着他独特的颠覆传统的思考。</p>
+<p>在历史画题材中，基督受难是许多艺术家选择的，也是最为出名的，整个基督受难分为六个阶段：犹大背叛、基督被捕、基督受审、上十字架、下十字架、埋葬。在这里，我们介绍伦勃朗为这一主题作的其中两幅。</p>
+<h5 id="Passion-of-Christ-The-Deposition"><a href="#Passion-of-Christ-The-Deposition" class="headerlink" title="Passion of Christ: The Deposition"></a>Passion of Christ: The Deposition</h5><p>先来看一下鲁本斯所画的下十字架：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Rubens-Descent-from-the-Cross.png" alt="Peter Paul Rubens Descent from the Cross" style="zoom:25%;" /></p>
+<p>在过去，安特卫普的鲁本斯也画过同样一个主题的下十字架。这幅画将光线集中于耶稣，四周的人围在基督的尸体旁，依旧可以看到被钉子钉处的血迹，来衬托出世人的罪恶。艺术评论家惠更斯曾经评价：“鲁本斯乃世界七大奇迹之一， 当世画家中的阿佩莱斯。”对于基督形象的刻画，鲁本斯参考了古希腊的雕塑《拉奥孔》，将人死去后痛苦的身姿表现出来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Laocoon-and-Descent.png" alt="拉奥孔" style="zoom: 25%;" /></p>
+<p>让我们再来看看伦勃朗画的《下十字架》</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Rembrandt-The-Deposition.png" alt="Rembrandt:The Deposition" style="zoom:50%;" /></p>
+<p>伦勃朗这幅画采用了三角构图，同样是描绘了耶稣下十字架将要被装进裹尸布中，远处的城堡，暗示故事发生在耶路撒冷。与伦勃朗不同的是，整个画面以暗色为色调，一束光从画面上方打在基督身上，他并没有刻画出基督钉在十字架上的痕迹，而是把尸体刻画得普通而富有真实化，一侧的手臂从十字架上送下，仿佛有不可承受之重，更加真实感。对比鲁本斯和伦勃朗，两幅画都是这一主题的佼佼者，不过伦勃朗打破了传统，将耶稣描绘的更加真实化，平凡化，这也体现了伦勃朗对历史画作独特的风格。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Descent-etching.png" alt="Etching Version for Descent"></p>
+<p>在当时的荷兰，鲁本斯常常把油画蚀刻成版画来流传，伦勃朗随后也学习到了版画相关技巧，他开始追逐鲁本斯，也将自己的油画蚀刻成版画，流传出来。在版画上把一个人改成了自己的脸，既是版权的象征，也有身临其境的在场感，这一点在同为基督受难的作品《上十字架》上体现的更为明显。值得注意的是，油画与蚀刻画是左右对称的，原因是蚀刻术与印章原理相同，艺术家需要对着作品在刻板上蚀刻，最后再印到画板。</p>
+<h5 id="Passion-of-Christ-The-Raising-of-the-Cross"><a href="#Passion-of-Christ-The-Raising-of-the-Cross" class="headerlink" title="Passion of Christ: The Raising of the Cross"></a>Passion of Christ: The Raising of the Cross</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Raising-of-the-Cross.png" style="zoom:50%;" /></p>
+<p>在基督受难的另一幅作品，《上十字架》中，带着蓝色贝雷帽的男士就是伦勃朗自画像，把基督送上十字架，意味着自己的忏悔，这印证了当时一种新教思想，即是每个人的罪孽才是得基督送上十字架，表达了自己的忏悔。</p>
+<blockquote>
+<p><em>Tis not the Jews who crucified</em><br><em>Nor who betrayed you in the judgment place</em><br><em>Nor who, Lord Jesus, spat into your face</em><br><em>Nor who with buffets struck you as you died</em></p>
+<p><em>Tis not the soldiers who with brutal fists</em><br><em>Raised the hammer and raised the nail</em><br><em>Or the cursed wood on Calvary’’s hill</em><br><em>Or drew lots, tossed the dice to win your cloak</em></p>
+<p><em>I am the one, oh Lord, who brought you here</em><br><em>I am the heavy tree, too stout to bear</em><br><em>I am the rope that reined you in</em></p>
+<p><em>The scourge that flayed you, nail and spear</em><br><em>The blood-soaked crown they made you wear</em><br><em>‘Twas all for me, alas, ‘twas for my sin.</em></p>
+</blockquote>
+<h5 id="Christ-in-the-Storm-on-the-Sea-of-Galilee"><a href="#Christ-in-the-Storm-on-the-Sea-of-Galilee" class="headerlink" title="Christ in the Storm on the Sea of Galilee"></a>Christ in the Storm on the Sea of Galilee</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Christ-in-the-Storm-on-the-Sea-of-Galilee.png" alt="Christ in the Storm on the Sea of Galilee" style="zoom: 25%;" /></p>
+<p>《加利利海上风暴》是伦勃朗又一幅圣经题材的作品，描绘的是信徒应该对耶稣有无条件的信仰。故事的背景是门徒与耶稣在加利利海上航行，耶稣睡着的时候海上忽然刮起了风暴，门徒们慌张不已，把耶稣叫醒希望得到耶稣的帮助。先看画面的整体，在荷兰大航海时期，很多画家都开始描绘海上的风浪与暴风雨后的情景，伦勃朗在此也是借鉴了Jan Porcellis的作品《在暴风雨中航行的船》中的一个部分。在画面的远处都有明亮的天空，暗示着希望，在这里也暗示着耶稣基督的神迹。不同于Jan Porcellis,伦勃朗的光更加鲜艳，对比度更加强烈，不仅显示了基督的神迹吗，也照亮了每一个门徒的脸，让肖像大师伦勃朗对他们神情的刻画更加细致，生动。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Ships-in-a-Storm-on-a-Rocky-Coast.png" alt="Ships in a Storm on a Rocky Coast" style="zoom:25%;" /></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Details-Storm.png" style="zoom:28%;" /></p>
+<p>让我们再来看看画面的细节部分：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Details-Christ-in-the-Storm-on-the-Sea-of-Galilee.png" alt="Details" style="zoom:25%;" /></p>
+<p>耶稣基督的脸朝向远处的光芒，神情轻松，丝毫让人想不到一股巨浪正拍打着船只。基督周围的门徒则探着头，慌张的询问着基督如何是好，十分慌张，还有的门徒抓紧船只的桅杆和绳索，恐惧写在他们的脸上。门徒与基督神态上的对比，更突出了对基督无条件坚定信仰的主题。</p>
+<h5 id="John-the-Baptist-Preaching"><a href="#John-the-Baptist-Preaching" class="headerlink" title="John the Baptist Preaching"></a>John the Baptist Preaching</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/John-the-Baptist-Preaching.png" alt="John the Baptist Preaching"></p>
+<p>这幅画显示了施洗者约翰在旷野向“出来受洗的众人”讲道「路加福音3:3-18」，其中有富人和穷人，有税吏和士兵。伦勃朗的这幅画是文艺复兴时期艺术的一个流行主题。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/St-John-the-Baptist-Preaching.png" alt="St. John the Baptist Preaching" style="zoom:33%;" /></p>
+<p>这是过去艺术家描绘约翰布道的情景，众多的人，以及中间的施洗者约翰。而伦勃朗虽然也是相同的情景，这幅画本身是对伦勃朗的用光以及群像的手法展示，但是在内容上伦勃朗可谓是相当大胆。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail-John.jpg" style="zoom:67%;" /></p>
+<p>在圣经的正剧中，大量的出现动物、孩童等一些鄙陋的细节。有鸡蹦到人的头上，边上还有猪在吃食；有母亲在给小孩把尿；有动物打成一片，交配的情景。把不雅的场景搬到圣经这样的历史画题材中是伦勃朗独特的理解，他为一出戏安排了小丑，使得整个戏更加生动。更重要的是，这暗示了人类群体的多样性，各式各样的人聚在一起，听着约翰的布道，还有边上的闲杂人士在继续自己的生活。</p>
+<h5 id="Diana-Bathing-with-the-Stories-of-Actaeon-and-Callisto"><a href="#Diana-Bathing-with-the-Stories-of-Actaeon-and-Callisto" class="headerlink" title="Diana Bathing, with the Stories of Actaeon and Callisto"></a>Diana Bathing, with the Stories of Actaeon and Callisto</h5><p>《戴安娜与仙女沐浴》展示了奥维德的《变形记》中的两集，在这两集里，都有人因为性侵犯而受到女神戴安娜的惩罚。在画面左边，猎人阿克托翁在无意间因为看到女神裸体而受到惩罚变成麋鹿最后被他的猎犬咬死。在画面右边，戴安娜的其他仙女正在撕下卡利斯托的衣服，以揭示她是如何违背了她的贞洁誓言，她怀了朱庇特的孩子，为此，戴安娜将她驱逐出宫廷。可以说是第一次，有艺术家将两个故事画在同一幅作品上。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Diana-Bathing.png" alt="Diana Bathing, with the Stories of Actaeon and Callisto"></p>
+<p>我们可以看到带着月牙形头冠的就是月神狄安娜，她盯着猎人阿克泰翁，此时猎人的头上已经长出了鹿角，暗示着他已经中了狄安娜的诅咒。在画面右边，卡利斯托的衣服被掀起来露出怀孕的肚子，扭打在一起。</p>
+<p>伦勃朗又一次把把正剧改成了闹剧，打闹，看戏，动物的交配，各种闹剧元素被伦勃朗加上。故事的主题都是讲述了人被无法掌握的欲望左右，猎人和卡利斯托都是在毫无防备的悲剧，将禁忌的欲望和在一起，在闹剧中写悲情，更令人感伤沉思。</p>
+<h5 id="Abduction-of-Europa"><a href="#Abduction-of-Europa" class="headerlink" title="Abduction of Europa"></a>Abduction of Europa</h5><blockquote>
+<p>公主这时候十分害怕<br>向后一看，陆地愈来愈远<br>她一手握紧住一只角，一手扶着牛背<br>她的衣裾在风中飘舞着。</p>
+<p>——奥维德《变形记》II:833-875</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Abduction-of-Europa.png" alt="Abduction of Europa"></p>
+<p>《劫走欧罗巴》也是伦勃朗以《变形记》故事为主题的历史画作，这幅画中，宙斯刚刚把欧罗巴带离海岸，欧罗巴还注视着岸上的女伴，表情惊恐。故事发生在离荷兰相当远的腓尼基海岸，或者在当时称为“东方”。但伦勃朗从未去过那里，也没有哪个作品证明过腓尼基的海岸是什么样的。于是伦勃朗在画面的右后方画上了一个不伦不类的马车，高贵、神秘，是当时人对东方的猜测。</p>
+<h5 id="Abduction-of-Ganymede"><a href="#Abduction-of-Ganymede" class="headerlink" title="Abduction of Ganymede"></a>Abduction of Ganymede</h5><blockquote>
+<p>神明们见他容貌俊美<br>把他掳去<br>给宙斯斟酒<br>留他在不朽的神界居住</p>
+<p>——《伊利亚特》XX:233-235</p>
+</blockquote>
+<p>关于掠夺，《伊利亚特》中还有宙斯劫走伽倪墨得斯的故事。伽倪墨得斯是特洛伊国王特罗斯之子，因为其年少貌美，因此受到宙斯的喜爱，将他带到天上成为宙斯的情人并代替青春女神赫柏为诸神斟酒。在过去的艺术作品中，艺术家们都会把伽倪墨得斯的英俊潇洒表达在作品当中，还是来看著名画家鲁本斯的《劫走伽倪墨得斯》，伽倪墨得斯被画作的是英俊的美少女，深得众神的喜爱。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/RubensAbduction-of-Ganymede.png" alt=""></p>
+<p>而在伦勃朗的画中，伽倪墨得斯成了一个小天使，甚至是一个哇哇叫的婴儿，被一只大鸟抓走。这幅画中，伦勃朗很有可能是参考了布鲁塞尔的撒尿的小孩雕塑。小天使见不得美丽，只有狼狈和挣扎。而当黑云压顶，被雄鹰掳走的瞬间，被强迫掳走的伽倪墨得斯正该如此绝望与无助，伦勃朗将故事的感性与人性凸显出来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Abduction-of-Ganymede.png" alt="Abduction of Ganymede"></p>
+<p>然而，有一部分学者认为这幅画还有更深的政治意味，芭芭拉 •盖滕斯「Barbara Gacghtens」在一篇未发表的文章中提出伦勒朗的《伽倪墨得斯》引用的可能是另一个关于统治者的古老神话，他们要接受“雄鹰测试”，老鹰会把他们带向高空和明媚的太阳，来检测他们的力量和勇气。伦勒朗绘制的这个婴儿，是被老鹰抓在爪子里，不情愿地被拖上了天空，还吓得哇哇大叫并且尿了出来，他的雄鹰测试很显然是失败的。婴儿的村衣被老鹰抓了起来，上边还有一条原本无法解释的缨绳，现在可以将他视为将军们在战场上佩戴的腰带，或者是王子们作为指挥官的地位象征，然而这种对比其实更像是讽刺，婴儿的恐惧明显削弱了亡所引申的意义。</p>
+<p>如果这幅画指的是荷兰年轻的王子、总督的儿子威康二世（Wiliam Il， 生于1626年），他也比这幅画中的婴儿年长许多。年轻的威康二世在新的奥兰治王朝策略中提出了提前执政的要求，1650年他突然去世，荷兰也进入了一个混乱的“无总督”时期。伦勒朗绘制的没有通过雄鹰测试的 《伽倪墨得斯》可能是在间接批评这位年轻的继承人。</p>
+<h5 id="Belshazzar’s-Feast"><a href="#Belshazzar’s-Feast" class="headerlink" title="Belshazzar’s Feast"></a>Belshazzar’s Feast</h5><p>在《伯沙撒的盛宴》中，伦勒朗对《旧约》宗教场景的戏剧化展现达到了高潮。丰富多彩的服饰、静物元素和灯光都凸显了人物的面部表情和戏剧化的姿势。在画作的中心，一个身着华丽的锦缎长袍、头戴充满异国色彩头巾的统治者仿佛受到了惊吓，一下子把身子转了过去。在他两侧，不论是面朝着我们还是背朝着我们的人物都同样惊讶不已，其中一个拿着金色水壶正在倒酒的人物都被吓得动不了了。他们都看到了一个超自然的事情，一位圣人正在用希伯来文字写下对众人的警告，这个神圣的信息是在警告伯沙撒，因为他的亵渎，“上帝已经算好了你的国家还能存在的日子，而且你的国家很快就会灭亡了；经过考验，你不能胜任国王”。在那一晚，他的王国被米堤亚人和波斯人分隔。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Belshazzars-Feast.png" alt=""></p>
+<p>在墙上，伦勃朗精准的把希伯来文给表示出来，根据《圣经》，这些文字只有先知达尼尔看得懂，不仅仅是因为他熟知希伯来语，而且墙上的文字刻意被竖过来写，与常规横向阅读希伯来语不同。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Menasseh-ben-Israel.png" style="zoom: 25%;" /></p>
+<blockquote>
+<p>Daniel reads the words “MENE, MENE, TEKEL, UPHARSIN” and interprets them for the king: “MENE, God has numbered the days of your kingdom and brought it to an end; TEKEL, you have been weighed … and found wanting;” and “UPHARSIN”, your kingdom is divided and given to the Medes and Persians. </p>
+</blockquote>
+<h5 id="The-Blinding-of-Samson"><a href="#The-Blinding-of-Samson" class="headerlink" title="The Blinding of Samson"></a>The Blinding of Samson</h5><p>在《旧约》的《士师记》中，参孙是在神的应许中出生，并在神的眷顾下成长。他生来就有超凡的力气，唯一的弱点就是他的头发，如果把头发剪下，他就手无缚鸡之力。参孙不尊重以色列人的律法和父母的劝戒，随自己的喜好，娶非利士女子达利拉为妻。非利士人几次想杀死参孙，可惜此人神力，能够一人扛起城门。于是非利士让参孙的妻子大利拉套出参孙神力的原因，起初参孙还有所防备，最后他抵挡不住美色的诱惑说出了自己头发的秘密。他的妻子趁他熟睡时剪掉了他的头发，参孙随后被闯入的非利士人刺瞎双眼。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Blinding-of-Samson.png" alt="The Blinding of Samson"></p>
+<p>这是一幅画啊描绘的是这位英雄人物背叛行为的高潮，我们可以看到尖刀已经刺进参孙的眼睛，后面的士兵勒住参孙，边上还有士兵用手铐拴住参孙的手臂。整个画面相当的残忍，与之对比的是参孙的妻子，她手拿参孙的头发跑去，看不出一丝的悲伤，甚至有些许的喜悦。将整个背叛的场景更富有戏剧化，对比性。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>西方美术史</tag>
+        <tag>伦勃朗</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>世界计划 COLORFUL LIVE 2nd - Will -</title>
     <url>/2023/01/10/PJSK2023Live/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -581,106 +802,6 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       </tags>
   </entry>
   <entry>
-    <title>伦勃朗与维米尔系列：Rembrandt&#39;s Final Years</title>
-    <url>/2023/08/09/RembrandtFinalYears/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="Rembrandt’s-Bankruptcy"><a href="#Rembrandt’s-Bankruptcy" class="headerlink" title="Rembrandt’s Bankruptcy"></a>Rembrandt’s Bankruptcy</h4><p>伦勃朗即是催债人也是欠债人，四处的创新与房贷让他欠下巨款。由于荷兰与英国的战争还在持续，社会经济萧条，伦勃朗根本无法要到欠款，随后，他放弃了自己原先的大房子，买了一个小房子；他四处拍卖自己的作品，却始终不愿意拿出自己最好的作品，自然也买不出什么好的价钱。在伦勃朗51岁那年，他向破产管理委员会申请破产，在破产管理委员会来清点伦勃朗的家当时，留下了他的家当清单，是艺术史上著名的对伦勃朗的史料。</p>
-<p>伦勃朗在他人生的最后十年租了一间朴实的房子，创办了一家艺术公司，继续着自己的创造。归根结底，伦勃朗的破发由以下几点组成：</p>
-<ul>
-<li>荷兰萧条的经济环境。</li>
-<li>伦勃朗缺乏管理的投资结构。</li>
-<li>艺术品位变化：在17世纪中叶，荷兰新生代的崛起，精细笔触、鲜亮色彩、精致比例；破产前两年，伦勃朗扔还留着厚重的笔触，绘画是对现实的虚构，他不在掩盖自己的笔触，表现自己对艺术崭新的理解，是他用笔刷与颜料创造出来的，但并不被当时的人所喜爱。</li>
-<li>伦勃朗私生活导致的信誉危机：完成了夜巡的伦勃朗遭遇了妻子的离世，随后他的女管家一直帮助他管理家务，并且与伦勃朗同居生有一子。新教委员会指控女管家与伦勃朗卖淫，他的女管家被委员会传讯，使伦勃朗的声誉受到了下降。</li>
-</ul>
-<h5 id="The-Anatomy-Lesson-of-Doctor-Joan-Deyman"><a href="#The-Anatomy-Lesson-of-Doctor-Joan-Deyman" class="headerlink" title="The Anatomy Lesson of Doctor Joan Deyman"></a>The Anatomy Lesson of Doctor Joan Deyman</h5><p>在伦勃朗破产后，伦勃朗依然有一些艺术委托。外科医生行会再一次选择伦勃朗让他为当时的会长徳曼医生绘制解剖课群像。这幅作品在大火中被烧毁，但是幸运的是伦勃朗留下了这幅画的图稿。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Anatomy-Lesson-of-Doctor-Joan-Deyman.png" alt="The Anatomy Lesson of Doctor Joan Deyman" style="zoom:23%;" /></p>
-<p>这幅画残存的部分仅有尸体、德曼医生以及他的助手。我们可以看到尸体对摆放相当的富有创意。尸体的摆放直冲画面，呈现仰卧，透视缩短的手法在这幅画上表现的淋漓尽致。伦勃朗参考了北方文艺复兴艺术家曼科尼亚的《哀悼基督》，将尸体解剖震撼的表现出来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Lamentation-of-Dead-Christ.png" style="zoom:30%;" /></p>
-<h4 id="伦勃朗的最后十年"><a href="#伦勃朗的最后十年" class="headerlink" title="伦勃朗的最后十年"></a>伦勃朗的最后十年</h4><p>伦勃朗的最后十年，他追求的并非名誉，而是自由以及自己对艺术的理解。老伦勃朗的画更加的粗犷，留下了生活的笔触，他开始用厚涂法，刷开颜料，展示生活的厚重感。无论是对花神的绘画还是绘制肖像，都能看到伦勃朗这样厚重的笔触。</p>
-<h5 id="Flora-花神"><a href="#Flora-花神" class="headerlink" title="Flora 花神"></a>Flora 花神</h5><p>左为伦勃朗年轻时所画的以其妻子为原型的精美的花神；右图是伦勃朗可能以其女管家为原型的花神，涂料、笔触十分厚重。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Flora-Compare.png" style="zoom:30%;" /></p>
-<h5 id="Rembrandt’s-Portrait-in-his-old-age"><a href="#Rembrandt’s-Portrait-in-his-old-age" class="headerlink" title="Rembrandt’s Portrait in his old age"></a>Rembrandt’s Portrait in his old age</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Portrait-in-aged.png" style="zoom:30%;" /></p>
-<h5 id="Peter-Denying-Christ"><a href="#Peter-Denying-Christ" class="headerlink" title="Peter Denying Christ"></a>Peter Denying Christ</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Peter-Denying-Christ.png" alt="Peter Denying Christ" style="zoom:50%;" /></p>
-<p>这是伦勃朗富有卡拉瓦乔风格的作品，用光线亮度的对比来体现故事情景。绘画的内容是圣经新约，基督预言圣徒彼得三次不认基督，“今日鸡叫之前，你要三次不认得我”。女子一手拿着蜡烛，一手指向彼得，是戏剧冲突的中心。画面中彼得警惕的反驳女子，装作镇定的模样；女子手持蜡烛照亮人物的脸，认为彼得可疑，才认出了彼得。在画面右侧的暗处，耶稣回头看到了彼得，丰富了画面的时空，看似只有一幕，实际上传承了众多了事件。这幅作品体现了彼得在道义上的矛盾与纠结，基督的形象模糊，粗粝，正是伦勃朗晚年经常使用的厚涂颜料手法。</p>
-<blockquote>
-<p>有一个使女看见彼得坐在火光里，就定睛看他说：<br>这个人素来也是同那人一伙的。<br>彼得却不承认，说：<br>女子，我不认得他。</p>
-<p>——《新约·路加福音》22:34</p>
-</blockquote>
-<h4 id="A-Curious-Group-Portrait"><a href="#A-Curious-Group-Portrait" class="headerlink" title="A Curious Group Portrait"></a>A Curious Group Portrait</h4><h5 id="The-Syndics-of-the-Drapers’-Guild-of-Amsterdam"><a href="#The-Syndics-of-the-Drapers’-Guild-of-Amsterdam" class="headerlink" title="The Syndics of the Drapers’ Guild of Amsterdam"></a>The Syndics of the Drapers’ Guild of Amsterdam</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Syndics-of-the-Drapers-Guild-of-Amsterdam.png" alt=""></p>
-<p>布料商人行会邀请伦勃朗绘制其董事会群像。画面中一共有六个人，其中五位是质检布料员，而最后一位站在最后的是管家。其中，一个人正在站起来，伦勃朗依然做到把静态的群像画的富有动感。前五位人物共同看向前方，似乎画面外忽然发生着什么事情。在X光的检测中，伦勃朗多次改动这幅画中人物的姿态，煞费苦心的在故事中体现静态的群像。</p>
-<h4 id="A-Parable"><a href="#A-Parable" class="headerlink" title="A Parable"></a>A Parable</h4><h5 id="Return-of-the-Prodigal-Son"><a href="#Return-of-the-Prodigal-Son" class="headerlink" title="Return of the Prodigal Son"></a>Return of the Prodigal Son</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Return-of-the-Prodigal-Son.png" alt="Return of the Prodigal Son" style="zoom:33%;" /></p>
-<p>伦勃朗的《浪子回头》旨在表达悔过自新得到宽恕。抛开主题看这幅画的手法，一束光从顶上打下来，描绘了老父亲和儿子团聚的情景，他无声的原谅了儿子，而儿子把头埋在了父亲胸前，我们看不到儿子的神情，但也能深刻的体会到他的愧歉与悔过。相比之下过去的艺术家都会刻意的关注儿子的神情，给儿子一个正面或者侧面直接表达他的神态。伦勃朗这样绘制，更是学习了古希腊画家狄曼提斯在描绘阿伽门农牺牲女儿献给狩猎女神的画，这幅作品中，阿伽门农遮住自己的脸背对着画面，来突出自己的悲伤</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Sacrifice-of-Iphigenia.png" style="zoom:23%;" /></p>
-<h4 id="The-Female-Character"><a href="#The-Female-Character" class="headerlink" title="The Female Character"></a>The Female Character</h4><h5 id="Lucretia"><a href="#Lucretia" class="headerlink" title="Lucretia"></a>Lucretia</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Lucretia.png" alt="Lucretia" style="zoom:50%;" /></p>
-<p>在罗马王政末年，卢克雷齐娅遭到强奸后自尽，在她自尽之前，她渴求她的亲友为其报仇，最后她的亲友推翻王政，建立了罗马共和国。伦勃朗这幅画中，一名女子衣装凌乱，手持匕首，眼神虚弱，含着泪水，表达的是令人心碎的悲伤，却无一点索取同情，暗含着伦勃朗对将逝生命的思考以及对自我信念的坚守，可能还包含着保持真我宁死不屈的执着。</p>
-<h4 id="Late-Self-Portraits"><a href="#Late-Self-Portraits" class="headerlink" title="Late Self-Portraits"></a>Late Self-Portraits</h4><h5 id="Self-Portraits-in-1663"><a href="#Self-Portraits-in-1663" class="headerlink" title="Self-Portraits in 1663"></a>Self-Portraits in 1663</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sp1663.png" style="zoom:25%;" /></p>
-<p>在自画像中，过去的艺术家会把他们自己画成一个温文尔雅的社会精英，而非是一个体力劳动者。然而伦勃朗更喜欢把自己朴实的表达出来，画中的人带着艺术家的头巾，褶皱的皮肤，一头卷发以及标志性的支腕仗，象征着自己的辛劳与对艺术的执着。在画面后方有两个半圆，暗示着一幅世界地图或者地球仪，在当时，这象征着伦勃朗对知识的渴求。</p>
-<h5 id="Last-Self-Portraits-Self-Portraits-in-1669"><a href="#Last-Self-Portraits-Self-Portraits-in-1669" class="headerlink" title="Last Self-Portraits: Self-Portraits in 1669"></a>Last Self-Portraits: Self-Portraits in 1669</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sp1669.png" alt=""></p>
-<p>这是63岁的伦勃朗给自己作的自画像。也是在所有自画像中，眼神最明亮，最精锐与最坚定的一幅作品。眼睛是艺术家观察世界，表达时间最重要对伙伴，似乎突出了自己用眼睛探索着世界的一切。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>西方美术史</tag>
-        <tag>伦勃朗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>伦勃朗与维米尔系列：Rembrandt In His Prime</title>
-    <url>/2023/07/22/RembrandtInHisPrime/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Rembrandt-House.png" alt="Rembrandt House"></p>
-<h4 id="Family-and-Daily-Life"><a href="#Family-and-Daily-Life" class="headerlink" title="Family and Daily Life"></a>Family and Daily Life</h4><p>到1640年，伦勃朗34岁，家庭的悲剧让他的绘画风格变得朴素与低沉。让他对家庭的表达从浮华的风格变为了深沉的情感表达。油画的尺寸也缩小了，充满了阴影与自然的力量伦勃朗和他的妻子萨斯其亚生有4个孩子，只有最小的一个存活，而他妻子在生孩子后不久去世(1942年)。在描绘家庭上，伦勃朗总能细腻的柔和的表达出家庭的温情。</p>
-<h5 id="Woman-Asleep-Saskia"><a href="#Woman-Asleep-Saskia" class="headerlink" title="Woman Asleep(Saskia)"></a>Woman Asleep(Saskia)</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Woman-Asleep.png" alt="Woman Asleep" style="zoom:25%;" /></p>
-<h5 id="Saskia-in-her-Room"><a href="#Saskia-in-her-Room" class="headerlink" title="Saskia in her Room"></a>Saskia in her Room</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Saskia-in-her-Room.png" alt="Saskia in her Room"></p>
-<p>伦勃朗的小儿子，Titus van Rijn (22 September 1641 – 4 September 1668) 是唯一存活下来的，也是伦勃朗最疼爱的，伦勃朗从儿子出生开始就为其作画，记录儿子的成长：</p>
-<h5 id="Titus-at-his-Desk"><a href="#Titus-at-his-Desk" class="headerlink" title="Titus at his Desk"></a>Titus at his Desk</h5><p>儿子13岁时的肖像</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-at-his-Desk.png" alt="Titus at his Desk" style="zoom:25%;" /></p>
-<h5 id="Titus-the-Artist’s-Son-Reading"><a href="#Titus-the-Artist’s-Son-Reading" class="headerlink" title="Titus, the Artist’s Son, Reading"></a>Titus, the Artist’s Son, Reading</h5><p>儿子15岁的肖像</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-the-Artists-Son-Reading.png" alt="Titus, the Artist’s Son, Reading" style="zoom:25%;" /></p>
-<h5 id="Titus-the-Artist’s-Son"><a href="#Titus-the-Artist’s-Son" class="headerlink" title="Titus, the Artist’s Son"></a>Titus, the Artist’s Son</h5><p>儿子16岁的肖像</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-the-Artists-Son.png" alt="Titus, the Artist’s Son" style="zoom:25%;" /></p>
-<h5 id="Titus-in-a-Monk’s-Habit"><a href="#Titus-in-a-Monk’s-Habit" class="headerlink" title="Titus in a Monk’s Habit"></a>Titus in a Monk’s Habit</h5><p>儿子19岁的肖像</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Titus-in-a-Monks-Habit.png" style="zoom:25%;" /></p>
-<h4 id="Emulating-the-Masters"><a href="#Emulating-the-Masters" class="headerlink" title="Emulating the Masters"></a>Emulating the Masters</h4><p>伦勃朗一直在思考如何超越前人，在当时，超越前人的前提是效法大师的手法与技艺，效法分为三个阶段：</p>
-<ul>
-<li>Translatio 翻译：学习前人的作品，临摹，理解里面的技艺</li>
-<li>Imitatio 模仿：在自己的作品中添加大师的元素</li>
-<li>Contaminatio 杂糅：将各种技法整合在一起，发挥特色</li>
-</ul>
-<p>最后，发展出自己的风格，做到特立独行，引领时代。伦勃朗也效法了不少前人，比如丢勒、提香等文艺复兴大师。</p>
-<h5 id="The-Pancake-Woman"><a href="#The-Pancake-Woman" class="headerlink" title="The Pancake Woman"></a>The Pancake Woman</h5><p>比如这幅《做煎饼的女人》，就是伦勃朗模仿荷兰画家阿德里安•布鲁维尔Adriaen Brouwer的手法</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Pancake-Woman.png" alt=""></p>
-<h5 id="Self-Portrait-Leaning-on-a-Stone-Sill"><a href="#Self-Portrait-Leaning-on-a-Stone-Sill" class="headerlink" title="Self-Portrait: Leaning on a Stone Sill"></a>Self-Portrait: Leaning on a Stone Sill</h5><p>这幅自画像是伦勃朗模仿提香经典的“大袖子”</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Leaning-on-a-Stone-Sill.png" alt=""></p>
-<h5 id="Self-Portrait-at-the-Age-of-34"><a href="#Self-Portrait-at-the-Age-of-34" class="headerlink" title="Self-Portrait at the Age of 34"></a>Self-Portrait at the Age of 34</h5><p>随后，伦勃朗还结合提香的大袖子和拉斐尔对织物的手法刻画，糅合出另一幅自画像：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Self-Portrait-at-34.png" alt=""></p>
-<p>在伦勃朗36岁时，伦勃朗已经形成了自己别具一格的风格以及老练的手法，也就是在此时，他迎来了自己人生的转折点，迎来了最伟大的一幅作品，The Night Watch</p>
-<h4 id="The-Night-Watch-夜巡"><a href="#The-Night-Watch-夜巡" class="headerlink" title="The Night Watch 夜巡"></a>The Night Watch 夜巡</h4><p>伦勃朗这次是受到火枪民兵队的委托，给18为火枪手民兵队画群像。夜巡这一名字来源于这幅画整体以灰暗色为主，但是据记载，民兵队从来没有在夜晚行动过。伦勃朗没有采用传统的横向布局，将人一一布置好位置。而是采用肖像与叙事结合的手法，来体现出火枪队这一传奇组织。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-night-watch.png" alt=""></p>
-<p>在画面中，人的目光各不相同，先看看两位主角，罗姆波特中士(Sergeant Rombout Kemp)伸出右臂指向画面中央，将我们的视线引向最重要的人物。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail1-NW.png" style="zoom: 33%;" /></p>
-<p>科克上尉的衣着精致，披一条红色的丝绸缎带，缎带的尾端在膝盖处飘摇。他的右手戴着手套，捏着一根手杖——象征着他的权威，左手向前伸出，好像已经要戳破画布，碰到你的脸，他摆出这个手势的意思好像是向身旁的中尉下达命令：整肃队伍，马上出发。</p>
-<p>而他身旁的威廉中尉 (Lieutenant Willem van Ruytenburch） 白色的衣服在强光下泛着光泽，腰间系着一条白色缎带，带跟皮靴质感上佳。而伦勃朗在面中尉的时候遇到了一点小问题，他手中的长枪的尖端直直地指向画面外，角度太大以至于X光射线扫描局部发现伦勃朗在这里涂改过多次。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail2-NW.png" alt=""></p>
-<p>在两人的左侧，有一位小姑娘在亮处。小女孩是光线集中的位置，金色裙子蓝色辉肩，与行会的标志配色一致，暗示着火枪行会，鸡爪也是民兵队的标志。</p>
-<p>在小女孩的左侧，一位士兵好似刚刚放过枪，在为火枪填充弹药。而画面右侧的众人有一位正在瞄准目标，有一位拿着长戟指向前方，都好像预示着前方有一个危机需要民兵队去解除。</p>
-<p>伦勃朗对持枪、装弹的刻画上也是有讲究的，他充分的了解两个东西的模样并精准的画了出来：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail4-NW.png" style="zoom:25%;" /></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail5-NW.png" style="zoom:25%;" /></p>
-<p>画面里，每个人都不是静止的，伦勃朗为每个人都精心安排了一出戏剧，让他们展现自己的模样。你仿佛置身于此，感受一场民兵队传奇的出行。</p>
-<p>由于光线较暗，且并不是按照传统的形式来做的群像，火枪手行会在收藏了这幅作品后，又聘请其他画家在画面的上方加了一个备注，来表示这是火枪行会的群像。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail3-NW.png" alt=""></p>
-<p>伦勃朗从《夜巡》 身上获得的酬金是1800荷兰盾，这是一笔相当大的报酬，每100荷兰盾就相当于现在的1000美金。在这张人物与真人大小相近的巨幅油画中，伦勃朗将动态构圈、明暗对比、和身临其境的声效完美融合，定格了荷兰黄金时代的一个永恒瞬间。在如此多的人物和动作之间，伦勃朗得到了他所追求的和谐。这幅画，也成为了伦勃朗最举世闻名的代名词。</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>西方美术史</tag>
-        <tag>伦勃朗</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>伦勃朗与维米尔系列：The Mysterious Vermeer</title>
     <url>/2023/08/16/TheMysteriousVermeer/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>维米尔于1632年出生于荷兰代尔夫特，在如今的代尔夫特中心广场，代尔夫特斜塔中保存着他的墓石。不同于其他艺术家向往大城市寻求发展，直到1675年去世，他都没有离开过他的故乡。在代尔夫特，他曾四次担任当地的画家协会会长，相比于高产伦勃朗，维米尔目前传世的也就三十多件作品，仿佛绘画并非是维米尔的谋生之道，而是他思考探索艺术的乐趣。维米尔在结婚之后一直住在他的丈母娘家中，在房子中有他的画室，虽然不大，但相当的精致。</p>
@@ -754,6 +875,23 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
         <tag>西方艺术史</tag>
         <tag>维米尔</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2022/08/23/hello-world/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
   </entry>
   <entry>
     <title>对2022的年度总结（二次元篇）</title>
@@ -917,252 +1055,6 @@ norm = ||x||_2 = \sqrt{\sum_{i=1}^{n}{x_i^2}}</script><figure class="highlight p
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2022/08/23/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-      <categories>
-        <category>测试文件</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>伦勃朗与维米尔系列：Rembrandt In Leiden</title>
-    <url>/2023/07/08/RembrandtInLeiden/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><blockquote>
-<p>The interaction of Perception and Expression</p>
-</blockquote>
-<h4 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h4><ul>
-<li><h5 id="视觉艺术大致分为五类："><a href="#视觉艺术大致分为五类：" class="headerlink" title="视觉艺术大致分为五类："></a>视觉艺术大致分为五类：</h5><ul>
-<li><h5 id="Narrative-叙事"><a href="#Narrative-叙事" class="headerlink" title="Narrative 叙事"></a>Narrative 叙事</h5></li>
-<li><h5 id="Portraitare-肖像"><a href="#Portraitare-肖像" class="headerlink" title="Portraitare 肖像"></a>Portraitare 肖像</h5></li>
-<li><h5 id="Genre-风俗"><a href="#Genre-风俗" class="headerlink" title="Genre 风俗"></a>Genre 风俗</h5></li>
-<li><h5 id="Still-Life-静物"><a href="#Still-Life-静物" class="headerlink" title="Still-Life 静物"></a>Still-Life 静物</h5></li>
-<li><h5 id="Landscape-风景"><a href="#Landscape-风景" class="headerlink" title="Landscape 风景"></a>Landscape 风景</h5></li>
-</ul>
-<p>其中维米尔多以风俗画为主，而伦勃朗则多有叙事、肖像、风俗等画作</p>
-</li>
-</ul>
-<h4 id="Nederland-Holland-Golden-Age"><a href="#Nederland-Holland-Golden-Age" class="headerlink" title="Nederland (Holland) Golden Age"></a>Nederland (Holland) Golden Age</h4><blockquote>
-<p>低地、风车、郁金香、以及庄园</p>
-</blockquote>
-<ul>
-<li><p>宗教改革 The Reformation</p>
-<blockquote>
-<p>义人必因信得生</p>
-</blockquote>
-<p>公元1517年，文艺复兴时期，16世纪至17世纪，以马丁·路德为首的教徒发动了一场针对天主教堂的政治革命，其反对天主教需要从外在条件得到救赎的理论，大肆宣传赎罪券等行为，提倡人的救赎应该来源于内心的信念，与上帝直接对话。同时，以加尔文为首的加尔文教派也在进行改革，他们遵循救赎预定论「Predestination」，认为上帝已经将每个人的命运制定完毕，每个人只需要完成上帝的旨意就能得到救赎，值得注意的是，在后期”上帝的旨意”演变为了为上帝制造财富，这便是资本主义一部分的信仰基础。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Luther_Calvin.png" alt="Luther and Calvin" style="zoom:30%;"/></p>
-</li>
-</ul>
-<p>  这场运动贯穿整个神圣罗马帝国，在阿尔卑斯山以北的尼德兰新教徒也在发动革命，他们形成了乌得勒支同盟「Unie van Utrecht」。16世纪中期，加尔文教在尼德兰的教徒迅速增多，因十诫中反对制造偶像，用偶像代替神，加尔文教徒大肆破环圣像，不时发生武装的加尔文教徒同当局和教会的冲突，也正为了80年战争的导火索。</p>
-<p>  <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Iconoclasts_in_a_Church.png" alt="Iconoclasts in a Church" style="zoom:30%;" /></p>
-<p>  在80年独立战争结束后，尼德兰七省联合共和国被西班牙承认独立，世界上第一个去中心化经济结构体系的议会制国家成立，是世界上最早成立的资本主义社会。  </p>
-<ul>
-<li><p>大航海与科学发展 Discovery</p>
-<p>荷兰的黄金时代伴随着大航海的出现，当世界历史的中心从地中海转移到了大西洋，海岸线漫长的荷兰转身成为了欧洲的一大经济中心，它被誉为海上马车夫「Sea Coach」, 共和国将所以海上贸易的城市汇聚成具有武装力量的大型股份制贸易公司，荷兰东印度公司「Dutch East India Company」，在亚洲进行海上贸易。其中，主要为6个城市组成了荷兰东印度公司：Amsterdam、Delft、Rotterdam、Enkhuizen、Middelburg、Hoorm。荷兰在大航海时期经济迅速发展，荷兰迎来黄金时代。在新教理论与文艺复兴对人文主义的宣扬下，经验哲学与实验科学也得到发展，其中最著名的三位便是惠更斯「Huggens」，列文虎克「Leeuwenhock」以及笛卡尔「Descartes」。</p>
-</li>
-</ul>
-<h3 id="Lecture-1-Rembrandt-in-Leiden"><a href="#Lecture-1-Rembrandt-in-Leiden" class="headerlink" title="Lecture 1: Rembrandt in Leiden"></a>Lecture 1: Rembrandt in Leiden</h3><h4 id="Rembrandt-and-his-Self-Portrait"><a href="#Rembrandt-and-his-Self-Portrait" class="headerlink" title="Rembrandt and his Self-Portrait"></a>Rembrandt and his Self-Portrait</h4><p>估计没有人会比伦勃朗更加喜欢画自画像，据统计他一生完成了100多幅自画像，其中他对表情的研究更是出神入化，在他早期曾给自己画过一些列不同表情的自画像：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/SelfPortraitRembrandt.png" alt=""></p>
-<p>除了伦勃朗，同时期北方还有三大画家也曾绘制过自画像，分别是凡艾克、鲁本斯和丢勒：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/North_Portrait2.png" style="zoom:45%;" /></p>
-<p>在荷兰黄金时代，自画像从名门画家的标志变成了每个画家都可以记录自己的方式，随着人文主义自我意识的兴起，自画像成为了一种自传题材，用绘画记录自己的一生。</p>
-<h4 id="Becoming-an-Artist"><a href="#Becoming-an-Artist" class="headerlink" title="Becoming an Artist"></a>Becoming an Artist</h4><p>1606年7月15日伦勃朗出生于荷兰共和国莱顿的一个小磨坊。少年时他被送往拉丁学院学习文科三艺：语法、词汇、逻辑，并在三年后的14岁进入莱顿大学，但显然伦勃朗不太愿意在大学学习，他辍学求师，先后拜访了两位莱顿的画师。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/TheMill.png" alt="The Mill" style="zoom:33%;" /></p>
-<p>Jacob van Swanenburgh是他的第一位师傅，虽然这位师傅的绘画名气不高，但他的师傅25年的意大利留学经历激发了伦勃朗对绘画的热情，在他的培养下，伦勃朗不仅学习了美术的基础手法，还了解了美术相关工具的使用。1624年，他获得了在荷兰当时最著名的画家彼得•拉斯特曼于阿姆斯特丹的画室中当学徒的机会并在拉斯曼手下工作了六个月。彼时，他已经基本掌握油画、素描和蚀刻画的技巧并发展了自己的风格。</p>
-<h5 id="Orestes-and-Pylades-Disputing-at-the-Altar"><a href="#Orestes-and-Pylades-Disputing-at-the-Altar" class="headerlink" title="Orestes and Pylades Disputing at the Altar"></a>Orestes and Pylades Disputing at the Altar</h5><p>俄瑞斯忒斯与皮拉德斯这幅作品是由伦勃朗的第二位师傅Pieter Lastman在1614年创作。俄瑞斯忒斯为父亲报仇弑母后，为了逃离复仇女神的追杀，他们向太阳神阿波罗寻求庇护，于是阿波罗要求他们去将月神黛安娜的雕像取回雅典城。他和皮拉德斯随机前往神殿偷走神像，不过两人立刻被人们囚禁起来，按照当地的习俗，所有陌生人都应直接献给阿尔忒弥斯。当时，负责献祭的阿耳忒弥斯女神是俄瑞斯忒斯的妹妹伊菲革涅亚，她提出可以放一个人帮他把从希腊寄来的信带回家。画面正描述的是朋友两人为争论留下来牺牲喋喋不休的场景，两人都想让对方去送信，让自己留下。最后俄瑞斯忒斯拒绝离开，让皮拉德斯拿走那封信，而他自己留下来等着被杀。皮拉德斯最终同意了，但这封信让俄瑞斯忒斯认出了伊菲革涅亚，并暴露了自己。三人携着阿尔忒弥斯的神像一起成功逃走。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Orestes_and_Pylades_Disputing_at_the_Altar.png" alt="Pieter Lastman"></p>
-<blockquote>
-<p>Lastman’s densely composed compositions, his bright colours and the expressive gestures of his figures – all had an impact on the young Rembrandt.</p>
-</blockquote>
-<p>祭坛的浓烟升起，将画面分为左右两个部分：画中左侧的两人正是俄瑞斯忒斯和皮拉德斯，两人穿着一黑一白，在为谁流下争论不休。在画面右侧的女祭司手拿书信，入迷般的看着两者的争论，她从未见过会有人为了送死而争辩如此激烈。在右侧画面的背景中，有一座月牙形角的雕像便是月神的神像。</p>
-<h4 id="Rembrandt‘s-Early-Printing"><a href="#Rembrandt‘s-Early-Printing" class="headerlink" title="Rembrandt‘s Early Printing"></a>Rembrandt‘s Early Printing</h4><h5 id="Palamedes-before-Agamemnon"><a href="#Palamedes-before-Agamemnon" class="headerlink" title="Palamedes before Agamemnon"></a>Palamedes before Agamemnon</h5><p>在与第二个师傅学习了半年，伦勃朗回家成为独立画家，开展了自己的画室。据史料记载，第一幅伦勃朗的历史画是Palamedes before Agamemnon，伦勃朗在第一次历史画中就展现了极强的艺术水准，他完成这幅画时仅仅20岁，在完成画作后，他也为自己的画作属上了名字。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Palamedes_before_Agamemnon.png" alt="Palamedes before Agamemnon"></p>
-<p>在特洛伊战争开始之前，阿伽门农派遣说客帕拉蒙德斯去说服奥德修斯参战，奥德修斯不愿参战装疯卖傻，用一匹驴和一匹牛去耕地，只见耕车横冲直撞毁坏田地。帕拉蒙德斯当然知道奥德修斯是故意如此，就拉来他儿子站在车前，奥德修斯只好赶紧牵住车辆，被迫参战。奥德修斯一直记恨这件事，在随后他在阿伽门农面前陷害帕拉蒙德斯，最后帕拉蒙德斯被处以叛国罪被乱石扔死。</p>
-<p>在画中，身着红衣跪在地上眼神惊慌的便是帕拉蒙德斯，他有口莫辨，惊慌失措；右边站着的便是奥德修斯，他举起右手，似乎在一一列举帕拉蒙德斯的罪行；很有意思的是他将自己的形象也画在了阿伽门农的右侧，好似自己也在现场，经历着伟大的历史。在色彩的运用上，显然也是深得第二位师傅的技巧，在群像中将主要人物刻画得惟妙惟肖。</p>
-<p>很有趣的是，本来伦勃朗在画完后并没有说明是什么主题与人物，最符合时代背景与人物的便是奥德修斯陷害帕拉蒙德斯的情节。在当时，荷兰共和国还处于80年战争的末期，当权的奥兰治家族处死了一位深受人民爱戴共和国元勋，选择继续与西班牙战争，而这位共和国元勋就被乱石处死，定为叛国罪。</p>
-<h5 id="Tobit-and-Anna-with-the-Kid-Goat"><a href="#Tobit-and-Anna-with-the-Kid-Goat" class="headerlink" title="Tobit and Anna with the Kid Goat"></a>Tobit and Anna with the Kid Goat</h5><p>托比特的忏悔是同年伦勃朗又一幅历史画，故事选自天主教圣经次经的多俾亚传[Book of Tobias]。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Tobit_and_Anna_with_the_Kid_Goat.png" alt="Tobit and Anna with the Kid Goat"></p>
-<p>托比拖是虔诚的老教徒，可在他老年时，他双目失明。有一天他的妻子Anna抱来一头羊，说是买来的。可是托比拖怀疑是他的妻子偷来的并且斥责他的妻子。事后他发现妻子并没有偷这只羊，他坐在椅子上忏悔，“我失明了，也使我的心失明了”。画面中，伦勃朗对服饰的刻画赏心悦目，他对油画的透明度与黏稠度进行了改良并运用到了火焰与布料上，在当时伦勃朗就已经很擅长表达这种细节了。伦勃朗在这幅画作中还突出了生活气息，如果不说是托比拖，说是农民的日常景色也无妨。</p>
-<h4 id="Rembrandt’s-Classment-Lievens"><a href="#Rembrandt’s-Classment-Lievens" class="headerlink" title="Rembrandt’s Classment: Lievens"></a>Rembrandt’s Classment: Lievens</h4><p>伦勃朗还有一个师兄列文，列文用色大胆，主要受到巴洛克大师卡拉瓦乔的影响，运用对比色与明暗光来表达人物，其中最典型作品之一是其作的《以斯帖与亚哈随鲁的盛宴》</p>
-<h5 id="The-Banquet-of-Esther-and-Ahasuerus"><a href="#The-Banquet-of-Esther-and-Ahasuerus" class="headerlink" title="The Banquet of Esther and Ahasuerus"></a>The Banquet of Esther and Ahasuerus</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/TheBanquetofEstherandAhasuerus.png" alt="The Banquet of Esther and Ahasuerus"></p>
-<p>从这幅画中，以斯帖位于画面中央，也是光线最亮的位置，而其一手指向军官，指责其的过失，而亚哈随鲁侧身对军官怒目而视，一手攥拳。而军官则成为众矢之地，只留下了背影来刻画其惊恐的神色。华丽的衣饰、强烈的光线对比与鲜艳的配色非常具有巴洛克艺术风格。</p>
-<p>伦勃朗与这位师兄关系甚好，两人相互学习合作作画，甚至共处一个画室，两人还给对方分别作了肖像。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/RembrandtAndLievens.png" style="zoom:30%;" /></p>
-<p>而相比之下，伦勃朗虽然也学习了卡拉瓦乔的艺术风格，但是此时的伦勃朗用光更加柔和，细腻。</p>
-<h5 id="The-Penitent-Judas-Returning-the-Thirty-Pieces-of-Silver"><a href="#The-Penitent-Judas-Returning-the-Thirty-Pieces-of-Silver" class="headerlink" title="The Penitent Judas Returning the Thirty Pieces of Silver"></a>The Penitent Judas Returning the Thirty Pieces of Silver</h5><p>《犹大忏悔》这幅画中，伦勃朗统一配色，运用点光源技法，将光线铺满这个空间。犹大在右下角合十忏悔，视线注视着出卖基督的银币，而光也合情合理的打在了钱币上，暗示了主题。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Penitent_Judas_Returning_the_Thirty_Pieces_of_Silver.png" alt="The Penitent Judas Returning the Thirty Pieces of Silver" style="zoom:80%;" /></p>
-<p>艺术评论家老惠更斯评价这两位才华横溢，是荷兰可以与意大利艺术家相比较的两位。伦勃朗的笔法更加细腻，列文则更有表现力和创造性。两个年轻人唯一的问题是太自信了。在当时，艺术家在一生中都至少应该去一次意大利来一场精神上的朝圣与艺术的游学，可是这两位却说：我们不用去意大利！</p>
-<h5 id="The-Rich-Man-from-Christ’s-Parable"><a href="#The-Rich-Man-from-Christ’s-Parable" class="headerlink" title="The Rich Man from Christ’s Parable"></a>The Rich Man from Christ’s Parable</h5><p>伦勃朗还有一幅《财主的寓言》也印证了老惠更斯的评论。整个场景被花烛所照亮，贪婪的财主看着手中的金币。书页的质感细腻的体现出来，伦勃朗用刀刮在画面中挂出了书的褶皱。同时，在服装与面容上，伦勃朗有意的去除了他的笔触，把奢侈的袍子精细的刻画出来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_rich_Man_from_Christ’s_Parable.png" alt="The Rich Man from Christ’s Parable"></p>
-<blockquote>
-<p>Vanitas vanitatum omnia vanitas. 虚空的虚空，一切都是虚空。</p>
-<p>——传道书</p>
-</blockquote>
-<p>这幅画也可以体现出伦勃朗对虚空派「Vanitas」静物的认识。在当时的静物画中，有一类画作专门去绘制静谧的青烟、褶皱的书籍、燃尽的蜡烛以及骷髅等物体，这一类在当时称之为虚空派。伦勃朗也在这一幅画中运用了虚空派的静物描写。</p>
-<h4 id="Studies-of-Old-Ages-and-Naturalism"><a href="#Studies-of-Old-Ages-and-Naturalism" class="headerlink" title="Studies of Old Ages and Naturalism"></a>Studies of Old Ages and Naturalism</h4><p>年轻的伦勃朗对老年的姿态也颇有研究，1629年，他画了一系列的头像画「Tronie」，这类画不像肖像画正式，与被画者的身份无关，也是在这时，伦勃朗学会了对皮肤细致的刻画，也为他以后的群像画打下基础。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/StudyOfOld.png" style="zoom:45%;" /></p>
-<p>不仅如此，在生活中伦勃朗也会捕捉平常生活中的景象，在他的手稿上寥寥数笔，记录下生活中的瞬间：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Beggar.png" alt=""></p>
-<p>而正是如此，伦勃朗开始对传统题材进行了大胆的创作。他将过去中刻板的完美的形象都生活化，表达的人物都更加贴近于现实（甚至是不完美的），他的安德梅达更是在当时引起了众多的讨论。</p>
-<h5 id="Andromeda-chained-to-the-Rocks"><a href="#Andromeda-chained-to-the-Rocks" class="headerlink" title="Andromeda chained to the Rocks"></a>Andromeda chained to the Rocks</h5><p>安德梅达是埃塞俄比亚国王刻甫斯「Cepheus」和王后卡西奥佩娅Cassiopeia 的女儿。王后常常夸耀自家女儿，说她比所有的海中女神都要美丽。海神波塞冬听到后，派遣海怪去摧毁埃塞俄比亚。刻甫斯没有办法只好将安德梅达献给海怪。恰巧珀耳修斯路过，国王夫妇恳求他救出他们的女儿，作为条件他可以娶安德罗墨达为妻，并成为埃塞俄比亚的国王。珀尔修斯看见公主时，她的手臂正被拴在坚硬的岩石上，全身赤裸。如果没有微风吹动她的头发，温暖的眼泪从她眼中夺眶而出，他会以为这就是一尊美丽的大理石雕像。最后珀耳修斯杀死了海怪并带走了安德梅达。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Andromeda_chained_to_the_Rocks.png" alt="Andromeda chained to the Rocks" style="zoom: 33%;" /></p>
-<p>在过往的画家中，通常这个主题都会包含安德梅达、海怪与珀耳修斯。</p>
-<p>「左下角：鲁本斯作；右侧：提香作」</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/AndromedaInHistory.png" alt=""></p>
-<p>可是伦勃朗把一个称不上好看的裸体放在画面中，眼神绝望的看着右侧。她看到的究竟是海怪还是珀耳修斯我们不得而知，但是这样去刻画这个主题整个历史上都是空前绝后的。</p>
-<h5 id="The-Painter-in-his-Studio"><a href="#The-Painter-in-his-Studio" class="headerlink" title="The Painter in his Studio"></a>The Painter in his Studio</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Painter_in_his_Studio.png" alt="The Painter in his Studio"></p>
-<p>画室里的艺术家是伦勃朗在1629年完成的，这幅画把艺术家抽象成了客体，而面前的画架成为了主体。画家凝视着画布，好似揣测着画面整体的布局。这是伦勃朗，也是艺术家认可的一种工作状态，荷兰语中形容为”uyt den gheest”，对应着汉语中的胸有成竹。伦勃朗将自己的脸也画在了画中，可能是对自己做画的反思与描绘。</p>
-<h4 id="Rembrandt’s-Student"><a href="#Rembrandt’s-Student" class="headerlink" title="Rembrandt’s Student"></a>Rembrandt’s Student</h4><p>伦勃朗还收了一位徒弟，Gerrit Dou。徒弟窦将伦勃朗的光影技巧与虚空派结合，开创了莱顿画派。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/GerritDou.png" alt="Gerrit·Dou" style="zoom:20%;" /></p>
-<p>他对物体的质感有着独特的把握，也擅长使用障眼法来构造画面。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/DouPrint.png" alt="Dou's Paintings" style="zoom:15%;" /></p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>西方美术史</tag>
-        <tag>伦勃朗</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>针对凸透镜应用于绘画语言的探究</title>
-    <url>/2023/08/16/ConvexMirror/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在历史上，凸透镜一直作为光学仪器被人们所研究，早在亚里士多德时期，他就对凸透镜的成像原理做出过简单的定义；13世纪的阿拉伯世界，阿拉伯人使用凸透镜来制作放大镜。随后，在16世纪的欧洲，伽利略·伽利莱和约翰内斯·凯普勒等科学家对凸透镜的性质和成像原理进行了深入研究。在凸透镜的研制上，随着中世纪文艺复兴时期玻璃吹制的发展，当时的人已经可以用较低的成本制作出精确、平滑的凸透镜，随之而来的是凸透镜在装饰上以及科学领域的双向发展。在一边，欧洲的贵族家庭开始将凸透镜作为装饰品挂在墙上，另一侧，显微镜、望远镜等精密仪器的出现推动着人们踏入微观与宇宙的世界。</p>
-<p>伴随着凸透镜制造技术的发展，凸透镜作为绘画语言开始兴起于艺术作品中：凡·艾克（<em>Jan van Eyck</em>）在1434年的《阿尔诺芬尼夫妇像》（<em>Arnolfini Portrait</em>）利用凸透镜将房间的背面展示出来；帕尔米贾尼诺（Parmigianino）在1524年对着凸透镜所作《透镜下的自画像》（<em>Self-portrait in a Convex Mirror</em>）；罗伯特·坎平（<em>Robert Campin</em>）在1438年的祭坛画《施洗者约翰》（<em>Saint John and donor</em>）等等。到了20世纪，澳大利亚肖像画师兰伯特（<em>George Washington Lambert</em>）也描绘一幅在透镜中的房间《凸透镜》（<em>The convex mirror</em>）。凸透镜在绘画中也成为一个重要的绘画语言。</p>
-<p>虽然对于很多绘画，比如凡·艾克的《阿尔诺尼夫妇像》，已经有相当多的学者对凸透镜在画中的含义做出各自的解读，但是先前的分析还很少有对凸透镜这一个体对绘画艺术的宏观影响作出分析，此文章将凸透镜同时视为一个绘画工具与艺术元素进行探索：</p>
-<ul>
-<li>凸透镜作为光学工具对当时绘画方式的影响</li>
-<li>凸透镜技巧在绘画中的含义，即艺术家使用凸透镜，相比于直接对平面作画，有何差异及用意</li>
-<li>凸透镜对艺术家观察真实事物的改变</li>
-</ul>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Parmigianino_Selfportrait.jpg" style="zoom:10%;" /></p>
-<h3 id="凸透镜对绘画方式的影响"><a href="#凸透镜对绘画方式的影响" class="headerlink" title="凸透镜对绘画方式的影响"></a>凸透镜对绘画方式的影响</h3><blockquote>
-<p>Vasari says, “Francesco one day set himself to take his own portrait, looking at himself for that purpose In a convex mirror, such as is used by barbers … He accordingly caused a ball of wood to be made By a turner, and having divided it in half and Brought it to the size of the mirror, he set himself With great art to copy all that he saw in the glass,” Chiefly his reflection, of which the portrait Is the reflection once removed</p>
-</blockquote>
-<p>文艺复兴时期艺术评论家瓦萨里曾经提到过帕尔米贾尼诺作《透镜中的自画像》这一情景，帕尔米贾尼诺在理发师的工坊里看到了一面凸透镜，于是他把手放在镜前观察着由透镜带来的视觉上的扭曲与放大感。过去有一位学者David G.Stork根据《透镜中的自画像》进行了计算机建模，他的模型根据瓦萨里对帕尔米贾尼诺的描述设计，建立了一个包括凸面镜在内的帕尔米贾尼诺工作室的完整计算机图形模型。凸面镜的曲率半径与木板支撑的曲率半径相匹配（符合瓦萨里后续对帕尔米贾尼诺看到的透镜的描述）。他发现画中的图像与从稍微重新定向和重新定位的镜子中绘制的简单的水平直线房间是一致的。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/computer_recover.png" alt=""></p>
-<p>从他们的研究中我们可以发现：</p>
-<ul>
-<li>画家极有可能是对着凸面镜进行作画的，面向透镜的作画方式已经可以实现</li>
-<li>窗户、天花板横梁的变形和位置，尤其是连接后墙和天花板的倾斜孤线，确实与艺术家的房间布局一致，符合光学扭曲</li>
-</ul>
-<p>除了帕尔米贾尼诺直接把凸透镜成的像作为绘画作品外，艺术家们还常常把成像作为另一个绘画空间，添加在画面中（如凡·艾克的《阿尔诺芬尼夫妇》）。事实上对于任何艺术家来说，在不用凸透镜的情况下把现实中的事物通过恰当的扭曲并且与透镜中呈现的光学现象完全一致几乎是不可能的。正因如此，凸透镜给予了画家机会去在原本的绘画平面中构造一层新的绘画空间，在过去艺术家也尝试过创造过多重视觉空间。荷兰画家格利特·窦（Gerard Dou）就常用障眼法来创造出特别的视觉效果，在他的一张自画像中，一个男人靠在窗台上，抽着烟斗看着我们。窦使用障眼法，创造了窗内和窗外两个空间，窗台上那本打开的书似乎从窗户伸到我们的空间里，挂在铜杆上的窗帘仿佛就在画外，一拉上就能把画面遮住。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Gerard_Dou_-_Self-Portrait_-_WGA06660.jpg" style="zoom:5%;" /></p>
-<p>因而，利用凸透镜作画给予了画家一个全新的方式去创造一个新的空间，来进一步帮助他们展示其想表达的事物与意义。同时，凸透镜带来的真实的光学扭曲使得整个艺术作品跟有表现力。</p>
-<h3 id="凸透镜技巧的应用鉴赏"><a href="#凸透镜技巧的应用鉴赏" class="headerlink" title="凸透镜技巧的应用鉴赏"></a>凸透镜技巧的应用鉴赏</h3><h4 id="扭曲手法的表现力"><a href="#扭曲手法的表现力" class="headerlink" title="扭曲手法的表现力"></a>扭曲手法的表现力</h4><p>如果说平面镜是对现实真实的还原，那么凸透镜就是对现实真实的“扭曲”与“放大”。关于扭曲，通过对画面的夸张或者扭曲来突出主题在艺术史上还是较为常见的，比如说爱德华·蒙克的《呐喊》或者卡拉瓦乔的《美杜莎》。在蒙克的《呐喊》中，大胆的扭曲将手法将所有线条似乎都趋向版画上惟一的中心——那个高声呼喊的如同骷髅般的头部，把人物的恐惧、焦虑与绝望通过这种类漫画式的模样表达出来，直击人心。而卡拉瓦乔的美杜莎虽然没有蒙克那样夸张，但也将美杜莎将死时的愤恨通过脸部表情的扭曲凸显出来，塑造了一幅骇人的面庞。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Caravaggio_-_Medusa_-_Google_Art_Project.jpg" style="zoom:8%;" /></p>
-<p>凸透镜同样给予画家另一种观察扭曲、表达扭曲的方法。不同于《呐喊》或者《美杜莎》对一个细节的夸张（甚至是虚假、表现主义的夸张）与扭曲。凸透镜的成像是和谐的，现实主义的，却在这种写实中添加了魔幻色彩，夸张了原有的真实。宛如一个连接着真实与理想的桥梁，在和谐中给予了作者表达自我，超越真实的机会。让我们再说回帕米贾尼诺的《凸面镜的自画像》，艺术家刻意将自己的手放在镜前，并发生扭曲，是整个画面最引人注意的。有人推测，20岁的艺术家渴望得到人们的注意，表达自己的才华，便把自己的手作为重点，暗示自己的才华。在整个过程中，艺术家事实上是对镜中的像进行了复刻，在写实的同时利用透镜突出了“自我”这一主题。</p>
-<h4 id="边缘虚化的失焦画法"><a href="#边缘虚化的失焦画法" class="headerlink" title="边缘虚化的失焦画法"></a>边缘虚化的失焦画法</h4><p>北方文艺复兴时期，暗箱可能成为辅助画家观察景物、绘制画面的工具。通过暗箱，艺术家可以更加直观的感受到光线对于现实物体的影响并相对准确的呈现在画面上中，更重要的是，暗箱成像如同照片一般会显示出画面中的焦点以及远处的失焦物体，因而在通过暗箱绘画物体时，艺术家往往会开始呈现出一部分的精确的聚焦与模糊的失焦。类比于暗箱，艺术家通过直接观察凸透镜的画面也可以观察到这一现象。在《凸面镜的自画像》中，可能是画面在岁月中产生的损害，也可能是艺术家有意为之，在画面的左上角，即窗户的位置，我们能明显的观察到玻璃是被模糊化的，而艺术家对自己形象的刻画，无论是画面的中心——人像以及那“巨大”的手，我们都能看到其细致的纹理，整个画面如同相片般聚焦在人物中央，光线从镜子到人像再到远处的窗户连成一线，真实的形成了人物的聚焦以及远处玻璃的失焦。在1916年兰伯特的《凸透镜》中，这一现象被描绘的更加显著，我们可以发现整个画面从左至右依次站着四个人物，从近到远，而这四个人的面容也相应的从清晰到模糊，将失焦这一现象准确的描绘了出来。</p>
-<p>值得注意的是另一幅艺术作品，荷兰画家卡雷尔（Carel Fabritius）对代尔夫特一个街景的描绘《A View of Delft》，这幅画面尽管有人猜测这是艺术家面对这凸透镜对街道广角的绘制，但本文并不认可这样的观点，尽管画面呈现出类似于广角镜一样的视觉效果，但是我们可以看到从教堂往右方向，并没有像凸透镜般发生光学上的弯曲，如果把作品认定为透镜下的观察，笔直的树木以及房屋反而带来了一种突兀以及不和谐感。同时，不像上文所说，远处的房屋在放大后也清晰可辨，连窗户分造型都是精准清晰的，不符合对透镜失焦的表述。这幅画更有可能是利用了一种独特的透视手法，如同另一位荷兰艺术家Pieter Janssens Elinga在其作品《透视盒》（Perspective box）一样，是一种透视的表达。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Convex_Mirror_(c_1916)_George_Washington_Lambert_002.jpg" style="zoom:25%;" /></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/FabritiusViewOfDelft.jpg" style="zoom:8%;" /></p>
-<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>除了其在自然科学上的重要意义，凸透镜在艺术史上也发挥着自己的作用。通过研究，凸透镜已经逐渐成为文艺复兴时期艺术家使用的绘画语言以及工具，它给予了艺术家一种新的形式去创造艺术作品，提升了艺术作品的维度，开创了一个新式的在写实中表达抽象的艺术手段，在奇幻感中、扭曲的线条中提供了表现力。与此同时，凸透镜作为暗箱的前身，给予了艺术家对失焦这一概念的观察，绘画不一定将所有的物体都清晰准确的表达出来，还可以通过失焦来描述现实。</p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>[1]  Criminisi A, Kemp M, Kang S B. Reflections of reality in Jan van Eyck and Robert Campin[J]. Historical Methods: A Journal of Quantitative and Interdisciplinary History, 2004, 37(3): 109-122.</p>
-<p>[2]  D. Ekserdjian, Parmigianino, Yale University Press, New Haven, CT, 2006.</p>
-<p>[3]  Gombrich E H, Gombrich E H. The story of art[M]. London: Phaidon, 1995.</p>
-<p>[4]  Stork D G, Furuichi Y. Reflections on Parmigianino’s self portrait in a convex mirror: a computer graphics reconstruction of the artist’s studio[C]//Computer Vision and Image Analysis of Art. SPIE, 2010, 7531: 149-157.</p>
-<p>[5]  Usami Y, Stork D G, Fujiki J, et al. Improved methods for dewarping images in convex mirrors in fine art: applications to van Eyck and Parmigianino[C]//Computer vision and Image analysis of art II. SPIE, 2011, 7869: 119-129.</p>
-]]></content>
-      <categories>
-        <category>学习笔记</category>
-      </categories>
-      <tags>
-        <tag>西方艺术史</tag>
-        <tag>凸透镜</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>日式麻将个人技巧[持续更新中...]</title>
-    <url>/2022/08/28/mahjong/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<font color=FF7F50 size=6 >人，一定要有梦想
-
-——献给每一个尝试国士无双的雀士们</font>
-
-
-</blockquote>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>说到日式麻将最大的特色，就是”役”的存在，役越多，和牌分数越高。日麻和牌简单，但是做大牌就需要一定的技巧以及耐心。我们在此不妨把一局分成两个阶段：做牌与防守。</p>
-<h3 id="做牌"><a href="#做牌" class="headerlink" title="做牌"></a>做牌</h3><blockquote>
-<p>不吃不碰才有大成长！</p>
-<p>——作者本人</p>
-</blockquote>
-<p>做牌，就是做大牌，前提就是玩家要知道各种牌型，这里作者就介绍几种作者常用的牌型</p>
-<h4 id="常见牌型"><a href="#常见牌型" class="headerlink" title="常见牌型"></a>常见牌型</h4><p>以下是作者推荐的比较容易记住的基本牌型</p>
-<ul>
-<li>断幺九[一番]：和牌时牌中不含有数字一九和东南西北白中发 <span class="heimu" title="你知道的太多了">新手雀士最爱</span></li>
-<li>役牌[一番]：凑成刻子(三连)或杠子，可以碰；点数可叠加<ul>
-<li>场风：即本场的风向（如东N局，南N局）</li>
-<li>自风：玩家面前的风向</li>
-<li>三元牌：白、中、发</li>
-<li><span class="heimu" title="你知道的太多了">三元牌对越多越好，甚至能误打误撞做成小三元</li>
-</ul>
-</li>
-<li>一杯口：一组相同的顺子<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/一杯口.png" alt=""></li>
-<li>平和：和牌时只有顺子，雀头不能是自风或场风或三元牌</li>
-<li>对对和[二番]:全是刻子、杠子<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/对对和.png" alt=""></li>
-<li>七对子[二番]:七副对子(只能门前清)<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/七对子.png" alt=""></li>
-<li>混一色[不吃不碰三番/二番]:同花色的牌+字牌</li>
-<li>清一色[不吃不碰六番/五番]</li>
-</ul>
-<h4 id="立直"><a href="#立直" class="headerlink" title="立直"></a>立直</h4><p>如果牌太散无法凑出牌型，这里建议全程不吃不碰争取<strong>立直</strong>，即门前淸时，支付1000点宣告听牌，立直后只能暗杠与和牌。</p>
-<h4 id="其他役"><a href="#其他役" class="headerlink" title="其他役"></a>其他役</h4><p>还有一些常见的役如:</p>
-<ul>
-<li>一发：立直后，在一巡内完成和牌。并且，期间不能有人的吃、碰、杠、拔北</li>
-<li>岭上开花：杠后摸岭上牌补牌时自摸</li>
-<li>海底捞月：自摸最后一张牌</li>
-<li>河底摸鱼：和最后一张打出的牌</li>
-</ul>
-<p>都是麻将中的被动役，运气到了自然水到渠成，无需特意准备</p>
-<h4 id="做牌心得"><a href="#做牌心得" class="headerlink" title="做牌心得"></a>做牌心得</h4><ol>
-<li><p>发牌之后<br>快速理清自己不需要什么牌，如非场风非自风牌，不成对子的白中发，一和九（三麻中的万字）在换好牌后，重新审视自己的牌并确定方向</p>
-</li>
-<li><p>争取立直</p>
-<p>在做牌中，如果追求只胜利和牌，在做牌中推荐：</p>
-<blockquote>
-<p>碰役牌&gt;断幺九/立直&gt;其他牌型</p>
-</blockquote>
-<p>如果追求大牌，由于立直可以和很多牌型配合，还是建议在听牌前不吃不碰</p>
-</li>
-<li><p>敢于想象</p>
-<p>这一条适用于在做混一色或者七对子时，在做牌时如果手牌上是顺子，因为对于七对子来说对子就是完成任务，对于听顺子34，来牌无非就是2，3，4，5有效，而来了2或5顺子完成了，来了3或4对子就完成了，实际上凑对子的概率和顺子是相同的，为什么不走掉顺子换对子呢？</p>
-<p> <span class="heimu" title="你知道的太多了">七对子甚至可以转对对和</p>
-<p>在混一色中，如果其他色牌不需要，还是要耐心等待换牌，在途中可以吃碰，一心瞄准这一个目标。最坏就是一心防守分数不涨。</p>
-</li>
-</ol>
-<h3 id="防守"><a href="#防守" class="headerlink" title="防守"></a>防守</h3><p>由于结算机制，我们可以发现，不和牌不可怕，可怕的是自己被和牌，只要不扣分，基本可以苟到第二，很多时候，优秀的防守比进攻更加重要</p>
-<h4 id="立直防守"><a href="#立直防守" class="headerlink" title="立直防守"></a>立直防守</h4><p>上面作者非常支持大家去立直，但是如果场上已经有人立直的情况下，如果剩牌较少，可以碰碰运气，但剩余较多便不建议立直，毕竟立直意味着挂机，容易给别人和牌的同时被人防守，相对来讲，越早立直越好<span class="heimu" title="你知道的太多了">就像越早听牌越好一样这不是废话吗</p>
-<h4 id="观察弃牌"><a href="#观察弃牌" class="headerlink" title="观察弃牌"></a>观察弃牌</h4><ol>
-<li><p>由于任何玩家都不能和已经和过的牌，且在出牌过程中其他玩家也面临着这样的选择，要根据此记录对面不和什么牌</p>
-</li>
-<li><p>纵使可以从弃牌堆里看出对面大概不要什么类型的牌，也不能因此打出这一类的牌，要记住，100%的确定性永远比赌来的重要，如果已经到轮牌中后期（剩40%左右）哪怕拆开自己的牌型，为了防守也是值得的</p>
-</li>
-</ol>
-<h4 id="中期换牌"><a href="#中期换牌" class="headerlink" title="中期换牌"></a>中期换牌</h4><p>在中期开始做牌时，如果发到已经打过较多的字牌（东南西北白中发）不妨留一手，这些牌在后期是较为保险不易被和的，借此甩掉一些用处不大的牌</p>
-<h4 id="末期阶段"><a href="#末期阶段" class="headerlink" title="末期阶段"></a>末期阶段</h4><p>如果到了仅剩15张时还没有听牌，不妨放弃原有的思路，哪怕是振听也要将自己听牌，以免无人和牌后结算时被罚分</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>游戏毕竟是分数结算，所以不扣分其实就变成了胜利的关键。运气好就做大牌，运气不好不扣分，是计分游戏上分的关键。</p>
-<p>祝愿大家早日国士无双！</p>
-<p><br><br><br><br><br></p>
-<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>[1] 本文部分图文摘自日麻中文维基百科<a href="https://wiki.lingshangkaihua.com/mediawiki/index.php/役種表">https://wiki.lingshangkaihua.com/mediawiki/index.php/役種表</a></p>
-]]></content>
-      <categories>
-        <category>个人心得</category>
-      </categories>
-      <tags>
-        <tag>游戏</tag>
-        <tag>日式麻将</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数学建模算法：K-Means聚类算法</title>
     <url>/2023/08/23/kmeans/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>聚类属于无监督学习，指在没有参照系下对样本集合进行分组，这种分组往往是无标签化的，即分类后无法知道这一类的意义，仅仅是在特征上具有较大相似性。K-means算法是常见的聚类算法，在给定分类组数的情况下算法自动进行分类。</p>
@@ -1229,26 +1121,6 @@ X = [x_1, x_2, \dots, x_d]^T, d \ refers\  to\  the\  Dimension</script><p>常�
         <tag>算法</tag>
         <tag>数学建模</tag>
         <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>晓山瑞希HappyBirthday</title>
-    <url>/2022/08/27/mzkHappyBirthday/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<font color=#DDAACC size=6 >祝最可爱的MIZUKI生日快乐！</font>
-
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2146.JPG" alt=""></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2148.JPG" alt=""></p>
-<p><span class="heimu" title="你知道的太多了">警惕网恋mzk被骗3000石(就是作者自己)</span></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2138.JPG" alt=""></p>
-]]></content>
-      <categories>
-        <category>二次元</category>
-      </categories>
-      <tags>
-        <tag>世界计划</tag>
-        <tag>晓山瑞希</tag>
       </tags>
   </entry>
   <entry>
@@ -1357,85 +1229,84 @@ CR = \frac{CI}{RI} ， CI = \frac{\lambda_{max}-n}{n-1}</script><p>其中$\lambd
       </tags>
   </entry>
   <entry>
-    <title>从零开始的大学生活：初来UNNC</title>
-    <url>/2022/09/13/nbndh/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="初来宁波"><a href="#初来宁波" class="headerlink" title="初来宁波"></a>初来宁波</h3><blockquote>
-<p>宁波，取自“海定则波宁”，简称“甬”，早在周朝已有此称。“甬”字是古代大钟的一个象形字，在鄞、奉两县的县境上，山的峰峦很像古代的覆钟，故叫甬山，这条江就叫甬江，这一带地方就称为“甬”地。</p>
-</blockquote>
-<p>从上海前往宁波，若不是绕行杭州一带，直接走杭州湾跨海大桥，也就2小时左右。这一绕路，正逢中秋盛时天文大潮，虽没有到奔腾汹涌之势，一行白浪宛如千里雪骑，逆流而上，亦有浪遏飞舟之意。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2485.png" style="zoom:10%;" /></p>
-<p>宁波分成老的市中心和东部新城，UNNC算是在南部的机场附近了。抵达宁波最大的感受是整个城市繁华却又不失人文的情怀。放眼城市，并不像上海一般高楼丛生，错中复杂，中间的老城区只能唉声叹气，等待着时代的淘汰，流离失所。宁波有展现其雄姿的高楼大厦，也有如欧洲小镇般的别墅街道，每走几个街道，就会有一个像样的公园点缀着生活。不得不说，宁波的城市干净，整洁，老建筑与新建筑融为一体，显得融洽。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2501.png" style="zoom:10%;" /></p>
-<blockquote>
-<p>宁波老外滩，坐落于浙江省宁波市江北区三江口（甬江、奉化江和余姚江的三江汇流之地）的北岸江北区，是进入宁波古城的门户。 在唐朝为中国四大港口之一，并成为鉴真东渡的起点；在南宋为中国三大港口之一，并设立市舶司专门负责管理对外贸易；当《南京条约》签订后，宁波便成为“五口通商”口岸之一，并于1844年正式开埠。</p>
-</blockquote>
-<p>正逢中秋，晚间来到了宁波的老外滩，据当地的同学说，这里难得有这么多人，岸边坐满了赏月拍照的人，无论哪里，无论城市与乡村，观赏天空永远能给予人们慰藉。宁波的外滩中，小巷里的酒吧永远是最热闹的，在江边吹着风，与友人喝上一杯，岂不美哉。再附上两张月亮的照片吧！</p>
-<center class="half">
-    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2687.JPG" width="40%" />
-    &emsp;
-    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2685.JPG" width="40%" />
-</center>
+    <title>日式麻将个人技巧[持续更新中...]</title>
+    <url>/2022/08/28/mahjong/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<font color=FF7F50 size=6 >人，一定要有梦想
 
-<hr>
-<h3 id="进入UNNC"><a href="#进入UNNC" class="headerlink" title="进入UNNC"></a>进入UNNC</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2569.png" style="zoom:15%;" /></p>
-<p>好吧，人很多，但是寝室楼真的很好看，进来了之后简单整理了一下</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_D288D71429C4-1.jpeg" style="zoom:30%;" /></p>
-<p>太美丽了！感觉达到UNNC最高层。之后品鉴一下食堂，有空出一份食堂品鉴文章。</p>
+——献给每一个尝试国士无双的雀士们</font>
+
+
+</blockquote>
+<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>说到日式麻将最大的特色，就是”役”的存在，役越多，和牌分数越高。日麻和牌简单，但是做大牌就需要一定的技巧以及耐心。我们在此不妨把一局分成两个阶段：做牌与防守。</p>
+<h3 id="做牌"><a href="#做牌" class="headerlink" title="做牌"></a>做牌</h3><blockquote>
+<p>不吃不碰才有大成长！</p>
+<p>——作者本人</p>
+</blockquote>
+<p>做牌，就是做大牌，前提就是玩家要知道各种牌型，这里作者就介绍几种作者常用的牌型</p>
+<h4 id="常见牌型"><a href="#常见牌型" class="headerlink" title="常见牌型"></a>常见牌型</h4><p>以下是作者推荐的比较容易记住的基本牌型</p>
+<ul>
+<li>断幺九[一番]：和牌时牌中不含有数字一九和东南西北白中发 <span class="heimu" title="你知道的太多了">新手雀士最爱</span></li>
+<li>役牌[一番]：凑成刻子(三连)或杠子，可以碰；点数可叠加<ul>
+<li>场风：即本场的风向（如东N局，南N局）</li>
+<li>自风：玩家面前的风向</li>
+<li>三元牌：白、中、发</li>
+<li><span class="heimu" title="你知道的太多了">三元牌对越多越好，甚至能误打误撞做成小三元</li>
+</ul>
+</li>
+<li>一杯口：一组相同的顺子<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/一杯口.png" alt=""></li>
+<li>平和：和牌时只有顺子，雀头不能是自风或场风或三元牌</li>
+<li>对对和[二番]:全是刻子、杠子<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/对对和.png" alt=""></li>
+<li>七对子[二番]:七副对子(只能门前清)<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/七对子.png" alt=""></li>
+<li>混一色[不吃不碰三番/二番]:同花色的牌+字牌</li>
+<li>清一色[不吃不碰六番/五番]</li>
+</ul>
+<h4 id="立直"><a href="#立直" class="headerlink" title="立直"></a>立直</h4><p>如果牌太散无法凑出牌型，这里建议全程不吃不碰争取<strong>立直</strong>，即门前淸时，支付1000点宣告听牌，立直后只能暗杠与和牌。</p>
+<h4 id="其他役"><a href="#其他役" class="headerlink" title="其他役"></a>其他役</h4><p>还有一些常见的役如:</p>
+<ul>
+<li>一发：立直后，在一巡内完成和牌。并且，期间不能有人的吃、碰、杠、拔北</li>
+<li>岭上开花：杠后摸岭上牌补牌时自摸</li>
+<li>海底捞月：自摸最后一张牌</li>
+<li>河底摸鱼：和最后一张打出的牌</li>
+</ul>
+<p>都是麻将中的被动役，运气到了自然水到渠成，无需特意准备</p>
+<h4 id="做牌心得"><a href="#做牌心得" class="headerlink" title="做牌心得"></a>做牌心得</h4><ol>
+<li><p>发牌之后<br>快速理清自己不需要什么牌，如非场风非自风牌，不成对子的白中发，一和九（三麻中的万字）在换好牌后，重新审视自己的牌并确定方向</p>
+</li>
+<li><p>争取立直</p>
+<p>在做牌中，如果追求只胜利和牌，在做牌中推荐：</p>
+<blockquote>
+<p>碰役牌&gt;断幺九/立直&gt;其他牌型</p>
+</blockquote>
+<p>如果追求大牌，由于立直可以和很多牌型配合，还是建议在听牌前不吃不碰</p>
+</li>
+<li><p>敢于想象</p>
+<p>这一条适用于在做混一色或者七对子时，在做牌时如果手牌上是顺子，因为对于七对子来说对子就是完成任务，对于听顺子34，来牌无非就是2，3，4，5有效，而来了2或5顺子完成了，来了3或4对子就完成了，实际上凑对子的概率和顺子是相同的，为什么不走掉顺子换对子呢？</p>
+<p> <span class="heimu" title="你知道的太多了">七对子甚至可以转对对和</p>
+<p>在混一色中，如果其他色牌不需要，还是要耐心等待换牌，在途中可以吃碰，一心瞄准这一个目标。最坏就是一心防守分数不涨。</p>
+</li>
+</ol>
+<h3 id="防守"><a href="#防守" class="headerlink" title="防守"></a>防守</h3><p>由于结算机制，我们可以发现，不和牌不可怕，可怕的是自己被和牌，只要不扣分，基本可以苟到第二，很多时候，优秀的防守比进攻更加重要</p>
+<h4 id="立直防守"><a href="#立直防守" class="headerlink" title="立直防守"></a>立直防守</h4><p>上面作者非常支持大家去立直，但是如果场上已经有人立直的情况下，如果剩牌较少，可以碰碰运气，但剩余较多便不建议立直，毕竟立直意味着挂机，容易给别人和牌的同时被人防守，相对来讲，越早立直越好<span class="heimu" title="你知道的太多了">就像越早听牌越好一样这不是废话吗</p>
+<h4 id="观察弃牌"><a href="#观察弃牌" class="headerlink" title="观察弃牌"></a>观察弃牌</h4><ol>
+<li><p>由于任何玩家都不能和已经和过的牌，且在出牌过程中其他玩家也面临着这样的选择，要根据此记录对面不和什么牌</p>
+</li>
+<li><p>纵使可以从弃牌堆里看出对面大概不要什么类型的牌，也不能因此打出这一类的牌，要记住，100%的确定性永远比赌来的重要，如果已经到轮牌中后期（剩40%左右）哪怕拆开自己的牌型，为了防守也是值得的</p>
+</li>
+</ol>
+<h4 id="中期换牌"><a href="#中期换牌" class="headerlink" title="中期换牌"></a>中期换牌</h4><p>在中期开始做牌时，如果发到已经打过较多的字牌（东南西北白中发）不妨留一手，这些牌在后期是较为保险不易被和的，借此甩掉一些用处不大的牌</p>
+<h4 id="末期阶段"><a href="#末期阶段" class="headerlink" title="末期阶段"></a>末期阶段</h4><p>如果到了仅剩15张时还没有听牌，不妨放弃原有的思路，哪怕是振听也要将自己听牌，以免无人和牌后结算时被罚分</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>游戏毕竟是分数结算，所以不扣分其实就变成了胜利的关键。运气好就做大牌，运气不好不扣分，是计分游戏上分的关键。</p>
+<p>祝愿大家早日国士无双！</p>
+<p><br><br><br><br><br></p>
+<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>[1] 本文部分图文摘自日麻中文维基百科<a href="https://wiki.lingshangkaihua.com/mediawiki/index.php/役種表">https://wiki.lingshangkaihua.com/mediawiki/index.php/役種表</a></p>
 ]]></content>
       <categories>
-        <category>生活记录</category>
+        <category>个人心得</category>
       </categories>
       <tags>
-        <tag>诺丁汉</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>主播降临原神必胜客餐厅</title>
-    <url>/2022/09/01/opcomment/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>主播不是原p,主播不是原p,主播不是原p</p>
-<h3 id="先来看看原P们的丑态"><a href="#先来看看原P们的丑态" class="headerlink" title="先来看看原P们的丑态"></a>先来看看原P们<span class="heimu" title="你知道的太多了">的丑态</span></h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2245.JPG" alt=""></p>
-<blockquote>
-<p>环球港必胜客餐厅</p>
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原1.png" alt=""></p>
-<blockquote>
-<p>瑞红坊必胜客餐厅</p>
-</blockquote>
-<h4 id="事情经过"><a href="#事情经过" class="headerlink" title="事情经过"></a>事情经过</h4><p>主播原来不是原P，在经友人推荐后<span class="heimu" title="你知道的太多了">强迫</span>前往了最新最潮的原神餐厅，当时是12点左右到的，餐厅门前已经挤满了人。在排队的过程中主播了解到很多人都是在10点前早早前往拿号。</p>
-<p>在12点30左右，店家开始叫号（就是那种从01开始的那种）。主播看着自己手上的77号感觉有点崩溃</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原2.png" alt=""></p>
-<p>大概在1点半左右，主播做出重大决定，前往KFC先垫点吃的</p>
-<blockquote>
-<p>到达原P聚集处——必胜客</p>
-<p>太美丽了吧必胜客</p>
-<p>诶哟这不是KFC吗</p>
-<p>还是看看手上的原味鸡吧</p>
-</blockquote>
-<p><span class="heimu" title="你知道的太多了"><del>必胜客你就是歌姬吧</del></span></p>
-<p><span class="heimu" title="你知道的太多了">群友的攻击性好强</span></p>
-<p>到了下午三点半，人越来越少，主播上前询问服务员：</p>
-<blockquote>
-<p>主播：您好，您看我这号还有机会吗</p>
-<p>工作人员：您这个就像是一个癌症晚期患者说的话一样。他都已经这样了，你为什么不顺从他呢?你总要给人最后一段时间一个好的回忆吧，最后的时光里。因为60这个号很尴尬，50再往下一点，三十四十，可能说，欸，有点实力，能操作一下。80往上，九十一百，啊，人家是纯属混个号的，因为太遥远了，自己也知道自己没什么竞争力。但77，上不去下不来的这个号</p>
-</blockquote>
-<p><span class="heimu" title="你知道的太多了">原文：今天已经结束了，您肯定拍不到了，把号退了吧</span></p>
-<p>然后主播就只能退号了</p>
-<h3 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h3><p>主播写文章时，看到了很多网友们也是花了4个多小时等到了座位，体验了一番，其中有一句话令主播很是认可</p>
-<blockquote>
-<p>如果不是原，我真的不知道自己身边有必胜客</p>
-</blockquote>
-<p>在带动消费上，二次元市场在近年的表现可以说让人又爱又恨，“二次元真好骗”，利用ip似乎已经成为了许多抬高物价的脱罪例证。</p>
-<p>这样的现象并不罕见，因为这就是漫展等一系列ip化活动的核心，但是这样的活动对于二次元来说，它的价值却也十分丰富。对于二次元来说，当一群同好相聚在一起的氛围，才是最难得可贵的。</p>
-<p>实际上漫展本来的作用就是这个。就漫展里的那些东西，跟核心二次元几乎是八竿子打不着，几乎是毫无创意可言，平均质量还不如去淘宝周边店定制。为啥呢？因为会在漫展买东西的人，每年最关心二次元的那天可能就是来漫展的这一天，约上几个志同道好的朋友们，去漫展上品鉴着各式各样的IP，分享着当初看番的记忆，再象征性的砸一点钱，享受拿着痛包手办和一群二次元挤地铁的快乐。</p>
-<hr>
-<p><br></p>
-<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>如何看待必胜客中国将与游戏《原神》进行联动？ 作者：bow-car 链接：<a href="https://www.zhihu.com/question/539734598/answer/2650929206">https://www.zhihu.com/question/539734598/answer/2650929206</a> 来源：知乎</p>
-]]></content>
-      <categories>
-        <category>生活杂谈</category>
-      </categories>
-      <tags>
-        <tag>原神</tag>
+        <tag>游戏</tag>
+        <tag>日式麻将</tag>
       </tags>
   </entry>
   <entry>
@@ -1472,39 +1343,24 @@ CR = \frac{CI}{RI} ， CI = \frac{\lambda_{max}-n}{n-1}</script><p>其中$\lambd
       </tags>
   </entry>
   <entry>
-    <title>更新日志</title>
-    <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="v1-0"><a href="#v1-0" class="headerlink" title="[v1.0]-"></a>[v1.0]-<20220823></h3><ul>
-<li>今天完成了一个最简陋的个人博客！</li>
-<li>虽然这行字也是调试的一部分（）</li>
-</ul>
-<h3 id="v1-1"><a href="#v1-1" class="headerlink" title="[v1.1]-"></a>[v1.1]-<20220824></h3><ul>
-<li>尝试了hexo-theme-matery，但并不太适应，做了一些基本设置</li>
-</ul>
-<h3 id="v2-0"><a href="#v2-0" class="headerlink" title="[v2.0]-"></a>[v2.0]-<20220825></h3><ul>
-<li>将主题改为NexT</li>
-<li>加入了字数统计，阅读时间</li>
-<li>对Sideboard进行美化，设置了标签，头像</li>
-<li>增加了最新最潮的背景图片与文本阴影</li>
-<li>博客基本设置完成</li>
-</ul>
-<h3 id="v2-1"><a href="#v2-1" class="headerlink" title="[v2.1]-"></a>[v2.1]-<20220825></h3><ul>
-<li>完善个人介绍界面</li>
-<li>增加了Project Sekai数据库链接</li>
-<li>测试文章中插入图片</li>
-<li>修改模版</li>
-<li>添加了文档压缩</li>
-</ul>
-<h3 id="v2-2"><a href="#v2-2" class="headerlink" title="[v2.2]-"></a>[v2.2]-<20220905></h3><ul>
-<li>增加了月推界面</li>
-<li>增加部分密码机制</li>
-<li>数学公式支持</li>
-</ul>
-<h3 id="致谢链接"><a href="#致谢链接" class="headerlink" title="致谢链接"></a>致谢链接</h3><p><a href="https://siriusq.top/Next主题美化#博文压缩">Next主题美化</a></p>
+    <title>晓山瑞希HappyBirthday</title>
+    <url>/2022/08/27/mzkHappyBirthday/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<font color=#DDAACC size=6 >祝最可爱的MIZUKI生日快乐！</font>
+
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2146.JPG" alt=""></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2148.JPG" alt=""></p>
+<p><span class="heimu" title="你知道的太多了">警惕网恋mzk被骗3000石(就是作者自己)</span></p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2138.JPG" alt=""></p>
 ]]></content>
       <categories>
-        <category>测试文件</category>
+        <category>二次元</category>
       </categories>
+      <tags>
+        <tag>世界计划</tag>
+        <tag>晓山瑞希</tag>
+      </tags>
   </entry>
   <entry>
     <title>浅谈PnP的算法原理与实践</title>
@@ -1647,6 +1503,111 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       </tags>
   </entry>
   <entry>
+    <title>从零开始的大学生活：初来UNNC</title>
+    <url>/2022/09/13/nbndh/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="初来宁波"><a href="#初来宁波" class="headerlink" title="初来宁波"></a>初来宁波</h3><blockquote>
+<p>宁波，取自“海定则波宁”，简称“甬”，早在周朝已有此称。“甬”字是古代大钟的一个象形字，在鄞、奉两县的县境上，山的峰峦很像古代的覆钟，故叫甬山，这条江就叫甬江，这一带地方就称为“甬”地。</p>
+</blockquote>
+<p>从上海前往宁波，若不是绕行杭州一带，直接走杭州湾跨海大桥，也就2小时左右。这一绕路，正逢中秋盛时天文大潮，虽没有到奔腾汹涌之势，一行白浪宛如千里雪骑，逆流而上，亦有浪遏飞舟之意。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2485.png" style="zoom:10%;" /></p>
+<p>宁波分成老的市中心和东部新城，UNNC算是在南部的机场附近了。抵达宁波最大的感受是整个城市繁华却又不失人文的情怀。放眼城市，并不像上海一般高楼丛生，错中复杂，中间的老城区只能唉声叹气，等待着时代的淘汰，流离失所。宁波有展现其雄姿的高楼大厦，也有如欧洲小镇般的别墅街道，每走几个街道，就会有一个像样的公园点缀着生活。不得不说，宁波的城市干净，整洁，老建筑与新建筑融为一体，显得融洽。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2501.png" style="zoom:10%;" /></p>
+<blockquote>
+<p>宁波老外滩，坐落于浙江省宁波市江北区三江口（甬江、奉化江和余姚江的三江汇流之地）的北岸江北区，是进入宁波古城的门户。 在唐朝为中国四大港口之一，并成为鉴真东渡的起点；在南宋为中国三大港口之一，并设立市舶司专门负责管理对外贸易；当《南京条约》签订后，宁波便成为“五口通商”口岸之一，并于1844年正式开埠。</p>
+</blockquote>
+<p>正逢中秋，晚间来到了宁波的老外滩，据当地的同学说，这里难得有这么多人，岸边坐满了赏月拍照的人，无论哪里，无论城市与乡村，观赏天空永远能给予人们慰藉。宁波的外滩中，小巷里的酒吧永远是最热闹的，在江边吹着风，与友人喝上一杯，岂不美哉。再附上两张月亮的照片吧！</p>
+<center class="half">
+    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2687.JPG" width="40%" />
+    &emsp;
+    <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2685.JPG" width="40%" />
+</center>
+
+<hr>
+<h3 id="进入UNNC"><a href="#进入UNNC" class="headerlink" title="进入UNNC"></a>进入UNNC</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2569.png" style="zoom:15%;" /></p>
+<p>好吧，人很多，但是寝室楼真的很好看，进来了之后简单整理了一下</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_D288D71429C4-1.jpeg" style="zoom:30%;" /></p>
+<p>太美丽了！感觉达到UNNC最高层。之后品鉴一下食堂，有空出一份食堂品鉴文章。</p>
+]]></content>
+      <categories>
+        <category>生活记录</category>
+      </categories>
+      <tags>
+        <tag>诺丁汉</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>更新日志</title>
+    <url>/2022/08/23/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="v1-0"><a href="#v1-0" class="headerlink" title="[v1.0]-"></a>[v1.0]-<20220823></h3><ul>
+<li>今天完成了一个最简陋的个人博客！</li>
+<li>虽然这行字也是调试的一部分（）</li>
+</ul>
+<h3 id="v1-1"><a href="#v1-1" class="headerlink" title="[v1.1]-"></a>[v1.1]-<20220824></h3><ul>
+<li>尝试了hexo-theme-matery，但并不太适应，做了一些基本设置</li>
+</ul>
+<h3 id="v2-0"><a href="#v2-0" class="headerlink" title="[v2.0]-"></a>[v2.0]-<20220825></h3><ul>
+<li>将主题改为NexT</li>
+<li>加入了字数统计，阅读时间</li>
+<li>对Sideboard进行美化，设置了标签，头像</li>
+<li>增加了最新最潮的背景图片与文本阴影</li>
+<li>博客基本设置完成</li>
+</ul>
+<h3 id="v2-1"><a href="#v2-1" class="headerlink" title="[v2.1]-"></a>[v2.1]-<20220825></h3><ul>
+<li>完善个人介绍界面</li>
+<li>增加了Project Sekai数据库链接</li>
+<li>测试文章中插入图片</li>
+<li>修改模版</li>
+<li>添加了文档压缩</li>
+</ul>
+<h3 id="v2-2"><a href="#v2-2" class="headerlink" title="[v2.2]-"></a>[v2.2]-<20220905></h3><ul>
+<li>增加了月推界面</li>
+<li>增加部分密码机制</li>
+<li>数学公式支持</li>
+</ul>
+<h3 id="致谢链接"><a href="#致谢链接" class="headerlink" title="致谢链接"></a>致谢链接</h3><p><a href="https://siriusq.top/Next主题美化#博文压缩">Next主题美化</a></p>
+]]></content>
+      <categories>
+        <category>测试文件</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>浅谈在惠普暗影精灵8下装Win11与Linux双系统</title>
+    <url>/2022/09/19/%E8%A3%85%E6%9C%BA%E5%BF%83%E5%BE%97/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><!-- <span class="heimu" title="你知道的太多了">的丑态</span> -->
+<h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><ul>
+<li>启动硬盘（windows11与Ubuntu20.3）</li>
+<li>固态硬盘（主播使用的是致态TiPlus5000 1TB)</li>
+<li>暗影精灵8pro</li>
+</ul>
+<h3 id="拆机"><a href="#拆机" class="headerlink" title="拆机"></a>拆机</h3><p>千万不要看什么网上用乱七八糟的教程，其实这款电脑非常好拆，前面的卡扣非常的紧，但是后方其实用手指甲就可以撬开来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2827.png" style="zoom: 25%;" /></p>
+<p>然后在左侧固态槽上安装硬盘即可。</p>
+<blockquote>
+<p>建议断开电源后点击一下开机键放一下静电后再操作</p>
+<p>但是不要忘记最后把电源线连上</p>
+</blockquote>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2818.png" alt=""></p>
+<p>在安装好后把外壳扣上，不要急着拧螺丝，先按电源键看看可不可以正常开机后再拧紧螺丝</p>
+<h3 id="装Win11"><a href="#装Win11" class="headerlink" title="装Win11"></a>装Win11</h3><blockquote>
+<p>注：此步骤不是必要过程，主要是我这个买了1TB的盘不太忍心用来装Ubuntu，打算调换一下两个盘，因此要重装win11</p>
+</blockquote>
+<p>首先你需要一个启动硬盘，推荐一下<code>rufus</code>，虽然我不会用但是看学长用很方便。 </p>
+<p>开机时按住F9就是启动选项栏，在插入硬盘之后选择从硬盘启动即可。</p>
+<p>Win11有一个自动bitlocker的功能要记得关闭，否则会影响后续的Linux安装。如果无法直接关就先开启bitlocker然后再关闭。</p>
+<p>在装机好后可能会出现没有网卡驱动的问题，这里需要借助另一台电脑在HP官网上下载网卡驱动然后进行安装，在有网络的情况下在设置中检查更新即可自动安装其他驱动。</p>
+<h3 id="装Ubuntu"><a href="#装Ubuntu" class="headerlink" title="装Ubuntu"></a>装Ubuntu</h3><p>装机程序一致，按照流程来，在最后装机前要注意选择。在安装类型中选择第一个与windows boot manager共存（其可以先看看其他选项确认一下你要装的盘的位置然后再返回）</p>
+<p>最后加一行这个<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><br>理论上就安装完毕了</p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在安装完毕后，重启电脑，会自动在开机中弹出菜单，选择需要的系统即可</p>
+]]></content>
+      <categories>
+        <category>机械硬件</category>
+      </categories>
+      <tags>
+        <tag>RoboMaster</tag>
+        <tag>调试心得</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>浅谈术力口与流量主义</title>
     <url>/2022/08/26/%E6%B5%85%E8%B0%88%E6%9C%AF%E5%8A%9B%E5%8F%A3%E4%B8%8E%E6%B5%81%E9%87%8F%E4%B8%BB%E4%B9%89/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><p>在8月24日Sega推出了<a href="https://t.bilibili.com/697989416159805506">The Vocaloid Collection（缩写ボカコレ）×世界计划联动企划『ボカセカ』（Vocaseka）举办决定</a>，此项目旨在征集新术曲并通过排名给予实装，在B站的评论区还是多半好评，但是对术圈究竟能带来什么还是有待观察。</p>
@@ -1689,152 +1650,191 @@ t_{r1} \\ t_{r2} \\ t_{r3}
       </tags>
   </entry>
   <entry>
-    <title>浅谈在惠普暗影精灵8下装Win11与Linux双系统</title>
-    <url>/2022/09/19/%E8%A3%85%E6%9C%BA%E5%BF%83%E5%BE%97/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><!-- <span class="heimu" title="你知道的太多了">的丑态</span> -->
-<h3 id="准备材料"><a href="#准备材料" class="headerlink" title="准备材料"></a>准备材料</h3><ul>
-<li>启动硬盘（windows11与Ubuntu20.3）</li>
-<li>固态硬盘（主播使用的是致态TiPlus5000 1TB)</li>
-<li>暗影精灵8pro</li>
-</ul>
-<h3 id="拆机"><a href="#拆机" class="headerlink" title="拆机"></a>拆机</h3><p>千万不要看什么网上用乱七八糟的教程，其实这款电脑非常好拆，前面的卡扣非常的紧，但是后方其实用手指甲就可以撬开来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2827.png" style="zoom: 25%;" /></p>
-<p>然后在左侧固态槽上安装硬盘即可。</p>
+    <title>主播降临原神必胜客餐厅</title>
+    <url>/2022/09/01/opcomment/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="前情提要"><a href="#前情提要" class="headerlink" title="前情提要"></a>前情提要</h3><p>主播不是原p,主播不是原p,主播不是原p</p>
+<h3 id="先来看看原P们的丑态"><a href="#先来看看原P们的丑态" class="headerlink" title="先来看看原P们的丑态"></a>先来看看原P们<span class="heimu" title="你知道的太多了">的丑态</span></h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2245.JPG" alt=""></p>
 <blockquote>
-<p>建议断开电源后点击一下开机键放一下静电后再操作</p>
-<p>但是不要忘记最后把电源线连上</p>
+<p>环球港必胜客餐厅</p>
 </blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/IMG_2818.png" alt=""></p>
-<p>在安装好后把外壳扣上，不要急着拧螺丝，先按电源键看看可不可以正常开机后再拧紧螺丝</p>
-<h3 id="装Win11"><a href="#装Win11" class="headerlink" title="装Win11"></a>装Win11</h3><blockquote>
-<p>注：此步骤不是必要过程，主要是我这个买了1TB的盘不太忍心用来装Ubuntu，打算调换一下两个盘，因此要重装win11</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原1.png" alt=""></p>
+<blockquote>
+<p>瑞红坊必胜客餐厅</p>
 </blockquote>
-<p>首先你需要一个启动硬盘，推荐一下<code>rufus</code>，虽然我不会用但是看学长用很方便。 </p>
-<p>开机时按住F9就是启动选项栏，在插入硬盘之后选择从硬盘启动即可。</p>
-<p>Win11有一个自动bitlocker的功能要记得关闭，否则会影响后续的Linux安装。如果无法直接关就先开启bitlocker然后再关闭。</p>
-<p>在装机好后可能会出现没有网卡驱动的问题，这里需要借助另一台电脑在HP官网上下载网卡驱动然后进行安装，在有网络的情况下在设置中检查更新即可自动安装其他驱动。</p>
-<h3 id="装Ubuntu"><a href="#装Ubuntu" class="headerlink" title="装Ubuntu"></a>装Ubuntu</h3><p>装机程序一致，按照流程来，在最后装机前要注意选择。在安装类型中选择第一个与windows boot manager共存（其可以先看看其他选项确认一下你要装的盘的位置然后再返回）</p>
-<p>最后加一行这个<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure><br>理论上就安装完毕了</p>
-<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在安装完毕后，重启电脑，会自动在开机中弹出菜单，选择需要的系统即可</p>
+<h4 id="事情经过"><a href="#事情经过" class="headerlink" title="事情经过"></a>事情经过</h4><p>主播原来不是原P，在经友人推荐后<span class="heimu" title="你知道的太多了">强迫</span>前往了最新最潮的原神餐厅，当时是12点左右到的，餐厅门前已经挤满了人。在排队的过程中主播了解到很多人都是在10点前早早前往拿号。</p>
+<p>在12点30左右，店家开始叫号（就是那种从01开始的那种）。主播看着自己手上的77号感觉有点崩溃</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/原2.png" alt=""></p>
+<p>大概在1点半左右，主播做出重大决定，前往KFC先垫点吃的</p>
+<blockquote>
+<p>到达原P聚集处——必胜客</p>
+<p>太美丽了吧必胜客</p>
+<p>诶哟这不是KFC吗</p>
+<p>还是看看手上的原味鸡吧</p>
+</blockquote>
+<p><span class="heimu" title="你知道的太多了"><del>必胜客你就是歌姬吧</del></span></p>
+<p><span class="heimu" title="你知道的太多了">群友的攻击性好强</span></p>
+<p>到了下午三点半，人越来越少，主播上前询问服务员：</p>
+<blockquote>
+<p>主播：您好，您看我这号还有机会吗</p>
+<p>工作人员：您这个就像是一个癌症晚期患者说的话一样。他都已经这样了，你为什么不顺从他呢?你总要给人最后一段时间一个好的回忆吧，最后的时光里。因为60这个号很尴尬，50再往下一点，三十四十，可能说，欸，有点实力，能操作一下。80往上，九十一百，啊，人家是纯属混个号的，因为太遥远了，自己也知道自己没什么竞争力。但77，上不去下不来的这个号</p>
+</blockquote>
+<p><span class="heimu" title="你知道的太多了">原文：今天已经结束了，您肯定拍不到了，把号退了吧</span></p>
+<p>然后主播就只能退号了</p>
+<h3 id="一些感想"><a href="#一些感想" class="headerlink" title="一些感想"></a>一些感想</h3><p>主播写文章时，看到了很多网友们也是花了4个多小时等到了座位，体验了一番，其中有一句话令主播很是认可</p>
+<blockquote>
+<p>如果不是原，我真的不知道自己身边有必胜客</p>
+</blockquote>
+<p>在带动消费上，二次元市场在近年的表现可以说让人又爱又恨，“二次元真好骗”，利用ip似乎已经成为了许多抬高物价的脱罪例证。</p>
+<p>这样的现象并不罕见，因为这就是漫展等一系列ip化活动的核心，但是这样的活动对于二次元来说，它的价值却也十分丰富。对于二次元来说，当一群同好相聚在一起的氛围，才是最难得可贵的。</p>
+<p>实际上漫展本来的作用就是这个。就漫展里的那些东西，跟核心二次元几乎是八竿子打不着，几乎是毫无创意可言，平均质量还不如去淘宝周边店定制。为啥呢？因为会在漫展买东西的人，每年最关心二次元的那天可能就是来漫展的这一天，约上几个志同道好的朋友们，去漫展上品鉴着各式各样的IP，分享着当初看番的记忆，再象征性的砸一点钱，享受拿着痛包手办和一群二次元挤地铁的快乐。</p>
+<hr>
+<p><br></p>
+<h3 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h3><p>如何看待必胜客中国将与游戏《原神》进行联动？ 作者：bow-car 链接：<a href="https://www.zhihu.com/question/539734598/answer/2650929206">https://www.zhihu.com/question/539734598/answer/2650929206</a> 来源：知乎</p>
 ]]></content>
       <categories>
-        <category>机械硬件</category>
+        <category>生活杂谈</category>
       </categories>
       <tags>
-        <tag>RoboMaster</tag>
-        <tag>调试心得</tag>
+        <tag>原神</tag>
       </tags>
   </entry>
   <entry>
-    <title>伦勃朗与维米尔系列：Rembrandt In Amsterdam</title>
-    <url>/2023/07/18/RembrandtInAmsterdam/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="Coming-to-Amsterdam"><a href="#Coming-to-Amsterdam" class="headerlink" title="Coming to Amsterdam"></a>Coming to Amsterdam</h4><p>伦勃朗在22岁时前往了阿姆斯特丹，17世纪的阿姆斯特丹是欧洲最大的经济中心与贸易中心，东印度公司垄断了亚洲一带的海上贸易，为城市带来了巨大财富。1630年，阿姆斯特丹证券交易所成立，象征着城市不凡的实力。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Amsterdam_Stock_Exchange.png" alt="Amsterdam Stock Exchange" style="zoom:20%;" /></p>
-<p>同时，阿姆斯特丹还是理性主义思想的发源地，著名的理性主义先驱斯宾诺莎就出生于此</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Baruch_de_Spinoza.png" alt="Baruch de Spinoza" style="zoom:30%;" /></p>
+    <title>伦勃朗与维米尔系列：Rembrandt&#39;s Final Years</title>
+    <url>/2023/08/09/RembrandtFinalYears/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="Rembrandt’s-Bankruptcy"><a href="#Rembrandt’s-Bankruptcy" class="headerlink" title="Rembrandt’s Bankruptcy"></a>Rembrandt’s Bankruptcy</h4><p>伦勃朗即是催债人也是欠债人，四处的创新与房贷让他欠下巨款。由于荷兰与英国的战争还在持续，社会经济萧条，伦勃朗根本无法要到欠款，随后，他放弃了自己原先的大房子，买了一个小房子；他四处拍卖自己的作品，却始终不愿意拿出自己最好的作品，自然也买不出什么好的价钱。在伦勃朗51岁那年，他向破产管理委员会申请破产，在破产管理委员会来清点伦勃朗的家当时，留下了他的家当清单，是艺术史上著名的对伦勃朗的史料。</p>
+<p>伦勃朗在他人生的最后十年租了一间朴实的房子，创办了一家艺术公司，继续着自己的创造。归根结底，伦勃朗的破发由以下几点组成：</p>
+<ul>
+<li>荷兰萧条的经济环境。</li>
+<li>伦勃朗缺乏管理的投资结构。</li>
+<li>艺术品位变化：在17世纪中叶，荷兰新生代的崛起，精细笔触、鲜亮色彩、精致比例；破产前两年，伦勃朗扔还留着厚重的笔触，绘画是对现实的虚构，他不在掩盖自己的笔触，表现自己对艺术崭新的理解，是他用笔刷与颜料创造出来的，但并不被当时的人所喜爱。</li>
+<li>伦勃朗私生活导致的信誉危机：完成了夜巡的伦勃朗遭遇了妻子的离世，随后他的女管家一直帮助他管理家务，并且与伦勃朗同居生有一子。新教委员会指控女管家与伦勃朗卖淫，他的女管家被委员会传讯，使伦勃朗的声誉受到了下降。</li>
+</ul>
+<h5 id="The-Anatomy-Lesson-of-Doctor-Joan-Deyman"><a href="#The-Anatomy-Lesson-of-Doctor-Joan-Deyman" class="headerlink" title="The Anatomy Lesson of Doctor Joan Deyman"></a>The Anatomy Lesson of Doctor Joan Deyman</h5><p>在伦勃朗破产后，伦勃朗依然有一些艺术委托。外科医生行会再一次选择伦勃朗让他为当时的会长徳曼医生绘制解剖课群像。这幅作品在大火中被烧毁，但是幸运的是伦勃朗留下了这幅画的图稿。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Anatomy-Lesson-of-Doctor-Joan-Deyman.png" alt="The Anatomy Lesson of Doctor Joan Deyman" style="zoom:23%;" /></p>
+<p>这幅画残存的部分仅有尸体、德曼医生以及他的助手。我们可以看到尸体对摆放相当的富有创意。尸体的摆放直冲画面，呈现仰卧，透视缩短的手法在这幅画上表现的淋漓尽致。伦勃朗参考了北方文艺复兴艺术家曼科尼亚的《哀悼基督》，将尸体解剖震撼的表现出来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Lamentation-of-Dead-Christ.png" style="zoom:30%;" /></p>
+<h4 id="伦勃朗的最后十年"><a href="#伦勃朗的最后十年" class="headerlink" title="伦勃朗的最后十年"></a>伦勃朗的最后十年</h4><p>伦勃朗的最后十年，他追求的并非名誉，而是自由以及自己对艺术的理解。老伦勃朗的画更加的粗犷，留下了生活的笔触，他开始用厚涂法，刷开颜料，展示生活的厚重感。无论是对花神的绘画还是绘制肖像，都能看到伦勃朗这样厚重的笔触。</p>
+<h5 id="Flora-花神"><a href="#Flora-花神" class="headerlink" title="Flora 花神"></a>Flora 花神</h5><p>左为伦勃朗年轻时所画的以其妻子为原型的精美的花神；右图是伦勃朗可能以其女管家为原型的花神，涂料、笔触十分厚重。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Flora-Compare.png" style="zoom:30%;" /></p>
+<h5 id="Rembrandt’s-Portrait-in-his-old-age"><a href="#Rembrandt’s-Portrait-in-his-old-age" class="headerlink" title="Rembrandt’s Portrait in his old age"></a>Rembrandt’s Portrait in his old age</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Portrait-in-aged.png" style="zoom:30%;" /></p>
+<h5 id="Peter-Denying-Christ"><a href="#Peter-Denying-Christ" class="headerlink" title="Peter Denying Christ"></a>Peter Denying Christ</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Peter-Denying-Christ.png" alt="Peter Denying Christ" style="zoom:50%;" /></p>
+<p>这是伦勃朗富有卡拉瓦乔风格的作品，用光线亮度的对比来体现故事情景。绘画的内容是圣经新约，基督预言圣徒彼得三次不认基督，“今日鸡叫之前，你要三次不认得我”。女子一手拿着蜡烛，一手指向彼得，是戏剧冲突的中心。画面中彼得警惕的反驳女子，装作镇定的模样；女子手持蜡烛照亮人物的脸，认为彼得可疑，才认出了彼得。在画面右侧的暗处，耶稣回头看到了彼得，丰富了画面的时空，看似只有一幕，实际上传承了众多了事件。这幅作品体现了彼得在道义上的矛盾与纠结，基督的形象模糊，粗粝，正是伦勃朗晚年经常使用的厚涂颜料手法。</p>
 <blockquote>
-<p>巴鲁赫·德·斯宾诺莎「Baruch de Spinoza」，1632年11月24日—1677年2月21日，犹太人，近代西方哲学公认的三大理性主义者之一，与笛卡尔和莱布尼茨齐名。斯宾诺莎出生阿姆斯特丹的一个从西班牙逃往荷兰的犹太家庭。年轻时进入培养拉比的宗教学校，在艰难的生活条件下，他仍然坚持哲学和科学的研究，他的思想通过通信方式传播到欧洲各地，赢得人们的尊重。1677年不幸死于肺痨，享年45岁。他的主要著作有《笛卡尔哲学原理》、《神学政治论》、《伦理学》、《知性改进论》等。</p>
+<p>有一个使女看见彼得坐在火光里，就定睛看他说：<br>这个人素来也是同那人一伙的。<br>彼得却不承认，说：<br>女子，我不认得他。</p>
+<p>——《新约·路加福音》22:34</p>
 </blockquote>
-<p>当时的阿姆斯特丹在发展经济思想的同时，全民教育也相当的普及，随着印刷业与版画业的发展，全民基本都具备了读写能力，这也从一方面解释了为何在这是兴起了“自传”的浪潮。伦勃朗也参与了当时的版画与印刷的发展，学习了版画制作的技巧。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/View_of_Amsterdam_from_the_Northwest.png" alt="View of Amsterdam from the Northwest" style="zoom:33%;" /></p>
-<p>伦勃朗住在阿姆斯特丹的西北边，这是他对着窗户描绘的阿姆斯特丹的手稿。</p>
-<h4 id="Painting-People"><a href="#Painting-People" class="headerlink" title="Painting People"></a>Painting People</h4><h5 id="Frans-Hals-and-Portrait"><a href="#Frans-Hals-and-Portrait" class="headerlink" title="Frans Hals and Portrait"></a>Frans Hals and Portrait</h5><p>伦勃朗擅长肖像画、自画像，他初到阿姆斯特丹就已经小有名气，不少人来委托他，让他为其做画。但是在当时，阿姆斯特丹还有一位在当时比伦勃朗更有名气的画家，就是哈尔斯。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Self-Portrait-Hals.png" alt="Hals" style="zoom:25%;" /></p>
-<p>弗朗斯·哈尔斯「Frans·Hals」，l7世纪荷兰画派的奠基人和最杰出的肖像画大师之一。很少有人能像他那样运用洒脱而准确的笔触来塑造形体，使画中人形神兼备，成为有性格的典型人物。在这幅自画像中，可以看到其胡子层次分明，这是当时画家常用的工具：刮刀，所做成的，画中领子的褶皱被刻画的极为细腻，一抹蓝色与黑色的衣服反差，他的眼神看向画外，更有一种与观众的互动感，显得更加传神。</p>
-<p>哈尔斯也深受卡拉瓦乔画派的影响，不仅仅是用色以及光线上的强烈对比反差，还将人物的神情戏剧化，夸张的表达人物一瞬间的舒展的面容。相比于伦勃朗刻画人脸的色彩渐变，哈尔斯在这两幅画中将红色与面容的颜色反差，更有戏剧性。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Frans_Hals_Boy Drinking.png" alt=""></p>
-<h5 id="Portrait-of-Nicolaes-Ruts"><a href="#Portrait-of-Nicolaes-Ruts" class="headerlink" title="Portrait of Nicolaes Ruts"></a>Portrait of Nicolaes Ruts</h5><p>让我们再看回伦勃朗，伦勃朗更显分寸感与自然感。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Portrait-of-Nicolaes-Ruts.png" alt="Portrait of Nicolaes Ruts"></p>
-<p>这幅画是伦勃朗在阿姆斯特丹接到的第一单，是荷兰著名的贸易商人尼古拉斯·鲁斯。我们可以看到模特站在侧光前，在墙上他的背景被清晰的勾勒出来，白色花边的领口与毛织衣装显示出鲁斯的财富实力。伦勃朗还特意将面容上的褶皱给画出，刻画出一个肃穆庄严的形象。这幅画的成功也让伦勃朗逐渐成为荷兰肖像画的名人，1631到1635年，他还为鲁斯的其他同胞们作画，也成为伦勃朗重要的合作伙伴。</p>
-<h5 id="Portrait-of-Marten-Soolmans-and-Oopjen-Copit"><a href="#Portrait-of-Marten-Soolmans-and-Oopjen-Copit" class="headerlink" title="Portrait of Marten Soolmans and Oopjen Copit"></a>Portrait of Marten Soolmans and Oopjen Copit</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Marten_Oopjen.png" style="zoom:50%;" /></p>
-<p>1634年，伦勃朗为一对夫妻分别作了肖像画，挂在壁炉两侧。其中男性手持手套，这是荷兰当时结婚的习俗，暗示着两人成婚，妻子手持扇子。两人都身着黑色袍子，白色花边，显示出两人的富贵。其中，男子的鞋上襄着水晶花边，是伦勃朗用刻刀阳刻出来的。值得注意的是，男性在左女性在右的传统来源于乔托《最后的审判》，其中在基督的右手边（画面左侧）是他的爱徒，而耶稣左手边（画面右侧）都是次一等的门徒，所以在挂画中，把男性挂在左侧暗示着基督喜爱的位置，是当时男性主导婚姻的暗示。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/LastJugdetment.png" alt="最后的审判" style="zoom:30%;" /></p>
-<h5 id="The-Shipbuilder-and-his-Wife"><a href="#The-Shipbuilder-and-his-Wife" class="headerlink" title="The Shipbuilder and his Wife"></a>The Shipbuilder and his Wife</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Shipbuilder_and_his_Wife.png" alt="The Shipbuilder and his Wife" style="zoom: 25%;" /></p>
-<p>伦勃朗在1633年还为东印度公司的企业家兼设计师作了一幅夫妇像，这幅画脱离了传统肖像画，伦勃朗捕捉了一个生活的瞬间，妻子为丈夫递来一封信，丈夫停下手中的工作。他手持圆规，纸上是他正在绘制的设计图稿，显示了男人的身份与职业，这个船正是当时荷兰大帆船的设计图。在这幅画中，伦勃朗将自己的签名藏在了书信中，暗示着他与名望之人的往来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Arrival-of-Elector-Frederick-V-of-the-Palatinate-and-Elizabeth-Stuart.png" style="zoom:25%;" /></p>
-<h5 id="The-Anatomy-Lesson-of-Doctor-Nicolaes-Tulp"><a href="#The-Anatomy-Lesson-of-Doctor-Nicolaes-Tulp" class="headerlink" title="The Anatomy Lesson of Doctor Nicolaes Tulp"></a>The Anatomy Lesson of Doctor Nicolaes Tulp</h5><p>在阿姆斯特丹，外科医生行会每年都会有一场解剖学的公开演示课堂解剖真人，1632年著名外科医生蒂普教授来主刀这次解刨活动，真人是由死刑犯提供。外科医生行会选择伦勃朗为这次年度活动作一幅群像。过去也有人为外科医生行会作过群像。托马斯这幅群像已经相当不错，每个人都炯炯有神，后面四个人眼神集中于骨骼，专心的听人讲解，前面的两人面向观众，活灵活现。                                                                                                </p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Anatomy-Lesson-of-Doctor Sebastiaen.png" alt="The Anatomy Lesson of Doctor Sebastiaen Egbertsz de Vrij" style="zoom: 50%;" /></p>
-<p>但伦勃朗对群像的理解可谓是颠覆性的，他摆脱了传统将每个人排练好，做好动作的群像手法，将群像生活化，戏剧化。我们说伦勃朗是一位伟大的剧作家，他会在他的每一幅画中加入一个故事，来表达他想描绘的。而这幅《蒂普医生的解剖课》让他名声大噪。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Anatomy-Lesson-of-Doctor-Nicolaes-Tulp.png" alt="The Anatomy Lesson of Doctor Nicolaes Tulp"></p>
-<p>画中一条黑影把画面分割为两块，上面一侧的光线打在解剖医生上，而下面一侧光打亮了尸体，这是伦勃朗对光的使用，每个人都注视着蒂普医生，把课堂的紧张感与认真的神情刻画出来。图中可以看到，最后方的人物头上有帽子的痕迹，经过X光证实，伦勃朗在画这幅画的时候反复的修改过，也就是说伦勃朗观察了每个人的神情，并通过自己的想象，构造了这样一个教学的场景，使整个画面充实生动。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Andreas-vesalius.png" alt="Andreas Vesalius"></p>
-<p>值得注意的细节是，正常的解剖顺序应该是从胸腔开始，打开人体的腹部。但是画中描绘的是蒂普医生结构手臂的情景，同时医生的左手弯曲，好像在展示什么。这一幕其实是致敬文艺复兴时期医学家安德鲁瓦萨里，他在《人体结构》中展示了手臂前臂的肌肉与拇指的弯曲相关，他也表明人与其他动物最大的不同就是只有人类的拇指是朝向侧面的。蒂普医生展示这样的动作正是在论述人作为高等动物的优越性。</p>
-<h4 id="Rembrandt’s-Signature"><a href="#Rembrandt’s-Signature" class="headerlink" title="Rembrandt’s Signature"></a>Rembrandt’s Signature</h4><h5 id="Self-Portrait-in-Soft-Hat"><a href="#Self-Portrait-in-Soft-Hat" class="headerlink" title="Self-Portrait in Soft Hat"></a>Self-Portrait in Soft Hat</h5><p>最早在伦勃朗给自己戴帽子的自画像中，他第一次给自己的画签上了”Rembrandt”。在随后的几年他开始使用自己的名字，而非是自己的姓与故乡名。在历史上，只有文艺复兴三杰这样做。这也意味着他在当时已经是荷兰甚至北方的最顶尖的画家，以及伦勃朗对自己的认可与自信。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/SIgnature.png" alt="Rembrandt's Signature" style="zoom: 35%;" /></p>
-<h4 id="Rembrandt’s-Family"><a href="#Rembrandt’s-Family" class="headerlink" title="Rembrandt’s Family"></a>Rembrandt’s Family</h4><p>伦勃朗在1631年于阿姆斯特丹的艺术品经销商亨德里克·乌伦博格相识，他看到了伦勃朗的才能并作为伦勃朗的经纪人帮助他售卖他的画作、为他提供工作室。在1634年，伦勃朗与乌伦博格的侄女萨斯基亚·乌伦博格订婚。</p>
-<p>伦勃朗对他的妻子相当的疼爱，在结婚后，还经常把他的妻子画成花神的模样，为其留下众多肖像作品。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Saskia.png" alt="Saskia"></p>
-<h5 id="View-over-the-Amstel-from-the-Rampart"><a href="#View-over-the-Amstel-from-the-Rampart" class="headerlink" title="View over the Amstel from the Rampart"></a>View over the Amstel from the Rampart</h5><p>伦勃朗很快在阿姆斯特尔河边买了一件房，并从窗边描绘了河边美景。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/View-over-the-Amstel-from-the-Rampart.png" alt="View over the Amstel from the Rampart"></p>
-<h5 id="Self-Portrait-with-Saskia-in-the-Guise-of-the-Prodigal-Son"><a href="#Self-Portrait-with-Saskia-in-the-Guise-of-the-Prodigal-Son" class="headerlink" title="Self-Portrait with Saskia in the Guise of the Prodigal Son"></a>Self-Portrait with Saskia in the Guise of the Prodigal Son</h5><p>29岁的伦勃朗正处名利双收的时候，他绘制了一幅更加大胆主题的自画像。他把自己画成是一个浪子，他的妻子坐在他的腿上，放荡不羁。两人都穿着16世纪的服装，男人是笑嘻嘻、醉醺醺的年轻人的形象，显然是打扮的有些过头了。作品的背景是浪子的圣经寓言。在这个寓言中，一个富人的次子得到了他的遗产份额，并将其带到了一个遥远的国家。在那里，他把钱浪费在食物和女人上，过了一会儿不得不忍受饥饿，流浪街头。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Self-Portrait with Saskia-in-the-Guise-of-the-Prodigal-Son.png" alt="Self-Portrait with Saskia in the Guise of the Prodigal Son"></p>
-<p>这幅画结合了许多绘画对象，强调了艺术家的欢乐狂热：伦勃朗穿着高贵的衣服，戴着华丽的羽毛帽子，高兴地用举起的啤酒杯向接受者敬酒。他用左手风骚地撩起萨斯基亚的裙子，萨斯基亚从后面描绘，并将她的目光引向观众。背景是孔雀公鸡，高贵的面料和场景的金色支持着傲慢、性感的描绘。</p>
-<p>伦勃朗做这幅画，有些学者猜测是否是伦勃朗对自己的警示，把自己画作是浪子，来劝勉自己不要挥霍无度。的确，在30岁前，伦勃朗的生活都顺风顺水，这幅画的背后也可能包含了他对如此顺利生活的真实感的质疑，抑或是他对未来的担忧。</p>
-<h4 id="Painting-History-New-Testament-Mythology-Old-Testament"><a href="#Painting-History-New-Testament-Mythology-Old-Testament" class="headerlink" title="Painting History: New Testament / Mythology / Old Testament"></a>Painting History: New Testament / Mythology / Old Testament</h4><blockquote>
-<p>伦勃朗的历史画别具一格，运用微妙的细节，将画面戏剧化，敢于打破常规，抓住命运突然反转的时刻。</p>
+<h4 id="A-Curious-Group-Portrait"><a href="#A-Curious-Group-Portrait" class="headerlink" title="A Curious Group Portrait"></a>A Curious Group Portrait</h4><h5 id="The-Syndics-of-the-Drapers’-Guild-of-Amsterdam"><a href="#The-Syndics-of-the-Drapers’-Guild-of-Amsterdam" class="headerlink" title="The Syndics of the Drapers’ Guild of Amsterdam"></a>The Syndics of the Drapers’ Guild of Amsterdam</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Syndics-of-the-Drapers-Guild-of-Amsterdam.png" alt=""></p>
+<p>布料商人行会邀请伦勃朗绘制其董事会群像。画面中一共有六个人，其中五位是质检布料员，而最后一位站在最后的是管家。其中，一个人正在站起来，伦勃朗依然做到把静态的群像画的富有动感。前五位人物共同看向前方，似乎画面外忽然发生着什么事情。在X光的检测中，伦勃朗多次改动这幅画中人物的姿态，煞费苦心的在故事中体现静态的群像。</p>
+<h4 id="A-Parable"><a href="#A-Parable" class="headerlink" title="A Parable"></a>A Parable</h4><h5 id="Return-of-the-Prodigal-Son"><a href="#Return-of-the-Prodigal-Son" class="headerlink" title="Return of the Prodigal Son"></a>Return of the Prodigal Son</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Return-of-the-Prodigal-Son.png" alt="Return of the Prodigal Son" style="zoom:33%;" /></p>
+<p>伦勃朗的《浪子回头》旨在表达悔过自新得到宽恕。抛开主题看这幅画的手法，一束光从顶上打下来，描绘了老父亲和儿子团聚的情景，他无声的原谅了儿子，而儿子把头埋在了父亲胸前，我们看不到儿子的神情，但也能深刻的体会到他的愧歉与悔过。相比之下过去的艺术家都会刻意的关注儿子的神情，给儿子一个正面或者侧面直接表达他的神态。伦勃朗这样绘制，更是学习了古希腊画家狄曼提斯在描绘阿伽门农牺牲女儿献给狩猎女神的画，这幅作品中，阿伽门农遮住自己的脸背对着画面，来突出自己的悲伤</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Sacrifice-of-Iphigenia.png" style="zoom:23%;" /></p>
+<h4 id="The-Female-Character"><a href="#The-Female-Character" class="headerlink" title="The Female Character"></a>The Female Character</h4><h5 id="Lucretia"><a href="#Lucretia" class="headerlink" title="Lucretia"></a>Lucretia</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Lucretia.png" alt="Lucretia" style="zoom:50%;" /></p>
+<p>在罗马王政末年，卢克雷齐娅遭到强奸后自尽，在她自尽之前，她渴求她的亲友为其报仇，最后她的亲友推翻王政，建立了罗马共和国。伦勃朗这幅画中，一名女子衣装凌乱，手持匕首，眼神虚弱，含着泪水，表达的是令人心碎的悲伤，却无一点索取同情，暗含着伦勃朗对将逝生命的思考以及对自我信念的坚守，可能还包含着保持真我宁死不屈的执着。</p>
+<h4 id="Late-Self-Portraits"><a href="#Late-Self-Portraits" class="headerlink" title="Late Self-Portraits"></a>Late Self-Portraits</h4><h5 id="Self-Portraits-in-1663"><a href="#Self-Portraits-in-1663" class="headerlink" title="Self-Portraits in 1663"></a>Self-Portraits in 1663</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sp1663.png" style="zoom:25%;" /></p>
+<p>在自画像中，过去的艺术家会把他们自己画成一个温文尔雅的社会精英，而非是一个体力劳动者。然而伦勃朗更喜欢把自己朴实的表达出来，画中的人带着艺术家的头巾，褶皱的皮肤，一头卷发以及标志性的支腕仗，象征着自己的辛劳与对艺术的执着。在画面后方有两个半圆，暗示着一幅世界地图或者地球仪，在当时，这象征着伦勃朗对知识的渴求。</p>
+<h5 id="Last-Self-Portraits-Self-Portraits-in-1669"><a href="#Last-Self-Portraits-Self-Portraits-in-1669" class="headerlink" title="Last Self-Portraits: Self-Portraits in 1669"></a>Last Self-Portraits: Self-Portraits in 1669</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/sp1669.png" alt=""></p>
+<p>这是63岁的伦勃朗给自己作的自画像。也是在所有自画像中，眼神最明亮，最精锐与最坚定的一幅作品。眼睛是艺术家观察世界，表达时间最重要对伙伴，似乎突出了自己用眼睛探索着世界的一切。</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>西方美术史</tag>
+        <tag>伦勃朗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>伦勃朗与维米尔系列：Rembrandt In Leiden</title>
+    <url>/2023/07/08/RembrandtInLeiden/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><blockquote>
+<p>The interaction of Perception and Expression</p>
 </blockquote>
-<p>伦勃朗一直想成为历史画家，或许成为历史画家也是每一位画家的梦想之一，在当时历史画在西方艺术分类中品类最高，选材上包括希腊神话、圣经故事、古罗马古希腊历史传说等。在他30岁时，伦勃朗已经很擅长把握群体，刻画人物了，在这期间，伦勃朗创作了不少宏大的历史画，而且每一幅都有着他独特的颠覆传统的思考。</p>
-<p>在历史画题材中，基督受难是许多艺术家选择的，也是最为出名的，整个基督受难分为六个阶段：犹大背叛、基督被捕、基督受审、上十字架、下十字架、埋葬。在这里，我们介绍伦勃朗为这一主题作的其中两幅。</p>
-<h5 id="Passion-of-Christ-The-Deposition"><a href="#Passion-of-Christ-The-Deposition" class="headerlink" title="Passion of Christ: The Deposition"></a>Passion of Christ: The Deposition</h5><p>先来看一下鲁本斯所画的下十字架：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Rubens-Descent-from-the-Cross.png" alt="Peter Paul Rubens Descent from the Cross" style="zoom:25%;" /></p>
-<p>在过去，安特卫普的鲁本斯也画过同样一个主题的下十字架。这幅画将光线集中于耶稣，四周的人围在基督的尸体旁，依旧可以看到被钉子钉处的血迹，来衬托出世人的罪恶。艺术评论家惠更斯曾经评价：“鲁本斯乃世界七大奇迹之一， 当世画家中的阿佩莱斯。”对于基督形象的刻画，鲁本斯参考了古希腊的雕塑《拉奥孔》，将人死去后痛苦的身姿表现出来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Laocoon-and-Descent.png" alt="拉奥孔" style="zoom: 25%;" /></p>
-<p>让我们再来看看伦勃朗画的《下十字架》</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Rembrandt-The-Deposition.png" alt="Rembrandt:The Deposition" style="zoom:50%;" /></p>
-<p>伦勃朗这幅画采用了三角构图，同样是描绘了耶稣下十字架将要被装进裹尸布中，远处的城堡，暗示故事发生在耶路撒冷。与伦勃朗不同的是，整个画面以暗色为色调，一束光从画面上方打在基督身上，他并没有刻画出基督钉在十字架上的痕迹，而是把尸体刻画得普通而富有真实化，一侧的手臂从十字架上送下，仿佛有不可承受之重，更加真实感。对比鲁本斯和伦勃朗，两幅画都是这一主题的佼佼者，不过伦勃朗打破了传统，将耶稣描绘的更加真实化，平凡化，这也体现了伦勃朗对历史画作独特的风格。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Descent-etching.png" alt="Etching Version for Descent"></p>
-<p>在当时的荷兰，鲁本斯常常把油画蚀刻成版画来流传，伦勃朗随后也学习到了版画相关技巧，他开始追逐鲁本斯，也将自己的油画蚀刻成版画，流传出来。在版画上把一个人改成了自己的脸，既是版权的象征，也有身临其境的在场感，这一点在同为基督受难的作品《上十字架》上体现的更为明显。值得注意的是，油画与蚀刻画是左右对称的，原因是蚀刻术与印章原理相同，艺术家需要对着作品在刻板上蚀刻，最后再印到画板。</p>
-<h5 id="Passion-of-Christ-The-Raising-of-the-Cross"><a href="#Passion-of-Christ-The-Raising-of-the-Cross" class="headerlink" title="Passion of Christ: The Raising of the Cross"></a>Passion of Christ: The Raising of the Cross</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Raising-of-the-Cross.png" style="zoom:50%;" /></p>
-<p>在基督受难的另一幅作品，《上十字架》中，带着蓝色贝雷帽的男士就是伦勃朗自画像，把基督送上十字架，意味着自己的忏悔，这印证了当时一种新教思想，即是每个人的罪孽才是得基督送上十字架，表达了自己的忏悔。</p>
+<h4 id="Basic-Concept"><a href="#Basic-Concept" class="headerlink" title="Basic Concept"></a>Basic Concept</h4><ul>
+<li><h5 id="视觉艺术大致分为五类："><a href="#视觉艺术大致分为五类：" class="headerlink" title="视觉艺术大致分为五类："></a>视觉艺术大致分为五类：</h5><ul>
+<li><h5 id="Narrative-叙事"><a href="#Narrative-叙事" class="headerlink" title="Narrative 叙事"></a>Narrative 叙事</h5></li>
+<li><h5 id="Portraitare-肖像"><a href="#Portraitare-肖像" class="headerlink" title="Portraitare 肖像"></a>Portraitare 肖像</h5></li>
+<li><h5 id="Genre-风俗"><a href="#Genre-风俗" class="headerlink" title="Genre 风俗"></a>Genre 风俗</h5></li>
+<li><h5 id="Still-Life-静物"><a href="#Still-Life-静物" class="headerlink" title="Still-Life 静物"></a>Still-Life 静物</h5></li>
+<li><h5 id="Landscape-风景"><a href="#Landscape-风景" class="headerlink" title="Landscape 风景"></a>Landscape 风景</h5></li>
+</ul>
+<p>其中维米尔多以风俗画为主，而伦勃朗则多有叙事、肖像、风俗等画作</p>
+</li>
+</ul>
+<h4 id="Nederland-Holland-Golden-Age"><a href="#Nederland-Holland-Golden-Age" class="headerlink" title="Nederland (Holland) Golden Age"></a>Nederland (Holland) Golden Age</h4><blockquote>
+<p>低地、风车、郁金香、以及庄园</p>
+</blockquote>
+<ul>
+<li><p>宗教改革 The Reformation</p>
 <blockquote>
-<p><em>Tis not the Jews who crucified</em><br><em>Nor who betrayed you in the judgment place</em><br><em>Nor who, Lord Jesus, spat into your face</em><br><em>Nor who with buffets struck you as you died</em></p>
-<p><em>Tis not the soldiers who with brutal fists</em><br><em>Raised the hammer and raised the nail</em><br><em>Or the cursed wood on Calvary’’s hill</em><br><em>Or drew lots, tossed the dice to win your cloak</em></p>
-<p><em>I am the one, oh Lord, who brought you here</em><br><em>I am the heavy tree, too stout to bear</em><br><em>I am the rope that reined you in</em></p>
-<p><em>The scourge that flayed you, nail and spear</em><br><em>The blood-soaked crown they made you wear</em><br><em>‘Twas all for me, alas, ‘twas for my sin.</em></p>
+<p>义人必因信得生</p>
 </blockquote>
-<h5 id="Christ-in-the-Storm-on-the-Sea-of-Galilee"><a href="#Christ-in-the-Storm-on-the-Sea-of-Galilee" class="headerlink" title="Christ in the Storm on the Sea of Galilee"></a>Christ in the Storm on the Sea of Galilee</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Christ-in-the-Storm-on-the-Sea-of-Galilee.png" alt="Christ in the Storm on the Sea of Galilee" style="zoom: 25%;" /></p>
-<p>《加利利海上风暴》是伦勃朗又一幅圣经题材的作品，描绘的是信徒应该对耶稣有无条件的信仰。故事的背景是门徒与耶稣在加利利海上航行，耶稣睡着的时候海上忽然刮起了风暴，门徒们慌张不已，把耶稣叫醒希望得到耶稣的帮助。先看画面的整体，在荷兰大航海时期，很多画家都开始描绘海上的风浪与暴风雨后的情景，伦勃朗在此也是借鉴了Jan Porcellis的作品《在暴风雨中航行的船》中的一个部分。在画面的远处都有明亮的天空，暗示着希望，在这里也暗示着耶稣基督的神迹。不同于Jan Porcellis,伦勃朗的光更加鲜艳，对比度更加强烈，不仅显示了基督的神迹吗，也照亮了每一个门徒的脸，让肖像大师伦勃朗对他们神情的刻画更加细致，生动。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Ships-in-a-Storm-on-a-Rocky-Coast.png" alt="Ships in a Storm on a Rocky Coast" style="zoom:25%;" /></p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Details-Storm.png" style="zoom:28%;" /></p>
-<p>让我们再来看看画面的细节部分：</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Details-Christ-in-the-Storm-on-the-Sea-of-Galilee.png" alt="Details" style="zoom:25%;" /></p>
-<p>耶稣基督的脸朝向远处的光芒，神情轻松，丝毫让人想不到一股巨浪正拍打着船只。基督周围的门徒则探着头，慌张的询问着基督如何是好，十分慌张，还有的门徒抓紧船只的桅杆和绳索，恐惧写在他们的脸上。门徒与基督神态上的对比，更突出了对基督无条件坚定信仰的主题。</p>
-<h5 id="John-the-Baptist-Preaching"><a href="#John-the-Baptist-Preaching" class="headerlink" title="John the Baptist Preaching"></a>John the Baptist Preaching</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/John-the-Baptist-Preaching.png" alt="John the Baptist Preaching"></p>
-<p>这幅画显示了施洗者约翰在旷野向“出来受洗的众人”讲道「路加福音3:3-18」，其中有富人和穷人，有税吏和士兵。伦勃朗的这幅画是文艺复兴时期艺术的一个流行主题。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/St-John-the-Baptist-Preaching.png" alt="St. John the Baptist Preaching" style="zoom:33%;" /></p>
-<p>这是过去艺术家描绘约翰布道的情景，众多的人，以及中间的施洗者约翰。而伦勃朗虽然也是相同的情景，这幅画本身是对伦勃朗的用光以及群像的手法展示，但是在内容上伦勃朗可谓是相当大胆。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Detail-John.jpg" style="zoom:67%;" /></p>
-<p>在圣经的正剧中，大量的出现动物、孩童等一些鄙陋的细节。有鸡蹦到人的头上，边上还有猪在吃食；有母亲在给小孩把尿；有动物打成一片，交配的情景。把不雅的场景搬到圣经这样的历史画题材中是伦勃朗独特的理解，他为一出戏安排了小丑，使得整个戏更加生动。更重要的是，这暗示了人类群体的多样性，各式各样的人聚在一起，听着约翰的布道，还有边上的闲杂人士在继续自己的生活。</p>
-<h5 id="Diana-Bathing-with-the-Stories-of-Actaeon-and-Callisto"><a href="#Diana-Bathing-with-the-Stories-of-Actaeon-and-Callisto" class="headerlink" title="Diana Bathing, with the Stories of Actaeon and Callisto"></a>Diana Bathing, with the Stories of Actaeon and Callisto</h5><p>《戴安娜与仙女沐浴》展示了奥维德的《变形记》中的两集，在这两集里，都有人因为性侵犯而受到女神戴安娜的惩罚。在画面左边，猎人阿克托翁在无意间因为看到女神裸体而受到惩罚变成麋鹿最后被他的猎犬咬死。在画面右边，戴安娜的其他仙女正在撕下卡利斯托的衣服，以揭示她是如何违背了她的贞洁誓言，她怀了朱庇特的孩子，为此，戴安娜将她驱逐出宫廷。可以说是第一次，有艺术家将两个故事画在同一幅作品上。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Diana-Bathing.png" alt="Diana Bathing, with the Stories of Actaeon and Callisto"></p>
-<p>我们可以看到带着月牙形头冠的就是月神狄安娜，她盯着猎人阿克泰翁，此时猎人的头上已经长出了鹿角，暗示着他已经中了狄安娜的诅咒。在画面右边，卡利斯托的衣服被掀起来露出怀孕的肚子，扭打在一起。</p>
-<p>伦勃朗又一次把把正剧改成了闹剧，打闹，看戏，动物的交配，各种闹剧元素被伦勃朗加上。故事的主题都是讲述了人被无法掌握的欲望左右，猎人和卡利斯托都是在毫无防备的悲剧，将禁忌的欲望和在一起，在闹剧中写悲情，更令人感伤沉思。</p>
-<h5 id="Abduction-of-Europa"><a href="#Abduction-of-Europa" class="headerlink" title="Abduction of Europa"></a>Abduction of Europa</h5><blockquote>
-<p>公主这时候十分害怕<br>向后一看，陆地愈来愈远<br>她一手握紧住一只角，一手扶着牛背<br>她的衣裾在风中飘舞着。</p>
-<p>——奥维德《变形记》II:833-875</p>
-</blockquote>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Abduction-of-Europa.png" alt="Abduction of Europa"></p>
-<p>《劫走欧罗巴》也是伦勃朗以《变形记》故事为主题的历史画作，这幅画中，宙斯刚刚把欧罗巴带离海岸，欧罗巴还注视着岸上的女伴，表情惊恐。故事发生在离荷兰相当远的腓尼基海岸，或者在当时称为“东方”。但伦勃朗从未去过那里，也没有哪个作品证明过腓尼基的海岸是什么样的。于是伦勃朗在画面的右后方画上了一个不伦不类的马车，高贵、神秘，是当时人对东方的猜测。</p>
-<h5 id="Abduction-of-Ganymede"><a href="#Abduction-of-Ganymede" class="headerlink" title="Abduction of Ganymede"></a>Abduction of Ganymede</h5><blockquote>
-<p>神明们见他容貌俊美<br>把他掳去<br>给宙斯斟酒<br>留他在不朽的神界居住</p>
-<p>——《伊利亚特》XX:233-235</p>
-</blockquote>
-<p>关于掠夺，《伊利亚特》中还有宙斯劫走伽倪墨得斯的故事。伽倪墨得斯是特洛伊国王特罗斯之子，因为其年少貌美，因此受到宙斯的喜爱，将他带到天上成为宙斯的情人并代替青春女神赫柏为诸神斟酒。在过去的艺术作品中，艺术家们都会把伽倪墨得斯的英俊潇洒表达在作品当中，还是来看著名画家鲁本斯的《劫走伽倪墨得斯》，伽倪墨得斯被画作的是英俊的美少女，深得众神的喜爱。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/RubensAbduction-of-Ganymede.png" alt=""></p>
-<p>而在伦勃朗的画中，伽倪墨得斯成了一个小天使，甚至是一个哇哇叫的婴儿，被一只大鸟抓走。这幅画中，伦勃朗很有可能是参考了布鲁塞尔的撒尿的小孩雕塑。小天使见不得美丽，只有狼狈和挣扎。而当黑云压顶，被雄鹰掳走的瞬间，被强迫掳走的伽倪墨得斯正该如此绝望与无助，伦勃朗将故事的感性与人性凸显出来。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Abduction-of-Ganymede.png" alt="Abduction of Ganymede"></p>
-<p>然而，有一部分学者认为这幅画还有更深的政治意味，芭芭拉 •盖滕斯「Barbara Gacghtens」在一篇未发表的文章中提出伦勒朗的《伽倪墨得斯》引用的可能是另一个关于统治者的古老神话，他们要接受“雄鹰测试”，老鹰会把他们带向高空和明媚的太阳，来检测他们的力量和勇气。伦勒朗绘制的这个婴儿，是被老鹰抓在爪子里，不情愿地被拖上了天空，还吓得哇哇大叫并且尿了出来，他的雄鹰测试很显然是失败的。婴儿的村衣被老鹰抓了起来，上边还有一条原本无法解释的缨绳，现在可以将他视为将军们在战场上佩戴的腰带，或者是王子们作为指挥官的地位象征，然而这种对比其实更像是讽刺，婴儿的恐惧明显削弱了亡所引申的意义。</p>
-<p>如果这幅画指的是荷兰年轻的王子、总督的儿子威康二世（Wiliam Il， 生于1626年），他也比这幅画中的婴儿年长许多。年轻的威康二世在新的奥兰治王朝策略中提出了提前执政的要求，1650年他突然去世，荷兰也进入了一个混乱的“无总督”时期。伦勒朗绘制的没有通过雄鹰测试的 《伽倪墨得斯》可能是在间接批评这位年轻的继承人。</p>
-<h5 id="Belshazzar’s-Feast"><a href="#Belshazzar’s-Feast" class="headerlink" title="Belshazzar’s Feast"></a>Belshazzar’s Feast</h5><p>在《伯沙撒的盛宴》中，伦勒朗对《旧约》宗教场景的戏剧化展现达到了高潮。丰富多彩的服饰、静物元素和灯光都凸显了人物的面部表情和戏剧化的姿势。在画作的中心，一个身着华丽的锦缎长袍、头戴充满异国色彩头巾的统治者仿佛受到了惊吓，一下子把身子转了过去。在他两侧，不论是面朝着我们还是背朝着我们的人物都同样惊讶不已，其中一个拿着金色水壶正在倒酒的人物都被吓得动不了了。他们都看到了一个超自然的事情，一位圣人正在用希伯来文字写下对众人的警告，这个神圣的信息是在警告伯沙撒，因为他的亵渎，“上帝已经算好了你的国家还能存在的日子，而且你的国家很快就会灭亡了；经过考验，你不能胜任国王”。在那一晚，他的王国被米堤亚人和波斯人分隔。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Belshazzars-Feast.png" alt=""></p>
-<p>在墙上，伦勃朗精准的把希伯来文给表示出来，根据《圣经》，这些文字只有先知达尼尔看得懂，不仅仅是因为他熟知希伯来语，而且墙上的文字刻意被竖过来写，与常规横向阅读希伯来语不同。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Menasseh-ben-Israel.png" style="zoom: 25%;" /></p>
+<p>公元1517年，文艺复兴时期，16世纪至17世纪，以马丁·路德为首的教徒发动了一场针对天主教堂的政治革命，其反对天主教需要从外在条件得到救赎的理论，大肆宣传赎罪券等行为，提倡人的救赎应该来源于内心的信念，与上帝直接对话。同时，以加尔文为首的加尔文教派也在进行改革，他们遵循救赎预定论「Predestination」，认为上帝已经将每个人的命运制定完毕，每个人只需要完成上帝的旨意就能得到救赎，值得注意的是，在后期”上帝的旨意”演变为了为上帝制造财富，这便是资本主义一部分的信仰基础。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Luther_Calvin.png" alt="Luther and Calvin" style="zoom:30%;"/></p>
+</li>
+</ul>
+<p>  这场运动贯穿整个神圣罗马帝国，在阿尔卑斯山以北的尼德兰新教徒也在发动革命，他们形成了乌得勒支同盟「Unie van Utrecht」。16世纪中期，加尔文教在尼德兰的教徒迅速增多，因十诫中反对制造偶像，用偶像代替神，加尔文教徒大肆破环圣像，不时发生武装的加尔文教徒同当局和教会的冲突，也正为了80年战争的导火索。</p>
+<p>  <img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Iconoclasts_in_a_Church.png" alt="Iconoclasts in a Church" style="zoom:30%;" /></p>
+<p>  在80年独立战争结束后，尼德兰七省联合共和国被西班牙承认独立，世界上第一个去中心化经济结构体系的议会制国家成立，是世界上最早成立的资本主义社会。  </p>
+<ul>
+<li><p>大航海与科学发展 Discovery</p>
+<p>荷兰的黄金时代伴随着大航海的出现，当世界历史的中心从地中海转移到了大西洋，海岸线漫长的荷兰转身成为了欧洲的一大经济中心，它被誉为海上马车夫「Sea Coach」, 共和国将所以海上贸易的城市汇聚成具有武装力量的大型股份制贸易公司，荷兰东印度公司「Dutch East India Company」，在亚洲进行海上贸易。其中，主要为6个城市组成了荷兰东印度公司：Amsterdam、Delft、Rotterdam、Enkhuizen、Middelburg、Hoorm。荷兰在大航海时期经济迅速发展，荷兰迎来黄金时代。在新教理论与文艺复兴对人文主义的宣扬下，经验哲学与实验科学也得到发展，其中最著名的三位便是惠更斯「Huggens」，列文虎克「Leeuwenhock」以及笛卡尔「Descartes」。</p>
+</li>
+</ul>
+<h3 id="Lecture-1-Rembrandt-in-Leiden"><a href="#Lecture-1-Rembrandt-in-Leiden" class="headerlink" title="Lecture 1: Rembrandt in Leiden"></a>Lecture 1: Rembrandt in Leiden</h3><h4 id="Rembrandt-and-his-Self-Portrait"><a href="#Rembrandt-and-his-Self-Portrait" class="headerlink" title="Rembrandt and his Self-Portrait"></a>Rembrandt and his Self-Portrait</h4><p>估计没有人会比伦勃朗更加喜欢画自画像，据统计他一生完成了100多幅自画像，其中他对表情的研究更是出神入化，在他早期曾给自己画过一些列不同表情的自画像：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/SelfPortraitRembrandt.png" alt=""></p>
+<p>除了伦勃朗，同时期北方还有三大画家也曾绘制过自画像，分别是凡艾克、鲁本斯和丢勒：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/North_Portrait2.png" style="zoom:45%;" /></p>
+<p>在荷兰黄金时代，自画像从名门画家的标志变成了每个画家都可以记录自己的方式，随着人文主义自我意识的兴起，自画像成为了一种自传题材，用绘画记录自己的一生。</p>
+<h4 id="Becoming-an-Artist"><a href="#Becoming-an-Artist" class="headerlink" title="Becoming an Artist"></a>Becoming an Artist</h4><p>1606年7月15日伦勃朗出生于荷兰共和国莱顿的一个小磨坊。少年时他被送往拉丁学院学习文科三艺：语法、词汇、逻辑，并在三年后的14岁进入莱顿大学，但显然伦勃朗不太愿意在大学学习，他辍学求师，先后拜访了两位莱顿的画师。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/TheMill.png" alt="The Mill" style="zoom:33%;" /></p>
+<p>Jacob van Swanenburgh是他的第一位师傅，虽然这位师傅的绘画名气不高，但他的师傅25年的意大利留学经历激发了伦勃朗对绘画的热情，在他的培养下，伦勃朗不仅学习了美术的基础手法，还了解了美术相关工具的使用。1624年，他获得了在荷兰当时最著名的画家彼得•拉斯特曼于阿姆斯特丹的画室中当学徒的机会并在拉斯曼手下工作了六个月。彼时，他已经基本掌握油画、素描和蚀刻画的技巧并发展了自己的风格。</p>
+<h5 id="Orestes-and-Pylades-Disputing-at-the-Altar"><a href="#Orestes-and-Pylades-Disputing-at-the-Altar" class="headerlink" title="Orestes and Pylades Disputing at the Altar"></a>Orestes and Pylades Disputing at the Altar</h5><p>俄瑞斯忒斯与皮拉德斯这幅作品是由伦勃朗的第二位师傅Pieter Lastman在1614年创作。俄瑞斯忒斯为父亲报仇弑母后，为了逃离复仇女神的追杀，他们向太阳神阿波罗寻求庇护，于是阿波罗要求他们去将月神黛安娜的雕像取回雅典城。他和皮拉德斯随机前往神殿偷走神像，不过两人立刻被人们囚禁起来，按照当地的习俗，所有陌生人都应直接献给阿尔忒弥斯。当时，负责献祭的阿耳忒弥斯女神是俄瑞斯忒斯的妹妹伊菲革涅亚，她提出可以放一个人帮他把从希腊寄来的信带回家。画面正描述的是朋友两人为争论留下来牺牲喋喋不休的场景，两人都想让对方去送信，让自己留下。最后俄瑞斯忒斯拒绝离开，让皮拉德斯拿走那封信，而他自己留下来等着被杀。皮拉德斯最终同意了，但这封信让俄瑞斯忒斯认出了伊菲革涅亚，并暴露了自己。三人携着阿尔忒弥斯的神像一起成功逃走。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Orestes_and_Pylades_Disputing_at_the_Altar.png" alt="Pieter Lastman"></p>
 <blockquote>
-<p>Daniel reads the words “MENE, MENE, TEKEL, UPHARSIN” and interprets them for the king: “MENE, God has numbered the days of your kingdom and brought it to an end; TEKEL, you have been weighed … and found wanting;” and “UPHARSIN”, your kingdom is divided and given to the Medes and Persians. </p>
+<p>Lastman’s densely composed compositions, his bright colours and the expressive gestures of his figures – all had an impact on the young Rembrandt.</p>
 </blockquote>
-<h5 id="The-Blinding-of-Samson"><a href="#The-Blinding-of-Samson" class="headerlink" title="The Blinding of Samson"></a>The Blinding of Samson</h5><p>在《旧约》的《士师记》中，参孙是在神的应许中出生，并在神的眷顾下成长。他生来就有超凡的力气，唯一的弱点就是他的头发，如果把头发剪下，他就手无缚鸡之力。参孙不尊重以色列人的律法和父母的劝戒，随自己的喜好，娶非利士女子达利拉为妻。非利士人几次想杀死参孙，可惜此人神力，能够一人扛起城门。于是非利士让参孙的妻子大利拉套出参孙神力的原因，起初参孙还有所防备，最后他抵挡不住美色的诱惑说出了自己头发的秘密。他的妻子趁他熟睡时剪掉了他的头发，参孙随后被闯入的非利士人刺瞎双眼。</p>
-<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The-Blinding-of-Samson.png" alt="The Blinding of Samson"></p>
-<p>这是一幅画啊描绘的是这位英雄人物背叛行为的高潮，我们可以看到尖刀已经刺进参孙的眼睛，后面的士兵勒住参孙，边上还有士兵用手铐拴住参孙的手臂。整个画面相当的残忍，与之对比的是参孙的妻子，她手拿参孙的头发跑去，看不出一丝的悲伤，甚至有些许的喜悦。将整个背叛的场景更富有戏剧化，对比性。</p>
+<p>祭坛的浓烟升起，将画面分为左右两个部分：画中左侧的两人正是俄瑞斯忒斯和皮拉德斯，两人穿着一黑一白，在为谁流下争论不休。在画面右侧的女祭司手拿书信，入迷般的看着两者的争论，她从未见过会有人为了送死而争辩如此激烈。在右侧画面的背景中，有一座月牙形角的雕像便是月神的神像。</p>
+<h4 id="Rembrandt‘s-Early-Printing"><a href="#Rembrandt‘s-Early-Printing" class="headerlink" title="Rembrandt‘s Early Printing"></a>Rembrandt‘s Early Printing</h4><h5 id="Palamedes-before-Agamemnon"><a href="#Palamedes-before-Agamemnon" class="headerlink" title="Palamedes before Agamemnon"></a>Palamedes before Agamemnon</h5><p>在与第二个师傅学习了半年，伦勃朗回家成为独立画家，开展了自己的画室。据史料记载，第一幅伦勃朗的历史画是Palamedes before Agamemnon，伦勃朗在第一次历史画中就展现了极强的艺术水准，他完成这幅画时仅仅20岁，在完成画作后，他也为自己的画作属上了名字。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Palamedes_before_Agamemnon.png" alt="Palamedes before Agamemnon"></p>
+<p>在特洛伊战争开始之前，阿伽门农派遣说客帕拉蒙德斯去说服奥德修斯参战，奥德修斯不愿参战装疯卖傻，用一匹驴和一匹牛去耕地，只见耕车横冲直撞毁坏田地。帕拉蒙德斯当然知道奥德修斯是故意如此，就拉来他儿子站在车前，奥德修斯只好赶紧牵住车辆，被迫参战。奥德修斯一直记恨这件事，在随后他在阿伽门农面前陷害帕拉蒙德斯，最后帕拉蒙德斯被处以叛国罪被乱石扔死。</p>
+<p>在画中，身着红衣跪在地上眼神惊慌的便是帕拉蒙德斯，他有口莫辨，惊慌失措；右边站着的便是奥德修斯，他举起右手，似乎在一一列举帕拉蒙德斯的罪行；很有意思的是他将自己的形象也画在了阿伽门农的右侧，好似自己也在现场，经历着伟大的历史。在色彩的运用上，显然也是深得第二位师傅的技巧，在群像中将主要人物刻画得惟妙惟肖。</p>
+<p>很有趣的是，本来伦勃朗在画完后并没有说明是什么主题与人物，最符合时代背景与人物的便是奥德修斯陷害帕拉蒙德斯的情节。在当时，荷兰共和国还处于80年战争的末期，当权的奥兰治家族处死了一位深受人民爱戴共和国元勋，选择继续与西班牙战争，而这位共和国元勋就被乱石处死，定为叛国罪。</p>
+<h5 id="Tobit-and-Anna-with-the-Kid-Goat"><a href="#Tobit-and-Anna-with-the-Kid-Goat" class="headerlink" title="Tobit and Anna with the Kid Goat"></a>Tobit and Anna with the Kid Goat</h5><p>托比特的忏悔是同年伦勃朗又一幅历史画，故事选自天主教圣经次经的多俾亚传[Book of Tobias]。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Tobit_and_Anna_with_the_Kid_Goat.png" alt="Tobit and Anna with the Kid Goat"></p>
+<p>托比拖是虔诚的老教徒，可在他老年时，他双目失明。有一天他的妻子Anna抱来一头羊，说是买来的。可是托比拖怀疑是他的妻子偷来的并且斥责他的妻子。事后他发现妻子并没有偷这只羊，他坐在椅子上忏悔，“我失明了，也使我的心失明了”。画面中，伦勃朗对服饰的刻画赏心悦目，他对油画的透明度与黏稠度进行了改良并运用到了火焰与布料上，在当时伦勃朗就已经很擅长表达这种细节了。伦勃朗在这幅画作中还突出了生活气息，如果不说是托比拖，说是农民的日常景色也无妨。</p>
+<h4 id="Rembrandt’s-Classment-Lievens"><a href="#Rembrandt’s-Classment-Lievens" class="headerlink" title="Rembrandt’s Classment: Lievens"></a>Rembrandt’s Classment: Lievens</h4><p>伦勃朗还有一个师兄列文，列文用色大胆，主要受到巴洛克大师卡拉瓦乔的影响，运用对比色与明暗光来表达人物，其中最典型作品之一是其作的《以斯帖与亚哈随鲁的盛宴》</p>
+<h5 id="The-Banquet-of-Esther-and-Ahasuerus"><a href="#The-Banquet-of-Esther-and-Ahasuerus" class="headerlink" title="The Banquet of Esther and Ahasuerus"></a>The Banquet of Esther and Ahasuerus</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/TheBanquetofEstherandAhasuerus.png" alt="The Banquet of Esther and Ahasuerus"></p>
+<p>从这幅画中，以斯帖位于画面中央，也是光线最亮的位置，而其一手指向军官，指责其的过失，而亚哈随鲁侧身对军官怒目而视，一手攥拳。而军官则成为众矢之地，只留下了背影来刻画其惊恐的神色。华丽的衣饰、强烈的光线对比与鲜艳的配色非常具有巴洛克艺术风格。</p>
+<p>伦勃朗与这位师兄关系甚好，两人相互学习合作作画，甚至共处一个画室，两人还给对方分别作了肖像。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/RembrandtAndLievens.png" style="zoom:30%;" /></p>
+<p>而相比之下，伦勃朗虽然也学习了卡拉瓦乔的艺术风格，但是此时的伦勃朗用光更加柔和，细腻。</p>
+<h5 id="The-Penitent-Judas-Returning-the-Thirty-Pieces-of-Silver"><a href="#The-Penitent-Judas-Returning-the-Thirty-Pieces-of-Silver" class="headerlink" title="The Penitent Judas Returning the Thirty Pieces of Silver"></a>The Penitent Judas Returning the Thirty Pieces of Silver</h5><p>《犹大忏悔》这幅画中，伦勃朗统一配色，运用点光源技法，将光线铺满这个空间。犹大在右下角合十忏悔，视线注视着出卖基督的银币，而光也合情合理的打在了钱币上，暗示了主题。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Penitent_Judas_Returning_the_Thirty_Pieces_of_Silver.png" alt="The Penitent Judas Returning the Thirty Pieces of Silver" style="zoom:80%;" /></p>
+<p>艺术评论家老惠更斯评价这两位才华横溢，是荷兰可以与意大利艺术家相比较的两位。伦勃朗的笔法更加细腻，列文则更有表现力和创造性。两个年轻人唯一的问题是太自信了。在当时，艺术家在一生中都至少应该去一次意大利来一场精神上的朝圣与艺术的游学，可是这两位却说：我们不用去意大利！</p>
+<h5 id="The-Rich-Man-from-Christ’s-Parable"><a href="#The-Rich-Man-from-Christ’s-Parable" class="headerlink" title="The Rich Man from Christ’s Parable"></a>The Rich Man from Christ’s Parable</h5><p>伦勃朗还有一幅《财主的寓言》也印证了老惠更斯的评论。整个场景被花烛所照亮，贪婪的财主看着手中的金币。书页的质感细腻的体现出来，伦勃朗用刀刮在画面中挂出了书的褶皱。同时，在服装与面容上，伦勃朗有意的去除了他的笔触，把奢侈的袍子精细的刻画出来。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_rich_Man_from_Christ’s_Parable.png" alt="The Rich Man from Christ’s Parable"></p>
+<blockquote>
+<p>Vanitas vanitatum omnia vanitas. 虚空的虚空，一切都是虚空。</p>
+<p>——传道书</p>
+</blockquote>
+<p>这幅画也可以体现出伦勃朗对虚空派「Vanitas」静物的认识。在当时的静物画中，有一类画作专门去绘制静谧的青烟、褶皱的书籍、燃尽的蜡烛以及骷髅等物体，这一类在当时称之为虚空派。伦勃朗也在这一幅画中运用了虚空派的静物描写。</p>
+<h4 id="Studies-of-Old-Ages-and-Naturalism"><a href="#Studies-of-Old-Ages-and-Naturalism" class="headerlink" title="Studies of Old Ages and Naturalism"></a>Studies of Old Ages and Naturalism</h4><p>年轻的伦勃朗对老年的姿态也颇有研究，1629年，他画了一系列的头像画「Tronie」，这类画不像肖像画正式，与被画者的身份无关，也是在这时，伦勃朗学会了对皮肤细致的刻画，也为他以后的群像画打下基础。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/StudyOfOld.png" style="zoom:45%;" /></p>
+<p>不仅如此，在生活中伦勃朗也会捕捉平常生活中的景象，在他的手稿上寥寥数笔，记录下生活中的瞬间：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Beggar.png" alt=""></p>
+<p>而正是如此，伦勃朗开始对传统题材进行了大胆的创作。他将过去中刻板的完美的形象都生活化，表达的人物都更加贴近于现实（甚至是不完美的），他的安德梅达更是在当时引起了众多的讨论。</p>
+<h5 id="Andromeda-chained-to-the-Rocks"><a href="#Andromeda-chained-to-the-Rocks" class="headerlink" title="Andromeda chained to the Rocks"></a>Andromeda chained to the Rocks</h5><p>安德梅达是埃塞俄比亚国王刻甫斯「Cepheus」和王后卡西奥佩娅Cassiopeia 的女儿。王后常常夸耀自家女儿，说她比所有的海中女神都要美丽。海神波塞冬听到后，派遣海怪去摧毁埃塞俄比亚。刻甫斯没有办法只好将安德梅达献给海怪。恰巧珀耳修斯路过，国王夫妇恳求他救出他们的女儿，作为条件他可以娶安德罗墨达为妻，并成为埃塞俄比亚的国王。珀尔修斯看见公主时，她的手臂正被拴在坚硬的岩石上，全身赤裸。如果没有微风吹动她的头发，温暖的眼泪从她眼中夺眶而出，他会以为这就是一尊美丽的大理石雕像。最后珀耳修斯杀死了海怪并带走了安德梅达。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Andromeda_chained_to_the_Rocks.png" alt="Andromeda chained to the Rocks" style="zoom: 33%;" /></p>
+<p>在过往的画家中，通常这个主题都会包含安德梅达、海怪与珀耳修斯。</p>
+<p>「左下角：鲁本斯作；右侧：提香作」</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/AndromedaInHistory.png" alt=""></p>
+<p>可是伦勃朗把一个称不上好看的裸体放在画面中，眼神绝望的看着右侧。她看到的究竟是海怪还是珀耳修斯我们不得而知，但是这样去刻画这个主题整个历史上都是空前绝后的。</p>
+<h5 id="The-Painter-in-his-Studio"><a href="#The-Painter-in-his-Studio" class="headerlink" title="The Painter in his Studio"></a>The Painter in his Studio</h5><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/The_Painter_in_his_Studio.png" alt="The Painter in his Studio"></p>
+<p>画室里的艺术家是伦勃朗在1629年完成的，这幅画把艺术家抽象成了客体，而面前的画架成为了主体。画家凝视着画布，好似揣测着画面整体的布局。这是伦勃朗，也是艺术家认可的一种工作状态，荷兰语中形容为”uyt den gheest”，对应着汉语中的胸有成竹。伦勃朗将自己的脸也画在了画中，可能是对自己做画的反思与描绘。</p>
+<h4 id="Rembrandt’s-Student"><a href="#Rembrandt’s-Student" class="headerlink" title="Rembrandt’s Student"></a>Rembrandt’s Student</h4><p>伦勃朗还收了一位徒弟，Gerrit Dou。徒弟窦将伦勃朗的光影技巧与虚空派结合，开创了莱顿画派。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/GerritDou.png" alt="Gerrit·Dou" style="zoom:20%;" /></p>
+<p>他对物体的质感有着独特的把握，也擅长使用障眼法来构造画面。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/DouPrint.png" alt="Dou's Paintings" style="zoom:15%;" /></p>
 ]]></content>
       <categories>
         <category>学习笔记</category>
