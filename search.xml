@@ -1844,4 +1844,226 @@ t_{r1} \\ t_{r2} \\ t_{r3}
         <tag>伦勃朗</tag>
       </tags>
   </entry>
+  <entry>
+    <title>数据结构与算法：最短路径问题（1）</title>
+    <url>/2023/12/14/dijkstra/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>摘自UNNC Programming and Algorithms (COMP1038) Coursework 2：</p>
+<blockquote>
+<p>You are required to write a program that will produce the optimal route and cost C of train tickets between stations. To complete this task, you will be given a source station S, a destination station D and a distance matrix (in<br>kilometers) for N stations. The cost C is defined as:</p>
+<script type="math/tex; mode=display">
+C =⌈1.2 ∗ d+25∗n⌉</script><p>where d is the total distance of the route, n is the number of intermediate stations (excluding source and destination<br>stations), and $⌈x⌉$ means x should be rounded up to the next nearest integer.<br>You should choose an appropriate and efficient algorithm to obtain the shortest route from station S to D. If there<br>are more than one shortest route, the route with minimal cost C should be used.</p>
+</blockquote>
+<p>根据题目描述，可以等价为在二维有向图中，从某一点出发至另一个点的最短路径问题。Dijkstra算法适用于类似权重为正的最短路径问题中。</p>
+<h3 id="算法模版"><a href="#算法模版" class="headerlink" title="算法模版"></a>算法模版</h3><p>构造check数组与dis数组，分别记录节点是否完成探索以及当前距离，在初始化时，需要将dis赋值为正无穷代表无法抵达。算法从第一个点出发，遍历所有边，并更新两点之间的距离，通过排序找到与这个点距离最短的点（即dis中未check的点中距离最小的点）标记并作为下一次迭代的依据点。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">dijkstra</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">		<span class="keyword">for</span> <span class="number">1</span> to n: dis = inf;</span><br><span class="line">  	<span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">      	<span class="keyword">for</span> 寻找所有可行路径</span><br><span class="line">          	如果新路径比旧路径更短，更新dis</span><br><span class="line">        <span class="keyword">for</span> 寻找最小值</span><br><span class="line">          	设置出发点</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在模版中，循环主体设置为1到n次，若遇到已知有不通的路径则另作处理。下图为算法实现的实例，假设从0点开始：</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/d1-(1" alt="">.png)</p>
+<ol>
+<li>标记阶段0，寻找通路 0-1，0-2，由于两个距离均小于正无穷，更新dis；寻找最小值节点1，并标记1</li>
+<li></li>
+</ol>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Dis</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>0</td>
+<td>2</td>
+<td>6</td>
+<td>inf</td>
+<td>inf</td>
+<td>inf</td>
+<td>inf</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Phase Plane Method</title>
+    <url>/2024/05/08/Phase%20Plane%20Methods/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>本文讲述的相平面法[Phase Plane Methods]主要围绕对分析二元微分方程组和一元二次微分方程的向量场，在介绍之前，先引入一个二元微分方程组，The Competitive Lotka-Volterra Equations：</p>
+<script type="math/tex; mode=display">
+\frac{dx}{d\overline{t}} = r_xX(1-\frac{x}{x_c}) - F_X(x,y) \\ \frac{dy}{d\overline{t}} = r_yY(1-\frac{y}{y_c}) - F_Y(x,y) \\</script><p>其中，我们定义$F_X&gt;0, F_Y &gt;0$，这描述了两个同类动物族群的数量演变，我们并不能直接求出这两个方程的具体解，但是我们可以通过相平面法求出(X, Y)的变化趋势与收敛情况。</p>
+<hr>
+<p>我们首先来看一个简单的方程组，我们假设在整个过程中，所有函数连续并可导：</p>
+<script type="math/tex; mode=display">
+\frac{dx}{dt} = X(x,y) \ \ \ \ 
+\frac{dy}{dt} = Y(x,y)</script><ul>
+<li>Integral Path: 对于一组解: $X_k(t), Y_k(t)$ 满足这一微分方程的随着时间的变化曲线。由于微分方程组有无数多解（没有初始值t=0约束的缘故），但每一组解都是一一对应随时间变化的，我们定义某一组解构成的坐标的点随时间运动的轨迹为Integral Path，当然，一组可解的微分方程往往有很多Integral Path</li>
+<li>Phase portrait：Integral Path的集合，在这是一张x-y坐标系图，我们的目标就是画出这样的平面图。</li>
+</ul>
+<h2 id="Equilibrium-Point-平衡点"><a href="#Equilibrium-Point-平衡点" class="headerlink" title="Equilibrium Point 平衡点"></a>Equilibrium Point 平衡点</h2><p>平衡点就是（x, y）不再变化的点，但是不代表（x,y）在实际中静止与此，而仅仅代表：$dX/dt=0, dY/dt=0$，等价于：</p>
+<script type="math/tex; mode=display">
+X(x,y) = Y(x,y) = 0</script><blockquote>
+<p>Integral paths cannot cross in the phase plane, except at equilibrium points. （我认为这显而易见，但我无法证明）</p>
+<ul>
+<li>Ordinary point：所有非平衡点的点都是Ordinary point</li>
+<li>Direction of the Integral Path: 向量$\vec d = [X(x,y), Y(x,y)]$ X(x0, y0) , Y (x0, y0) 是integral path 在 ordinary point (x0, y0)的切线方向。</li>
+</ul>
+</blockquote>
+<h2 id="Integral-Path-的分类"><a href="#Integral-Path-的分类" class="headerlink" title="Integral Path 的分类"></a>Integral Path 的分类</h2><ol>
+<li><p>Isocline：当x与y的变化率为常数时：即 $y = kx + C$ 时，或者写作：</p>
+<script type="math/tex; mode=display">
+ \frac{dy}{dx} = \frac{dy}{dt}/\frac{dx}{dt} = \frac{Y(x,y)}{X(x,y)} = Constant</script></li>
+<li><p>Nullcline：Y(x, y) 或者 X(x, y) 为0的 Integral Path，Nullcline贯穿所有平衡点</p>
+</li>
+</ol>
+<p>对于Nullcline上的点，可以判断该点的移动趋势，实际上是分析x或者y的变化的正负号：</p>
+<ul>
+<li>当X=0时：若Y大于0，则代表Y的变化趋势是+，不断增大向上移动</li>
+<li><p>当Y=0时：若X大于0，则代表x变大，向右变化</p>
+<p>  <img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/Screenshot_2024-04-26_at_23.04.59.png" alt="*对Nullcline与变化趋势的解释*"></p>
+<p>  <em>对Nullcline与变化趋势的解释</em></p>
+</li>
+</ul>
+<p>实际上，对于变化趋势的判断用到了对于特定点周围的线性近似过程，我们也可以使用这个方法来进一步判断平衡点的性质。</p>
+<h2 id="平衡点的性质判断"><a href="#平衡点的性质判断" class="headerlink" title="平衡点的性质判断"></a>平衡点的性质判断</h2><p>下列式子是对$(x_{eq}, y_{eq})$的线性近似：</p>
+<script type="math/tex; mode=display">
+\frac{d\hat{x}}{dt} = X(x_{eq} + \hat{x}, y_{eq} + \hat{y}) \approx X(x_{eq}, y_{eq}) + \hat{x} \frac{\partial X}{\partial x}(x_{eq}, y_{eq}) + \hat{y} \frac{\partial X}{\partial y}(x_{eq}, y_{eq}) \\
+\frac{d\hat{y}}{dt} = Y(x_{eq} + \hat{x}, y_{eq} + \hat{y}) \approx Y(x_{eq}, y_{eq}) + \hat{x} \frac{\partial Y}{\partial x}(x_{eq}, y_{eq}) + \hat{y} \frac{\partial Y}{\partial y}(x_{eq}, y_{eq})</script><p>由于平衡点的性质，在小范围内，等价于：</p>
+<script type="math/tex; mode=display">
+\frac{d\hat{x}}{dt} = \hat{x} \frac{\partial X}{\partial x}(x_{eq}, y_{eq}) + \hat{y} \frac{\partial X}{\partial y}(x_{eq}, y_{eq}) \\
+\frac{d\hat{y}}{dt} = \hat{x} \frac{\partial Y}{\partial x}(x_{eq}, y_{eq}) + \hat{y} \frac{\partial Y}{\partial y}(x_{eq}, y_{eq})</script><p>写成矩阵的形式，事实上，我们只关心其Jacobian matrix</p>
+<script type="math/tex; mode=display">
+\frac{d\vec y}{dt} = \frac{d}{dt} \begin{pmatrix} \hat{x} \\ \hat{y} \end{pmatrix} = \begin{pmatrix} \frac{\partial X}{\partial x}(x_{eq}, y_{eq}) & \frac{\partial X}{\partial y}(x_{eq}, y_{eq}) \\ \frac{\partial Y}{\partial x}(x_{eq}, y_{eq}) & \frac{\partial Y}{\partial y}(x_{eq}, y_{eq}) \end{pmatrix} \begin{pmatrix} \hat{x} \\ \hat{y} \end{pmatrix}</script><p>为了方便讨论平衡点的性，我们着重分析 Nullcline，当X为0时，在足够接近平衡点的时候(x,y)可以看做是线性变化，也就意味着对于给定的向量坐标 $\vec v$  ，其变化趋势的方向与自身指向方向一致，即 $\vec x$ 可以看作是Jacobian的特征向量，所以问题的分析变成了对特征值的分析。我们对其求特征向量，有：</p>
+<script type="math/tex; mode=display">
+                    \textbf{y}_{+} = c_+\textbf{v}_+e^{\lambda_+t} \\ \textbf{y}_{-} = c_-\textbf{v}_-e^{\lambda_-t}</script><h3 id="Case-1-特征根为实数"><a href="#Case-1-特征根为实数" class="headerlink" title="Case 1: 特征根为实数"></a>Case 1: 特征根为实数</h3><p>这时候，向量y就有两个方向，约束平衡点周围的点的变化趋势：</p>
+<ul>
+<li>当 $\vec y$ 对应的特征值大于0时，$|\textbf{y}| \rightarrow \infty \text{ as } t \rightarrow \infty$, 我们说在这一方向上时发散的，或者说Unstable</li>
+<li>当 $\vec y$ 对应的特征值大于0时，$|\textbf{y}| \rightarrow 0 \text{ as } t \rightarrow \infty$, 我们说在这一方向上时收敛于平衡点，或者说Stable</li>
+</ul>
+<p>进一步有如下分类：</p>
+<ol>
+<li>$\lambda_+ &gt; 0 &gt; \lambda_-$ : 两个方向不一致，为Saddle</li>
+<li>$\lambda_+ &gt; \lambda_- &gt; 0$：均为Unstable → 平衡点Unstable</li>
+<li>$0 &gt; \lambda_+ &gt; \lambda_-$: 均为Stable → 平衡点Stable</li>
+</ol>
+<h3 id="Case-2-特征根为虚数"><a href="#Case-2-特征根为虚数" class="headerlink" title="Case 2: 特征根为虚数"></a>Case 2: 特征根为虚数</h3><p>由于特征值共轭，所以在实数部分两者一致，进一步模长随着时间变化的趋势一致，即同时趋向无穷或者0随着时间的变大，在图像上，表达为螺旋状：</p>
+<p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/Screenshot_2024-04-26_at_23.56.46.png" alt="左图解趋向于无穷，代表实部为正数，Unstable Spiral；右侧趋向于0，为负数, Stable Spiral"></p>
+<p>左图解趋向于无穷，代表实部为正数，Unstable Spiral；右侧趋向于0，为负数, Stable Spiral</p>
+<p>当实部为0时，我们认为这是 linear centre，(x, y) 随着时间变化为周期运动，称之为：conserved quantity</p>
+<blockquote>
+<p>An equilibrium point whose linearised system has no <strong>eigenvalues</strong> with <strong>zero real part</strong> is said to be hyperbolic.</p>
+</blockquote>
+<p>我们称没有实部为0的平衡点为：Hyperbolic equilibrium point，除了Linear Center之外都是Hyperbolic Equilibrium Point</p>
+<blockquote>
+<p>An equilibrium point whose linearised system has <strong>at least one eigenvalue with zero real part</strong> is said to be Non-hyperbolic.</p>
+</blockquote>
+<h2 id="Example-对Competitive-Lotka-Volterra-Equations分析相平面"><a href="#Example-对Competitive-Lotka-Volterra-Equations分析相平面" class="headerlink" title="Example: 对Competitive Lotka Volterra Equations分析相平面"></a>Example: 对Competitive Lotka Volterra Equations分析相平面</h2><p>在这个例子中，我们进一步化简方程组，我们假设 $F_X 和 F_y$ 与x, y呈线性关系：</p>
+<script type="math/tex; mode=display">
+\frac{dx}{dt} = x(1-x) - \alpha xy \\ \frac{dy}{dt} = r[y(1-y)-\beta xy]</script><h3 id="Step-1-求解Jacobian-matrix-和平衡点"><a href="#Step-1-求解Jacobian-matrix-和平衡点" class="headerlink" title="Step 1: 求解Jacobian matrix 和平衡点"></a>Step 1: 求解Jacobian matrix 和平衡点</h3><p>根据定义有：</p>
+<script type="math/tex; mode=display">
+                    x(1-x) - \alpha xy =0 \\ r\left\{y(1-y)-\beta xy\right\}=0</script><p>其中，(0,0),(1,0) and (0,1) 显而易见是方程的平衡点，从现实意义上讲，这都意味着一个种族的人口为0，我们还能发现:</p>
+<script type="math/tex; mode=display">
+                    x≡x_c = \frac{1-\alpha}{1 - \alpha \beta} \\
+y≡y_c = \frac{1-\beta}{1 - \alpha \beta}</script><p>我们称这组解为<strong>coexistence equilibrium state，</strong>即两个种族的共生状态。但是这个解并不是一直成立，因为我们定义x, y都是大于等于0的。所以𝛼与𝛽应<strong>同时</strong>在（0，1）之间或者<strong>同时</strong>在(1, +∞), 才存在这个平衡点。</p>
+<p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/Screenshot_2024-04-27_at_00.56.47.png" alt="Equilibrium Point and Jacobian Matrix"></p>
+<p>Equilibrium Point and Jacobian Matrix</p>
+<h2 id="Step-2-Classify-the-equilibrium-points"><a href="#Step-2-Classify-the-equilibrium-points" class="headerlink" title="Step 2: Classify the equilibrium points"></a>Step 2: Classify the equilibrium points</h2><p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/256c6741-8e0a-4d0e-915d-8b4121776351.png" alt="Screenshot 2024-04-27 at 01.04.29.png"></p>
+<blockquote>
+<p>Invariant set：A set of points $S \in R^2$  is an invariant set if $(x,y) \in S$ at some time t implies that $(x,y) \in S \text{ for } ∀t.$对于这个模型来说，x, y轴就是Invariant Set</p>
+</blockquote>
+<h3 id="Step-3-相平面绘制"><a href="#Step-3-相平面绘制" class="headerlink" title="Step 3: 相平面绘制"></a>Step 3: 相平面绘制</h3><p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/e250e020-d6fc-4924-bb7a-18f5fd2588b0.png" alt="Screenshot 2024-04-27 at 01.10.40.png"></p>
+<p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/Screenshot_2024-04-27_at_01.10.55.png" alt="Screenshot 2024-04-27 at 01.10.55.png"></p>
+<p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/Screenshot_2024-04-27_at_01.11.05.png" alt="Screenshot 2024-04-27 at 01.11.05.png"></p>
+<p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/5554fc6d-3a9c-4532-a8ff-375456c58def.png" alt="Screenshot 2024-04-27 at 01.11.24.png"></p>
+<p>在最后的Case中，我们介绍一个概念：Basin of attraction：</p>
+<p>在相平面中，”吸引盆”（Basin of Attraction）是指一个动力系统中，对于一个给定的<strong>稳定平衡点</strong>或稳定<strong>极限环</strong>，所有从中起始最终趋向于该平衡点或极限环的初始条件的集合。简单来说，吸引盆是相空间中的一个区域，如果系统的状态从该区域内的任意点开始演化，随着时间的推移，它将逐渐靠近并最终达到稳定状态（如一个吸引子，可以是一个点、闭合轨道或是更复杂的集合）。</p>
+<p><img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/6ea591aa-63b2-4b10-a79e-8bf45a97439a.png" alt="Screenshot 2024-04-27 at 01.15.15.png"></p>
+<h2 id="Second-Order-ODE"><a href="#Second-Order-ODE" class="headerlink" title="Second Order ODE"></a>Second Order ODE</h2><p>对于二阶微分方程，我们也可以使用相平面法去探索物体的变化规律，单摆是一个简单的例子：</p>
+<script type="math/tex; mode=display">
+F = -kx</script><p>我们已知单摆在小角度下成立，将其写成ODE的形式，并将参数定义为ω,有：</p>
+<script type="math/tex; mode=display">
+\frac{d^2\theta}{dt^2} ≡ \frac{d^2x}{dt^2} = -\omega^2x = -\omega^2sin\theta</script><p>我们令 $q = \theta_t$, q可以理解为一个速度变量，构造二元方程：</p>
+<script type="math/tex; mode=display">
+\frac{d\theta}{dt} = q \\ \frac{dq}{dt} = -\omega^2 sin\theta</script><p>我们可以发现有平衡点(0, 0)，由于角度的周期性，角度加任意倍数的π都为平衡点，注意，（0， 0）是一个Linear Center，容易理解的，角度加360度不影响性质，所以任意360度的倍数都是Linear Center, 但是对于角度加180度，这并不能构成一个单摆的稳定状态，它将继续运动直到收敛于单摆运动，是saddle的。</p>
+<h3 id="Conserved-System"><a href="#Conserved-System" class="headerlink" title="Conserved System"></a>Conserved System</h3><p>在这个场景中，我们认为是速度和位移两个元素构成了一个系统并探究两者的运动关系，在这个系统中，始终遵守：</p>
+<script type="math/tex; mode=display">
+\frac{d\theta}{dq} = \frac{d\theta}{dt} / \frac{dq}{dt} = -\frac{q}{\omega^2sin\theta}</script><p>那么通过求解微分方程，我们得到：</p>
+<script type="math/tex; mode=display">
+\frac{1}{2}q^2 - \omega^2cos\theta = Constant</script><p>我们称这个系统是保守系因为两者存在一个定值的约束关系，我们定义这个约束关系为E，称之为Conserved quantity。</p>
+<p>根据这个约束条件，我们可以绘制不同定值下两者的变化关系。</p>
+<ul>
+<li>An integral path that connects one <strong>saddle point</strong> to another is called a heteroclinic connection or <strong>heteroclinic</strong> orbit串联所有的Saddle Point</li>
+<li><p><strong>Homoclinic path</strong> ：过所有的平衡点的线</p>
+<p>  <img src="Phase%20Plane%20Methods%201044dfc920d24d5a9caade87755c831d/Screenshot_2024-04-28_at_15.43.42.png" alt="Screenshot 2024-04-28 at 15.43.42.png"></p>
+</li>
+</ul>
+<p>根据定义，我们可以知道红色轨迹是<strong>heteroclinic路径</strong>，因为这条路径经过所有的<strong>Saddle Point</strong></p>
+<p>当角度初始为小角度时，轨迹围绕Linear Center平衡点，在Limit Cycle中运动，即有周期性的简谐运动。当角度过大，或者q过大，则会做圆周运动，如蓝线所示。</p>
+<h2 id="Limit-Cycle"><a href="#Limit-Cycle" class="headerlink" title="Limit Cycle"></a>Limit Cycle</h2><p>在保守系统中，我们定义：极限环（Limit Cycle）主要用于描述动态系统的行为。极限环是一个封闭的轨道，这意味着系统的状态（通常表现为某些变量的集合）随时间演化后，将返回到起始位置，并重复这一周期性的行为。接下来我们将讨论如何判断一个封闭空间有没有Limit Cycle</p>
+<h3 id="Method-1-Poincaré-index"><a href="#Method-1-Poincaré-index" class="headerlink" title="Method 1: Poincaré index"></a>Method 1: Poincaré index</h3><p>对于一个封闭曲线，我们为这个曲线计算一个参数，叫Poincare Index，有以下准则：</p>
+<ul>
+<li>如果这个曲线围城的区域中不含有任何平衡点，则其Index=0</li>
+<li>若$L = L_1 +L_2$,则 $Index(R) = Index(R_1) + Index(R_2)$</li>
+<li>若这个曲线是Limit Cycle，Index = 1</li>
+<li>曲线每包含一个：<ul>
+<li>Saddle Point: -1</li>
+<li>Center: +1 包括 Nodes， spirals</li>
+</ul>
+</li>
+</ul>
+<p>Theorem：若曲线围的所有平衡点的Index和不为1，曲线围的区域不存在Limit Center</p>
+<h3 id="Method-2-Bendixson’s-negative-criterion"><a href="#Method-2-Bendixson’s-negative-criterion" class="headerlink" title="Method 2: Bendixson’s negative criterion"></a>Method 2: Bendixson’s negative criterion</h3><p>对于一个简单的封闭区域R，若对于R中的点(x,y):</p>
+<script type="math/tex; mode=display">
+D = \frac{\partial X}{\partial x} + \frac{\partial Y}{\partial y}</script><p>若D在遍历所有点时符号无改变，则不存在Limit Cycle在R中。但这个式子并不是非常有用，进一步，可以结合Dulac’s extension</p>
+<p>构造在R中连续函数  $\rho(x, y)$ ，若</p>
+<script type="math/tex; mode=display">
+D = \frac{\partial \rho X}{\partial x} + \frac{\partial \rho Y}{\partial y}</script><p>在R中所有点仍不变号，则无Limit Cycle</p>
+<p>我们可以用这个方法检测Lotka-Volterra system</p>
+<script type="math/tex; mode=display">
+\frac{dx}{dt} = x(1-x) - \alpha xy \\ \frac{dy}{dt} = r[y(1-y)-\beta xy]</script><p>在不结合Dulac’s extension, $X_x = 1 - 2x - \alpha y, Y_y = r - 2r - r\beta x$</p>
+<script type="math/tex; mode=display">
+D= 1 − 2x − αy + r(1 − 2y) − rβx.</script><p>这看起来并并不直观，但是当结合了Dulac’s extension，我们定义 $\rho(x,y) = {1\over xy}$:</p>
+<script type="math/tex; mode=display">
+D = {\partial \over \partial x} {1\over y}[(1-x) - \alpha]+ {\partial \over \partial x} {r\over x}[(1-y) - \beta] = -{1\over y } - {r \over x}</script><p>由于(x,y)总在第一象限，所以D恒小于0，则在第一象限内不存在Limit Cycle.</p>
+<h3 id="Poincare-Bendixson-theorem"><a href="#Poincare-Bendixson-theorem" class="headerlink" title="Poincaré-Bendixson theorem"></a>Poincaré-Bendixson theorem</h3><p>把这两个人的名字和在一起，我们有这一定理：</p>
+<p>Theorem：在二维平面中，若一个区域不存在平衡点，而Integral Path从所有边缘方向进入这个区域，那么这个区域一定存在Limit Cycle。</p>
+<p>在这个定理的正式定义前，需要解释几个概念：</p>
+<ul>
+<li>Positively-invariant set：t=0 随着时间变大，Solution一直在这个区域内，如稳定螺旋</li>
+<li>Negatively-invariant set：t=0 随着时间变小（小于0），Solution一直在这个区域内，如不稳定螺旋</li>
+<li>若一个Integral Path不仅是Positively-invariant set还是Negatively-invariant set，那么这就是Limit Cycle</li>
+</ul>
+<blockquote>
+<p><strong>Poincaré-Bendixson</strong>: If there exists a bounded, invariant region I in the phase plane, and I contains no equilibrium points, then I contains at least one limit cycle.</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>微分方程</tag>
+        <tag>相平面</tag>
+      </tags>
+  </entry>
 </search>
