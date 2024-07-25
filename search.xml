@@ -2193,4 +2193,39 @@ D = {\partial \over \partial x} {1\over y}[(1-x) - \alpha]+ {\partial \over \par
         <tag>LLM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Tensorboard 部署测试</title>
+    <url>/2024/07/25/tensorboard/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="Tensorboard-in-Pytorch-Introduction"><a href="#Tensorboard-in-Pytorch-Introduction" class="headerlink" title="Tensorboard in Pytorch Introduction"></a>Tensorboard in Pytorch Introduction</h3><p>Tensorboard是一个用于机器学习实验的可视化工具包。TensorBoard允许跟踪和可视化指标，如损失和准确性，可视化模型图，查看直方图，显示图像等，本文介绍pytorch架构下使用Tensor Board。核心原理是使用SummaryWriter()记录需要的数据（类似于Wandb的实例）并且在本地localhost进行可视化。</p>
+<h3 id="SummaryWriter实例创建"><a href="#SummaryWriter实例创建" class="headerlink" title="SummaryWriter实例创建"></a>SummaryWriter实例创建</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">!pip install tensorboard</span><br></pre></td></tr></table></figure>
+<p>TensorBoard可以理解成数据可视化的工具，使用时我们需要准备好记录训练时的数据，这时候就需要<code>SummaryWriter</code>实例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">from</span> torch.utils.tensorboard <span class="keyword">import</span> SummaryWriter</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">writer = SummaryWriter()</span><br></pre></td></tr></table></figure>
+<h3 id="Example-感知机回归下的TensorBoard监控"><a href="#Example-感知机回归下的TensorBoard监控" class="headerlink" title="Example: 感知机回归下的TensorBoard监控"></a>Example: 感知机回归下的TensorBoard监控</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = torch.nn.Sequential(</span><br><span class="line">    torch.nn.Linear(<span class="number">3</span>, <span class="number">1000</span>),</span><br><span class="line">    torch.nn.Sigmoid(),</span><br><span class="line">    torch.nn.Linear(<span class="number">1000</span>, <span class="number">1</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_weights</span>(<span class="params">m</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(m) == torch.nn.Linear:</span><br><span class="line">        torch.nn.init.normal_(m.weight, std=<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line">model.apply(init_weights)</span><br><span class="line"></span><br><span class="line">model</span><br></pre></td></tr></table></figure>
+<p>​    Sequential(<br>​      (0): Linear(in_features=3, out_features=1000, bias=True)<br>​      (1): Sigmoid()<br>​      (2): Linear(in_features=1000, out_features=1, bias=True)<br>​    )</p>
+<p>生成多项式数据集: $y = sin(x_1) + cos(x_2) + x_3^2$</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">generate_data</span>(<span class="params">n=<span class="number">1000</span></span>):</span><br><span class="line">    x = torch.rand(n, <span class="number">3</span>)</span><br><span class="line">    y = torch.sin(x[:, <span class="number">0</span>]) + torch.cos(x[:, <span class="number">1</span>]) + x[:, <span class="number">2</span>]**<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> x, y</span><br><span class="line"></span><br><span class="line">x, y = generate_data()</span><br><span class="line"><span class="comment"># 生成验证集</span></span><br><span class="line">x_val, y_val = generate_data(n=<span class="number">100</span>)</span><br><span class="line"><span class="comment"># 导入pytorch</span></span><br><span class="line"></span><br><span class="line">data_set = torch.utils.data.TensorDataset(x, y)</span><br><span class="line">train_loader = torch.utils.data.DataLoader(data_set, batch_size=<span class="number">16</span>, shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<p>使用TensorBoard查看模型结构</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">input</span> = x</span><br><span class="line">writer.add_graph(model, <span class="built_in">input</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%AE%9E%E4%BE%8B.png" style="zoom:50%;" /></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">critertion = torch.nn.MSELoss()</span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">0.01</span>)</span><br><span class="line"></span><br><span class="line">num_epochs = <span class="number">100</span></span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, num_epochs + <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">for</span> inputs, targets <span class="keyword">in</span> train_loader:</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        outputs = model(inputs)</span><br><span class="line">        loss = critertion(outputs, targets)</span><br><span class="line">        loss.backward()</span><br><span class="line">        optimizer.step()</span><br><span class="line">    writer.add_scalar(<span class="string">&#x27;train_loss&#x27;</span>, loss, epoch)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;Epoch <span class="subst">&#123;epoch&#125;</span>, Loss: <span class="subst">&#123;loss.item()&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="comment"># 记录参数范数变化</span></span><br><span class="line">        <span class="keyword">for</span> name, param <span class="keyword">in</span> model.named_parameters():</span><br><span class="line">            writer.add_scalar(<span class="string">f&#x27;<span class="subst">&#123;name&#125;</span>_norm&#x27;</span>, param.norm().item(), epoch + <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 记录验证集loss</span></span><br><span class="line">        val_hat = model(x_val)</span><br><span class="line">        val_loss = critertion(val_hat, y_val)</span><br><span class="line">        writer.add_scalar(<span class="string">&#x27;val_loss&#x27;</span>, val_loss, epoch)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">writer.close()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>不同同激活函数下的训练过程：<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/Screenshot%202024-07-23%20at%2014.14.24.png" alt=""></p>
+</li>
+<li><p>Sigmoid激活函数下参数训练的范数变化：<br><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/%E6%A8%A1%E5%9E%8B%E5%8F%82%E6%95%B0%E7%9B%91%E6%8E%A7.png" alt=""></p>
+</li>
+</ul>
+<h3 id="对比Wandb与Tensorboard"><a href="#对比Wandb与Tensorboard" class="headerlink" title="对比Wandb与Tensorboard"></a>对比Wandb与Tensorboard</h3><ul>
+<li>Tensorboard相比于Wandb在绘制模型结构这个功能上更加简单</li>
+<li>无需联网，但是服务器有时候不稳定，经常需要刷新；需要注意log文件存放的位置以及管理</li>
+<li>不太能协同工作，Wandb基本可以替代TensorBoard</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
 </search>
