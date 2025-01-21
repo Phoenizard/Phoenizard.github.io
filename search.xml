@@ -2283,6 +2283,24 @@ e^{\sigma^2/2} \sum_{j=1}^{n+1}\pi_j e^{\mu_j} &= e^{(r - \delta)\tau} \\
 <li><p>使用牛顿-莱布尼茨法求 $\mu_j$</p>
 </li>
 </ol>
+<h2 id="AMD公司的期权价格分析"><a href="#AMD公司的期权价格分析" class="headerlink" title="AMD公司的期权价格分析"></a>AMD公司的期权价格分析</h2><h3 id="期权价格数据拟合"><a href="#期权价格数据拟合" class="headerlink" title="期权价格数据拟合"></a>期权价格数据拟合</h3><p>我们通过上述方法对AMD公司的期权价格进行分析，我们提取了2018年AMD公司6月7月的期权价格数据。我们将其分割为两个部分，对应$\tau = 0.0958$和$\tau = 0.08493$。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MixBS_Train_AMD.png" alt=""></p>
+<p>此图为训练集的期权价格分布，我们可以看到，期权价格分布在不同的执行价上有不同的分布。</p>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/MixBS_Test_AMD.png" alt=""></p>
+<p>此图为测试集的期权价格分布，我们可以看到拟合较好。</p>
+<h3 id="Greeks分析"><a href="#Greeks分析" class="headerlink" title="Greeks分析"></a>Greeks分析</h3><p>我们通过对期权价格的混合分布进行分析，得到了期权价格的Greeks值:</p>
+<ul>
+<li><p>Delta: $\Delta = \frac{\partial C}{\partial S}$ 代表期权价格对标的资产价格的敏感程度</p>
+</li>
+<li><p>Theta: $\Theta = \frac{\partial C}{\partial \tau}$ 代表期权价格对时间的敏感程度</p>
+</li>
+<li><p>Gamma: $\Gamma = \frac{\partial^2 C}{\partial S^2}$ 代表Delta对标的资产价格的敏感程度</p>
+</li>
+<li><p>Vega: $\nu = \frac{\partial C}{\partial \sigma}$ 代表期权价格对波动率的敏感程度</p>
+</li>
+<li><p>Rho: $\rho = \frac{\partial C}{\partial r}$ 代表期权价格对无风险利率的敏感程度</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>学习笔记</category>
