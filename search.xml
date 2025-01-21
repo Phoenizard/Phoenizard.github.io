@@ -92,7 +92,7 @@
   </entry>
   <entry>
     <title>算法题解[模拟]P1065作业调度方案题解[NOIP2006提高组]</title>
-    <url>/2023/05/20/P1065/</url>
+    <url>/2023/05/19/P1065/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>我们现在要利用 $m$ 台机器加工 $n$ 个工件，每个工件都有 $m$ 道工序，每道工序都在不同的指定的机器上完成。每个工件的每道工序都有指定的加工时间。</p>
 <p>每个工件的每个工序称为一个操作，我们用记号 <code>j-k</code> 表示一个操作，其中 $j$ 为 $1$ 到 $n$ 中的某个数字，为工件号；$k$ 为 $1$ 到 $m$ 中的某个数字，为工序号，例如 <code>2-4</code> 表示第 $2$ 个工件第 $4$ 道工序的这个操作。在本题中，我们还给定对于各操作的一个安排顺序。</p>
 <p>例如，当 $n=3,m=2$ 时，<code>1-1,1-2,2-1,3-1,3-2,2-2</code> 就是一个给定的安排顺序，即先安排第 $1$ 个工件的第 $1$ 个工序，再安排第 $1$ 个工件的第 $2$ 个工序，然后再安排第 $2$ 个工件的第 $1$ 个工序，等等。</p>
@@ -2226,6 +2226,70 @@ D = {\partial \over \partial x} {1\over y}[(1-x) - \alpha]+ {\partial \over \par
       <tags>
         <tag>人工智能</tag>
         <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于BS模型条件下的期权价格改变策略</title>
+    <url>/2025/01/21/BS-Model/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="BS模型基本假设"><a href="#BS模型基本假设" class="headerlink" title="BS模型基本假设"></a>BS模型基本假设</h2><p>研究的背景为风险中性、无套利的欧市市场，因此我们有：</p>
+<script type="math/tex; mode=display">
+C(X, S_t, r_{t,\tau}, \tau) = e^{-r_{t,\tau}, \tau} \int_0^{\infty} \psi(S_T, X)f(S_T)dS_T</script><p>其中，$\tau = T - t$ 为当前时间和交易日的差值，$X$为执行价(Strike Price)，$r$为无风险利率(risk-free rate),$f(S_T)$为资产价格分布，$\psi(S_T, X) = \max\left\{S_T - X\right\}$。</p>
+<p>在Black-Scholes模型的定义中，标的资产价格$S_t$(State Price)为Geometric Brownian运动，则${S_t}$符合正态指数分布。</p>
+<p>同时，期权价格$C$(Option Price)与$S_T$有：</p>
+<script type="math/tex; mode=display">
+f(S_T) = e^{r_{t, \tau}, \tau} \frac{\partial^2C}{\partial X^2}|_{X=S_t}</script><p>其中</p>
+<h2 id="BS模型改进方案"><a href="#BS模型改进方案" class="headerlink" title="BS模型改进方案"></a>BS模型改进方案</h2><p>我们通过改变传统的指数正态分布使得BS模型拟合的更加精准。具体的，我们定义$S_t$符合混合分布，即：</p>
+<script type="math/tex; mode=display">
+h(\ln(S_T)) = \int\phi(\ln{S_T}|\mu, \sigma^2) dG(\mu, \sigma)</script><p>其中，正态分布满足 $\ln(S_T) \sim \mathcal{N}(ln(S_t) + (r_{t, \tau} - \delta -\sigma^2)\tau, \sigma\sqrt\tau) $ ,进一步有：</p>
+<script type="math/tex; mode=display">
+f(S_T) = \int v(S_T|\mu, \sigma^2) dG(\mu, \sigma)</script><p>其中$v$为符合上述正态分布的指数正态分布函数。那么对应的期权价格也有混合分布的形式：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+C(X, G) &= e^{-r_{t, \tau}\tau}
+\int\psi(S_T)f(S_T)dS_T \\
+&= \int\int e^{-r_{t, \tau}\tau}\psi(S_T)v(S_T|\mu, \sigma^2)dS_TdG(\mu, \sigma)\\
+&\equiv\int C(X, \mu, \sigma^2) dG(\mu, \sigma)
+\end{align*}</script><script type="math/tex; mode=display">
+\begin{align*}
+C(X, \mu, \sigma^2) &= e^{-r_{t, \tau}\tau}\int\psi(S_T)v(S_T|\mu, \sigma^2)dS_T \\
+&= e^{-r_{t, \tau}\tau}\int_{-\infty}^{\infty}(e^{S_T} - X) + \phi(s|\mu, \sigma^2)ds \\
+&= e^{-r_{t, \tau}\tau + \sigma^2/2 + \mu}\overline{\Phi}\left(\frac{\ln(X) - (\mu + \sigma^2)}{\sigma}\right) - e^{-r_{t, \tau}\tau}\overline{\Phi}\left(\frac{\ln(X) - \mu}{\sigma}\right) 
+\end{align*}</script><p>其中 $\overline{\Phi}(\cdot) = 1 - \Phi(\cdot)$</p>
+<h2 id="具体计算策略"><a href="#具体计算策略" class="headerlink" title="具体计算策略"></a>具体计算策略</h2><h3 id="优化问题陈述"><a href="#优化问题陈述" class="headerlink" title="优化问题陈述"></a>优化问题陈述</h3><p>我们通过收集：</p>
+<ul>
+<li>$\mathbf{C}$: 实际期权价格</li>
+<li>$\mathbf{x}$: 实际执行价 </li>
+<li>$r, \delta, T$: 用于计算的参数</li>
+</ul>
+<p>构造最小二乘优化问题：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\hat{G} &= \argmin_{g\in G} \sum_{i=1}^{n} (C(x_i, G) - \mathbf{C}_i)^2 \\
+&=\argmin_{\left\{\mathbf{\pi}, \mathbf{\mu}, \sigma\right\}} \sum_{i=1}^{n} \left(\sum_{j=1}^{n+1} \pi_j C(x_i, \mu_j, \sigma^2) - \mathbf{C}_i\right)^2
+\end{align*}</script><p>其中，$\pi_j$为混合分布的权重，满足$\sum_{j=1}^{n+1}\pi_j = 1$。</p>
+<h3 id="约束条件分析"><a href="#约束条件分析" class="headerlink" title="约束条件分析"></a>约束条件分析</h3><p>根据无风险套利市场规则，我们有未来资产价格的期望值为当前资产价格的贴现值：</p>
+<script type="math/tex; mode=display">
+E[S_T] = S_t e^{(r - \delta)\tau}</script><p>进一步有：</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+\int e^{\mu + \sigma^2/2}dG(\mu, \sigma) &= S_t e^{(r - \delta)\tau} \\
+S_t e^{\sigma^2/2} \sum_{j=1}^{n+1}\pi_j e^{\mu_j} &= S_t e^{(r - \delta)\tau} \\ 
+e^{\sigma^2/2} \sum_{j=1}^{n+1}\pi_j e^{\mu_j} &= e^{(r - \delta)\tau} \\
+\end{align*}</script><h3 id="优化问题求解"><a href="#优化问题求解" class="headerlink" title="优化问题求解"></a>优化问题求解</h3><ol>
+<li><p>猜测$\sigma^2$, 并且对$\mu_j$进行初始化 </p>
+</li>
+<li><p>假设$\sigma^2$, $\mu_j$已知，求解$\pi_j$: 使用二次规划算法求解</p>
+</li>
+<li><p>使用牛顿-莱布尼茨法求 $\mu_j$</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>概率论</tag>
+        <tag>金融数学</tag>
       </tags>
   </entry>
 </search>
