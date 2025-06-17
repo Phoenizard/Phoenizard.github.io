@@ -92,7 +92,7 @@
   </entry>
   <entry>
     <title>算法题解[模拟]P1065作业调度方案题解[NOIP2006提高组]</title>
-    <url>/2023/05/19/P1065/</url>
+    <url>/2023/05/20/P1065/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>我们现在要利用 $m$ 台机器加工 $n$ 个工件，每个工件都有 $m$ 道工序，每道工序都在不同的指定的机器上完成。每个工件的每道工序都有指定的加工时间。</p>
 <p>每个工件的每个工序称为一个操作，我们用记号 <code>j-k</code> 表示一个操作，其中 $j$ 为 $1$ 到 $n$ 中的某个数字，为工件号；$k$ 为 $1$ 到 $m$ 中的某个数字，为工序号，例如 <code>2-4</code> 表示第 $2$ 个工件第 $4$ 道工序的这个操作。在本题中，我们还给定对于各操作的一个安排顺序。</p>
 <p>例如，当 $n=3,m=2$ 时，<code>1-1,1-2,2-1,3-1,3-2,2-2</code> 就是一个给定的安排顺序，即先安排第 $1$ 个工件的第 $1$ 个工序，再安排第 $1$ 个工件的第 $2$ 个工序，然后再安排第 $2$ 个工件的第 $1$ 个工序，等等。</p>
@@ -2264,8 +2264,8 @@ C(X, \mu, \sigma^2) &= e^{-r_{t, \tau}\tau}\int\psi(S_T)v(S_T|\mu, \sigma^2)dS_T
 <p>构造最小二乘优化问题：</p>
 <script type="math/tex; mode=display">
 \begin{align*}
-\hat{G} &= \argmin_{g\in G} \sum_{i=1}^{n} (C(x_i, G) - \mathbf{C}_i)^2 \\
-&=\argmin_{\left\{\mathbf{\pi}, \mathbf{\mu}, \sigma\right\}} \sum_{i=1}^{n} \left(\sum_{j=1}^{n+1} \pi_j C(x_i, \mu_j, \sigma^2) - \mathbf{C}_i\right)^2
+\hat{G} &= \arg\min_{g\in G} \sum_{i=1}^{n} (C(x_i, G) - \mathbf{C}_i)^2 \\
+&=\arg\min_{\left\{\mathbf{\pi}, \mathbf{\mu}, \sigma\right\}} \sum_{i=1}^{n} \left(\sum_{j=1}^{n+1} \pi_j C(x_i, \mu_j, \sigma^2) - \mathbf{C}_i\right)^2
 \end{align*}</script><p>其中，$\pi_j$为混合分布的权重，满足$\sum_{j=1}^{n+1}\pi_j = 1$。</p>
 <h3 id="约束条件分析"><a href="#约束条件分析" class="headerlink" title="约束条件分析"></a>约束条件分析</h3><p>根据无风险套利市场规则，我们有未来资产价格的期望值为当前资产价格的贴现值：</p>
 <script type="math/tex; mode=display">
@@ -2314,6 +2314,141 @@ e^{\sigma^2/2} \sum_{j=1}^{n+1}\pi_j e^{\mu_j} &= e^{(r - \delta)\tau} \\
       <tags>
         <tag>概率论</tag>
         <tag>金融数学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Introduction to GP Regression</title>
+    <url>/2025/06/17/GP/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="Definition-of-Gaussian-Process"><a href="#Definition-of-Gaussian-Process" class="headerlink" title="Definition of Gaussian Process"></a>Definition of Gaussian Process</h2><p>A Gaussian Process (GP) is a collection of random variables, any finite number of which have a joint Gaussian distribution. It is completely specified by its mean function $μ(x)$ and covariance function $k(x,x’)$, also known as the kernel function.</p>
+<script type="math/tex; mode=display">
+f(x)\sim GP(μ(x), k(x,x'))</script><p>Where:</p>
+<ul>
+<li>$μ(x) = E[f(x)]$  is the mean function</li>
+<li>$k(x,x’) = E[(f(x) - μ(x))(f(x’) - μ(x’))]$ is the covariance function</li>
+</ul>
+<p>For a random process, we usually introduce a time series to interpret the meaning of different states (e.g., a Poisson Process, which is a counting process dependent on time). However, a more formal way to understand processes is to define them on a space. For instance, time steps are performed in $Z$ space, and consequently, the GP is a type of process defined on $R^d$. </p>
+<p>Every point in $R^d$ represents a state corresponding to a unique Normal Distribution. The key rule for this space is that when we combine all these states, their joint distribution forms a <strong>Multivariate Normal Distribution</strong> with a unique covariance function $K: R^d \rightarrow R \times R$</p>
+<h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Unlike Machine Learning Problem, once we have the dataset with vector $\mathbf{x}$ and target variable $y$, we do not need to split the dataset since the model assumption indicts the difference between training data and prediction data, following by the distribution:</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+y \\
+y^*
+\end{bmatrix}
+\sim
+\mathcal{N}\left(
+\begin{bmatrix}
+\mu(\mathbf{X}) \\
+\mu(\mathbf{X}^*)
+\end{bmatrix},
+\begin{bmatrix}
+K(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} & K(\mathbf{X}, \mathbf{X}^*) \\
+K(\mathbf{X^*}, \mathbf{X}) & K(\mathbf{X^*}, \mathbf{X^*})
+\end{bmatrix}
+\right)</script><p>Note:</p>
+<script type="math/tex; mode=display">
+\text{Cov}(\mathbf{y}, \mathbf{y}^*) = \text{Cov}(\mathbf{f(X) + \epsilon}, \mathbf{f^*(X)}) = \text{Cov}(f, f^*) = K(\mathbf{X}, \mathbf{X}^*)</script><h2 id="Prior-and-Posterior-distribution"><a href="#Prior-and-Posterior-distribution" class="headerlink" title="Prior and Posterior distribution"></a>Prior and Posterior distribution</h2><p>For the convenience of illustration, the prior distribution is commonly set up by: </p>
+<script type="math/tex; mode=display">
+\mu(X)= 0 \;\ k(x,x') = \Sigma \text{ which is known kernel}</script><p>The next step is to find the posterior distribution of  $y^<em> | x, y, x^</em>$, we consider the general form:</p>
+<script type="math/tex; mode=display">
+\mathbf{z} = \begin{bmatrix} \mathbf{a} \\ \mathbf{b} \end{bmatrix} \sim \mathcal{N}(\boldsymbol{\mu}, \Sigma),\quad
+\boldsymbol{\mu} = \begin{bmatrix} \boldsymbol{\mu}_a \\ \boldsymbol{\mu}_b \end{bmatrix},\quad
+\Sigma =
+\begin{bmatrix}
+A & C \\
+C^\top & B
+\end{bmatrix}</script><script type="math/tex; mode=display">
+\begin{align*}
+p(\mathbf{b} \mid \mathbf{a}) &= \frac{p(\mathbf{a}, \mathbf{b})}{p(\mathbf{a})} \sim \frac{\mathcal{N}(\boldsymbol{\mu}, \Sigma)}{\mathcal{N}(\mathbf{\mu}_a, A)} \\ &= \frac{\frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left\{ -\frac{1}{2} (\mathbf{z} - \boldsymbol{\mu})^\top \Sigma^{-1} (\mathbf{z} - \boldsymbol{\mu}) \right\}}{\frac{1}{(2\pi)^{n/2} |A|^{1/2}} \exp\left\{ -\frac{1}{2} (\mathbf{z} - \mu_a)^\top A^{-1} (\mathbf{z} - \mu_a) \right\}}
+\end{align*}</script><p>Since we known that the division of Normal Distribution is also Normal, and the dominator is constant since the data is given, we analysis $\mathcal{N}(\boldsymbol{\mu}, \Sigma)$ directly. </p>
+<p>Let $\delta \mathbf{a} := \mathbf{a} - \boldsymbol{\mu}_a,\quad \delta \mathbf{b} := \mathbf{b} - \boldsymbol{\mu}_b$ and we have:</p>
+<script type="math/tex; mode=display">
+\begin{align*}
+p(\mathbf{b} \mid \mathbf{a}) &\propto  \exp\left\{ -\frac{1}{2} (\mathbf{z} - \boldsymbol{\mu})^\top \Sigma^{-1} (\mathbf{z} - \boldsymbol{\mu}) \right\} \\ &=\exp\left\{-\frac{1}{2}\begin{bmatrix}\delta \mathbf{a} \\\delta \mathbf{b}\end{bmatrix}^\top\Sigma^{-1}\begin{bmatrix}\delta \mathbf{a} \\\delta \mathbf{b}
+\end{bmatrix}\right\}
+\end{align*}</script><p>Given that for block matrix, we have:</p>
+<script type="math/tex; mode=display">
+\Sigma =
+\begin{bmatrix}
+A & C \\
+C^\top & B
+\end{bmatrix}
+\Rightarrow
+M:= \Sigma^{-1} =
+\begin{bmatrix}
+A^{-1} + A^{-1} C S^{-1} C^\top A^{-1} & -A^{-1} C S^{-1} \\
+S^{-1} C^\top A^{-1} & S^{-1}
+\end{bmatrix} \\ 
+
+\text{ where: }
+S := B - C^\top A^{-1} C \quad \text{(Schur complement)}</script><p>We define:  </p>
+<script type="math/tex; mode=display">
+Q(\mathbf{a}, \mathbf{b}) =
+\begin{bmatrix}
+\delta \mathbf{a} \\
+\delta \mathbf{b}
+\end{bmatrix}^\top
+\begin{bmatrix}
+A & C \\
+C^\top & B
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+\delta \mathbf{a} \\
+\delta \mathbf{b}
+\end{bmatrix}</script><p>and complete the square：</p>
+<script type="math/tex; mode=display">
+\begin{align*}Q(\mathbf{a}, \mathbf{b}) &=
+\delta \mathbf{a}^\top M_{aa} \delta \mathbf{a} +
+2 \delta \mathbf{a}^\top M_{ab} \delta \mathbf{b} +
+\delta \mathbf{b}^\top M_{bb} \delta \mathbf{b} \\ 
+&= 
+\delta \mathbf{b}^\top M_{bb} \delta \mathbf{b} +
+2 \delta \mathbf{b}^\top M_{ba} \delta \mathbf{a} + \text{(constant)} \\ 
+&= 
+(\delta \mathbf{b} + M_{bb}^{-1} M_{ba} \delta \mathbf{a})^\top M_{bb}
+(\delta \mathbf{b} + M_{bb}^{-1} M_{ba} \delta \mathbf{a})
++ \text{(constant)}
+
+\end{align*}</script><p>which means:</p>
+<script type="math/tex; mode=display">
+p(\mathbf{b} \mid \mathbf{a}) \propto \exp[-\frac{1}{2}Q(\mathbf{a}, \mathbf{b}))]\Rightarrow \mathbf{b} \mid \mathbf{a} \sim \mathcal{N}(\mu_n, \Sigma_n) \\ 
+\mu_n =  \mu_b + C^\top A^{-1} (\mathbf{a} - \mu_a) \quad ; \quad  \Sigma_n = B - C^\top A^{-1} C</script><p>Given with the data, now we obtain the posterior distribution for the predictive points.</p>
+<h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><p>Our key is to find the correct kernel expression, we can introduce marginal likelihood function and try to find the maximum value of it. We start from the definition:</p>
+<script type="math/tex; mode=display">
+p(\mathbf{y}\mid X, \theta) = \int_{\mathcal{R}^n} p(\mathbf{y} \mid \mathbf{f}) p(\mathbf{f}\mid X)d\mathbf{f}</script><p>We consider f mentioned in the integral is the arbitrary expectation in $R^n$ space. so that $p(y|f)$ can be interpret as: under such expectation, how likely will the true observation happens, which is a normal distribution as the model assumption, and the term $p(f|X)$ means the prior behavior of $f$, depending on how we define the prior distribution. In this case, it is $\mathcal{N}(\mathbf{\mu}, K)$ and $\mathbf{\mu} = \mathbf{0}$   .</p>
+<p>Since both distribution is Normal, the convolution of 2 normal distribution is still Normal. We have</p>
+<script type="math/tex; mode=display">
+\mathbf{y} | X, \theta \sim \mathcal{N}(0， \sigma^2\mathbf{I}+K)</script><p>We use the <strong>Negative Log Marginal Likelihood (NLML)</strong> as the objective function to optimize model hyperparameters because it provides a principled and probabilistic way to learn the best settings for the kernel (e.g., length-scales, variances) and noise level.</p>
+<script type="math/tex; mode=display">
+\log p(\mathbf{y} \mid \mathbf{X}, \theta) = -\frac{1}{2} \mathbf{y}^\top (\mathbf{K}\theta + \sigma_n^2 \mathbf{I})^{-1} \mathbf{y} - \frac{1}{2} \log |\mathbf{K}\theta + \sigma_n^2 \mathbf{I}| - \frac{n}{2} \log 2\pi</script><p>And</p>
+<script type="math/tex; mode=display">
+\text{NLML}(\theta) = \frac{1}{2} \mathbf{y}^\top \mathbf{K}_y^{-1} \mathbf{y} + \frac{1}{2} \log |\mathbf{K}_y| + \frac{n}{2} \log 2\pi</script><p>with $\mathbf{K}_y = \mathbf{K}_\theta + \sigma_n^2 \mathbf{I}$. Notice that NLML is gradient based therefore we can use GD, Adam and other common methods to solve the minimum solution.</p>
+<h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><ol>
+<li>Data process and initial part:<ol>
+<li>Data Cleaning and Normalize</li>
+<li>Define the kernel function and initial the parameters to be optimized</li>
+<li>Define NLML</li>
+</ol>
+</li>
+<li>Training Loop in given epochs number<ol>
+<li>Calculate  the NLML under current parameters</li>
+<li>Use Gradient-based Method with a learning rate</li>
+<li>Update the parameters</li>
+</ol>
+</li>
+<li>After Training<ol>
+<li>Calculate the posterior distribution and sample the result</li>
+<li>Present the result and Validation</li>
+</ol>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>数学</tag>
+        <tag>随机过程</tag>
       </tags>
   </entry>
 </search>

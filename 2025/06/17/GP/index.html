@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png"><link rel="mask-icon" href="/images/logo.svg" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"example.com",root:"/",scheme:"Pisces",version:"7.8.0",exturl:!1,sidebar:{position:"left",width:320,display:"always",padding:18,offset:12,onmobile:!1},copycode:{enable:!0,show_result:!0,style:null},back2top:{enable:!0,sidebar:!0,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!1,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:1,unescape:!1,preload:!1},motion:{enable:!0,async:!1,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="This note gives a simple and mathametical based overview of Gaussian Process Regression (GPR)."><meta property="og:type" content="article"><meta property="og:title" content="Introduction to GP Regression"><meta property="og:url" content="http://example.com/2025/06/17/GP/index.html"><meta property="og:site_name" content="凤凰院魔法使のBlog"><meta property="og:description" content="This note gives a simple and mathametical based overview of Gaussian Process Regression (GPR)."><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2025-06-17T03:04:42.000Z"><meta property="article:modified_time" content="2025-06-17T03:10:36.169Z"><meta property="article:author" content="Phoenizard"><meta property="article:tag" content="算法"><meta property="article:tag" content="数学"><meta property="article:tag" content="随机过程"><meta name="twitter:card" content="summary"><link rel="canonical" href="http://example.com/2025/06/17/GP/"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>Introduction to GP Regression | 凤凰院魔法使のBlog</title><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container use-motion"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">凤凰院魔法使のBlog</h1><span class="logo-line-after"><i></i></span></a></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">34</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">8</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">29</span></a></li><li class="menu-item menu-item-音游记录"><a href="/rthymgs/" rel="section"><i class="fa fa-database fa-fw"></i>音游记录</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><a href="https://github.com/Phoenizard" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin:130px 106px" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="http://example.com/2025/06/17/GP/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.jpg"><meta itemprop="name" content="Phoenizard"><meta itemprop="description" content="And in that light, I find deliverance"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="凤凰院魔法使のBlog"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Introduction to GP Regression</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2025-06-17 11:04:42 / 修改时间：11:10:36" itemprop="dateCreated datePublished" datetime="2025-06-17T11:04:42+08:00">2025-06-17</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a></span></span><br><span class="post-meta-item" title="本文字数"><span class="post-meta-item-icon"><i class="far fa-file-word"></i> </span><span class="post-meta-item-text">本文字数：</span> <span>7k</span> </span><span class="post-meta-item" title="阅读时长"><span class="post-meta-item-icon"><i class="far fa-clock"></i> </span><span class="post-meta-item-text">阅读时长 &asymp;</span> <span>6 分钟</span></span><div class="post-description">This note gives a simple and mathametical based overview of Gaussian Process Regression (GPR).</div></div></header><div class="post-body" itemprop="articleBody"><h2 id="Definition-of-Gaussian-Process"><a href="#Definition-of-Gaussian-Process" class="headerlink" title="Definition of Gaussian Process"></a>Definition of Gaussian Process</h2><p>A Gaussian Process (GP) is a collection of random variables, any finite number of which have a joint Gaussian distribution. It is completely specified by its mean function $μ(x)$ and covariance function $k(x,x’)$, also known as the kernel function.</p><script type="math/tex;mode=display">f(x)\sim GP(μ(x), k(x,x'))</script><p>Where:</p><ul><li>$μ(x) = E[f(x)]$ is the mean function</li><li>$k(x,x’) = E[(f(x) - μ(x))(f(x’) - μ(x’))]$ is the covariance function</li></ul><p>For a random process, we usually introduce a time series to interpret the meaning of different states (e.g., a Poisson Process, which is a counting process dependent on time). However, a more formal way to understand processes is to define them on a space. For instance, time steps are performed in $Z$ space, and consequently, the GP is a type of process defined on $R^d$.</p><p>Every point in $R^d$ represents a state corresponding to a unique Normal Distribution. The key rule for this space is that when we combine all these states, their joint distribution forms a <strong>Multivariate Normal Distribution</strong> with a unique covariance function $K: R^d \rightarrow R \times R$</p><h2 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h2><p>Unlike Machine Learning Problem, once we have the dataset with vector $\mathbf{x}$ and target variable $y$, we do not need to split the dataset since the model assumption indicts the difference between training data and prediction data, following by the distribution:</p><script type="math/tex;mode=display">\begin{bmatrix}
+y \\
+y^*
+\end{bmatrix}
+\sim
+\mathcal{N}\left(
+\begin{bmatrix}
+\mu(\mathbf{X}) \\
+\mu(\mathbf{X}^*)
+\end{bmatrix},
+\begin{bmatrix}
+K(\mathbf{X}, \mathbf{X}) + \sigma_n^2 \mathbf{I} & K(\mathbf{X}, \mathbf{X}^*) \\
+K(\mathbf{X^*}, \mathbf{X}) & K(\mathbf{X^*}, \mathbf{X^*})
+\end{bmatrix}
+\right)</script><p>Note:</p><script type="math/tex;mode=display">\text{Cov}(\mathbf{y}, \mathbf{y}^*) = \text{Cov}(\mathbf{f(X) + \epsilon}, \mathbf{f^*(X)}) = \text{Cov}(f, f^*) = K(\mathbf{X}, \mathbf{X}^*)</script><h2 id="Prior-and-Posterior-distribution"><a href="#Prior-and-Posterior-distribution" class="headerlink" title="Prior and Posterior distribution"></a>Prior and Posterior distribution</h2><p>For the convenience of illustration, the prior distribution is commonly set up by:</p><script type="math/tex;mode=display">\mu(X)= 0 \;\ k(x,x') = \Sigma \text{ which is known kernel}</script><p>The next step is to find the posterior distribution of $y^<em> | x, y, x^</em>$, we consider the general form:</p><script type="math/tex;mode=display">\mathbf{z} = \begin{bmatrix} \mathbf{a} \\ \mathbf{b} \end{bmatrix} \sim \mathcal{N}(\boldsymbol{\mu}, \Sigma),\quad
+\boldsymbol{\mu} = \begin{bmatrix} \boldsymbol{\mu}_a \\ \boldsymbol{\mu}_b \end{bmatrix},\quad
+\Sigma =
+\begin{bmatrix}
+A & C \\
+C^\top & B
+\end{bmatrix}</script><script type="math/tex;mode=display">\begin{align*}
+p(\mathbf{b} \mid \mathbf{a}) &= \frac{p(\mathbf{a}, \mathbf{b})}{p(\mathbf{a})} \sim \frac{\mathcal{N}(\boldsymbol{\mu}, \Sigma)}{\mathcal{N}(\mathbf{\mu}_a, A)} \\ &= \frac{\frac{1}{(2\pi)^{d/2} |\Sigma|^{1/2}} \exp\left\{ -\frac{1}{2} (\mathbf{z} - \boldsymbol{\mu})^\top \Sigma^{-1} (\mathbf{z} - \boldsymbol{\mu}) \right\}}{\frac{1}{(2\pi)^{n/2} |A|^{1/2}} \exp\left\{ -\frac{1}{2} (\mathbf{z} - \mu_a)^\top A^{-1} (\mathbf{z} - \mu_a) \right\}}
+\end{align*}</script><p>Since we known that the division of Normal Distribution is also Normal, and the dominator is constant since the data is given, we analysis $\mathcal{N}(\boldsymbol{\mu}, \Sigma)$ directly.</p><p>Let $\delta \mathbf{a} := \mathbf{a} - \boldsymbol{\mu}_a,\quad \delta \mathbf{b} := \mathbf{b} - \boldsymbol{\mu}_b$ and we have:</p><script type="math/tex;mode=display">\begin{align*}
+p(\mathbf{b} \mid \mathbf{a}) &\propto  \exp\left\{ -\frac{1}{2} (\mathbf{z} - \boldsymbol{\mu})^\top \Sigma^{-1} (\mathbf{z} - \boldsymbol{\mu}) \right\} \\ &=\exp\left\{-\frac{1}{2}\begin{bmatrix}\delta \mathbf{a} \\\delta \mathbf{b}\end{bmatrix}^\top\Sigma^{-1}\begin{bmatrix}\delta \mathbf{a} \\\delta \mathbf{b}
+\end{bmatrix}\right\}
+\end{align*}</script><p>Given that for block matrix, we have:</p><script type="math/tex;mode=display">\Sigma =
+\begin{bmatrix}
+A & C \\
+C^\top & B
+\end{bmatrix}
+\Rightarrow
+M:= \Sigma^{-1} =
+\begin{bmatrix}
+A^{-1} + A^{-1} C S^{-1} C^\top A^{-1} & -A^{-1} C S^{-1} \\
+S^{-1} C^\top A^{-1} & S^{-1}
+\end{bmatrix} \\ 
+
+\text{ where: }
+S := B - C^\top A^{-1} C \quad \text{(Schur complement)}</script><p>We define:</p><script type="math/tex;mode=display">Q(\mathbf{a}, \mathbf{b}) =
+\begin{bmatrix}
+\delta \mathbf{a} \\
+\delta \mathbf{b}
+\end{bmatrix}^\top
+\begin{bmatrix}
+A & C \\
+C^\top & B
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+\delta \mathbf{a} \\
+\delta \mathbf{b}
+\end{bmatrix}</script><p>and complete the square：</p><script type="math/tex;mode=display">\begin{align*}Q(\mathbf{a}, \mathbf{b}) &=
+\delta \mathbf{a}^\top M_{aa} \delta \mathbf{a} +
+2 \delta \mathbf{a}^\top M_{ab} \delta \mathbf{b} +
+\delta \mathbf{b}^\top M_{bb} \delta \mathbf{b} \\ 
+&= 
+\delta \mathbf{b}^\top M_{bb} \delta \mathbf{b} +
+2 \delta \mathbf{b}^\top M_{ba} \delta \mathbf{a} + \text{(constant)} \\ 
+&= 
+(\delta \mathbf{b} + M_{bb}^{-1} M_{ba} \delta \mathbf{a})^\top M_{bb}
+(\delta \mathbf{b} + M_{bb}^{-1} M_{ba} \delta \mathbf{a})
++ \text{(constant)}
+
+\end{align*}</script><p>which means:</p><script type="math/tex;mode=display">p(\mathbf{b} \mid \mathbf{a}) \propto \exp[-\frac{1}{2}Q(\mathbf{a}, \mathbf{b}))]\Rightarrow \mathbf{b} \mid \mathbf{a} \sim \mathcal{N}(\mu_n, \Sigma_n) \\ 
+\mu_n =  \mu_b + C^\top A^{-1} (\mathbf{a} - \mu_a) \quad ; \quad  \Sigma_n = B - C^\top A^{-1} C</script><p>Given with the data, now we obtain the posterior distribution for the predictive points.</p><h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><p>Our key is to find the correct kernel expression, we can introduce marginal likelihood function and try to find the maximum value of it. We start from the definition:</p><script type="math/tex;mode=display">p(\mathbf{y}\mid X, \theta) = \int_{\mathcal{R}^n} p(\mathbf{y} \mid \mathbf{f}) p(\mathbf{f}\mid X)d\mathbf{f}</script><p>We consider f mentioned in the integral is the arbitrary expectation in $R^n$ space. so that $p(y|f)$ can be interpret as: under such expectation, how likely will the true observation happens, which is a normal distribution as the model assumption, and the term $p(f|X)$ means the prior behavior of $f$, depending on how we define the prior distribution. In this case, it is $\mathcal{N}(\mathbf{\mu}, K)$ and $\mathbf{\mu} = \mathbf{0}$ .</p><p>Since both distribution is Normal, the convolution of 2 normal distribution is still Normal. We have</p><script type="math/tex;mode=display">\mathbf{y} | X, \theta \sim \mathcal{N}(0， \sigma^2\mathbf{I}+K)</script><p>We use the <strong>Negative Log Marginal Likelihood (NLML)</strong> as the objective function to optimize model hyperparameters because it provides a principled and probabilistic way to learn the best settings for the kernel (e.g., length-scales, variances) and noise level.</p><script type="math/tex;mode=display">\log p(\mathbf{y} \mid \mathbf{X}, \theta) = -\frac{1}{2} \mathbf{y}^\top (\mathbf{K}\theta + \sigma_n^2 \mathbf{I})^{-1} \mathbf{y} - \frac{1}{2} \log |\mathbf{K}\theta + \sigma_n^2 \mathbf{I}| - \frac{n}{2} \log 2\pi</script><p>And</p><script type="math/tex;mode=display">\text{NLML}(\theta) = \frac{1}{2} \mathbf{y}^\top \mathbf{K}_y^{-1} \mathbf{y} + \frac{1}{2} \log |\mathbf{K}_y| + \frac{n}{2} \log 2\pi</script><p>with $\mathbf{K}_y = \mathbf{K}_\theta + \sigma_n^2 \mathbf{I}$. Notice that NLML is gradient based therefore we can use GD, Adam and other common methods to solve the minimum solution.</p><h2 id="Workflow"><a href="#Workflow" class="headerlink" title="Workflow"></a>Workflow</h2><ol><li>Data process and initial part:<ol><li>Data Cleaning and Normalize</li><li>Define the kernel function and initial the parameters to be optimized</li><li>Define NLML</li></ol></li><li>Training Loop in given epochs number<ol><li>Calculate the NLML under current parameters</li><li>Use Gradient-based Method with a learning rate</li><li>Update the parameters</li></ol></li><li>After Training<ol><li>Calculate the posterior distribution and sample the result</li><li>Present the result and Validation</li></ol></li></ol></div><footer class="post-footer"><div class="post-tags"><a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a> <a href="/tags/%E6%95%B0%E5%AD%A6/" rel="tag"># 数学</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B/" rel="tag"># 随机过程</a></div><div class="post-nav"><div class="post-nav-item"><a href="/2025/01/21/BS-Model/" rel="prev" title="基于BS模型条件下的期权价格改变策略"><i class="fa fa-chevron-left"></i> 基于BS模型条件下的期权价格改变策略</a></div><div class="post-nav-item"></div></div></footer></article></div><script>window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }</script></div><div class="toggle sidebar-toggle"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div><aside class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc">文章目录</li><li class="sidebar-nav-overview">站点概览</li></ul><div class="post-toc-wrap sidebar-panel"><div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition-of-Gaussian-Process"><span class="nav-number">1.</span> <span class="nav-text">Definition of Gaussian Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Background"><span class="nav-number">2.</span> <span class="nav-text">Background</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prior-and-Posterior-distribution"><span class="nav-number">3.</span> <span class="nav-text">Prior and Posterior distribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-number">4.</span> <span class="nav-text">Optimization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Workflow"><span class="nav-number">5.</span> <span class="nav-text">Workflow</span></a></li></ol></div></div><div class="site-overview-wrap sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" alt="Phoenizard" src="/images/avatar.jpg"><p class="site-author-name" itemprop="name">Phoenizard</p><div class="site-description" itemprop="description">And in that light, I find deliverance</div></div><div class="site-state-wrap motion-element"><nav class="site-state"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">29</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/"><span class="site-state-item-count">8</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/"><span class="site-state-item-count">34</span> <span class="site-state-item-name">标签</span></a></div></nav></div><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Phoenizard" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Phoenizard" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a> </span><span class="links-of-author-item"><a href="mailto:jiangxiaoyi2004@163.com" title="E-Mail → mailto:jiangxiaoyi2004@163.com" rel="noopener" target="_blank"><i class="fab fa-envelope fa-fw"></i>E-Mail</a> </span><span class="links-of-author-item"><a href="https://profile-pjsekai.kirafan.cn/#/user/196266691860643843" title="PJSKProfile → https:&#x2F;&#x2F;profile-pjsekai.kirafan.cn&#x2F;#&#x2F;user&#x2F;196266691860643843" rel="noopener" target="_blank"><i class="fa-fw"></i>PJSKProfile</a></span></div></div><div class="back-to-top motion-element"><i class="fa fa-arrow-up"></i> <span>0%</span></div></div></aside><div id="sidebar-dimmer"></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2025</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Phoenizard</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-chart-area"></i> </span><span title="站点总字数">99k</span> <span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-coffee"></i> </span><span title="站点阅读时长">1:30</span></div><div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动</div><div><span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span><script>var now=new Date;function createtime(){var n=new Date("08/24/2022 00:00:00");now.setTime(now.getTime()+250),days=(now-n)/1e3/60/60/24,dnum=Math.floor(days),hours=(now-n)/1e3/60/60-24*dnum,hnum=Math.floor(hours),1==String(hnum).length&&(hnum="0"+hnum),minutes=(now-n)/1e3/60-1440*dnum-60*hnum,mnum=Math.floor(minutes),1==String(mnum).length&&(mnum="0"+mnum),seconds=(now-n)/1e3-86400*dnum-3600*hnum-60*mnum,snum=Math.round(seconds),1==String(snum).length&&(snum="0"+snum),document.getElementById("timeDate").innerHTML="本站已安全运行 "+dnum+" 天 ",document.getElementById("times").innerHTML=hnum+" 小时 "+mnum+" 分 "+snum+" 秒"}setInterval("createtime()",250)</script></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="/lib/velocity/velocity.min.js"></script><script src="/lib/velocity/velocity.ui.min.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/pisces.js"></script><script src="/js/next-boot.js"></script><script src="/js/local-search.js"></script><script>if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }</script></body></html>
