@@ -2889,7 +2889,7 @@ f^*(x_1, \ldots, x_D) = \sin\left(\sum_{i=1}^{D} p_i x_i\right) + \cos\left(\sum
 </tbody>
 </table>
 </div>
-<h4 id="3-2-2-实验结果"><a href="#3-2-2-实验结果" class="headerlink" title="3.2.2 实验结果"></a>3.2.2 实验结果</h4><p><img src="../results/experiment_1/loss_comparison.png" alt="实验1损失曲线"></p>
+<h4 id="3-2-2-实验结果"><a href="#3-2-2-实验结果" class="headerlink" title="3.2.2 实验结果"></a>3.2.2 实验结果</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/exp1_loss_comparison.png" alt=""></p>
 <p><strong>图3.1</strong> 实验1的训练损失和测试损失对比。左图为训练损失，右图为测试损失，纵轴采用对数刻度。</p>
 <p>图3.1展示了六种优化算法在正弦余弦函数回归任务上的性能表现，结果呈现出显著的算法间差异。ExpSAV和IEQ自适应方法在该任务上未能收敛，ExpSAV的损失始终停留在约$10^1$量级，而IEQ自适应方法的损失更是保持在$10^6$量级的极高水平，两者在整个1000轮训练过程中几乎没有任何下降趋势。这一失败现象可能源于超参数设置不当（如学习率过小或辅助变量初始化不合理），或是算法在该特定问题结构下的固有局限性。</p>
 <p>相比之下，IEQ全Jacobian方法（紫色曲线）表现最为出色，成功收敛至约$10^{-3}$到$10^{-2}$量级，展现出最优的逼近精度。这证明了全Jacobian方法的高精度优势，但需要注意其较高的计算成本。Adam优化器展现出第二优的性能，稳定收敛至约$10^{-2}$量级，验证了其自适应学习率机制在标准任务上的有效性。</p>
@@ -2944,7 +2944,7 @@ f^*(x_1, \ldots, x_D) = \sum_{i=1}^{D} c_i x_i^2</script><p>其中 $c \in \mathb
 </tbody>
 </table>
 </div>
-<h4 id="3-3-2-实验结果"><a href="#3-3-2-实验结果" class="headerlink" title="3.3.2 实验结果"></a>3.3.2 实验结果</h4><p><img src="../results/experiment_2/loss_comparison.png" alt="实验2损失曲线"></p>
+<h4 id="3-3-2-实验结果"><a href="#3-3-2-实验结果" class="headerlink" title="3.3.2 实验结果"></a>3.3.2 实验结果</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/exp2_loss_comparison.png" alt=""></p>
 <p><strong>图3.2</strong> 实验2的训练损失和测试损失对比（二次函数回归）。左图为训练损失，右图为测试损失，纵轴采用对数刻度。</p>
 <p>二次函数回归任务的实验结果揭示了一个意外的现象。所有测试算法均未能在100轮训练周期内实现有效收敛。从图3.2可以观察到，训练损失停留在$10^1$到$10^2$量级，测试损失则保持在$10^2$量级，远未达到理想的低损失水平。这一实验失败的原因可能源于多个方面。</p>
 <p>首先，模型架构与问题特性的不匹配是主要原因之一。单隐层神经网络采用ReLU激活函数，在理论上难以精确拟合纯二次函数形式，因为ReLU网络本质上构造的是分段线性函数的组合，而非光滑的二次曲面。其次，超参数配置可能存在问题，包括学习率设置不当、网络宽度不足（1000个隐层神经元可能不够）、或训练轮数过少等因素。第三，初始化策略可能导致优化陷入不良的局部极小值，使得所有算法都无法找到通向全局最优解的路径。最后，数据分布特性也值得关注，输入特征在$(0,5)$区间的均匀分布可能与二次函数的梯度结构不够匹配，导致优化困难。</p>
@@ -2997,7 +2997,7 @@ f^*(x) = \exp\left(-10 \|x\|^2\right)</script><p>这是一个具有挑战性的�
 </tbody>
 </table>
 </div>
-<h4 id="3-4-2-实验结果"><a href="#3-4-2-实验结果" class="headerlink" title="3.4.2 实验结果"></a>3.4.2 实验结果</h4><p><img src="../results/experiment_3/loss_comparison.png" alt="实验3损失曲线"></p>
+<h4 id="3-4-2-实验结果"><a href="#3-4-2-实验结果" class="headerlink" title="3.4.2 实验结果"></a>3.4.2 实验结果</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/exp3_loss_comparison.png" alt=""></p>
 <p><strong>图3.3</strong> 实验3的训练损失和测试损失对比（高斯函数回归）。左图为训练损失，右图为测试损失，纵轴采用对数刻度。</p>
 <p>高斯函数回归实验揭示了算法性能与具体实现的复杂关系，结果再次出现意外。ExpSAV方法在该任务上未能有效收敛，训练损失仅从初始值微弱下降至约$10^{-2}$量级并停滞，测试损失更是保持在接近$10^0$量级，这是所有算法中表现最差的。这与论文原假设ExpSAV能够处理尖锐梯度的预期完全相反，进一步证实了该方法在当前参数配置下（$C=1, \lambda=0$）存在严重的适配性问题。</p>
 <p>相比之下，IEQ全Jacobian方法在训练集上表现最优，成功收敛至约$10^{-6}$量级，展现出卓越的高精度拟合能力。然而值得警惕的是，该方法在测试集上的完整表现未能完全显示，这可能提示存在过拟合风险或实现问题。SGD和IEQ自适应方法表现出色，在测试集上均达到约$10^{-3}$量级，特别是SGD的简单性与其良好表现形成鲜明对比，说明在该特定问题上复杂的能量稳定机制未必带来优势。</p>
@@ -3046,7 +3046,7 @@ f^*(x) = \exp\left(-10 \|x\|^2\right)</script><p>这是一个具有挑战性的�
 </tbody>
 </table>
 </div>
-<h4 id="3-5-2-实验结果"><a href="#3-5-2-实验结果" class="headerlink" title="3.5.2 实验结果"></a>3.5.2 实验结果</h4><p><img src="../results/experiment_mnist/metrics_comparison.png" alt="实验4结果对比"></p>
+<h4 id="3-5-2-实验结果"><a href="#3-5-2-实验结果" class="headerlink" title="3.5.2 实验结果"></a>3.5.2 实验结果</h4><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/metrics_comparison.png" alt=""></p>
 <p><strong>图3.4</strong> 实验4的MNIST分类结果。左：训练损失，中：测试损失，右：测试准确率。</p>
 <div class="table-container">
 <table>
