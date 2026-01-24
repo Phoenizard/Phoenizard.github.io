@@ -3592,7 +3592,7 @@ L_{CwC} = -\frac{1}{N} \sum_{n=1}^{N} \log \left( \frac{\exp(g_{n}^{+})}{\sum_{j
       </tags>
   </entry>
   <entry>
-    <title>SID</title>
+    <title>Synergistic Information Distillation for Machine Learning</title>
     <url>/2026/01/24/SID/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="Synergistic-Information-Distillation-SID"><a href="#Synergistic-Information-Distillation-SID" class="headerlink" title="Synergistic Information Distillation (SID)"></a>Synergistic Information Distillation (SID)</h1><p>该算法通过<strong>协同信息蒸馏</strong>实现完全无反向传播的模块化训练，核心思想是将深度网络分解为多个独立优化的模块，每个模块通过局部目标函数逐步精炼”信念分布”。</p>
 <h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/notion_cb52bc15.png" alt=""></p>
