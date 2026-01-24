@@ -3591,4 +3591,119 @@ L_{CwC} = -\frac{1}{N} \sum_{n=1}^{N} \log \left( \frac{\exp(g_{n}^{+})}{\sum_{j
         <tag>HPC</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SID</title>
+    <url>/2026/01/24/SID/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="Synergistic-Information-Distillation-SID"><a href="#Synergistic-Information-Distillation-SID" class="headerlink" title="Synergistic Information Distillation (SID)"></a>Synergistic Information Distillation (SID)</h1><p>该算法通过<strong>协同信息蒸馏</strong>实现完全无反向传播的模块化训练，核心思想是将深度网络分解为多个独立优化的模块，每个模块通过局部目标函数逐步精炼”信念分布”。</p>
+<h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p><img src="https://your-bucket.oss-cn-hangzhou.aliyuncs.com/img/notion_cb52bc15.png" alt=""></p>
+<h3 id="整体结构"><a href="#整体结构" class="headerlink" title="整体结构"></a>整体结构</h3><figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">输入 x</span><br><span class="line">  ↓</span><br><span class="line">共享特征提取器 c(x; θ_c): Conv层堆叠</span><br><span class="line">  ↓ 输出特征 z ∈ R^d</span><br><span class="line">  ├→ 模块 f_1(p_0, z; θ_1) → p_1</span><br><span class="line">  ├→ 模块 f_2(p_1, z; θ_2) → p_2</span><br><span class="line">  ├→ 模块 f_3(p_2, z; θ_3) → p_3</span><br><span class="line">  └→ ...</span><br><span class="line">     模块 f_L(p_&#123;L-1&#125;, z; θ_L) → p_L</span><br></pre></td></tr></table></figure>
+<p><strong>变量说明</strong>：</p>
+<ul>
+<li><strong>x</strong>: 输入数据（如图像）</li>
+<li><strong>c(x; θ_c)</strong>: 共享特征提取器，参数为 θ_c，输出特征向量 z</li>
+<li><strong>f_i(·; θ_i)</strong>: 第 i 个处理模块，参数为 θ_i</li>
+<li><strong>p_i</strong>: 第 i 个模块输出的”信念分布”（概率向量），p_i ∈ R^N（N 为类别数）</li>
+<li><strong>p_0</strong>: 初始均匀分布 Uniform(N)<h3 id="模块结构（典型实现）"><a href="#模块结构（典型实现）" class="headerlink" title="模块结构（典型实现）"></a>模块结构（典型实现）</h3></li>
+</ul>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">输入: (p_&#123;i-1&#125;, z)</span><br><span class="line">  ↓</span><br><span class="line">Concat [p_&#123;i-1&#125;, z]  → 拼接向量 ∈ R^(N+d)</span><br><span class="line">  ↓</span><br><span class="line">Linear(θ_i)          → 线性变换</span><br><span class="line">  ↓</span><br><span class="line">Softmax              → 归一化为概率分布 p_i</span><br></pre></td></tr></table></figure>
+<p><strong>形状变化</strong>：</p>
+<ul>
+<li>p_{i-1}: (batch, N)</li>
+<li>z: (batch, d)</li>
+<li>Concat: (batch, N+d)</li>
+<li>Linear: (batch, N+d) → (batch, N)</li>
+<li>p_i: (batch, N)</li>
+</ul>
+<hr>
+<h2 id="训练算法流程"><a href="#训练算法流程" class="headerlink" title="训练算法流程"></a>训练算法流程</h2><p>SID采用<strong>两阶段训练</strong>机制，完全消除模块间的梯度依赖。</p>
+<h3 id="Phase-1-Teacher-Beliefs-生成（无梯度）"><a href="#Phase-1-Teacher-Beliefs-生成（无梯度）" class="headerlink" title="Phase 1: Teacher Beliefs 生成（无梯度）"></a>Phase 1: Teacher Beliefs 生成（无梯度）</h3><p><strong>目的</strong>：生成固定的”教师信念”作为一致性监督目标</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> torch.no_grad():  <span class="comment"># 关闭梯度计算</span></span><br><span class="line">    <span class="comment"># 1. 特征提取</span></span><br><span class="line">    z_detached = c(x; θ_c)  <span class="comment"># 共享特征（detached）</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2. 初始化均匀分布</span></span><br><span class="line">    p_0 = Uniform(N)  <span class="comment"># shape: (batch, N)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 3. 逐层前向传播</span></span><br><span class="line">    P_teachers = [p_0]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span> to L-<span class="number">1</span>:</span><br><span class="line">        p_i_teacher = f_i(P_teachers[i-<span class="number">1</span>], z_detached; θ_i)</span><br><span class="line">        P_teachers.append(p_i_teacher)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 4. 缓存教师信念</span></span><br><span class="line">    <span class="keyword">return</span> P_teachers  <span class="comment"># [p_0, p_1^teacher, ..., p_&#123;L-1&#125;^teacher]</span></span><br></pre></td></tr></table></figure>
+<p><strong>关键点</strong>：</p>
+<ul>
+<li>整个过程<strong>不构建计算图</strong></li>
+<li>生成的 teacher beliefs 在 Phase 2 中视为<strong>常量</strong></li>
+</ul>
+<hr>
+<h3 id="Phase-2-并行模块更新（有梯度）"><a href="#Phase-2-并行模块更新（有梯度）" class="headerlink" title="Phase 2: 并行模块更新（有梯度）"></a>Phase 2: 并行模块更新（有梯度）</h3><p><strong>目的</strong>：各模块独立优化，共享特征累积所有模块梯度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 1. 重新计算共享特征（带梯度）</span></span><br><span class="line">z = c(x; θ_c)  <span class="comment"># shape: (batch, d)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2. 并行计算各模块损失和梯度</span></span><br><span class="line">gradients = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span> to L <span class="keyword">in</span> parallel:  <span class="comment"># 可在多GPU并行</span></span><br><span class="line">    <span class="comment"># 2.1 获取教师信念（常量）</span></span><br><span class="line">    p_prev_teacher = sg(P_teachers[i-<span class="number">1</span>])  <span class="comment"># stop_gradient</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2.2 模块前向传播</span></span><br><span class="line">    p_i = f_i(p_prev_teacher, z; θ_i)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2.3 计算局部损失</span></span><br><span class="line">    L_i = α · D_KL(p_i || p_y) + (<span class="number">1</span>-α) · D_KL(p_i || sg(p_prev_teacher))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 2.4 计算梯度</span></span><br><span class="line">    gradients[θ_i] = ∂L_i/∂θ_i        <span class="comment"># 模块自身梯度</span></span><br><span class="line">    gradients[θ_c] += ∂L_i/∂θ_c       <span class="comment"># 累积到共享特征</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3. 参数更新</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">1</span> to L:</span><br><span class="line">    θ_i ← θ_i - η · gradients[θ_i]</span><br><span class="line">θ_c ← θ_c - η · gradients[θ_c]</span><br></pre></td></tr></table></figure>
+<p><strong>参数更新的数学表达式</strong>：</p>
+<p><strong>模块参数更新</strong>（各自独立）： </p>
+<script type="math/tex; mode=display">
+\theta_i^{(t+1)} = \theta_i^{(t)} - \eta \cdot \frac{\partial \mathcal{L}_i}{\partial \theta_i}</script><p><strong>共享特征更新</strong>（累积所有模块梯度）： </p>
+<script type="math/tex; mode=display">
+\theta_c^{(t+1)} = \theta_c^{(t)} - \eta \cdot \sum_{i=1}^{L} \frac{\partial \mathcal{L}_i}{\partial \theta_c}</script><p><strong>变量说明</strong>：</p>
+<ul>
+<li><strong>sg(·)</strong>: stop_gradient 算子，前向传值、反向截断梯度</li>
+<li><strong>p_y</strong>: ground-truth 的 one-hot 编码</li>
+<li><strong>α</strong>: 平衡超参数，控制蒸馏项与一致性项的权重</li>
+<li><strong>D_KL(P||Q)</strong>: KL散度，定义为 $\sum_k P(k) \log \frac{P(k)}{Q(k)}$</li>
+<li><strong>η</strong>: 学习率</li>
+</ul>
+<hr>
+<h2 id="损失统计与更新"><a href="#损失统计与更新" class="headerlink" title="损失统计与更新"></a>损失统计与更新</h2><h3 id="局部损失函数"><a href="#局部损失函数" class="headerlink" title="局部损失函数"></a>局部损失函数</h3><p><strong>数学定义</strong>：$\mathcal{L}_i(p_{i-1}; f_i) = \alpha \cdot D_{KL}(p_i | p_y) + (1-\alpha) \cdot D_{KL}(p_i | \text{sg}(p_{i-1}))$</p>
+<p><strong>两项作用</strong>：</p>
+<p><strong>Distillation Term（蒸馏项）</strong>：$ D_{KL}(p_i | p_y) = -\log p_i[y]  $（$p_y $为 one-hot）</p>
+<ul>
+<li>拉近模块输出与真实标签</li>
+<li><p>提供主要的监督信号<br><strong>Consistency Term（一致性项）</strong>： $ D_{KL}(p_i | \text{sg}(p_{i-1})) = \sum_{k=1}^{N} p_i^{(k)} \log \frac{p_i^{(k)}}{p_{i-1}^{(k)}} $</p>
+</li>
+<li><p>防止当前模块过度偏离前序模块</p>
+</li>
+<li>正则化作用，保证渐进式优化</li>
+<li><strong>sg() 阻断梯度</strong>：确保 $\frac{\partial \mathcal{L}_i}{\partial \theta_{i-1}} = 0$</li>
+</ul>
+<hr>
+<h3 id="Teacher-Beliefs-的动态更新"><a href="#Teacher-Beliefs-的动态更新" class="headerlink" title="Teacher Beliefs 的动态更新"></a>Teacher Beliefs 的动态更新</h3><p>Teacher beliefs <strong>不是固定的预训练模型, 每个 batch 重新生成</strong>，随参数更新而改进</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">Iteration t:</span><br><span class="line">  Phase 1: 用 θ^(t) 生成 P_teachers^(t)</span><br><span class="line">  Phase 2: 用 P_teachers^(t) 更新参数 → θ^(t+1)</span><br><span class="line"></span><br><span class="line">Iteration t+1:</span><br><span class="line">  Phase 1: 用 θ^(t+1) 生成 P_teachers^(t+1)  ← 质量提升</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="梯度计算详解"><a href="#梯度计算详解" class="headerlink" title="梯度计算详解"></a>梯度计算详解</h2><h3 id="共享特征梯度（长链，串行计算）"><a href="#共享特征梯度（长链，串行计算）" class="headerlink" title="共享特征梯度（长链，串行计算）"></a>共享特征梯度（长链，串行计算）</h3><p>假设共享特征为 3 层：z = f_3(f_2(f_1(x; w_1); w_2); w_3)</p>
+<p><strong>模块 i 对各层的梯度</strong>： </p>
+<script type="math/tex; mode=display">
+\begin{aligned} \frac{\partial \mathcal{L}_i}{\partial w_3} &= \frac{\partial \mathcal{L}_i}{\partial p_i} \cdot \frac{\partial g_i}{\partial z} \cdot \frac{\partial f_3}{\partial w_3} \ \frac{\partial \mathcal{L}_i}{\partial w_2} &= \frac{\partial \mathcal{L}_i}{\partial p_i} \cdot \frac{\partial g_i}{\partial z} \cdot \frac{\partial f_3}{\partial h_2} \cdot \frac{\partial f_2}{\partial w_2} \ \frac{\partial \mathcal{L}_i}{\partial w_1} &= \frac{\partial \mathcal{L}_i}{\partial p_i} \cdot \frac{\partial g_i}{\partial z} \cdot \frac{\partial f_3}{\partial h_2} \cdot \frac{\partial f_2}{\partial h_1} \cdot \frac{\partial f_1}{\partial w_1} \end{aligned}</script><p><strong>累积所有模块的梯度</strong>： </p>
+<script type="math/tex; mode=display">
+\frac{\partial \mathcal{L}_{\text{total}}}{\partial w_1} = \sum_{i=1}^{L} \frac{\partial \mathcal{L}_i}{\partial w_1}</script><p><strong>关键点: </strong>$\sum_i \frac{\partial \mathcal{L}_i}{\partial z}$ <strong>可并行计算,</strong>但 $\frac{\partial f_3}{\partial h_2} \cdot \frac{\partial f_2}{\partial h_1} \cdot \frac{\partial f_1}{\partial w_1}$ <strong>必须串行, </strong>这部分复杂度与 BP 相同</p>
+<hr>
+<h3 id="模块参数梯度（短链，可并行）"><a href="#模块参数梯度（短链，可并行）" class="headerlink" title="模块参数梯度（短链，可并行）"></a>模块参数梯度（短链，可并行）</h3><script type="math/tex; mode=display">
+\frac{\partial \mathcal{L}_i}{\partial \theta_i} = \frac{\partial \mathcal{L}_i}{\partial p_i} \cdot \frac{\partial p_i}{\partial \theta_i}</script><p><strong>特点</strong>：</p>
+<ul>
+<li>梯度链路短（仅通过单个模块）</li>
+<li><strong>完全独立</strong>，可在多 GPU 并行计算<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">1. 计算 z = c(x; θ_c^(t))  ← θ_c 固定在当前值</span><br><span class="line">2. 并行计算（θ_c 不变）：</span><br><span class="line">   GPU 1: z → p_1 → L_1 → ∂L_1/∂θ_c</span><br><span class="line">   GPU 2: z → p_2 → L_2 → ∂L_2/∂θ_c</span><br><span class="line">   GPU 3: z → p_3 → L_3 → ∂L_3/∂θ_c</span><br><span class="line">3. 汇总：g_c = Σ ∂L_i/∂θ_c</span><br><span class="line">4. 更新：θ_c ← θ_c - η · g_c</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><ul>
+<li><strong>传统 BP</strong>（单分类头）： $ T_{BP} = T_{\text{feat fwd}} + T_{\text{cls fwd}} + T_{\text{cls bwd}} + T_{\text{feat bwd}} $</li>
+<li><strong>SID</strong>（多模块）： $ T_{SID} = T_{\text{feat fwd}} + \max_i T_{g_i \text{ fwd}} + \max_i T_{g_i \text{ bwd}} + T_{\text{feat bwd}} $</li>
+<li><strong>理论加速</strong>：如果 $\max_i T_{g_i} &lt; T_{\text{单分类头}}$，可能更快，但增加了额外模块计算，未必总是更快<br><strong>论文实测</strong>：在理想并行条件下，加速 <strong>2-3倍</strong></li>
+</ul>
+<hr>
+<h3 id="内存复杂度"><a href="#内存复杂度" class="headerlink" title="内存复杂度"></a>内存复杂度</h3><p><strong>BP 内存需求</strong>： $ M_{BP} \approx \sum_{i=1}^{L} A_i \quad \text{（存储所有层激活）} $</p>
+<p><strong>SID 内存需求</strong>： $ M_{SID} \approx \max_i A_i + \sum_{i=0}^{L-1} |p_i| \quad \text{（单模块激活 + teacher beliefs）} $</p>
+<p><strong>实际节省</strong>：</p>
+<ul>
+<li>CIFAR-100 实验：150 MB → 1.25 MB</li>
+<li><p><strong>节省 120 倍</strong><br><strong>原因</strong>：</p>
+</li>
+<li><p>Teacher beliefs 只是概率向量（小）</p>
+</li>
+<li>只需存储当前模块激活</li>
+<li>不需要存储中间层的完整特征图</li>
+</ul>
+<hr>
+<h2 id="收敛性保证"><a href="#收敛性保证" class="headerlink" title="收敛性保证"></a>收敛性保证</h2><p><strong>理论保证</strong>（Proposition 2）： $ D_{KL}(p_L | p_y) \leq D_{KL}(p_0 | p_y) - \frac{1-\alpha}{\alpha} \sum_{i=1}^{L} D_{KL}(p_i | p_{i-1}) $</p>
+<p>最终预测与真实标签的距离 ≤ 初始距离 - 累积改进量，所以只要每层满足 $\mathcal{L}_i(p_i) \leq \mathcal{L}_i(p_{i-1})$（局部改进）就能保证全局性能<strong>单调不退化</strong></p>
+<ul>
+<li>Distillation：向正确答案靠近</li>
+<li>Consistency：不偏离前序信念太远</li>
+<li>两者平衡 → 稳定收敛</li>
+</ul>
+<hr>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>HPC</tag>
+      </tags>
+  </entry>
 </search>
