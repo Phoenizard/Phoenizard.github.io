@@ -3517,4 +3517,78 @@ P_l = \alpha \cdot \frac{C_L}{C_l}</script><ul>
         <tag>HPC</tag>
       </tags>
   </entry>
+  <entry>
+    <title>CwCLearning</title>
+    <url>/2026/01/24/CwCLearning/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="卷积通道竞争学习-CwC-算法部署笔记"><a href="#卷积通道竞争学习-CwC-算法部署笔记" class="headerlink" title="卷积通道竞争学习 (CwC) 算法部署笔记"></a>卷积通道竞争学习 (CwC) 算法部署笔记</h1><p>该算法通过<strong>通道维度的竞争机制</strong>实现完全无反向传播的卷积网络训练。其核心思想是将特征图划分为类别相关的通道组，通过最大化目标类别的激活强度来引导网络自主学习特征，摆脱了对全局梯度和负样本生成的依赖。</p>
+<hr>
+<h2 id="1-算法部署框架"><a href="#1-算法部署框架" class="headerlink" title="1. 算法部署框架"></a>1. 算法部署框架</h2><h3 id="1-1-核心架构：CFSE-Block"><a href="#1-1-核心架构：CFSE-Block" class="headerlink" title="1.1 核心架构：CFSE Block"></a>1.1 核心架构：CFSE Block</h3><p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/notion_15d7d1c2.png" alt=""></p>
+<p>网络由多个 <strong>CFSE (Convolutional Feature Space Separation and Extraction)</strong> 模块堆叠而成。每个模块包含两层卷积操作，旨在逐步分离特征空间。</p>
+<figure class="highlight plaintext"><figcaption><span>text</span></figcaption><table><tr><td class="code"><pre><span class="line">输入 X</span><br><span class="line">  ↓</span><br><span class="line">[层1：标准卷积 Conv2D] → 局部更新 L_CwC</span><br><span class="line">  ↓ 输出中间特征</span><br><span class="line">[层2：通道分组卷积 GroupConv] → 局部更新 L_CwC</span><br><span class="line">  ↓ (执行 ReLU + MaxPool + BatchNorm)</span><br><span class="line">输出特征传递至下一 Block</span><br></pre></td></tr></table></figure>
+<p><strong>关键变量定义</strong>：</p>
+<ul>
+<li>$J$：目标类别的总数</li>
+<li>$C_{in}, C_{out}$：每一层的输入与输出通道数</li>
+<li>$S$：单个类别的通道组大小，计算为 $S = C_{in}/J$ 或 $S = C_{out}/J$</li>
+<li>$x_j, \hat{y}_j$：第 $j$ 个类别的输入和输出特征子集</li>
+<li>$\hat{S}_j$：第 $j$ 个类别的专家卷积核权重</li>
+</ul>
+<hr>
+<h2 id="2-详细算法流程"><a href="#2-详细算法流程" class="headerlink" title="2. 详细算法流程"></a>2. 详细算法流程</h2><h3 id="第一步：特征子集划分-Channel-Partitioning"><a href="#第一步：特征子集划分-Channel-Partitioning" class="headerlink" title="第一步：特征子集划分 (Channel Partitioning)"></a>第一步：特征子集划分 (Channel Partitioning)</h3><p>将输入特征图 $Y \in \mathbb{R}^{N \times C \times H \times W}$ 沿通道维度切割成 $J$ 个独立子集。</p>
+<ul>
+<li>每个子集 $\hat{Y}_j \in \mathbb{R}^{N \times S \times H \times W}$ 的通道大小为 $S$<h3 id="第二步：计算专家输出-Expert-Computation"><a href="#第二步：计算专家输出-Expert-Computation" class="headerlink" title="第二步：计算专家输出 (Expert Computation)"></a>第二步：计算专家输出 (Expert Computation)</h3></li>
+</ul>
+<p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/notion_0b282037.png" alt=""></p>
+<p>在 <strong>GroupConv</strong> 层中，每一组输入只与对应的专家核运算，其本质是分块对角矩阵运算：</p>
+<script type="math/tex; mode=display">
+\hat{y}_j = x_j * \hat{S}_j + b_j, \quad j = 1, \ldots, J</script><blockquote>
+<p>注意：该步结构上实现了物理隔离，确保特征提取的专业性，同时大幅减少了参数量。</p>
+</blockquote>
+<h3 id="第三步：优度评估-Goodness-Formulation"><a href="#第三步：优度评估-Goodness-Formulation" class="headerlink" title="第三步：优度评估 (Goodness Formulation)"></a>第三步：优度评估 (Goodness Formulation)</h3><p>计算每一类通道组的”优度”分值 $G_{n,j}$，代表该层对第 $j$ 类的响应强度：</p>
+<script type="math/tex; mode=display">
+G_{n,j} = \frac{1}{S \times H \times W} \sum_{s=1}^{S} \sum_{h=1}^{H} \sum_{w=1}^{W} \hat{Y}_{n,j,s,h,w}^{2}</script><h3 id="第四步：通道竞争损失计算-CwC-Loss"><a href="#第四步：通道竞争损失计算-CwC-Loss" class="headerlink" title="第四步：通道竞争损失计算 (CwC Loss)"></a>第四步：通道竞争损失计算 (CwC Loss)</h3><p>利用 Softmax 机制在通道间引入竞争，不再需要生成负样本：</p>
+<ol>
+<li><p><strong>提取正优度 </strong>$g_n^+$：通过掩码矩阵从 $\mathbf{G}$ 中获取对应样本真实标签 $z_n$ 的列分值</p>
+<ul>
+<li><p>定义二值标签掩码 $\mathbf{Z} \in \{0, 1\}^{N \times J}$，其中：</p>
+<script type="math/tex; mode=display">
+Z_{n,j} = \begin{cases} 1, & \text{if } z_n = j \\ 0, & \text{otherwise} \end{cases}</script></li>
+<li><p>正优度计算：$\mathbf{g}^+ = \mathbf{G} \cdot \mathbf{Z}^T$</p>
+</li>
+<li>负优度计算：$\mathbf{g}^- = \mathbf{G} \cdot (\mathbf{1} - \mathbf{Z}^T)$</li>
+</ul>
+</li>
+<li><strong>计算 </strong>$L_{CwC}$：<script type="math/tex; mode=display">
+L_{CwC} = -\frac{1}{N} \sum_{n=1}^{N} \log \left( \frac{\exp(g_{n}^{+})}{\sum_{j=1}^{J} \exp(G_{n,j})} \right)</script></li>
+</ol>
+<blockquote>
+<p>该函数强制模型增加正确类别的置信度，同时抑制错误类别的得分。</p>
+</blockquote>
+<hr>
+<h2 id="3-训练策略：ILT-交错层训练"><a href="#3-训练策略：ILT-交错层训练" class="headerlink" title="3. 训练策略：ILT (交错层训练)"></a>3. 训练策略：ILT (交错层训练)</h2><p>为了实现高效部署，采用 <strong>ILT (Interleaved Layer Training)</strong> 策略代替全局 BP：</p>
+<ol>
+<li><strong>并行初始化</strong>：所有 CFSE 层同时启动训练，不进行梯度跨层回传</li>
+<li><strong>局部更新</strong>：每一层仅根据自身的 $L_{CwC}$ 产生的梯度更新本层参数</li>
+<li><strong>分步冻结</strong>：<ul>
+<li>监测每一层的性能表现</li>
+<li>当某一层性能达到平台期（Plateau）时，停止该层权重更新</li>
+<li>冻结后的层为后续层提供稳定且经过精炼的特征输出</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="4-算法原理解析"><a href="#4-算法原理解析" class="headerlink" title="4. 算法原理解析"></a>4. 算法原理解析</h2><ul>
+<li><strong>通道即类别</strong>：CwC 强制将神经网络的通道与特定的语义类别挂钩。通过 $L_{CwC}$ 的约束，模型学会在看到特定物体时，让对应的通道组产生最强的激活。</li>
+<li><strong>空间与语义分离</strong>：标准卷积层用于学习联合特征，而分组卷积层则专门提取类内特征并划分类别空间。</li>
+<li><strong>高效与透明</strong>：分组卷积显著降低了计算开销。由于每一层都能独立分类，这种架构具有极高的透明度，方便观察模型对各维度的响应情况。<br><strong>部署建议</strong>：在推理阶段，若追求极致轻量化，可选用 <strong>GA-pred (全局平均预测器)</strong> 直接根据最后一层的优度值分布输出类别，无需任何复杂的全连接层。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>HPC</tag>
+      </tags>
+  </entry>
 </search>
