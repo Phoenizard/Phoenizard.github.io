@@ -3518,7 +3518,7 @@ P_l = \alpha \cdot \frac{C_L}{C_l}</script><ul>
       </tags>
   </entry>
   <entry>
-    <title>CwCLearning</title>
+    <title>Introduction to Convolutional Channel-wise Competitive Learning</title>
     <url>/2026/01/24/CwCLearning/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="卷积通道竞争学习-CwC-算法部署笔记"><a href="#卷积通道竞争学习-CwC-算法部署笔记" class="headerlink" title="卷积通道竞争学习 (CwC) 算法部署笔记"></a>卷积通道竞争学习 (CwC) 算法部署笔记</h1><p>该算法通过<strong>通道维度的竞争机制</strong>实现完全无反向传播的卷积网络训练。其核心思想是将特征图划分为类别相关的通道组，通过最大化目标类别的激活强度来引导网络自主学习特征，摆脱了对全局梯度和负样本生成的依赖。</p>
 <hr>
