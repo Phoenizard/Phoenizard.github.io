@@ -3634,8 +3634,8 @@ L_{CwC} = -\frac{1}{N} \sum_{n=1}^{N} \log \left( \frac{\exp(g_{n}^{+})}{\sum_{j
       </tags>
   </entry>
   <entry>
-    <title>Deep Residual Learning</title>
-    <url>/2026/01/24/ResNet/</url>
+    <title>Introduction to ResNet</title>
+    <url>/2026/01/25/ResNet/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="算法部署"><a href="#算法部署" class="headerlink" title="算法部署"></a>算法部署</h2><h3 id="Residual-Block-结构"><a href="#Residual-Block-结构" class="headerlink" title="Residual Block 结构"></a>Residual Block 结构</h3><p>ResNet的核心创新在于引入了<strong>残差连接（Residual Connection）</strong>，也称为<strong>跳跃连接（Shortcut Connection）</strong>。每个Residual Block的基本结构如下：</p>
 <p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/notion_e25ae576.png" alt=""></p>
 <h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p><strong>数据流动过程：</strong></p>
