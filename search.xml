@@ -3706,4 +3706,18 @@ L_{CwC} = -\frac{1}{N} \sum_{n=1}^{N} \log \left( \frac{\exp(g_{n}^{+})}{\sum_{j
         <tag>HPC</tag>
       </tags>
   </entry>
+  <entry>
+    <title>TestProject</title>
+    <url>/2026/01/25/Test-Page/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>This page is to test Notion2Hexo Projection</p>
+<p>$\nabla f_\mathbf{w} = \frac{\partial f}{\partial \mathbf{w}}$</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>HPC</tag>
+      </tags>
+  </entry>
 </search>
