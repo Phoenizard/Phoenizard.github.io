@@ -3348,8 +3348,8 @@ f^*(x) = \exp\left(-10 \|x\|^2\right)</script><p>这是一个具有挑战性的�
       </tags>
   </entry>
   <entry>
-    <title>Adaptive Spatial Goodness Encoding for Machine Learning</title>
-    <url>/2026/01/24/ASGE/</url>
+    <title>Adaptive Spatial Goodness Encoding in Machine Learning</title>
+    <url>/2026/01/25/ASGE/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="Adaptive-Spatial-Goodness-Encoding"><a href="#Adaptive-Spatial-Goodness-Encoding" class="headerlink" title="Adaptive Spatial Goodness Encoding"></a>Adaptive Spatial Goodness Encoding</h1><p>该算法结构模仿VGG的Block思想，提出了带有Adaptive Spatial Goodness Encoding的Block模块：</p>
 <p><img src="https://phoenizard-picgo.oss-cn-hangzhou.aliyuncs.com/img/notion_c2dd9413.png" alt=""></p>
 <h2 id="Block-Structure"><a href="#Block-Structure" class="headerlink" title="Block Structure"></a>Block Structure</h2><ul>
