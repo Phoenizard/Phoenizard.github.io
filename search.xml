@@ -3720,4 +3720,121 @@ L_{CwC} = -\frac{1}{N} \sum_{n=1}^{N} \log \left( \frac{\exp(g_{n}^{+})}{\sum_{j
         <tag>HPC</tag>
       </tags>
   </entry>
+  <entry>
+    <title>OpenClaw Claude Code 插件开发笔记</title>
+    <url>/2026/02/25/OpenClaw-Claude-Code-Plugin/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p>项目地址：<a href="https://github.com/Phoenizard/openclaw-claude-code">GitHub</a></p>
+</blockquote>
+<hr>
+<h2 id="一、为什么要做这个插件"><a href="#一、为什么要做这个插件" class="headerlink" title="一、为什么要做这个插件"></a>一、为什么要做这个插件</h2><p>通过 Slack（或其他消息渠道）远程控制本机的 Claude Code，实现：</p>
+<ul>
+<li>在手机上给 bot 发消息就能分析代码、执行任务</li>
+<li>不需要坐在电脑前打开终端</li>
+<li>AI 助手（OpenClaw Agent）可以调用 Claude Code 来完成复杂的编码工作</li>
+</ul>
+<p>核心思路：<strong>OpenClaw 作为消息网关，接收 Slack 消息 → 调用 Claude Code CLI → 返回结果</strong></p>
+<hr>
+<h2 id="二、插件架构"><a href="#二、插件架构" class="headerlink" title="二、插件架构"></a>二、插件架构</h2><h3 id="2-1-三个工具"><a href="#2-1-三个工具" class="headerlink" title="2.1 三个工具"></a>2.1 三个工具</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>权限模式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>claude_plan</code></td>
+<td><code>plan</code>（只读）</td>
+<td>分析代码、审查架构、制定方案，不修改文件</td>
+</tr>
+<tr>
+<td><code>claude_exec</code></td>
+<td><code>bypassPermissions</code></td>
+<td>执行编码任务，可读写文件、运行命令</td>
+</tr>
+<tr>
+<td><code>claude_teams</code></td>
+<td><code>bypassPermissions</code> + teams</td>
+<td>多 Agent 并行协作</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="2-2-安全模型（代码级强制执行）"><a href="#2-2-安全模型（代码级强制执行）" class="headerlink" title="2.2 安全模型（代码级强制执行）"></a>2.2 安全模型（代码级强制执行）</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">┌─────────────────────────────────────────────┐</span><br><span class="line">│  LLM (OpenClaw Agent)                       │</span><br><span class="line">│  ↓ 调用工具                                  │</span><br><span class="line">├─────────────────────────────────────────────┤</span><br><span class="line">│  插件安全层（无法绕过）                       │</span><br><span class="line">│  • allowedPaths: 白名单目录检查              │</span><br><span class="line">│  • maxTimeoutSecs: 超时硬上限                │</span><br><span class="line">│  • maxConcurrent: 并发限制                   │</span><br><span class="line">│  • blockedPermissionModes: 禁用危险模式      │</span><br><span class="line">├─────────────────────────────────────────────┤</span><br><span class="line">│  Claude Code CLI                            │</span><br><span class="line">│  --permission-mode plan/bypassPermissions   │</span><br><span class="line">└─────────────────────────────────────────────┘</span><br></pre></td></tr></table></figure>
+<p><strong>关键设计：<code>allowedPaths</code> 默认为空，必须显式配置才能使用。</strong></p>
+<h3 id="2-3-核心文件结构"><a href="#2-3-核心文件结构" class="headerlink" title="2.3 核心文件结构"></a>2.3 核心文件结构</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openclaw-claude-code/</span><br><span class="line">├── index.ts                 # 插件入口，注册工具</span><br><span class="line">├── openclaw.plugin.json     # 插件元数据和配置 schema</span><br><span class="line">└── src/</span><br><span class="line">    ├── shared.ts            # 核心逻辑：路径校验、spawn claude、日志</span><br><span class="line">    ├── plan-tool.ts         # claude_plan 工具</span><br><span class="line">    ├── exec-tool.ts         # claude_exec 工具</span><br><span class="line">    └── teams-tool.ts        # claude_teams 工具</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、开发过程中遇到的问题与解决"><a href="#三、开发过程中遇到的问题与解决" class="headerlink" title="三、开发过程中遇到的问题与解决"></a>三、开发过程中遇到的问题与解决</h2><h3 id="3-1-Claude-Code-二进制路径问题"><a href="#3-1-Claude-Code-二进制路径问题" class="headerlink" title="3.1 Claude Code 二进制路径问题"></a>3.1 Claude Code 二进制路径问题</h3><p><strong>问题：</strong> <code>spawn ... ENOENT</code> 错误</p>
+<p><strong>原因：</strong> Claude Desktop 把二进制安装在 <code>~/Library/Application Support/Claude/claude-code/&lt;版本&gt;/claude</code>，路径包含空格，Node.js 的 <code>spawn()</code> 处理不当会报错。</p>
+<p><strong>解决：</strong> 在 <code>resolveClaudeBin()</code> 中按优先级查找：</p>
+<ol>
+<li><code>$CLAUDE_BIN</code> 环境变量</li>
+<li><code>~/bin/claude</code>（推荐，创建符号链接）</li>
+<li>Application Support 下的版本目录</li>
+<li>PATH 中的 <code>claude</code></li>
+</ol>
+<h3 id="3-2-工作目录不存在导致-ENOENT"><a href="#3-2-工作目录不存在导致-ENOENT" class="headerlink" title="3.2 工作目录不存在导致 ENOENT"></a>3.2 工作目录不存在导致 ENOENT</h3><p><strong>问题：</strong> 用户请求的 workdir 不存在时，spawn 报 ENOENT，但错误信息显示的是 claude 路径，很误导。</p>
+<p><strong>解决：</strong> 在 <code>validateWorkdir()</code> 中先检查目录是否存在（实际上是检查是否在白名单内，白名单路径应该存在）。</p>
+<h3 id="3-3-权限模式不匹配"><a href="#3-3-权限模式不匹配" class="headerlink" title="3.3 权限模式不匹配"></a>3.3 权限模式不匹配</h3><p><strong>问题：</strong> <code>--permission-mode full</code> 报错，Claude Code 不认识这个值。</p>
+<p><strong>原因：</strong> Claude Code 2.x 的有效值是 <code>acceptEdits | bypassPermissions | default | dontAsk | plan</code>。</p>
+<p><strong>解决：</strong></p>
+<ul>
+<li><code>claude_plan</code> 使用 <code>plan</code> 模式</li>
+<li><code>claude_exec</code> 和 <code>claude_teams</code> 使用 <code>bypassPermissions</code> 模式</li>
+</ul>
+<h3 id="3-4-认证问题"><a href="#3-4-认证问题" class="headerlink" title="3.4 认证问题"></a>3.4 认证问题</h3><p><strong>问题：</strong> Gateway 作为系统服务运行时，不继承 shell 的环境变量，Claude Code 报 “Not logged in”。</p>
+<p><strong>解决：</strong> 在插件 config 中添加 <code>claudeOauthToken</code> 配置项，通过 <code>CLAUDE_CODE_OAUTH_TOKEN</code> 环境变量传递给 Claude Code 子进程。</p>
+<h3 id="3-5-执行过程不可见"><a href="#3-5-执行过程不可见" class="headerlink" title="3.5 执行过程不可见"></a>3.5 执行过程不可见</h3><p><strong>问题：</strong> 用户无法实时看到 Claude Code 的执行过程。</p>
+<p><strong>解决方案演进：</strong></p>
+<ol>
+<li><del>PTY + Remote Control</del> → 用 node-pty 启动交互式 TUI，自动输入 <code>/rc</code> 获取监控链接。遇到三个阻塞问题：spawn-helper 无执行权限、bypassPermissions 确认弹窗、TUI 自动补全拦截 <code>/rc</code> 命令。弃用。</li>
+<li><del>tmux 模式</del> → 在 tmux session 中运行 <code>claude --print</code>，返回 session 名称让用户 attach。问题：工具阻塞等待完成才返回，此时 session 已结束；且 tmux 内 claude 无输出（疑似环境问题）。弃用。</li>
+<li><strong>日志文件模式（最终方案）</strong> → stdout/stderr 实时写入 <code>/tmp/claude-logs/claude-&lt;id&gt;.log</code>，用户可以 <code>tail -f</code> 监控</li>
+</ol>
+<hr>
+<h2 id="四、配置教程"><a href="#四、配置教程" class="headerlink" title="四、配置教程"></a>四、配置教程</h2><h3 id="4-1-安装插件"><a href="#4-1-安装插件" class="headerlink" title="4.1 安装插件"></a>4.1 安装插件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Phoenizard/openclaw-claude-code.git</span><br><span class="line"><span class="built_in">cd</span> openclaw-claude-code</span><br><span class="line">npm install</span><br><span class="line">openclaw plugins install -l .</span><br><span class="line">openclaw gateway restart</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-配置-openclaw-openclaw-json"><a href="#4-2-配置-openclaw-openclaw-json" class="headerlink" title="4.2 配置 ~/.openclaw/openclaw.json"></a>4.2 配置 <code>~/.openclaw/openclaw.json</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;plugins&quot;: &#123;</span><br><span class="line">    &quot;entries&quot;: &#123;</span><br><span class="line">      &quot;claude-code&quot;: &#123;</span><br><span class="line">        &quot;enabled&quot;: true,</span><br><span class="line">        &quot;config&quot;: &#123;</span><br><span class="line">          &quot;allowedPaths&quot;: [</span><br><span class="line">            &quot;~/your-project-a&quot;,</span><br><span class="line">            &quot;~/your-project-b&quot;</span><br><span class="line">          ],</span><br><span class="line">          &quot;maxTimeoutSecs&quot;: 600,</span><br><span class="line">          &quot;maxConcurrent&quot;: 2,</span><br><span class="line">          &quot;claudeOauthToken&quot;: &quot;&lt;your-oauth-token&gt;&quot;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;agents&quot;: &#123;</span><br><span class="line">    &quot;list&quot;: [</span><br><span class="line">      &#123;</span><br><span class="line">        &quot;id&quot;: &quot;main&quot;,</span><br><span class="line">        &quot;default&quot;: true,</span><br><span class="line">        &quot;tools&quot;: &#123;</span><br><span class="line">          &quot;allow&quot;: [&quot;claude_plan&quot;, &quot;claude_exec&quot;, &quot;claude_teams&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-Claude-Code-二进制设置（推荐）"><a href="#4-3-Claude-Code-二进制设置（推荐）" class="headerlink" title="4.3 Claude Code 二进制设置（推荐）"></a>4.3 Claude Code 二进制设置（推荐）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p ~/bin</span><br><span class="line"><span class="comment"># 版本号会随更新变化，请替换为实际版本</span></span><br><span class="line"><span class="built_in">ln</span> -sf <span class="string">&quot;<span class="variable">$HOME</span>/Library/Application Support/Claude/claude-code/&lt;版本号&gt;/claude&quot;</span> ~/bin/claude</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="五、使用方法"><a href="#五、使用方法" class="headerlink" title="五、使用方法"></a>五、使用方法</h2><h3 id="5-1-分析代码（只读）"><a href="#5-1-分析代码（只读）" class="headerlink" title="5.1 分析代码（只读）"></a>5.1 分析代码（只读）</h3><p>在 Slack 中发送：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用 claude_plan 分析 ~/my-project 的项目架构</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-2-执行任务"><a href="#5-2-执行任务" class="headerlink" title="5.2 执行任务"></a>5.2 执行任务</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">用 claude_exec 在 ~/my-project 中添加单元测试</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-实时监控"><a href="#5-3-实时监控" class="headerlink" title="5.3 实时监控"></a>5.3 实时监控</h3><p>工具返回结果会包含日志文件路径：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">📋 Log file: /tmp/claude-logs/claude-c5bda15f.log</span><br><span class="line">Run `tail -f /tmp/claude-logs/claude-c5bda15f.log` to monitor.</span><br></pre></td></tr></table></figure></p>
+<p>在终端运行：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tail</span> -f /tmp/claude-logs/claude-*.<span class="built_in">log</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="5-4-推荐工作流：Plan-→-审核-→-Exec"><a href="#5-4-推荐工作流：Plan-→-审核-→-Exec" class="headerlink" title="5.4 推荐工作流：Plan → 审核 → Exec"></a>5.4 推荐工作流：Plan → 审核 → Exec</h3><ol>
+<li><strong>Plan：</strong> 让 <code>claude_plan</code> 制定方案</li>
+<li><strong>审核：</strong> 在 Slack 中阅读，确认合理</li>
+<li><strong>Exec：</strong> 让 <code>claude_exec</code> 执行方案</li>
+</ol>
+<hr>
+<h2 id="六、示例：神经网络回归项目"><a href="#六、示例：神经网络回归项目" class="headerlink" title="六、示例：神经网络回归项目"></a>六、示例：神经网络回归项目</h2><p>通过 Slack 远程调用插件，完成了一个完整的 PyTorch 神经网络回归项目：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">project/</span><br><span class="line">├── model.py            # RegressionNet: 1→32→32→1</span><br><span class="line">├── dataset.py          # generate_data (多项式) + generate_sine_data (正弦)</span><br><span class="line">├── train.py            # Adam + MSELoss</span><br><span class="line">├── plot.py             # loss 曲线 + 预测对比图</span><br><span class="line">├── main.py             # 多项式回归实验</span><br><span class="line">├── test_sine.py        # 正弦回归实验</span><br><span class="line">├── tests/              # pytest 单元测试（14 个全部通过）</span><br><span class="line">└── README.md           # 安装说明</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="七、待改进"><a href="#七、待改进" class="headerlink" title="七、待改进"></a>七、待改进</h2><ol>
+<li><strong>错误信息更友好</strong> — 目前有些错误（如 ENOENT）不够直观</li>
+<li><strong>进度反馈</strong> — 长任务执行时能分步返回中间结果</li>
+<li><strong>提前返回日志路径</strong> — 当前工具阻塞到任务完成才返回日志路径，理想情况是任务开始时就通知用户日志文件位置</li>
+</ol>
+<hr>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>这个插件实现了：</p>
+<ul>
+<li>✅ 通过 Slack 远程调用 Claude Code</li>
+<li>✅ 安全的白名单目录控制</li>
+<li>✅ 三种模式：只读分析 / 执行任务 / 多 Agent 协作</li>
+<li>✅ 实时日志监控</li>
+</ul>
+<p>核心价值：<strong>让 AI 助手能够调用专业的编码 Agent（Claude Code）来完成复杂的开发任务。</strong></p>
+]]></content>
+      <categories>
+        <category>开发笔记</category>
+      </categories>
+      <tags>
+        <tag>OpenClaw</tag>
+        <tag>Claude Code</tag>
+        <tag>AI Agent</tag>
+        <tag>插件开发</tag>
+      </tags>
+  </entry>
 </search>
